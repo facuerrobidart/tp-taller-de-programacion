@@ -1,10 +1,12 @@
 package com.grupo8.app.modelo;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class Operario {
     private String nombreCompleto;
     private String username;

@@ -13,7 +13,7 @@ public class Empresa {
     private static Empresa empresa;
     private String nombre;
     private Set<Mozo> mozos;
-    private Set<Mesas> mesas;
+    private Set<Mesa> mesas;
     private Set<Producto> productos;
     private Set<Operario> operarios;
 
