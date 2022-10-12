@@ -13,4 +13,10 @@ public class Mesa {
     private Integer cantSillas;
     private EstadoMesa estadoMesa;
     private Mozo mozoAsignado;
+
+    public Mesa(Integer nroMesa, Integer cantSillas) {
+        this.nroMesa = nroMesa;
+        this.cantSillas = cantSillas;
+        this.estadoMesa = EstadoMesa.LIBRE;
+    }
 }

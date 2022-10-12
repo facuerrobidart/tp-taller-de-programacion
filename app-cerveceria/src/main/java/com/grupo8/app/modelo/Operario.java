@@ -19,4 +19,8 @@ public class Operario {
         this.password = password;
         this.activo = true;
     }
+    
+    public static Operario administrador() {
+        return new Operario("admin", "admin", "admin1234");
+    }
 }
