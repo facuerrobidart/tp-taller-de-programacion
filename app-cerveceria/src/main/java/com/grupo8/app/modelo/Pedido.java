@@ -13,4 +13,10 @@ public class Pedido {
   private Producto producto;
   private int cantidad;
   private Instant timestamp;
+
+  public Pedido(Producto producto, int cantidad) {
+    this.producto = producto;
+    this.cantidad = cantidad;
+    this.timestamp = Instant.now();
+  }
 }

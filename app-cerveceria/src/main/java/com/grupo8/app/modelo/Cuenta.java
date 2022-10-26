@@ -25,4 +25,8 @@ public class Cuenta {
     apertura = Instant.now();
     cierre = null;
   }
+
+  public void agregarPedido(Pedido pedido) {
+    pedidos.add(pedido);
+  }
 }

@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 public class CierreMesa extends Cuenta {
   private Mesa mesa;
+  private Cuenta cuenta;
   private List<Promocion> promociones;
   private Float total;
 
@@ -21,6 +22,7 @@ public class CierreMesa extends Cuenta {
   public CierreMesa(Mesa mesa) {
     super();
     this.mesa = mesa;
+    this.cuenta = mesa.getCuenta();
     this.promociones = new ArrayList<>();
     total = 0F;
   }

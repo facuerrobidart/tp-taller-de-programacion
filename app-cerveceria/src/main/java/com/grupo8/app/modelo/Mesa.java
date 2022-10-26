@@ -13,6 +13,7 @@ public class Mesa {
     private Integer cantSillas;
     private EstadoMesa estadoMesa;
     private Mozo mozoAsignado;
+    private Cuenta cuenta;
 
     public Mesa(Integer nroMesa, Integer cantSillas) {
         this.nroMesa = nroMesa;
