@@ -1,6 +1,7 @@
 package com.grupo8.app.negocio;
 
 import com.grupo8.app.dto.AddMesaRequest;
+import com.grupo8.app.excepciones.EntidadNoEncontradaException;
 import com.grupo8.app.excepciones.NumeroMesaInvalidoException;
 import com.grupo8.app.modelo.Empresa;
 import com.grupo8.app.modelo.Mesa;
@@ -32,7 +33,16 @@ public class GestionDeMesas {
         }
     }
 
-    public void editMesa(AddMesaRequest request) {
+    public void editMesa(AddMesaRequest request) throws EntidadNoEncontradaException {
+        Optional<Mesa> mesaAEditar = this.empresa.getMesas().stream()
+                .filter(mesa -> Objects.equals(mesa.getNroMesa(), request.getNroMesa())).findFirst();
+
+        if (mesaAEditar.isPresent()) {
+            mesaAEditar.get().setCantSillas(request.getCantSillas());
+            persistir();
+        } else {
+            throw new EntidadNoEncontradaException("No se encontro la mesa");
+        }
 
     }
 
