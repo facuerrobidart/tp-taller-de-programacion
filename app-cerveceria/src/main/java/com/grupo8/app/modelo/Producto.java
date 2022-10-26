@@ -1,5 +1,6 @@
 package com.grupo8.app.modelo;
 
+import com.grupo8.app.dto.AddProductoRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,5 +23,12 @@ public class Producto {
         this.precio = precio;
         this.costo = costo;
         this.stock = stock;
+    }
+
+    public void update(AddProductoRequest info) {
+        this.nombre = info.getNombre();
+        this.precio = info.getPrecio();
+        this.costo = info.getCosto();
+        this.stock = info.getStock();
     }
 }

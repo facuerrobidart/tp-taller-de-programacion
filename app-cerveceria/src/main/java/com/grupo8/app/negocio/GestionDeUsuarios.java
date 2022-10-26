@@ -1,18 +1,13 @@
 package com.grupo8.app.negocio;
 
-import com.grupo8.app.dto.AddMesaRequest;
 import com.grupo8.app.dto.AddMozoRequest;
 import com.grupo8.app.dto.AddOperarioRequest;
-import com.grupo8.app.dto.AddProductoRequest;
 import com.grupo8.app.excepciones.CredencialesInvalidasException;
-import com.grupo8.app.excepciones.NumeroMesaInvalidoException;
 import com.grupo8.app.excepciones.PermisoDenegadoException;
 import com.grupo8.app.modelo.*;
 import com.grupo8.app.persistencia.Ipersistencia;
 import com.grupo8.app.persistencia.PersistenciaXML;
 
-import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
 public class GestionDeUsuarios {
@@ -35,14 +30,7 @@ public class GestionDeUsuarios {
         if (this.empresa.getUsuarioLogueado().getUsername().equals("admin")) {
             this.empresa.getOperarios().add(
                     new Operario(request.getNombreCompleto(), request.getUsername(), request.getPassword()));
-
-            Ipersistencia<Set<Operario>> persistencia = new PersistenciaXML();
-            try {
-                persistencia.abrirOutput("operarios.xml");
-                persistencia.escribir(this.empresa.getOperarios());
-                persistencia.cerrarOutput();
-            } catch (Exception e) {
-            }
+            persistirOperarios();
         } else {
             throw new PermisoDenegadoException("No tiene permisos para realizar esta accion");
         }
@@ -51,7 +39,10 @@ public class GestionDeUsuarios {
     public void addMozo(AddMozoRequest request) {
         this.empresa.getMozos().add(new Mozo(
                 request.getNombreCompleto(), request.getFechaNacimiento(), request.getCantidadHijos()));
+        persistirMozo();
+    }
 
+    private void persistirMozo() {
         Ipersistencia<Set<Mozo>> persistencia = new PersistenciaXML();
         try {
             persistencia.abrirOutput("mozos.xml");
@@ -61,38 +52,13 @@ public class GestionDeUsuarios {
         }
     }
 
-    public void addMesa(AddMesaRequest request) throws NumeroMesaInvalidoException {
-
-        Optional<Mesa> potencialDuplicado =
-                this.empresa.getMesas().stream()
-                        .filter(mesa -> Objects.equals(mesa.getNroMesa(), request.getNroMesa())).findFirst();
-
-        if (!potencialDuplicado.isPresent()) {
-            this.empresa.getMesas().add(new Mesa(request.getNroMesa(), request.getCantSillas()));
-
-            Ipersistencia<Set<Mesa>> persistencia = new PersistenciaXML();
-            try {
-                persistencia.abrirOutput("mesas.xml");
-                persistencia.escribir(this.empresa.getMesas());
-                persistencia.cerrarOutput();
-            } catch (Exception e) {
-            }
-        } else {
-            throw new NumeroMesaInvalidoException("Ya existe una mesa con ese numero");
-        }
-    }
-
-    public void addProducto(AddProductoRequest request) {
-        this.empresa.getProductos().add(
-                new Producto(request.getNombre(), request.getPrecio(), request.getCosto(), request.getStock()));
-
-        Ipersistencia<Set<Producto>> ipersistencia = new PersistenciaXML();
+    private void persistirOperarios() {
+        Ipersistencia<Set<Operario>> persistencia = new PersistenciaXML();
         try {
-            ipersistencia.abrirOutput("productos.xml");
-            ipersistencia.escribir(this.empresa.getProductos());
-            ipersistencia.cerrarOutput();
+            persistencia.abrirOutput("operarios.xml");
+            persistencia.escribir(this.empresa.getOperarios());
+            persistencia.cerrarOutput();
         } catch (Exception e) {
         }
-
     }
 }
