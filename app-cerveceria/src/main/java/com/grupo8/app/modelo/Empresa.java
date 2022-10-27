@@ -1,6 +1,7 @@
 package com.grupo8.app.modelo;
 
 import com.grupo8.app.excepciones.CredencialesInvalidasException;
+import com.grupo8.app.modelo.Promociones.Promocion;
 import com.grupo8.app.persistencia.Ipersistencia;
 import com.grupo8.app.persistencia.PersistenciaXML;
 import lombok.Getter;
@@ -21,7 +22,8 @@ public class Empresa {
     private Set<Mesa> mesas;
     private Set<Producto> productos;
     private Set<Operario> operarios;
-
+    private Set<Comanda> comandas;
+    private Set<Promocion> promociones;
     private Operario usuarioLogueado;
 
 
@@ -37,6 +39,7 @@ public class Empresa {
         cargarMozos();
         cargarProductos();
         cargarOperarios();
+        cargarComandas();
     }
 
     private void cargarOperarios() {
@@ -57,6 +60,44 @@ public class Empresa {
             operarios.add(Operario.administrador());
             try {
                 persistencia.escribir(operarios);
+            } catch (IOException e) {}
+        }
+    }
+
+    private void cargarComandas() {
+        Ipersistencia<Set<Comanda>> persistencia = new PersistenciaXML();
+
+        try { // cargar los datos de la agencia desde el archivo XML
+            persistencia.abrirInput("operarios.xml");
+            this.comandas = persistencia.lee();
+            if (comandas == null) {
+                comandas = new HashSet<>();
+            }
+
+            persistencia.cerrarInput();
+        } catch (Exception err) {
+            this.comandas = new HashSet<>();
+            try {
+                persistencia.escribir(comandas);
+            } catch (IOException e) {}
+        }
+    }
+
+    private void cargarPromociones() {
+        Ipersistencia<Set<Promocion>> persistencia = new PersistenciaXML();
+
+        try { // cargar los datos de la agencia desde el archivo XML
+            persistencia.abrirInput("promociones.xml");
+            this.promociones = persistencia.lee();
+            if (promociones == null) {
+                promociones = new HashSet<>();
+            }
+
+            persistencia.cerrarInput();
+        } catch (Exception err) {
+            this.promociones = new HashSet<>();
+            try {
+                persistencia.escribir(promociones);
             } catch (IOException e) {}
         }
     }

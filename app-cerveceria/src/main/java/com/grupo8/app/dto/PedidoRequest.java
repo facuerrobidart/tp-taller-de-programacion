@@ -8,4 +8,5 @@ import lombok.Setter;
 public class PedidoRequest {
     private String idProducto;
     private Integer cantidad;
+    private String idComanda;
 }

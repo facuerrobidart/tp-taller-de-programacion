@@ -19,12 +19,25 @@ public class GestionDeProductos {
     }
 
     public void addProducto(AddProductoRequest request) {
+        if (request.getCosto() <= 0 || request.getPrecio() <= 0) {
+            throw new IllegalArgumentException("El costo y el precio deben ser mayores a 0");
+        }
+
+        if (request.getPrecio() < request.getCosto()) {
+            throw new IllegalArgumentException("El precio debe ser mayor al costo");
+        }
+
         this.empresa.getProductos().add(
                 new Producto(request.getNombre(), request.getPrecio(), request.getCosto(), request.getStock()));
         persistir();
     }
 
     public void deleteProducto(@NonNull String id) {
+
+        if (this.empresa.getComandas().stream().anyMatch(c -> c.getPedidos().stream().anyMatch(p -> p.getProducto().getId().equals(id)))) {
+            throw new IllegalArgumentException("No se puede eliminar un producto que existe en una comanda");
+        }
+
         this.empresa.getProductos().removeIf(producto -> id.equals(producto.getId()));
 
         persistir();
