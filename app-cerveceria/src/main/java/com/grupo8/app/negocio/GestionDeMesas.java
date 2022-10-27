@@ -69,11 +69,11 @@ public class GestionDeMesas {
         }
     }
 
-    private void persistirComandas() {
-        Ipersistencia<Set<Comanda>> persistencia = new PersistenciaXML();
+    private void persistirCierreComandas() {
+        Ipersistencia<List<CierreComanda>> persistencia = new PersistenciaXML();
         try {
-            persistencia.abrirOutput("comandas.xml");
-            persistencia.escribir(this.empresa.getComandas());
+            persistencia.abrirOutput("cierres.xml");
+            persistencia.escribir(this.empresa.getCierreComandas());
             persistencia.cerrarOutput();
         } catch (Exception e) {
         }
@@ -130,7 +130,8 @@ public class GestionDeMesas {
         }
     }
 
+
     public void cerrarTurno() {
-        persistirComandas();
+        persistirCierreComandas();
     }
 }

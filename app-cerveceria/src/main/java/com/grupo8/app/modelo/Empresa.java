@@ -8,9 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @Setter
@@ -22,7 +20,8 @@ public class Empresa {
     private Set<Mesa> mesas;
     private Set<Producto> productos;
     private Set<Operario> operarios;
-    private Set<Comanda> comandas;
+    private List<Comanda> comandas;
+    private List<CierreComanda> cierreComandas;
     private Set<Promocion> promociones;
     private Operario usuarioLogueado;
 
@@ -35,11 +34,13 @@ public class Empresa {
     }
 
     private Empresa() {
+        comandas = new ArrayList<>();
         cargarMesas();
         cargarMozos();
         cargarProductos();
         cargarOperarios();
-        cargarComandas();
+        cargarComandasCerradas();
+        cargarPromociones();
     }
 
     private void cargarOperarios() {
@@ -64,21 +65,21 @@ public class Empresa {
         }
     }
 
-    private void cargarComandas() {
-        Ipersistencia<Set<Comanda>> persistencia = new PersistenciaXML();
+    private void cargarComandasCerradas() {
+        Ipersistencia<List<CierreComanda>> persistencia = new PersistenciaXML();
 
         try { // cargar los datos de la agencia desde el archivo XML
-            persistencia.abrirInput("operarios.xml");
-            this.comandas = persistencia.lee();
-            if (comandas == null) {
-                comandas = new HashSet<>();
+            persistencia.abrirInput("cierres.xml");
+            this.cierreComandas = persistencia.lee();
+            if (cierreComandas == null) {
+                cierreComandas = new ArrayList<>();
             }
 
             persistencia.cerrarInput();
         } catch (Exception err) {
-            this.comandas = new HashSet<>();
+            this.cierreComandas = new ArrayList<>();
             try {
-                persistencia.escribir(comandas);
+                persistencia.escribir(cierreComandas);
             } catch (IOException e) {}
         }
     }
