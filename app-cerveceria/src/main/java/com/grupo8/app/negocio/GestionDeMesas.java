@@ -7,17 +7,17 @@ import com.grupo8.app.excepciones.EstadoInvalidoException;
 import com.grupo8.app.excepciones.NumeroMesaInvalidoException;
 import com.grupo8.app.modelo.*;
 import com.grupo8.app.modelo.Promociones.Promocion;
+import com.grupo8.app.modelo.Promociones.PromocionFija;
+import com.grupo8.app.modelo.Promociones.PromocionTemporal;
 import com.grupo8.app.persistencia.Ipersistencia;
 import com.grupo8.app.persistencia.PersistenciaXML;
+import com.grupo8.app.tipos.EstadoComanda;
 import com.grupo8.app.tipos.EstadoMesa;
 import com.grupo8.app.tipos.EstadoMozo;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class GestionDeMesas {
@@ -121,7 +121,14 @@ public class GestionDeMesas {
             Optional<Producto> productoAAgregar = this.empresa.getProductos().stream()
                     .filter(producto -> Objects.equals(producto.getId(), pedido.getIdProducto())).findFirst();
             if (productoAAgregar.isPresent()) {
-                comanda.get().getPedidos().add(new Pedido(productoAAgregar.get(), pedido.getCantidad()));
+                Optional<Pedido> pedidoExistente = comanda.get().getPedidos().stream()
+                        .filter(p -> Objects.equals(p.getProducto().getId(), pedido.getIdProducto())).findFirst();
+                if (pedidoExistente.isPresent()) { //los pedidos se agrupan por producto
+                    Pedido pedidoAEditar = pedidoExistente.get();
+                    pedidoAEditar.setCantidad(pedidoAEditar.getCantidad() + pedido.getCantidad());
+                } else { //si no existe el pedido se crea
+                    comanda.get().getPedidos().add(new Pedido(productoAAgregar.get(), pedido.getCantidad()));
+                }
             } else {
                 throw new EntidadNoEncontradaException("No se encontro el producto");
             }
@@ -130,8 +137,91 @@ public class GestionDeMesas {
         }
     }
 
+    private boolean aplicarPromocionesFijas(CierreComanda cierreComanda) {
+        boolean aplicoPromo = false;
+        List<Promocion> promosFijas =
+                this.empresa.getPromociones()
+                        .stream()
+                        .filter(promo -> promo.getDiasPromo().equals(LocalDate.now().getDayOfWeek()) && promo.isActivo() && promo instanceof PromocionFija)
+                        .collect(Collectors.toList());
 
-    public void cerrarTurno() {
+        for (Promocion promo : promosFijas) {
+            PromocionFija promoFija = (PromocionFija) promo;
+            Optional<Pedido> pedidoDePromo = cierreComanda.getPedidos().stream()
+                    .filter(p -> Objects.equals(p.getProducto().getId(), promoFija.getProducto().getId())).findFirst();
+
+            if (pedidoDePromo.isPresent()) {
+                Pedido pedido = pedidoDePromo.get();
+                if (promoFija.isDosPorUno()) {
+                    int pares = Math.floorDiv(pedidoDePromo.get().getCantidad(), 2);
+                    int resto = pedidoDePromo.get().getCantidad() % 2;
+                    pedido.setSubtotal(pares * pedido.getProducto().getPrecio() + resto * pedido.getProducto().getPrecio());
+                    pedido.setEsPromo(true);
+                    cierreComanda.getPromociones().add(promoFija);
+                    aplicoPromo = true;
+                } else { //es una promo por cantidad
+                    if (pedido.getCantidad() >= promoFija.getDtoPorCantMin()) {
+                        pedido.setSubtotal((float) (pedido.getCantidad() * promoFija.getDtoPorCantPrecioU()));
+                        pedido.setEsPromo(true);
+                        cierreComanda.getPromociones().add(promoFija);
+                        aplicoPromo = true;
+                    }
+                }
+            }
+        }
+
+        return aplicoPromo; //Avisa si realmente logro aplicar alguna promo
+    }
+
+    private void sumarTotal(CierreComanda cierreComanda, String medioDePago) {
+        List<Promocion> promos =
+                this.empresa.getPromociones()
+                        .stream()
+                        .filter(promo -> promo.getDiasPromo().equals(LocalDate.now().getDayOfWeek()) && promo.isActivo() && promo instanceof PromocionTemporal)
+                        .collect(Collectors.toList());
+        List<PromocionTemporal> promosTemporales = new ArrayList<>();
+        for (Promocion promo : promos) {
+            promosTemporales.add((PromocionTemporal) promo);
+        }
+
+        Optional<PromocionTemporal> promoTemporal = promosTemporales.stream()
+                .filter(promo -> promo.getFormaPago().equals(medioDePago)).findFirst();
+
+
+        cierreComanda.setTotal(cierreComanda.getPedidos()
+                .stream()
+                .reduce(0f, (subtotal, pedido) -> {
+                    if (!promoTemporal.isPresent() || (pedido.isEsPromo() && !promoTemporal.get().isEsAcumulable())) {
+                        return subtotal + (pedido.getSubtotal());
+                    } else {
+                        return  subtotal + (pedido.getSubtotal()) - (pedido.getSubtotal() * promoTemporal.get().getPorcentajeDescuento() / 100);
+                    }
+                }, Float::sum));
+    }
+
+    public void cerrarComanda(String idComanda, String medioDePago) throws EntidadNoEncontradaException {
+        Optional<Comanda> comanda = this.empresa.getComandas().stream()
+                .filter(c -> Objects.equals(c.getId(), idComanda)).findFirst();
+        if (comanda.isPresent()) {
+            CierreComanda cierre = new CierreComanda(comanda.get());
+            aplicarPromocionesFijas(cierre);
+            sumarTotal(cierre, medioDePago);
+            cierre.setEstadoPedido(EstadoComanda.CERRADA);
+
+            this.empresa.getCierreComandas().add(cierre);
+            this.empresa.getComandas().remove(comanda.get());
+
+            persistirCierreComandas();
+        } else {
+            throw new EntidadNoEncontradaException("No se encontro la comanda");
+        }
+    }
+
+
+    public void cerrarTurno() throws EstadoInvalidoException {
+        if (empresa.getComandas().size() > 0) {
+            throw new EstadoInvalidoException("No se puede cerrar el turno, hay comandas abiertas");
+        }
         persistirCierreComandas();
     }
 }
