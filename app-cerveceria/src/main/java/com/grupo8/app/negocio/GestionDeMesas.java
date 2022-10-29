@@ -15,7 +15,6 @@ import com.grupo8.app.tipos.EstadoComanda;
 import com.grupo8.app.tipos.EstadoMesa;
 import com.grupo8.app.tipos.EstadoMozo;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -142,7 +141,7 @@ public class GestionDeMesas {
         List<Promocion> promosFijas =
                 this.empresa.getPromociones()
                         .stream()
-                        .filter(promo -> promo.getDiasPromo().equals(LocalDate.now().getDayOfWeek()) && promo.isActivo() && promo instanceof PromocionFija)
+                        .filter(promo -> promo.getDiasPromo().contains(LocalDate.now().getDayOfWeek()) && promo.isActivo() && promo instanceof PromocionFija)
                         .collect(Collectors.toList());
 
         for (Promocion promo : promosFijas) {
@@ -177,7 +176,7 @@ public class GestionDeMesas {
         List<Promocion> promos =
                 this.empresa.getPromociones()
                         .stream()
-                        .filter(promo -> promo.getDiasPromo().equals(LocalDate.now().getDayOfWeek()) && promo.isActivo() && promo instanceof PromocionTemporal)
+                        .filter(promo -> promo.getDiasPromo().contains(LocalDate.now().getDayOfWeek()) && promo.isActivo() && promo instanceof PromocionTemporal)
                         .collect(Collectors.toList());
         List<PromocionTemporal> promosTemporales = new ArrayList<>();
         for (Promocion promo : promos) {
@@ -191,7 +190,7 @@ public class GestionDeMesas {
         cierreComanda.setTotal(cierreComanda.getPedidos()
                 .stream()
                 .reduce(0f, (subtotal, pedido) -> {
-                    if (!promoTemporal.isPresent() || (pedido.isEsPromo() && !promoTemporal.get().isEsAcumulable())) {
+                    if (!promoTemporal.isPresent() || (pedido.isEsPromo() && !promoTemporal.get().isAcumulable())) {
                         return subtotal + (pedido.getSubtotal());
                     } else {
                         return  subtotal + (pedido.getSubtotal()) - (pedido.getSubtotal() * promoTemporal.get().getPorcentajeDescuento() / 100);

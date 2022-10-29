@@ -10,6 +10,6 @@ public class PromocionFija extends Promocion {
 	Producto producto;
 	boolean dosPorUno;
 	boolean dtoPorCant;
-	int dtoPorCantMin;
-	double dtoPorCantPrecioU;
+	Integer dtoPorCantMin;
+	Double dtoPorCantPrecioU;
 }
