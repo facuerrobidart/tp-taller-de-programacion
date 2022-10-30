@@ -19,4 +19,5 @@ public class PromoFijaRequest {
     private Boolean dtoPorCantidad;
     private Integer dtoPorCantMin;
     private Double dtoPorCantPrecioU;
+    private boolean activa;
 }

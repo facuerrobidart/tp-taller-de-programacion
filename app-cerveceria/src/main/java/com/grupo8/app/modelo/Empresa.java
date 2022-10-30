@@ -2,6 +2,8 @@ package com.grupo8.app.modelo;
 
 import com.grupo8.app.excepciones.CredencialesInvalidasException;
 import com.grupo8.app.modelo.Promociones.Promocion;
+import com.grupo8.app.modelo.Promociones.PromocionFija;
+import com.grupo8.app.modelo.Promociones.PromocionTemporal;
 import com.grupo8.app.persistencia.Ipersistencia;
 import com.grupo8.app.persistencia.PersistenciaXML;
 import lombok.Getter;
@@ -22,7 +24,8 @@ public class Empresa {
     private Set<Operario> operarios;
     private List<Comanda> comandas;
     private List<CierreComanda> cierreComandas;
-    private Set<Promocion> promociones;
+    private Set<PromocionFija> promocionesFijas;
+    private Set<PromocionTemporal> promocionesTemporales;
     private Operario usuarioLogueado;
 
 
@@ -40,7 +43,8 @@ public class Empresa {
         cargarProductos();
         cargarOperarios();
         cargarComandasCerradas();
-        cargarPromociones();
+        cargarPromocionesFijas();
+        cargarPromocionesTemporales();
     }
 
     private void cargarOperarios() {
@@ -84,21 +88,40 @@ public class Empresa {
         }
     }
 
-    private void cargarPromociones() {
-        Ipersistencia<Set<Promocion>> persistencia = new PersistenciaXML();
+    private void cargarPromocionesFijas() {
+        Ipersistencia<Set<PromocionFija>> persistencia = new PersistenciaXML();
 
         try { // cargar los datos de la agencia desde el archivo XML
-            persistencia.abrirInput("promociones.xml");
-            this.promociones = persistencia.lee();
-            if (promociones == null) {
-                promociones = new HashSet<>();
+            persistencia.abrirInput("promocionesFijas.xml");
+            this.promocionesFijas = persistencia.lee();
+            if (promocionesFijas == null) {
+                promocionesFijas = new HashSet<>();
             }
 
             persistencia.cerrarInput();
         } catch (Exception err) {
-            this.promociones = new HashSet<>();
+            this.promocionesFijas = new HashSet<>();
             try {
-                persistencia.escribir(promociones);
+                persistencia.escribir(promocionesFijas);
+            } catch (IOException e) {}
+        }
+    }
+
+    private void cargarPromocionesTemporales() {
+        Ipersistencia<Set<PromocionTemporal>> persistencia = new PersistenciaXML();
+
+        try { // cargar los datos de la agencia desde el archivo XML
+            persistencia.abrirInput("promocionesTemporales.xml");
+            this.promocionesTemporales = persistencia.lee();
+            if (promocionesTemporales == null) {
+                promocionesTemporales = new HashSet<>();
+            }
+
+            persistencia.cerrarInput();
+        } catch (Exception err) {
+            this.promocionesTemporales = new HashSet<>();
+            try {
+                persistencia.escribir(promocionesTemporales);
             } catch (IOException e) {}
         }
     }

@@ -17,5 +17,6 @@ public class PromoTemporalRequest {
     private String formaPago;
     private int porcentajeDescuento;
     private boolean acumulable;
+    private boolean activa;
 
 }
