@@ -5,12 +5,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.util.UUID;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class Pedido {
   private Producto producto;
+  private String id;
   private int cantidad;
   private float subtotal;
   private Instant timestamp;
@@ -22,5 +24,6 @@ public class Pedido {
     this.subtotal = producto.getPrecio() * cantidad;
     this.timestamp = Instant.now();
     this.esPromo = false;
+    this.id = UUID.randomUUID().toString();
   }
 }
