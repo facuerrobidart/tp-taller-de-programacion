@@ -83,7 +83,11 @@ public class GestionDeMesas {
             mesa.setEstadoMesa(EstadoMesa.LIBRE);
             mesa.setMozoAsignado(null);
         }
-        List<Promocion> promosActivas = this.empresa.getPromociones().stream().filter(promo -> promo.getDiasPromo().equals(LocalDate.now().getDayOfWeek()) && promo.isActivo()).collect(Collectors.toList());
+        List<Promocion> promos = new ArrayList<>();
+        promos.addAll(this.empresa.getPromocionesFijas());
+        promos.addAll(this.empresa.getPromocionesTemporales());
+
+        List<Promocion> promosActivas = promos.stream().filter(promo -> promo.getDiasPromo().contains(LocalDate.now().getDayOfWeek()) && promo.isActivo()).collect(Collectors.toList());
 
         if (promosActivas.size() < 2) {
             throw new EstadoInvalidoException("Debe haber al menos 2 promociones activas para iniciar el turno");
@@ -138,11 +142,15 @@ public class GestionDeMesas {
 
     private boolean aplicarPromocionesFijas(CierreComanda cierreComanda) {
         boolean aplicoPromo = false;
+        List<Promocion> promos = new ArrayList<>();
+        promos.addAll(this.empresa.getPromocionesFijas());
+        promos.addAll(this.empresa.getPromocionesTemporales());
+
         List<Promocion> promosFijas =
-                this.empresa.getPromociones()
-                        .stream()
-                        .filter(promo -> promo.getDiasPromo().contains(LocalDate.now().getDayOfWeek()) && promo.isActivo() && promo instanceof PromocionFija)
-                        .collect(Collectors.toList());
+                promos
+                .stream()
+                .filter(promo -> promo.getDiasPromo().contains(LocalDate.now().getDayOfWeek()) && promo.isActivo() && promo instanceof PromocionFija)
+                .collect(Collectors.toList());
 
         for (Promocion promo : promosFijas) {
             PromocionFija promoFija = (PromocionFija) promo;
@@ -151,7 +159,7 @@ public class GestionDeMesas {
 
             if (pedidoDePromo.isPresent()) {
                 Pedido pedido = pedidoDePromo.get();
-                if (promoFija.isDosPorUno()) {
+                if (promoFija.getDosPorUno()) {
                     int pares = Math.floorDiv(pedidoDePromo.get().getCantidad(), 2);
                     int resto = pedidoDePromo.get().getCantidad() % 2;
                     pedido.setSubtotal(pares * pedido.getProducto().getPrecio() + resto * pedido.getProducto().getPrecio());
@@ -173,15 +181,11 @@ public class GestionDeMesas {
     }
 
     private void sumarTotal(CierreComanda cierreComanda, String medioDePago) {
-        List<Promocion> promos =
-                this.empresa.getPromociones()
+        List<PromocionTemporal> promosTemporales =
+                this.empresa.getPromocionesTemporales()
                         .stream()
-                        .filter(promo -> promo.getDiasPromo().contains(LocalDate.now().getDayOfWeek()) && promo.isActivo() && promo instanceof PromocionTemporal)
+                        .filter(promo -> promo.getDiasPromo().contains(LocalDate.now().getDayOfWeek()) && promo.isActivo())
                         .collect(Collectors.toList());
-        List<PromocionTemporal> promosTemporales = new ArrayList<>();
-        for (Promocion promo : promos) {
-            promosTemporales.add((PromocionTemporal) promo);
-        }
 
         Optional<PromocionTemporal> promoTemporal = promosTemporales.stream()
                 .filter(promo -> promo.getFormaPago().equals(medioDePago)).findFirst();
