@@ -8,37 +8,34 @@ import com.grupo8.app.modelo.Empresa;
 import com.grupo8.app.negocio.GestionDeMesas;
 import com.grupo8.app.vistas.VistaIniciarTurno;
 
-
-public class ControladorIniciarTurno  implements ActionListener {
+public class ControladorIniciarTurno implements ActionListener {
 
 	private VistaIniciarTurno vista;
 	private Empresa empresa;
-	private static  ControladorIniciarTurno instancia = null;
+	private static ControladorIniciarTurno instancia = null;
 	private GestionDeMesas gestionMesas;
-	
-	
+
 	public ControladorIniciarTurno() {
-        this.vista = new VistaIniciarTurno();
-        this.empresa = Empresa.getEmpresa();
-        this.vista.setActionListener(this);
-        this.gestionMesas= new GestionDeMesas();
+		this.vista = new VistaIniciarTurno();
+		this.empresa = Empresa.getEmpresa();
+		this.vista.setActionListener(this);
+		this.gestionMesas = new GestionDeMesas();
 	}
 
-    public static ControladorIniciarTurno getControladorIniciarTurno(boolean mostrar) {
-    	if(instancia == null) {
-            instancia = new ControladorIniciarTurno();
-        }
-        if (mostrar) {
-            instancia.vista.mostrar();
-        }
-    	return instancia;
-    }
-	
-	
+	public static ControladorIniciarTurno getControladorIniciarTurno(boolean mostrar) {
+		if (instancia == null) {
+			instancia = new ControladorIniciarTurno();
+		}
+		if (mostrar) {
+			instancia.vista.mostrar();
+		}
+		return instancia;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String comando=e.getActionCommand();
-		switch(comando) {
+		String comando = e.getActionCommand();
+		switch (comando) {
 		case "AsistenciaMozos":
 			this.vista.esconder();
 			ControladorAsistenciaMozos.getControladorAsistencia(true);
@@ -54,15 +51,15 @@ public class ControladorIniciarTurno  implements ActionListener {
 		case "CerrarTurno":
 			try {
 				this.gestionMesas.cerrarTurno();
-				vista.cerrarExitoso("El cierre de mesa se realizo correctamente"," El cierre de mesa se realizo correctamente");
-			}
-			catch(EstadoInvalidoException exception) {
-				vista.cerrarFracaso("No se pudo cerrar la mesa","No se pudo cerrar la mesa");
+				vista.cerrarExitoso("El cierre de mesa se realizo correctamente",
+						" El cierre de mesa se realizo correctamente");
+			} catch (EstadoInvalidoException exception) {
+				vista.cerrarFracaso("No se pudo cerrar la mesa", "No se pudo cerrar la mesa");
 			}
 			break;
-			
+
 		}
-		
+
 	}
 
 }

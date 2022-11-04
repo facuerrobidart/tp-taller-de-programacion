@@ -5,56 +5,57 @@ import com.grupo8.app.vistas.VistaSesionAdmin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 public class ControladorSesionAdmin implements ActionListener {
-    private static ControladorSesionAdmin instancia = null;
-    private VistaSesionAdmin vista = null;
-    private ControladorSesionAdmin() {
-        this.vista = new VistaSesionAdmin();
-        this.vista.setActionListener(this);
-    }
-    public static ControladorSesionAdmin getControladorSesionAdmin(boolean mostrar) {
-    	if(instancia == null) {
-    		instancia = new ControladorSesionAdmin();
-    	}
+	private static ControladorSesionAdmin instancia = null;
+	private VistaSesionAdmin vista = null;
 
-        if (mostrar) {
-            instancia.vista.mostrar();
-        }
+	private ControladorSesionAdmin() {
+		this.vista = new VistaSesionAdmin();
+		this.vista.setActionListener(this);
+	}
 
-    	return instancia;
-    }
+	public static ControladorSesionAdmin getControladorSesionAdmin(boolean mostrar) {
+		if (instancia == null) {
+			instancia = new ControladorSesionAdmin();
+		}
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        switch (e.getActionCommand()) {
-            case "IniciarTurno":
-            	ControladorIniciarTurno.getControladorIniciarTurno(true);
-            	this.vista.esconder();
-            	break;
-            case "ABMMesas":
-            	ControladorMesa.getControladorMesa(true);
-            	this.vista.esconder();
-            	break;
-            case "ABMProductos":
-            	ControladorProductos.getControladorProductos(true);
-            	this.vista.esconder();
-            	break;
-            case "Promociones":
-            	ControladorPromociones.getControladorPromociones(true);
-            	this.vista.esconder();
-            	break;
-            case "Estadisticas":
-                ControladorLogin.getControladorLogin(true);
-                vista.esconder();
-                break;
-            case "ABMUsuarios":
-            	ControladorUsuarios.getControladorUsuarios(true);
-            	vista.esconder();
-            	break;
-            case "CERRAR":
-            	ControladorLogin.getControladorLogin(true);
-            	vista.esconder();
-        }
-    }
+		if (mostrar) {
+			instancia.vista.mostrar();
+		}
+
+		return instancia;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		switch (e.getActionCommand()) {
+		case "IniciarTurno":
+			ControladorIniciarTurno.getControladorIniciarTurno(true);
+			this.vista.esconder();
+			break;
+		case "ABMMesas":
+			ControladorMesa.getControladorMesa(true);
+			this.vista.esconder();
+			break;
+		case "ABMProductos":
+			ControladorProductos.getControladorProductos(true);
+			this.vista.esconder();
+			break;
+		case "Promociones":
+			ControladorPromociones.getControladorPromociones(true);
+			this.vista.esconder();
+			break;
+		case "Estadisticas":
+			ControladorLogin.getControladorLogin(true);
+			vista.esconder();
+			break;
+		case "ABMUsuarios":
+			ControladorUsuarios.getControladorUsuarios(true);
+			vista.esconder();
+			break;
+		case "CERRAR":
+			ControladorLogin.getControladorLogin(true);
+			vista.esconder();
+		}
+	}
 }

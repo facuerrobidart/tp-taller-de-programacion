@@ -3,34 +3,32 @@ package com.grupo8.app.controladores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import com.grupo8.app.vistas.VistaSesionAdmin;
+import com.grupo8.app.vistas.VistaNuevoUsuario;
 
 public class ControladorUsuarios implements ActionListener {
-    private static ControladorUsuarios instancia = null;
-    private VistaSesionAdmin vista = null;
-    private ControladorUsuarios() {
-        this.vista = new VistaSesionAdmin();
-        this.vista.setActionListener(this);
-    }
-    public static ControladorUsuarios getControladorUsuarios(boolean mostrar) {
-    	if(instancia == null) {
-    		instancia = new ControladorUsuarios();
-    	}
+	private static ControladorUsuarios instancia = null;
+	private VistaNuevoUsuario vista = null;
 
-        if (mostrar) {
-            instancia.vista.mostrar();
-        }
+	private ControladorUsuarios() {
+		this.vista = new VistaNuevoUsuario();
+		this.vista.setActionListener(this);
+	}
 
-    	return instancia;
-    }
+	public static ControladorUsuarios getControladorUsuarios(boolean mostrar) {
+		if (instancia == null) {
+			instancia = new ControladorUsuarios();
+		}
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        switch (e.getActionCommand()) {
-            case "IniciarTurno":
-            	ControladorIniciarTurno.getControladorIniciarTurno(true);
-                break;
-           
-        }
-    }
+		if (mostrar) {
+			instancia.vista.mostrar();
+		}
+
+		return instancia;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		}
+	}
 }
