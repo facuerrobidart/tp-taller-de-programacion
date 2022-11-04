@@ -21,7 +21,7 @@ public class ControladorLogin implements ActionListener {
         this.vista.setActionListener(this);
     }
 
-    private static ControladorLogin get(boolean mostrar) {
+    public static ControladorLogin get(boolean mostrar) {
     	if(instancia == null) {
             instancia = new ControladorLogin();
         }
@@ -36,9 +36,15 @@ public class ControladorLogin implements ActionListener {
         String comando = e.getActionCommand();
         switch (comando) {
             case "LOGIN":
-                this.logueado = empresa.login(vista.getUsername(), vista.getContrasena());
+                try {
+                    this.logueado = empresa.login(vista.getUsername(), vista.getContrasena());
+                } catch (Exception exception) {
+                    vista.error("Error", "Usuario o contraseña incorrectos");
+                    break;
+                }
                 if (logueado.getUsername().equals("admin")) {
-                    ControladorSesionAdmin CAdmin = ControladorSesionAdmin.get();
+                    this.vista.esconder();
+                    ControladorSesionAdmin CAdmin = ControladorSesionAdmin.get(true);
                 }
                 break;
             case "SALIR":
@@ -47,6 +53,8 @@ public class ControladorLogin implements ActionListener {
         }
     }
 
-
+    public ILogin getVista() {
+        return vista;
+    }
 
 }

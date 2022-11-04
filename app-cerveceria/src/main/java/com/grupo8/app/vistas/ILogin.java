@@ -18,6 +18,7 @@ public interface ILogin {
 	void mostrar();
 
 	void esconder();
+	void error(String error, String titulo);
 	
 	void limpiaCampos();
 }

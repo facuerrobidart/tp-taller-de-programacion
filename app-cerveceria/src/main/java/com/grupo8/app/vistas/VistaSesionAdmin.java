@@ -72,6 +72,7 @@ public class VistaSesionAdmin extends JFrame {
 		panel.add(panel_1);
 		
 		btnABMProductos = new JButton("ABM productos");
+		btnABMProductos.setActionCommand("PRODUCTOS");
 		btnABMProductos.setPreferredSize(new Dimension(200, 35));
 		panel_1.add(btnABMProductos);
 		btnABMProductos.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -80,6 +81,7 @@ public class VistaSesionAdmin extends JFrame {
 		panel.add(panel_1_1);
 		
 		btnPromociones = new JButton("Promociones");
+		btnPromociones.setActionCommand("PROMOCIONES");
 		btnPromociones.setPreferredSize(new Dimension(200, 35));
 		btnPromociones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -96,7 +98,7 @@ public class VistaSesionAdmin extends JFrame {
 		btnEstadisticas = new JButton("Estadisticas");
 		btnEstadisticas.setPreferredSize(new Dimension(200, 35));
 		panel_1_2.add(btnEstadisticas);
-		btnEstadisticas.setActionCommand("Ingresar");
+		btnEstadisticas.setActionCommand("ESTADISTICAS");
 		btnEstadisticas.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		JPanel panel_1_2_1 = new JPanel();
@@ -105,7 +107,7 @@ public class VistaSesionAdmin extends JFrame {
 		JButton btnAbmUsuarios = new JButton("ABM usuarios");
 		btnAbmUsuarios.setPreferredSize(new Dimension(200, 35));
 		btnAbmUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnAbmUsuarios.setActionCommand("Ingresar");
+		btnAbmUsuarios.setActionCommand("USUARIOS");
 		panel_1_2_1.add(btnAbmUsuarios);
 		
 		JPanel panel_3 = new JPanel();
@@ -113,6 +115,7 @@ public class VistaSesionAdmin extends JFrame {
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
 		btnCerrarSesion = new JButton("Cerrar sesion");
+		btnCerrarSesion.setActionCommand("CERRAR");
 		btnCerrarSesion.setPreferredSize(new Dimension(200, 35));
 		btnCerrarSesion.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_3.add(btnCerrarSesion);
