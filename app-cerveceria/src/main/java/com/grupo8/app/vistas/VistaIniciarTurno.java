@@ -50,6 +50,7 @@ public class VistaIniciarTurno extends JFrame {
 		panel_4.add(lblNewLabel_1);
 		
 		btnAsistenciaMozos = new JButton("Asistencia Mozos");
+		btnAsistenciaMozos.setActionCommand("AsistenciaMozos");
 		btnAsistenciaMozos.setPreferredSize(new Dimension(250, 45));
 		btnAsistenciaMozos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -62,6 +63,7 @@ public class VistaIniciarTurno extends JFrame {
 		panel.add(panel_6);
 		
 		btnGestionarMesas = new JButton("Gestionar mesas");
+		btnGestionarMesas.setActionCommand("GestionarMesas");
 		btnGestionarMesas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -74,6 +76,7 @@ public class VistaIniciarTurno extends JFrame {
 		panel.add(panel_1);
 		
 		btnAgregarPedido = new JButton("Agregar pedido a la mesa");
+		btnAgregarPedido.setActionCommand("AgregarPedido");
 		btnAgregarPedido.setPreferredSize(new Dimension(250, 45));
 		panel_1.add(btnAgregarPedido);
 		btnAgregarPedido.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -84,7 +87,7 @@ public class VistaIniciarTurno extends JFrame {
 		JButton btnCerrarTurno = new JButton("Cerrar turno");
 		btnCerrarTurno.setPreferredSize(new Dimension(250, 45));
 		btnCerrarTurno.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnCerrarTurno.setActionCommand("Ingresar");
+		btnCerrarTurno.setActionCommand("CerrarTurno");
 		panel_1_2_1.add(btnCerrarTurno);
 		
 		JPanel panel_3 = new JPanel();
@@ -115,6 +118,13 @@ public class VistaIniciarTurno extends JFrame {
 	public void esconder() {
 		this.setVisible(false);
 		
+	}
+	
+	public void cerrarExitoso(String mensaje, String titulo) {
+		JOptionPane.showMessageDialog(null,titulo, mensaje, JOptionPane.INFORMATION_MESSAGE);
+	}
+	public void cerrarFracaso(String error, String titulo) {
+		JOptionPane.showMessageDialog(null, error, titulo, JOptionPane.ERROR_MESSAGE);
 	}
 
 	

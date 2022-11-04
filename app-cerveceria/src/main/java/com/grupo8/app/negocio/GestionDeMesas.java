@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 public class GestionDeMesas {
     public Empresa empresa;
 
-    public GestionDeMesas(Empresa empresa) {
+    public GestionDeMesas() {
         this.empresa = Empresa.getEmpresa();
     }
 
