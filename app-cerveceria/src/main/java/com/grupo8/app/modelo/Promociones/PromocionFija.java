@@ -12,11 +12,11 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class PromocionFija extends Promocion {
-	Producto producto;
-	Boolean dosPorUno;
-	Boolean dtoPorCant;
-	Integer dtoPorCantMin;
-	Double dtoPorCantPrecioU;
+	private Producto producto;
+	private Boolean dosPorUno;
+	private Boolean dtoPorCant;
+	private Integer dtoPorCantMin;
+	private Double dtoPorCantPrecioU;
 
 	public PromocionFija(String nombre, List<DayOfWeek> diasPromo, Producto producto, Boolean dosPorUno, Boolean dtoPorCant, Integer dtoPorCantMin, Double dtoPorCantPrecioU) {
 		super(nombre, diasPromo);

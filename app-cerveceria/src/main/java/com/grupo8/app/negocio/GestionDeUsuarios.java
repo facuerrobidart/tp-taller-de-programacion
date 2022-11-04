@@ -2,13 +2,17 @@ package com.grupo8.app.negocio;
 
 import com.grupo8.app.dto.AddMozoRequest;
 import com.grupo8.app.dto.AddOperarioRequest;
+import com.grupo8.app.dto.MozoDTO;
+import com.grupo8.app.dto.OperarioDTO;
 import com.grupo8.app.excepciones.CredencialesInvalidasException;
 import com.grupo8.app.excepciones.PermisoDenegadoException;
 import com.grupo8.app.modelo.*;
 import com.grupo8.app.persistencia.Ipersistencia;
 import com.grupo8.app.persistencia.PersistenciaXML;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class GestionDeUsuarios {
 
@@ -60,5 +64,17 @@ public class GestionDeUsuarios {
             persistencia.cerrarOutput();
         } catch (Exception e) {
         }
+    }
+
+    public List<MozoDTO> obtenerMozos() {
+        return this.empresa.getMozos()
+                .stream().map(MozoDTO::of)
+                .collect(Collectors.toList());
+    }
+
+    public List<OperarioDTO> obtenerOperarios() {
+        return this.empresa.getOperarios()
+                .stream().map(OperarioDTO::of)
+                .collect(Collectors.toList());
     }
 }

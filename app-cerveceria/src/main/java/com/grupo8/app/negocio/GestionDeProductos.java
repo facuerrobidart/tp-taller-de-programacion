@@ -1,6 +1,7 @@
 package com.grupo8.app.negocio;
 
 import com.grupo8.app.dto.AddProductoRequest;
+import com.grupo8.app.dto.ProductoDTO;
 import com.grupo8.app.excepciones.EntidadNoEncontradaException;
 import com.grupo8.app.modelo.Empresa;
 import com.grupo8.app.modelo.Producto;
@@ -8,8 +9,10 @@ import com.grupo8.app.persistencia.Ipersistencia;
 import com.grupo8.app.persistencia.PersistenciaXML;
 import lombok.NonNull;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class GestionDeProductos {
     public Empresa empresa;
@@ -64,5 +67,12 @@ public class GestionDeProductos {
             persistencia.cerrarOutput();
         } catch (Exception e) {
         }
+    }
+
+    public List<ProductoDTO> obtenerProductos() {
+        return empresa.getProductos()
+                .stream()
+                .map(ProductoDTO::of)
+                .collect(Collectors.toList());
     }
 }

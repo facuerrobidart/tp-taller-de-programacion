@@ -12,10 +12,10 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 public class Promocion {
-	String nombre;
-	String idPromocion;
-	boolean activo;
-	List<DayOfWeek> diasPromo;
+	private String nombre;
+	private String idPromocion;
+	private boolean activo;
+	private List<DayOfWeek> diasPromo;
 
 
 	public Promocion(String nombre, List<DayOfWeek> diasPromo) {

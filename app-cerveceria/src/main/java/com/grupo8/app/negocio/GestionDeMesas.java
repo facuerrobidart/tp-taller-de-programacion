@@ -1,6 +1,8 @@
 package com.grupo8.app.negocio;
 
 import com.grupo8.app.dto.AddMesaRequest;
+import com.grupo8.app.dto.ComandaDTO;
+import com.grupo8.app.dto.MesaDTO;
 import com.grupo8.app.dto.PedidoRequest;
 import com.grupo8.app.excepciones.EntidadNoEncontradaException;
 import com.grupo8.app.excepciones.EstadoInvalidoException;
@@ -218,6 +220,18 @@ public class GestionDeMesas {
         } else {
             throw new EntidadNoEncontradaException("No se encontro la comanda");
         }
+    }
+
+    public List<MesaDTO> obtenerMesas() {
+        return this.empresa.getMesas().stream()
+                .map(MesaDTO::of)
+                .collect(Collectors.toList());
+    }
+
+    public List<ComandaDTO> obtenerComandas() {
+        return this.empresa.getComandas().stream()
+                .map(ComandaDTO::of)
+                .collect(Collectors.toList());
     }
 
 

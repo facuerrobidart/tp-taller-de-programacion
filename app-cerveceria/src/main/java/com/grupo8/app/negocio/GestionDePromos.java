@@ -1,13 +1,13 @@
 package com.grupo8.app.negocio;
 
+import com.grupo8.app.dto.PromoFijaDTO;
 import com.grupo8.app.dto.PromoFijaRequest;
+import com.grupo8.app.dto.PromoTemporalDTO;
 import com.grupo8.app.dto.PromoTemporalRequest;
 import com.grupo8.app.excepciones.EntidadNoEncontradaException;
 import com.grupo8.app.excepciones.MalaSolicitudException;
 import com.grupo8.app.modelo.Empresa;
-import com.grupo8.app.modelo.Operario;
 import com.grupo8.app.modelo.Producto;
-import com.grupo8.app.modelo.Promociones.Promocion;
 import com.grupo8.app.modelo.Promociones.PromocionFija;
 import com.grupo8.app.modelo.Promociones.PromocionTemporal;
 import com.grupo8.app.persistencia.Ipersistencia;
@@ -16,6 +16,7 @@ import com.grupo8.app.persistencia.PersistenciaXML;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class GestionDePromos {
     private Empresa empresa;
@@ -145,4 +146,15 @@ public class GestionDePromos {
         }
     }
 
+    public List<PromoFijaDTO> obtenerPromosFijas() {
+        return this.empresa.getPromocionesFijas().stream()
+                .map(PromoFijaDTO::of)
+                .collect(Collectors.toList());
+    }
+
+    public List<PromoTemporalDTO> obtenerPromosTemporales() {
+        return this.empresa.getPromocionesTemporales().stream()
+                .map(PromoTemporalDTO::of)
+                .collect(Collectors.toList());
+    }
 }
