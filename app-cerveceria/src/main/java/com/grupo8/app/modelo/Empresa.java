@@ -172,7 +172,7 @@ public class Empresa {
     }
 
 
-    public void login(String username, String password) throws CredencialesInvalidasException {
+    public Operario login(String username, String password) throws CredencialesInvalidasException {
         Optional<Operario> logueado = operarios.stream()
                 .filter(operario -> operario.getPassword().equals(password) && operario.getUsername().equals(username)).findFirst();
 
@@ -181,6 +181,8 @@ public class Empresa {
         } else {
             throw new CredencialesInvalidasException("Credenciales invalidas");
         }
+
+        return usuarioLogueado;
     }
 
     public void logout() {
