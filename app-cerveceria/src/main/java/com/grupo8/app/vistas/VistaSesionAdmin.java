@@ -52,6 +52,7 @@ public class VistaSesionAdmin extends JFrame {
 		panel_4.add(lblNewLabel_1);
 		
 		btnIniciarTurno = new JButton("Iniciar turno");
+		btnIniciarTurno.setActionCommand("IniciarTurno");
 		btnIniciarTurno.setPreferredSize(new Dimension(200, 35));
 		btnIniciarTurno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -64,6 +65,7 @@ public class VistaSesionAdmin extends JFrame {
 		panel.add(panel_6);
 		
 		btnAbmMesas = new JButton("ABM mesas");
+		btnAbmMesas.setActionCommand("ABMMesas");
 		btnAbmMesas.setPreferredSize(new Dimension(200, 35));
 		panel_6.add(btnAbmMesas);
 		btnAbmMesas.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -72,7 +74,7 @@ public class VistaSesionAdmin extends JFrame {
 		panel.add(panel_1);
 		
 		btnABMProductos = new JButton("ABM productos");
-		btnABMProductos.setActionCommand("PRODUCTOS");
+		btnABMProductos.setActionCommand("ABMProductos");
 		btnABMProductos.setPreferredSize(new Dimension(200, 35));
 		panel_1.add(btnABMProductos);
 		btnABMProductos.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -81,7 +83,6 @@ public class VistaSesionAdmin extends JFrame {
 		panel.add(panel_1_1);
 		
 		btnPromociones = new JButton("Promociones");
-		btnPromociones.setActionCommand("PROMOCIONES");
 		btnPromociones.setPreferredSize(new Dimension(200, 35));
 		btnPromociones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -98,7 +99,6 @@ public class VistaSesionAdmin extends JFrame {
 		btnEstadisticas = new JButton("Estadisticas");
 		btnEstadisticas.setPreferredSize(new Dimension(200, 35));
 		panel_1_2.add(btnEstadisticas);
-		btnEstadisticas.setActionCommand("ESTADISTICAS");
 		btnEstadisticas.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		JPanel panel_1_2_1 = new JPanel();
@@ -107,7 +107,7 @@ public class VistaSesionAdmin extends JFrame {
 		JButton btnAbmUsuarios = new JButton("ABM usuarios");
 		btnAbmUsuarios.setPreferredSize(new Dimension(200, 35));
 		btnAbmUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnAbmUsuarios.setActionCommand("USUARIOS");
+		btnAbmUsuarios.setActionCommand("ABMUsuarios");
 		panel_1_2_1.add(btnAbmUsuarios);
 		
 		JPanel panel_3 = new JPanel();

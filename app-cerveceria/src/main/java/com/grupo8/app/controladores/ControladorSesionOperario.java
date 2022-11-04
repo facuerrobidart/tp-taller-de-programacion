@@ -6,16 +6,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class ControladorSesionAdmin implements ActionListener {
-    private static ControladorSesionAdmin instancia = null;
+public class ControladorSesionOperario implements ActionListener {
+    private static ControladorSesionOperario instancia = null;
     private VistaSesionAdmin vista = null;
-    private ControladorSesionAdmin() {
+    private ControladorSesionOperario() {
         this.vista = new VistaSesionAdmin();
         this.vista.setActionListener(this);
     }
-    public static ControladorSesionAdmin getControladorSesionAdmin(boolean mostrar) {
+    public static ControladorSesionOperario getControladorSesionOperario(boolean mostrar) {
     	if(instancia == null) {
-    		instancia = new ControladorSesionAdmin();
+    		instancia = new ControladorSesionOperario();
     	}
 
         if (mostrar) {
@@ -48,13 +48,10 @@ public class ControladorSesionAdmin implements ActionListener {
                 ControladorLogin.getControladorLogin(true);
                 vista.esconder();
                 break;
-            case "ABMUsuarios":
-            	ControladorUsuarios.getControladorUsuarios(true);
-            	vista.esconder();
-            	break;
             case "CERRAR":
             	ControladorLogin.getControladorLogin(true);
             	vista.esconder();
+            	break;
         }
     }
 }

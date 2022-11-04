@@ -50,6 +50,7 @@ public class VistaProductos extends JFrame {
 		panel_4.add(lblNewLabel_1);
 		
 		btnNuevoProducto = new JButton("Nuevo producto");
+		btnNuevoProducto.setActionCommand("NuevoProducto");
 		btnNuevoProducto.setPreferredSize(new Dimension(250, 45));
 		btnNuevoProducto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -62,6 +63,7 @@ public class VistaProductos extends JFrame {
 		panel.add(panel_6);
 		
 		btnEditarProducto = new JButton("Editar producto");
+		btnEditarProducto.setActionCommand("EditarProducto");
 		btnEditarProducto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -74,6 +76,7 @@ public class VistaProductos extends JFrame {
 		panel.add(panel_1);
 		
 		btnEliminarProducto = new JButton("Eliminar producto");
+		btnEliminarProducto.setActionCommand("EliminarProducto");
 		btnEliminarProducto.setPreferredSize(new Dimension(250, 45));
 		panel_1.add(btnEliminarProducto);
 		btnEliminarProducto.setFont(new Font("Tahoma", Font.PLAIN, 16));

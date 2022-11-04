@@ -50,6 +50,7 @@ public class VistaMesa extends JFrame {
 		panel_4.add(lblNewLabel_1);
 		
 		btnNuevaMesa = new JButton("Nueva mesa");
+		btnNuevaMesa.setActionCommand("NuevaMesa");
 		btnNuevaMesa.setPreferredSize(new Dimension(250, 45));
 		btnNuevaMesa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -62,6 +63,7 @@ public class VistaMesa extends JFrame {
 		panel.add(panel_6);
 		
 		btnEditarMesas = new JButton("Editar mesas");
+		btnEditarMesas.setActionCommand("EditarMesa");
 		btnEditarMesas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -74,6 +76,7 @@ public class VistaMesa extends JFrame {
 		panel.add(panel_1);
 		
 		btnEliminarMesa = new JButton("Eliminar Mesa");
+		btnEliminarMesa.setActionCommand("EliminarMesa");
 		btnEliminarMesa.setPreferredSize(new Dimension(250, 45));
 		panel_1.add(btnEliminarMesa);
 		btnEliminarMesa.setFont(new Font("Tahoma", Font.PLAIN, 16));

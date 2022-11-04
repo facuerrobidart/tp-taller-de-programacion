@@ -50,6 +50,7 @@ public class VistaPromo extends JFrame {
 		panel_4.add(lblNewLabel_1);
 		
 		btnNuevaPromocion = new JButton("Nueva promocion");
+		btnNuevaPromocion.setActionCommand("NuevaPromocion");
 		btnNuevaPromocion.setPreferredSize(new Dimension(250, 45));
 		btnNuevaPromocion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -62,6 +63,7 @@ public class VistaPromo extends JFrame {
 		panel.add(panel_6);
 		
 		btnEditarPromocion = new JButton("Editar promocion");
+		btnEditarPromocion.setActionCommand("EditarPromocion");
 		btnEditarPromocion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -74,6 +76,7 @@ public class VistaPromo extends JFrame {
 		panel.add(panel_1);
 		
 		btnEliminarPromocion = new JButton("Eliminar promocion");
+		btnEliminarPromocion.setActionCommand("EliminarPromocion");
 		btnEliminarPromocion.setPreferredSize(new Dimension(250, 45));
 		panel_1.add(btnEliminarPromocion);
 		btnEliminarPromocion.setFont(new Font("Tahoma", Font.PLAIN, 16));

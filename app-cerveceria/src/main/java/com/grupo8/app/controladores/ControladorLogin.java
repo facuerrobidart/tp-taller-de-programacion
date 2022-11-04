@@ -21,7 +21,7 @@ public class ControladorLogin implements ActionListener {
         this.vista.setActionListener(this);
     }
 
-    public static ControladorLogin get(boolean mostrar) {
+    public static ControladorLogin getControladorLogin(boolean mostrar) {
     	if(instancia == null) {
             instancia = new ControladorLogin();
         }

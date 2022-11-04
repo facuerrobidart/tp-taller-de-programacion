@@ -8,25 +8,24 @@ import com.grupo8.app.modelo.Empresa;
 import com.grupo8.app.negocio.GestionDeMesas;
 import com.grupo8.app.vistas.VistaIniciarTurno;
 
-
-public class ControladorIniciarTurno  implements ActionListener {
+public class ControladorMesa  implements ActionListener {
 
 	private VistaIniciarTurno vista;
 	private Empresa empresa;
-	private static  ControladorIniciarTurno instancia = null;
+	private static  ControladorMesa instancia = null;
 	private GestionDeMesas gestionMesas;
 	
 	
-	public ControladorIniciarTurno() {
+	public ControladorMesa() {
         this.vista = new VistaIniciarTurno();
         this.empresa = Empresa.getEmpresa();
         this.vista.setActionListener(this);
         this.gestionMesas= new GestionDeMesas();
 	}
 
-    public static ControladorIniciarTurno getControladorIniciarTurno(boolean mostrar) {
+    public static ControladorMesa getControladorMesa(boolean mostrar) {
     	if(instancia == null) {
-            instancia = new ControladorIniciarTurno();
+            instancia = new ControladorMesa();
         }
         if (mostrar) {
             instancia.vista.mostrar();
@@ -39,30 +38,26 @@ public class ControladorIniciarTurno  implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String comando=e.getActionCommand();
 		switch(comando) {
-		case "AsistenciaMozos":
+		case "NuevaMesa":
 			this.vista.esconder();
-			ControladorAsistenciaMozos.getControladorAsistencia(true);
+			ControladorNuevaMesa.getControladorNuevaMesa(true);
 			break;
-		case "GestionarMesas":
+		case "EditarMesa":
 			this.vista.esconder();
-			ControladorMesa.getControladorMesa(true);
+			ControladorNuevaMesa.getControladorNuevaMesa(true);
 			break;
-		case "AgregarPedido":
+		case "EliminarMesa":
 			this.vista.esconder();
-			ControladorAgregarPedidoComanda.getControladorAgregarPedidoComanda(true);
+			ControladorEliminarMesa.getControladorEliminarMesa(true);
+			
 			break;
-		case "CerrarTurno":
-			try {
-				this.gestionMesas.cerrarTurno();
-				vista.cerrarExitoso("El cierre de mesa se realizo correctamente"," El cierre de mesa se realizo correctamente");
-			}
-			catch(EstadoInvalidoException exception) {
-				vista.cerrarFracaso("No se pudo cerrar la mesa","No se pudo cerrar la mesa");
-			}
+		case "Volver":
+			this.vista.esconder();
+			ControladorIniciarTurno.getControladorIniciarTurno(true);
+			
 			break;
 			
 		}
 		
 	}
-
 }
