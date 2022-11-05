@@ -1,5 +1,7 @@
 package com.grupo8.app.vistas;
 
+import com.grupo8.app.dto.MesaDTO;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -19,6 +21,7 @@ public class VistaEliminarMesa extends JFrame implements MouseListener{
 	private JPanel General;
 	private ActionListener actionListener;
 	private int idMesa;
+	private JList<MesaDTO> listaMesasElim;
 	private JButton btnVolver;
 	
 
@@ -61,6 +64,7 @@ public class VistaEliminarMesa extends JFrame implements MouseListener{
 		panel_15.add(btnVolver);
 		
 		JButton btnAceptar = new JButton("Eliminar");
+		btnAceptar.setActionCommand("ELIMINAR");
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnAceptar);
 		
@@ -69,7 +73,7 @@ public class VistaEliminarMesa extends JFrame implements MouseListener{
 		General.add(panel);
 		panel.setLayout(null);
 		
-		JList listaMesasElim = new JList();
+		listaMesasElim = new JList<MesaDTO>();
 		listaMesasElim.setBounds(10, 128, 364, 442);
 		panel.add(listaMesasElim);
 		
@@ -95,6 +99,18 @@ public class VistaEliminarMesa extends JFrame implements MouseListener{
 		// TODO Auto-generated method stub
         this.btnVolver.addActionListener(actionListener);
         this.actionListener = actionListener;
+	}
+
+	public int obtenerIdSeleccionado() {
+		return this.listaMesasElim.getSelectedValue().getNroMesa();
+	}
+
+	public void setListaMesasElim(MesaDTO[] mesas) {
+		this.listaMesasElim.setListData(mesas);
+	}
+
+	public void mostrarMensaje(String mensaje) {
+		JOptionPane.showMessageDialog(this, mensaje);
 	}
 
 	

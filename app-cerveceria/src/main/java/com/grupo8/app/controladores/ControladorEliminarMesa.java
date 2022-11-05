@@ -3,6 +3,7 @@ package com.grupo8.app.controladores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.grupo8.app.dto.MesaDTO;
 import com.grupo8.app.modelo.Empresa;
 import com.grupo8.app.negocio.GestionDeMesas;
 import com.grupo8.app.vistas.VistaEliminarMesa;
@@ -19,6 +20,7 @@ public class ControladorEliminarMesa implements ActionListener {
 		this.empresa = Empresa.getEmpresa();
 		this.vista.setActionListener(this);
 		this.gestionMesas = new GestionDeMesas();
+		this.vista.setListaMesasElim(gestionMesas.obtenerMesas().toArray(new MesaDTO[0]));
 	}
 
 	public static ControladorEliminarMesa getControladorEliminarMesa(boolean mostrar) {
@@ -35,24 +37,15 @@ public class ControladorEliminarMesa implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
 		switch (comando) {
-		case "NuevaMesa":
-			this.vista.esconder();
-			ControladorNuevaMesa.getControladorNuevaMesa(true);
-			break;
-		case "EditarMesa":
-			this.vista.esconder();
-			ControladorNuevaMesa.getControladorNuevaMesa(true);
-			break;
-		case "EliminarMesa":
-			this.vista.esconder();
-			ControladorEliminarMesa.getControladorEliminarMesa(true);
-
+		case "ELIMINAR":
+			this.gestionMesas.deleteMesa(vista.obtenerIdSeleccionado());
+			this.vista.setListaMesasElim(gestionMesas.obtenerMesas().toArray(new MesaDTO[0])); //actualiza la lista sin el eliminado
+			this.vista.mostrarMensaje("Mesa eliminada correctamente");
 			break;
 		case "Volver":
 			this.vista.esconder();
-			ControladorIniciarTurno.getControladorIniciarTurno(true);
+			ControladorMesa.getControladorMesa(true);
 			break;
-
 		}
 
 	}

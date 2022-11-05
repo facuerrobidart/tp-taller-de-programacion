@@ -1,5 +1,7 @@
 package com.grupo8.app.vistas;
 
+import com.grupo8.app.dto.ProductoDTO;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -21,6 +23,7 @@ public class VistaEliminarProducto extends JFrame implements MouseListener {
 	private JPanel General;
 	private ActionListener actionListener;
 	private JButton btnVolver;
+	private JList<ProductoDTO> listProductosElim;
 
 	
 
@@ -62,7 +65,7 @@ public class VistaEliminarProducto extends JFrame implements MouseListener {
 		lblNewLabel.setBounds(55, 26, 307, 77);
 		panel.add(lblNewLabel);
 		
-		JList listProductosElim = new JList();
+		listProductosElim = new JList<>();
 		listProductosElim.setBounds(10, 142, 408, 434);
 		panel.add(listProductosElim);
 		
@@ -90,7 +93,18 @@ public class VistaEliminarProducto extends JFrame implements MouseListener {
 	
 	public void esconder() {
 		this.setVisible(false);
-		
+	}
+
+	public String obtenerIdProducto() {
+		return listProductosElim.getSelectedValue().getId();
+	}
+
+	public void setListProductosElim(ProductoDTO[] productos) {
+		listProductosElim.setListData(productos);
+	}
+
+	public void mostrarMensaje(String mensaje) {
+		JOptionPane.showMessageDialog(this, mensaje);
 	}
 
 	

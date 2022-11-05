@@ -1,5 +1,8 @@
 package com.grupo8.app.vistas;
 
+import com.grupo8.app.dto.AddProductoRequest;
+import com.grupo8.app.dto.ProductoDTO;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -23,6 +26,7 @@ public class VistaNuevoProducto extends JFrame implements  MouseListener{
 	private JTextField textFieldCostoProducto;
 	private JTextField textFieldPrecio;
 	private JTextField textFieldStock;
+	private ProductoDTO productoEditable;
 	
 
 
@@ -33,7 +37,7 @@ public class VistaNuevoProducto extends JFrame implements  MouseListener{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VistaNuevoProducto frame = new VistaNuevoProducto();
+					VistaNuevoProducto frame = new VistaNuevoProducto(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +49,7 @@ public class VistaNuevoProducto extends JFrame implements  MouseListener{
 	/**
 	 * Create the frame.
 	 */
-	public VistaNuevoProducto() {
+	public VistaNuevoProducto(ProductoDTO productoEditable) {
 		setTitle("Nuevo Producto");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 646, 665);
@@ -110,13 +114,17 @@ public class VistaNuevoProducto extends JFrame implements  MouseListener{
 		General.add(panel_15);
 		panel_15.setLayout(new GridLayout(1, 0, 0, 0));
 		btnVolver = new JButton("Volver");
+		btnVolver.setActionCommand("VOLVER");
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnVolver);
 		
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.setActionCommand("ACEPTAR");
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnAceptar);
-		
+
+
+		this.productoEditable = productoEditable;
 	}
 
 	
@@ -200,6 +208,42 @@ public class VistaNuevoProducto extends JFrame implements  MouseListener{
 
 	public void esconder() {
 		this.setVisible(false);
-		
+	}
+
+	public String getIdEditable() {
+		if (this.productoEditable != null) {
+			return this.productoEditable.getId();
+		} else {
+			return null;
+		}
+	}
+
+	public void setProductoEditable(ProductoDTO productoEditable) {
+		this.productoEditable = productoEditable;
+		this.textFieldNombreProducto.setText(productoEditable.getNombre());
+		this.textFieldPrecio.setText(productoEditable.getPrecio().toString());
+		this.textFieldStock.setText(productoEditable.getStock().toString());
+		this.textFieldCostoProducto.setText(productoEditable.getCosto().toString());
+	}
+
+	public void resetearEditable() {
+		this.productoEditable = null;
+		this.textFieldNombreProducto.setText("");
+		this.textFieldPrecio.setText("");
+		this.textFieldStock.setText("");
+		this.textFieldCostoProducto.setText("");
+	}
+
+	public AddProductoRequest getFormulario() {
+		AddProductoRequest request = new AddProductoRequest();
+		request.setNombre(this.textFieldNombreProducto.getText());
+		request.setPrecio(Float.parseFloat(this.textFieldPrecio.getText()));
+		request.setCosto(Float.parseFloat(this.textFieldCostoProducto.getText()));
+		request.setStock(Integer.parseInt(this.textFieldStock.getText()));
+		return request;
+	}
+
+	public void mostrarMensaje(String mensaje) {
+		JOptionPane.showMessageDialog(this, mensaje);
 	}
 }

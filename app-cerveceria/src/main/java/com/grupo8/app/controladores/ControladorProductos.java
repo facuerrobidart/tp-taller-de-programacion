@@ -30,15 +30,15 @@ public class ControladorProductos implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case "NuevoProducto":
-			ControladorNuevoProducto.getControladorNuevoProducto(true);
+			ControladorNuevoProducto.get(true, null);
 			vista.esconder();
 			break;
 		case "EditarProducto":
-			ControladorNuevoProducto.getControladorNuevoProducto(true);
+			ControladorEditarProducto.get(true);
 			vista.esconder();
 			break;
 		case "EliminarProducto":
-			ControladorEliminarProducto.getControladorEliminarProducto(true);
+			ControladorEliminarProducto.get(true);
 			vista.esconder();
 			break;
 		case "Volver":

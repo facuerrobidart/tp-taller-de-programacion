@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class GestionDeProductos {
     public Empresa empresa;
 
-    public GestionDeProductos(Empresa empresa) {
+    public GestionDeProductos() {
         this.empresa = Empresa.getEmpresa();
     }
 
@@ -74,5 +74,17 @@ public class GestionDeProductos {
                 .stream()
                 .map(ProductoDTO::of)
                 .collect(Collectors.toList());
+    }
+
+    public ProductoDTO obtenerPorId(String id) throws EntidadNoEncontradaException {
+        Optional<Producto> producto = this.empresa.getProductos().stream()
+                .filter(p -> id.equals(p.getId()))
+                .findFirst();
+
+        if (producto.isPresent()) {
+            return ProductoDTO.of(producto.get());
+        } else {
+            throw new EntidadNoEncontradaException("No se encontro el producto");
+        }
     }
 }
