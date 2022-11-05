@@ -11,12 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PromoTemporalDTO {
-    private String nombre;
-    private String idPromocion;
-    private boolean activo;
-    private List<DayOfWeek> diasPromo;
-
+public class PromoTemporalDTO extends PromocionDTO {
     private String formaPago;
     private int porcentajeDescuento;
     private boolean acumulable;

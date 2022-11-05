@@ -1,9 +1,6 @@
 package com.grupo8.app.negocio;
 
-import com.grupo8.app.dto.PromoFijaDTO;
-import com.grupo8.app.dto.PromoFijaRequest;
-import com.grupo8.app.dto.PromoTemporalDTO;
-import com.grupo8.app.dto.PromoTemporalRequest;
+import com.grupo8.app.dto.*;
 import com.grupo8.app.excepciones.EntidadNoEncontradaException;
 import com.grupo8.app.excepciones.MalaSolicitudException;
 import com.grupo8.app.modelo.Empresa;
@@ -13,6 +10,7 @@ import com.grupo8.app.modelo.Promociones.PromocionTemporal;
 import com.grupo8.app.persistencia.Ipersistencia;
 import com.grupo8.app.persistencia.PersistenciaXML;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -42,6 +40,7 @@ public class GestionDePromos {
                 ));
         persistirPromosTemporales();
     }
+
     public void editarPromoTemporal(PromoTemporalRequest request, String id) throws EntidadNoEncontradaException {
         Optional<PromocionTemporal> promo = this.empresa.getPromocionesTemporales().stream().filter(p -> p.getIdPromocion().equals(id)).findFirst();
         if (promo.isPresent()) {
@@ -87,6 +86,7 @@ public class GestionDePromos {
                 ));
         persistirPromosFijas();
     }
+
     public void editarPromoFija(PromoFijaRequest request, String id) throws EntidadNoEncontradaException {
         Optional<PromocionFija> promo = this.empresa.getPromocionesFijas().stream().filter(p -> p.getIdPromocion().equals(id)).findFirst();
         if (promo.isPresent()) {
@@ -114,6 +114,7 @@ public class GestionDePromos {
             throw new MalaSolicitudException("La promocion no existe");
         }
     }
+
     public void eliminarPromoTemporal(String id) throws MalaSolicitudException {
         Optional<PromocionTemporal> promo = this.empresa.getPromocionesTemporales().stream()
                 .filter(p -> p.getIdPromocion().equals(id))
@@ -156,5 +157,19 @@ public class GestionDePromos {
         return this.empresa.getPromocionesTemporales().stream()
                 .map(PromoTemporalDTO::of)
                 .collect(Collectors.toList());
+    }
+
+    public List<PromocionDTO> obtenerPromos() {
+        List<PromocionDTO> promos = new ArrayList<>();
+        promos.addAll(obtenerPromosFijas());
+        promos.addAll(obtenerPromosTemporales());
+        return promos;
+    }
+    public void eliminarPromo(String id) throws MalaSolicitudException {
+        try {
+            eliminarPromoFija(id);
+        } catch (MalaSolicitudException e) {
+            eliminarPromoTemporal(id);
+        }
     }
 }

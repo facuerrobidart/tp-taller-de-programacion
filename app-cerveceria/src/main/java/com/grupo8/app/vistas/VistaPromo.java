@@ -30,7 +30,7 @@ public class VistaPromo extends JFrame {
 	private JButton btnEditarPromocion;
 
 	public VistaPromo() {
-		setTitle("Gestion productos");
+		setTitle("Gestion promociones");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 532, 464);
 		contentPane = new JPanel();

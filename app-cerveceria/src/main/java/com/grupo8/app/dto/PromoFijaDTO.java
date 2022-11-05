@@ -5,23 +5,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.DayOfWeek;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class PromoFijaDTO {
+public class PromoFijaDTO extends PromocionDTO {
     private ProductoDTO producto;
     private Boolean dosPorUno;
     private Boolean dtoPorCant;
     private Integer dtoPorCantMin;
     private Double dtoPorCantPrecioU;
 
-    private String nombre;
-    private String idPromocion;
-    private boolean activo;
-    private List<DayOfWeek> diasPromo;
 
     public static PromoFijaDTO of(PromocionFija promo) {
         PromoFijaDTO promoDTO = new PromoFijaDTO();

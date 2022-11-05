@@ -1,5 +1,7 @@
 package com.grupo8.app.vistas;
 
+import com.grupo8.app.dto.PromocionDTO;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -21,6 +23,7 @@ public class VistaEliminarPromo extends JFrame implements MouseListener{
 	private JPanel General;
 	private ActionListener actionListener;
 	private JButton btnVolver;
+	private JList<PromocionDTO> listPromocionesElim;
 	
 	
 	/**
@@ -65,14 +68,14 @@ public class VistaEliminarPromo extends JFrame implements MouseListener{
 		lblNewLabel_5_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_13.add(lblNewLabel_5_1);
+
+		listPromocionesElim = new JList<PromocionDTO>();
+		listPromocionesElim.setBounds(0, 171, 428, 415);
+		listPromocionesElim.setVisibleRowCount(10);
+		listPromocionesElim.setBackground(Color.WHITE);
+		panel_13.add(listPromocionesElim);
 		
-		JList listaProductosElim = new JList();
-		listaProductosElim.setBounds(0, 171, 428, 415);
-		listaProductosElim.setVisibleRowCount(10);
-		listaProductosElim.setBackground(Color.WHITE);
-		panel_13.add(listaProductosElim);
-		
-		JLabel lblNewLabel_5_1_1 = new JLabel("Clickee sobre el producto a eliminar: ");
+		JLabel lblNewLabel_5_1_1 = new JLabel("Clickee sobre la promocion a eliminar: ");
 		lblNewLabel_5_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_5_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_5_1_1.setBounds(0, 0, 428, 293);
@@ -142,8 +145,15 @@ public class VistaEliminarPromo extends JFrame implements MouseListener{
 		
 	}
 
-	
-	
-	
-	
+	public void setListaPromociones(PromocionDTO[] promociones) {
+		this.listPromocionesElim.setListData(promociones);
+	}
+
+	public String getIdPromocionSeleccionada() {
+		return this.listPromocionesElim.getSelectedValue().getIdPromocion();
+	}
+
+	public void mostrarMensaje(String mensaje) {
+		JOptionPane.showMessageDialog(this, mensaje);
+	}
 }
