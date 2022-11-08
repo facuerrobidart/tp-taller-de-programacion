@@ -34,6 +34,14 @@ public class ControladorNuevaMesa implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
+		switch(comando) {
+		case "Volver": 
+			ControladorMesa.getControladorMesa(true);
+			this.vista.esconder();
+			break;
+		case "Aceptar":
+			break;
+		}
 	}
 
 }

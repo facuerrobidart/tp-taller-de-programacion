@@ -57,6 +57,12 @@ public class ControladorIniciarTurno implements ActionListener {
 				vista.cerrarFracaso("No se pudo cerrar la mesa", "No se pudo cerrar la mesa");
 			}
 			break;
+		case "Volver":
+	        if (ControladorLogin.getControladorLogin(false).getLogueado().getUsername().equals("admin")) {
+	            ControladorSesionAdmin.getControladorSesionAdmin(true);
+	        } else {
+	            ControladorSesionOperario.getControladorSesionOperario(true);
+	        }
 
 		}
 
