@@ -269,6 +269,7 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 			request.setDtoPorCantPrecioU(Double.parseDouble(this.textFieldPrecioUnitario.getText()));
 			request.setDtoPorCantMin(Integer.parseInt(this.textFieldCantidadMinima));
 		}
+		
 		return request;
 	}
 }

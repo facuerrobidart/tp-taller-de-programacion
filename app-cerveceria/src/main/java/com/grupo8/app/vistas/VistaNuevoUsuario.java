@@ -128,13 +128,12 @@ public class VistaNuevoUsuario extends JFrame implements ActionListener{
 		nombreCompleto.length()>0 && usuario.length()>0 && password.length()>0);
 	}
 		
-		/*public RegistroRequestUsuario getFormulario() {
+		public AddOperarioRequest getFormulario() {
 			
-			AddOperarioRequest req= new RegistroRequestEmpleado(this.nombre,this.apellido,this.telefono,
-			this.usuario,this.contrasena,this.email,this.edadI);
-			
-			System.out.println(req.getNombreUsuario() + " | " + req.getNombre());
-			
+			AddOperarioRequest req= new AddOperarioRequest();
+			req.setUserName(this.usuario);
+			req.setPassword(this.password);
+			req.setNombreCompleto(this.nombreCompleto);
 			return req;
-		}*/
+		}
 }

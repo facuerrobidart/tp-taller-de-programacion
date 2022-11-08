@@ -61,7 +61,7 @@ public class VistaAgregarComanda extends JFrame {
 		panel.add(lblSeleccioneLaMesa);
 		
 		
-		 btnConfirmar = new JButton("Confirmar");
+		btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.setBounds(202, 521, 172, 23);
 		panel.add(btnConfirmar);
 		

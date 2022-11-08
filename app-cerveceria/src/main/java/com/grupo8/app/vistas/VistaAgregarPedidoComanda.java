@@ -20,7 +20,7 @@ public class VistaAgregarPedidoComanda extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldCantProd;
-	private JList <ComandaDTO> listComanda;
+	private JList <ComandaDTO> listComandas;
 	private JButton btnAgregar;
 	private JList<ProductoDTO> listProductos;
 
@@ -69,9 +69,9 @@ public class VistaAgregarPedidoComanda extends JFrame {
 		lbl.setBounds(182, 11, 135, 14);
 		panel.add(lbl);
 		
-		listComanda = new JList();
-		listComanda.setBounds(10, 36, 140, 181);
-		panel.add(listComanda);
+		listComandas = new JList();
+		listComandas.setBounds(10, 36, 140, 181);
+		panel.add(listComandas);
 		
 		JLabel lblNewLabel = new JLabel("Seleccione comanda ");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -96,6 +96,20 @@ public class VistaAgregarPedidoComanda extends JFrame {
 
     }
 
+	public ProductoDTO getProductoSelec() {
+		
+		return this.listProductos.getSelectedValue();
+	}
+	
+	public ComandaDTO getComandaDTO() {
+		return this.listComandas.getSelectedValue();
+		
+	}
+	
+	public int getCantProd() {
+		return Integer.parseInt(textFieldCantProd.getText());
+		
+	}
 
     public void esconder() {
         this.setVisible(false);
