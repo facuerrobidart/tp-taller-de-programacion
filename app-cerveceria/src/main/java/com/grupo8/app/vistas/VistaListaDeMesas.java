@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.grupo8.app.dto.MesaDTO;
+
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -22,7 +24,7 @@ public class VistaListaDeMesas extends JFrame {
 	private JButton btnVolver;
 	
 	DefaultTableModel model = new DefaultTableModel();	
-	private JList listaMesas;
+	private JList<MesaDTO> listaMesas;
 	
 	public VistaListaDeMesas() {
 		setTitle("Lista de Mesas");

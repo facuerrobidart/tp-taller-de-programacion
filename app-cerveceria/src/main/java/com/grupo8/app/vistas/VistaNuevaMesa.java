@@ -6,6 +6,11 @@ import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import com.grupo8.app.dto.AddProductoRequest;
+import com.grupo8.app.dto.MesaDTO;
+import com.grupo8.app.dto.MozoDTO;
+import com.grupo8.app.tipos.EstadoMesa;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -21,6 +26,8 @@ public class VistaNuevaMesa extends JFrame implements MouseListener{
 	private JTextField textFieldCantSillas;
 	private JTextField textFieldNumeroMesas;
 	private JButton btnVolver;
+	private JButton btnAceptar;
+	private JList<MozoDTO> listaMozos;	
 	
 
 	/**
@@ -88,7 +95,7 @@ public class VistaNuevaMesa extends JFrame implements MouseListener{
 		panel.add(panel_13);
 		panel_13.setLayout(null);
 		
-		JList listaMozos = new JList();
+	    listaMozos = new JList();
 		listaMozos.setBounds(10, 11, 360, 210);
 		panel_13.add(listaMozos);
 		
@@ -106,7 +113,7 @@ public class VistaNuevaMesa extends JFrame implements MouseListener{
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnVolver);
 		
-		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar = new JButton("Aceptar");
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnAceptar);
 		
@@ -114,8 +121,12 @@ public class VistaNuevaMesa extends JFrame implements MouseListener{
 
 	public void setActionListener(ActionListener actionListener) {
 		// TODO Auto-generated method stub
-        this.btnVolver.addActionListener(actionListener);
-       this.actionListener = actionListener;
+		this.actionListener = actionListener;
+		this.btnVolver.addActionListener(actionListener);
+        this.btnAceptar.addActionListener(actionListener);
+       /* this.listaMozos.addActionListener(actionListener);*/
+       
+       
 	}
 
 	@Override
@@ -183,6 +194,15 @@ public class VistaNuevaMesa extends JFrame implements MouseListener{
 		this.pesoRemuneracion.setText("");
 		this.pesoTipoDePuesto.setText("");
 	}*/
+	
+	public MesaDTO getFormulario() {
+		MesaDTO request = new MesaDTO();
+		request.setCantSillas(Integer.parseInt(this.textFieldCantSillas.getText()));
+		request.setNroMesa(Integer.parseInt(this.textFieldNumeroMesas.getText()));
+		request.setMozo((MozoDTO)this.listaMozos.getSelectedValue());
+		request.setEstadoMesa(EstadoMesa.LIBRE);
+		return request;
+	}
 
 	public void mostrar() {
 		this.setVisible(true);

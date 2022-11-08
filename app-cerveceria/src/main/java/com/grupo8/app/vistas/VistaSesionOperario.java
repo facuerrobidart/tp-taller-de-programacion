@@ -30,6 +30,7 @@ public class VistaSesionOperario extends JFrame {
 	private JButton btnEstadisticas;
 	private JButton btnCerrarSesion;
 	private JButton btnAbmMesas;
+	private ActionListener actionListener;
 
 	public VistaSesionOperario() {
 		setTitle("Sesion Operario");
@@ -121,7 +122,7 @@ public class VistaSesionOperario extends JFrame {
 	
 	
 	public void setActionListener(ActionListener actionListener) {
-		
+		this.actionListener=actionListener;
 		this.btnCerrarSesion.addActionListener(actionListener);
 		this.btnABMProductos.addActionListener(actionListener);
 		this.btnPromociones.addActionListener(actionListener);

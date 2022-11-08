@@ -23,6 +23,7 @@ public class VistaEliminarMesa extends JFrame implements MouseListener{
 	private int idMesa;
 	private JList<MesaDTO> listaMesasElim;
 	private JButton btnVolver;
+	private JButton btnEliminar;
 	
 
 	/**
@@ -63,10 +64,10 @@ public class VistaEliminarMesa extends JFrame implements MouseListener{
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnVolver);
 		
-		JButton btnAceptar = new JButton("Eliminar");
-		btnAceptar.setActionCommand("ELIMINAR");
-		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		panel_15.add(btnAceptar);
+		 btnEliminar = new JButton("Eliminar");
+		btnEliminar.setActionCommand("ELIMINAR");
+		btnEliminar.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		panel_15.add(btnEliminar);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 384, 581);

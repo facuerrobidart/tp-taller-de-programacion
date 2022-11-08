@@ -30,6 +30,7 @@ public class VistaSesionAdmin extends JFrame {
 	private JButton btnEstadisticas;
 	private JButton btnCerrarSesion;
 	private JButton btnAbmMesas;
+	private ActionListener actionListener;
 
 	public VistaSesionAdmin() {
 		setTitle("Sesion Admin");
@@ -132,6 +133,8 @@ public class VistaSesionAdmin extends JFrame {
 	
 	
 	public void setActionListener(ActionListener actionListener) {
+		
+		this.actionListener=actionListener;
 		
 		this.btnCerrarSesion.addActionListener(actionListener);
 		this.btnABMProductos.addActionListener(actionListener);

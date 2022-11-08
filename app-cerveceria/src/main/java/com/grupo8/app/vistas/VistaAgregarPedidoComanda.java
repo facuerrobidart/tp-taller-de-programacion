@@ -9,12 +9,20 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JLabel;
+
+import com.grupo8.app.dto.ComandaDTO;
+import com.grupo8.app.dto.ProductoDTO;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import java.awt.Font;
+import javax.swing.JTextField;
 
 public class VistaAgregarPedidoComanda extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textFieldCantProd;
+	private JList <ComandaDTO> listComanda;
+	private JButton btnAgregar;
+	private JList<ProductoDTO> listProductos;
 
 	/**
 	 * Launch the application.
@@ -48,17 +56,48 @@ public class VistaAgregarPedidoComanda extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JButton btnAgregar = new JButton("Agregar pedido a la comanda");
-		btnAgregar.setBounds(126, 228, 173, 23);
+		btnAgregar = new JButton("Agregar pedido a la comanda");
+		btnAgregar.setBounds(127, 228, 173, 23);
 		panel.add(btnAgregar);
 		
-		JList listProductos = new JList();
-		listProductos.setBounds(49, 36, 334, 181);
+		listProductos = new JList();
+		listProductos.setBounds(170, 36, 140, 181);
 		panel.add(listProductos);
 		
-		JLabel lbl = DefaultComponentFactory.getInstance().createTitle("Seleccione productos del pedido");
-		lbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lbl.setBounds(114, 11, 211, 14);
+		JLabel lbl = DefaultComponentFactory.getInstance().createTitle("Seleccione productos");
+		lbl.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lbl.setBounds(182, 11, 135, 14);
 		panel.add(lbl);
+		
+		listComanda = new JList();
+		listComanda.setBounds(10, 36, 140, 181);
+		panel.add(listComanda);
+		
+		JLabel lblNewLabel = new JLabel("Seleccione comanda ");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel.setBounds(10, 11, 122, 14);
+		panel.add(lblNewLabel);
+		
+		textFieldCantProd = new JTextField();
+		textFieldCantProd.setBounds(328, 106, 86, 20);
+		panel.add(textFieldCantProd);
+		textFieldCantProd.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("Ingrese cantidad");
+		lblNewLabel_1.setBounds(332, 62, 92, 23);
+		panel.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("de productos");
+		lblNewLabel_2.setBounds(334, 82, 80, 14);
+		panel.add(lblNewLabel_2);
 	}
+	public void mostrar() {
+        this.setVisible(true);
+
+    }
+
+
+    public void esconder() {
+        this.setVisible(false);
+    }
 }

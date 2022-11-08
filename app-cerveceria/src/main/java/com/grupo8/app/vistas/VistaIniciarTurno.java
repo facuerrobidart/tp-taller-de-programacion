@@ -37,31 +37,32 @@ public class VistaIniciarTurno extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
-		
+
 		JPanel panel_4 = new JPanel();
 		panel.add(panel_4);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_4.add(lblNewLabel_1);
-		
+
 		btnAsistenciaMozos = new JButton("Asistencia Mozos");
 		btnAsistenciaMozos.setActionCommand("AsistenciaMozos");
 		btnAsistenciaMozos.setPreferredSize(new Dimension(250, 45));
 		btnAsistenciaMozos.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		panel_4.add(btnAsistenciaMozos);
 		btnAsistenciaMozos.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		
+
 		JPanel panel_6 = new JPanel();
 		panel.add(panel_6);
-		
+
 		btnGestionarMesas = new JButton("Gestionar mesas");
 		btnGestionarMesas.setActionCommand("GestionarMesas");
 		btnGestionarMesas.addActionListener(new ActionListener() {
@@ -71,62 +72,60 @@ public class VistaIniciarTurno extends JFrame {
 		btnGestionarMesas.setPreferredSize(new Dimension(250, 45));
 		panel_6.add(btnGestionarMesas);
 		btnGestionarMesas.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		
+
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
-		
+
 		btnAgregarPedido = new JButton("Agregar pedido a la mesa");
 		btnAgregarPedido.setActionCommand("AgregarPedido");
 		btnAgregarPedido.setPreferredSize(new Dimension(250, 45));
 		panel_1.add(btnAgregarPedido);
 		btnAgregarPedido.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		
+
 		JPanel panel_1_2_1 = new JPanel();
 		panel.add(panel_1_2_1);
-		
+
 		JButton btnCerrarTurno = new JButton("Cerrar turno");
 		btnCerrarTurno.setPreferredSize(new Dimension(250, 45));
 		btnCerrarTurno.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnCerrarTurno.setActionCommand("CerrarTurno");
 		panel_1_2_1.add(btnCerrarTurno);
-		
+
 		JPanel panel_3 = new JPanel();
 		contentPane.add(panel_3, BorderLayout.SOUTH);
 		panel_3.setLayout(new BorderLayout(0, 0));
-		
+
 		btnVolver = new JButton("Volver");
 		btnVolver.setPreferredSize(new Dimension(250, 45));
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_3.add(btnVolver);
 	}
 
-	
 	public void setActionListener(ActionListener actionListener) {
 		this.btnVolver.addActionListener(actionListener);
 		this.btnAgregarPedido.addActionListener(actionListener);
-		
+
 		this.btnAsistenciaMozos.addActionListener(actionListener);
 		this.btnGestionarMesas.addActionListener(actionListener);
-		
+
 	}
-	
+
 	public void mostrar() {
 		this.setVisible(true);
-		
+
 	}
 
 	public void esconder() {
 		this.setVisible(false);
-		
+
 	}
-	
+
 	public void cerrarExitoso(String mensaje, String titulo) {
-		JOptionPane.showMessageDialog(null,titulo, mensaje, JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, titulo, mensaje, JOptionPane.INFORMATION_MESSAGE);
 	}
+
 	public void cerrarFracaso(String error, String titulo) {
 		JOptionPane.showMessageDialog(null, error, titulo, JOptionPane.ERROR_MESSAGE);
 	}
-
-	
 
 }

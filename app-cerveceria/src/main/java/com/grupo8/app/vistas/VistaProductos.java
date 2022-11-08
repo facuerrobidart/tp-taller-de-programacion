@@ -28,6 +28,7 @@ public class VistaProductos extends JFrame {
 	private JButton btnNuevoProducto;
 	private JButton btnVolver;
 	private JButton btnEditarProducto;
+	private ActionListener actionListener;
 
 	public VistaProductos() {
 		setTitle("Gestion productos");
@@ -93,6 +94,7 @@ public class VistaProductos extends JFrame {
 
 	public void setActionListener(ActionListener actionListener) {
 		
+		this.actionListener=actionListener;
 		this.btnVolver.addActionListener(actionListener);
 		this.btnEliminarProducto.addActionListener(actionListener);
 		

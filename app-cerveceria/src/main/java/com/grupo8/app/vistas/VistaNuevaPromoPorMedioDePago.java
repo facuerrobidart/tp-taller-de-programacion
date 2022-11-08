@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import com.grupo8.app.dto.PromoFijaDTO;
+import com.grupo8.app.dto.PromoTemporalDTO;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -23,7 +26,9 @@ public class VistaNuevaPromoPorMedioDePago extends JFrame implements MouseListen
 	private JTextField textFieldNombrePromocion;
 	private JTextField textFieldMedioDePago;
 	private JTextField textFieldPorcentajeDescuento;
-	
+	private JButton btnAceptar;
+	private JRadioButton rdbtnAcumulable;
+	private JRadioButton rdbtnActivo;
 	
 
 	/**
@@ -104,12 +109,12 @@ public class VistaNuevaPromoPorMedioDePago extends JFrame implements MouseListen
 		panel.add(panel_1_2);
 		panel_1_2.setLayout(null);
 		
-		JRadioButton rdbtnActivo = new JRadioButton("Activo");
+		rdbtnActivo = new JRadioButton("Activo");
 		rdbtnActivo.setBounds(71, 7, 351, 48);
 		rdbtnActivo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_1_2.add(rdbtnActivo);
 		
-		JRadioButton rdbtnAcumulable = new JRadioButton("Acumulable");
+		rdbtnAcumulable = new JRadioButton("Acumulable");
 		rdbtnAcumulable.setBounds(71, 71, 340, 48);
 		rdbtnAcumulable.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_1_2.add(rdbtnAcumulable);
@@ -122,7 +127,7 @@ public class VistaNuevaPromoPorMedioDePago extends JFrame implements MouseListen
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnVolver);
 		
-		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar = new JButton("Aceptar");
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnAceptar);
 		
@@ -132,7 +137,11 @@ public class VistaNuevaPromoPorMedioDePago extends JFrame implements MouseListen
  public void setActionListener(ActionListener actionListener) {
 		// TODO Auto-generated method stub
         this.btnVolver.addActionListener(actionListener);
+        this.btnAceptar.addActionListener(actionListener);
+        this.rdbtnAcumulable.addActionListener(actionListener);
+        this.rdbtnActivo.addActionListener(actionListener);
         this.actionListener = actionListener;
+        
 	}
 
 	@Override
@@ -211,6 +220,13 @@ public class VistaNuevaPromoPorMedioDePago extends JFrame implements MouseListen
 		
 	}
 	
+	public PromoTemporalDTO getFormulario() {
+		PromoTemporalDTO request = new PromoFijaDTO();
+		request.setFormaPago(this.textFieldMedioDePago.getText());
+		request.setPorcentajeDescuento(Integer.parseInt(this.textFieldPorcentajeDescuento.getText()));
+		request.setAcumulable(this.rdbtnAcumulable.isSelected());
+		return request;
+	}
 
 	
 }

@@ -9,12 +9,20 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JLabel;
+
+import com.grupo8.app.dto.MozoDTO;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import java.awt.Font;
 
 public class VistaAsistenciaMozos extends JFrame {
 
 	private JPanel contentPane;
+	private JButton btnListo;
+	private JButton btnPresente;
+	private JButton btnFranco ;
+	private JButton btnAusente;
+	private JList<MozoDTO> listaMozos;
+	
 
 	/**
 	 * Launch the application.
@@ -48,11 +56,11 @@ public class VistaAsistenciaMozos extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JButton btnListo = new JButton("Listo");
+		 btnListo = new JButton("Listo");
 		btnListo.setBounds(126, 228, 173, 23);
 		panel.add(btnListo);
 		
-		JList listaMozos = new JList();
+	    listaMozos = new JList();
 		listaMozos.setBounds(0, 36, 300, 181);
 		panel.add(listaMozos);
 		
@@ -61,16 +69,25 @@ public class VistaAsistenciaMozos extends JFrame {
 		lblNewJgoodiesTitle.setBounds(10, 11, 138, 14);
 		panel.add(lblNewJgoodiesTitle);
 		
-		JButton btnPresente = new JButton("Presente");
+		 btnPresente = new JButton("Presente");
 		btnPresente.setBounds(310, 54, 89, 23);
 		panel.add(btnPresente);
 		
-		JButton btnFranco = new JButton("Franco");
+		 btnFranco = new JButton("Franco");
 		btnFranco.setBounds(310, 106, 89, 23);
 		panel.add(btnFranco);
 		
-		JButton btnAusente = new JButton("Ausente");
+		 btnAusente = new JButton("Ausente");
 		btnAusente.setBounds(310, 158, 89, 23);
 		panel.add(btnAusente);
 	}
+	public void mostrar() {
+        this.setVisible(true);
+
+    }
+
+
+    public void esconder() {
+        this.setVisible(false);
+    }
 }

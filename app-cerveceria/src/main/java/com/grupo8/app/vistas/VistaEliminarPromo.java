@@ -23,8 +23,8 @@ public class VistaEliminarPromo extends JFrame implements MouseListener{
 	private JPanel General;
 	private ActionListener actionListener;
 	private JButton btnVolver;
-	private JList<PromocionDTO> listPromocionesElim;
-	
+	private JList<PromocionDTO> listPromo;
+	private JButton btnEliminar;
 	
 	/**
 	 * Launch the application.
@@ -57,9 +57,10 @@ public class VistaEliminarPromo extends JFrame implements MouseListener{
 		JPanel panel = new JPanel();
 		panel.setBounds(5, 5, 428, 587);
 		General.add(panel);
+		panel.setLayout(null);
 		
 		JPanel panel_13 = new JPanel();
-		panel_13.setBounds(0, 0, 428, 587);
+		panel_13.setBounds(35, 17, 1, 1);
 		panel.add(panel_13);
 		panel_13.setLayout(null);
 		
@@ -69,16 +70,14 @@ public class VistaEliminarPromo extends JFrame implements MouseListener{
 		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_13.add(lblNewLabel_5_1);
 
-		listPromocionesElim = new JList<PromocionDTO>();
-		listPromocionesElim.setBounds(0, 171, 428, 415);
-		listPromocionesElim.setVisibleRowCount(10);
-		listPromocionesElim.setBackground(Color.WHITE);
-		panel_13.add(listPromocionesElim);
+		listPromo = new JList();
+		listPromo.setBounds(46, 57, 347, 488);
+		panel.add(listPromo);
 		
 		JLabel lblNewLabel_5_1_1 = new JLabel("Clickee sobre la promocion a eliminar: ");
 		lblNewLabel_5_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_5_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_5_1_1.setBounds(0, 0, 428, 293);
+		lblNewLabel_5_1_1.setBounds(46, 5, 347, 25);
 		panel.add(lblNewLabel_5_1_1);
 		
 		
@@ -91,9 +90,9 @@ public class VistaEliminarPromo extends JFrame implements MouseListener{
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnVolver);
 		
-		JButton btnAceptar = new JButton("Eliminar");
-		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		panel_15.add(btnAceptar);
+	    btnEliminar = new JButton("Eliminar");
+		btnEliminar.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		panel_15.add(btnEliminar);
 		
 	}
 
@@ -146,11 +145,11 @@ public class VistaEliminarPromo extends JFrame implements MouseListener{
 	}
 
 	public void setListaPromociones(PromocionDTO[] promociones) {
-		this.listPromocionesElim.setListData(promociones);
+		this.listPromo.setListData(promociones);
 	}
 
 	public String getIdPromocionSeleccionada() {
-		return this.listPromocionesElim.getSelectedValue().getIdPromocion();
+		return this.listPromo.getSelectedValue().getIdPromocion();
 	}
 
 	public void mostrarMensaje(String mensaje) {
