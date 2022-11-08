@@ -71,6 +71,7 @@ public class VistaEliminarPromo extends JFrame implements MouseListener{
 		panel_13.add(lblNewLabel_5_1);
 
 		listPromo = new JList();
+		listPromo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listPromo.setBounds(46, 57, 347, 488);
 		panel.add(listPromo);
 		

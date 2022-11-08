@@ -11,6 +11,7 @@ import com.grupo8.app.dto.ComandaDTO;
 
 import javax.swing.JList;
 import javax.swing.JButton;
+import javax.swing.ListSelectionModel;
 
 public class VistaGestionComandas extends JFrame {
 
@@ -53,6 +54,7 @@ public class VistaGestionComandas extends JFrame {
 		panel.setLayout(null);
 		
 		listComandas = new JList();
+		listComandas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listComandas.setBounds(10, 47, 262, 179);
 		panel.add(listComandas);
 		
@@ -67,6 +69,10 @@ public class VistaGestionComandas extends JFrame {
 		btnVolver = new JButton("Volver");
 		btnVolver.setBounds(335, 228, 89, 23);
 		panel.add(btnVolver);
+	}
+	
+	public ComandaDTO getComanda() {
+		return this.listComandas.getSelectedValue();
 	}
 	
 	public void mostrar() {

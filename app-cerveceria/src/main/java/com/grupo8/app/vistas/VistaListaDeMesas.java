@@ -17,6 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JList;
+import javax.swing.ListSelectionModel;
 
 public class VistaListaDeMesas extends JFrame {
 
@@ -44,6 +45,7 @@ public class VistaListaDeMesas extends JFrame {
 		contentPane.add(btnVolver);
 		
 		listaMesas = new JList();
+		listaMesas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listaMesas.setBounds(36, 11, 353, 205);
 		contentPane.add(listaMesas);
 	}

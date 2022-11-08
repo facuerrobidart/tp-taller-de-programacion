@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 
 import com.grupo8.app.dto.MozoDTO;
 import java.awt.Font;
+import javax.swing.ListSelectionModel;
 
 public class VistaAsistenciaMozos extends JFrame {
 
@@ -60,6 +61,7 @@ public class VistaAsistenciaMozos extends JFrame {
 		panel.add(btnListo);
 		
 	    listaMozos = new JList();
+	    listaMozos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listaMozos.setBounds(0, 36, 300, 181);
 		panel.add(listaMozos);
 		
@@ -84,7 +86,9 @@ public class VistaAsistenciaMozos extends JFrame {
         this.setVisible(true);
 
     }
-
+	
+	
+	
 
     public void esconder() {
         this.setVisible(false);

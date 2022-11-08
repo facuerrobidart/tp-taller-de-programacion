@@ -66,6 +66,7 @@ public class VistaEliminarProducto extends JFrame implements MouseListener {
 		panel.add(lblNewLabel);
 		
 		listProductosElim = new JList<>();
+		listProductosElim.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listProductosElim.setBounds(10, 142, 408, 434);
 		panel.add(listProductosElim);
 		

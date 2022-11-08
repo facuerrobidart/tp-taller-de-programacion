@@ -62,6 +62,7 @@ public class VistaEditarProducto extends JFrame implements MouseListener {
         panel.add(lblNewLabel);
 
         listaAEditar = new JList<>();
+        listaAEditar.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listaAEditar.setBounds(10, 142, 408, 434);
         panel.add(listaAEditar);
 
@@ -124,25 +125,7 @@ public class VistaEditarProducto extends JFrame implements MouseListener {
     public void mouseReleased(MouseEvent e) {
         // TODO Auto-generated method stub
 
-	/*	if(this.GrupoEstudios.getSelection()!=null)
-			this.Estudios = this.GrupoEstudios.getSelection().getActionCommand();
-		if(this.GrupoRemuneracion.getSelection()!=null)
-			this.Remuneracion = this.GrupoRemuneracion.getSelection().getActionCommand();
-		if(this.GrupoHorario.getSelection()!=null)
-			this.Horario = this.GrupoHorario.getSelection().getActionCommand();
-		if(this.GrupoPuesto.getSelection()!=null)
-			this.Puesto = this.GrupoPuesto.getSelection().getActionCommand();
-		if(this.GrupoREtario.getSelection()!=null)
-			this.REtario = this.GrupoREtario.getSelection().getActionCommand();
-		if(this.GrupoExperiencia.getSelection()!=null)
-			this.Experiencia = this.GrupoExperiencia.getSelection().getActionCommand();
-		if(this.GrupoLocacion.getSelection()!=null)
-			this.Locacion = this.GrupoLocacion.getSelection().getActionCommand();
-		if(this.GrupoEstudios.getSelection()!=null && this.GrupoRemuneracion.getSelection()!=null && this.GrupoHorario.getSelection()!=null
-				&& this.GrupoPuesto.getSelection()!=null && this.GrupoREtario.getSelection()!=null  && this.GrupoExperiencia.getSelection()!=null
-				&& this.GrupoLocacion.getSelection()!=null)
-			this.btnFinalizar.setEnabled(true);*/
-    }
+	
 
 
     public void mouseEntered(MouseEvent e) {

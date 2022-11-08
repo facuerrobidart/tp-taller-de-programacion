@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import com.grupo8.app.dto.AddProductoRequest;
 import com.grupo8.app.dto.MesaDTO;
 import com.grupo8.app.dto.MozoDTO;
+import com.grupo8.app.dto.PromocionDTO;
 import com.grupo8.app.tipos.EstadoMesa;
 
 import java.awt.GridLayout;
@@ -96,6 +97,7 @@ public class VistaNuevaMesa extends JFrame implements MouseListener{
 		panel_13.setLayout(null);
 		
 	    listaMozos = new JList();
+	    listaMozos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listaMozos.setBounds(10, 11, 360, 210);
 		panel_13.add(listaMozos);
 		

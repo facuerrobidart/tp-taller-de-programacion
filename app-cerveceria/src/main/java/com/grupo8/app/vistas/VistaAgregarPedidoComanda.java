@@ -14,6 +14,7 @@ import com.grupo8.app.dto.ComandaDTO;
 import com.grupo8.app.dto.ProductoDTO;
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
 public class VistaAgregarPedidoComanda extends JFrame {
 
@@ -60,6 +61,7 @@ public class VistaAgregarPedidoComanda extends JFrame {
 		panel.add(btnAgregar);
 		
 		listProductos = new JList();
+		listProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listProductos.setBounds(170, 36, 140, 181);
 		panel.add(listProductos);
 		
@@ -69,6 +71,7 @@ public class VistaAgregarPedidoComanda extends JFrame {
 		panel.add(lbl);
 		
 		listComandas = new JList();
+		listComandas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listComandas.setBounds(10, 36, 140, 181);
 		panel.add(listComandas);
 		

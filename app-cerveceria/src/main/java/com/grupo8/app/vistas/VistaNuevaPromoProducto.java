@@ -95,6 +95,7 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		panel_11.add(lblNewLabel_5);
 		
 	    listaProductos = new JList();
+	    listaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listaProductos.setBounds(0, 52, 428, 171);
 		panel_11.add(listaProductos);
 		

@@ -11,11 +11,13 @@ import com.grupo8.app.dto.MesaDTO;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.ListSelectionModel;
 
 public class VistaAgregarComanda extends JFrame {
 
 	private JPanel contentPane;
 	private JList<MesaDTO> listaMesas;
+	
 	private JButton btnConfirmar;
 	private JButton btnAtras;
 	
@@ -52,6 +54,7 @@ public class VistaAgregarComanda extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		
 		listaMesas = new JList<MesaDTO>();
+		listaMesas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listaMesas.setBounds(10, 66, 364, 442);
 		panel.add(listaMesas);
 		
@@ -74,8 +77,12 @@ public class VistaAgregarComanda extends JFrame {
         this.setVisible(true);
 
     }
+	
 
-
+	public MesaDTO getMesa() {
+		return this.listaMesas.getSelectedValue();
+	}
+	
     public void esconder() {
         this.setVisible(false);
     }

@@ -75,6 +75,7 @@ public class VistaEliminarMesa extends JFrame implements MouseListener{
 		panel.setLayout(null);
 		
 		listaMesasElim = new JList<MesaDTO>();
+		listaMesasElim.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listaMesasElim.setBounds(10, 128, 364, 442);
 		panel.add(listaMesasElim);
 		
