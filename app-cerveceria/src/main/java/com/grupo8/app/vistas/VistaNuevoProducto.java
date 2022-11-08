@@ -234,8 +234,8 @@ public class VistaNuevoProducto extends JFrame implements  MouseListener{
 		this.textFieldCostoProducto.setText("");
 	}
 
-	public ProductoDTO getFormulario() {
-		ProductoDTO request = new ProductoDTO();
+	public AddProductoRequest getFormulario() {
+		AddProductoRequest request = new AddProductoRequest();
 		request.setNombre(this.textFieldNombreProducto.getText());
 		request.setPrecio(Float.parseFloat(this.textFieldPrecio.getText()));
 		request.setCosto(Float.parseFloat(this.textFieldCostoProducto.getText()));

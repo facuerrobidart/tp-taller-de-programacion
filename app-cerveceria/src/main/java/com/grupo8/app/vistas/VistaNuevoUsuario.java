@@ -9,8 +9,6 @@ import javax.swing.border.EmptyBorder;
 
 import com.grupo8.app.dto.AddOperarioRequest;
 
-import dto.RegistroRequestEmpleado;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -137,4 +135,11 @@ public class VistaNuevoUsuario extends JFrame implements ActionListener{
 			
 			return req;
 		}*/
+
+	public void mostrar() {
+		this.setVisible(true);
+	}
+	public void esconder() {
+		this.setVisible(false);
+	}
 }

@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 
 import com.grupo8.app.dto.ComandaDTO;
 import com.grupo8.app.dto.ProductoDTO;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
 import java.awt.Font;
 import javax.swing.JTextField;
 
@@ -64,7 +63,7 @@ public class VistaAgregarPedidoComanda extends JFrame {
 		listProductos.setBounds(170, 36, 140, 181);
 		panel.add(listProductos);
 		
-		JLabel lbl = DefaultComponentFactory.getInstance().createTitle("Seleccione productos");
+		JLabel lbl = new JLabel("Seleccione productos");
 		lbl.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lbl.setBounds(182, 11, 135, 14);
 		panel.add(lbl);

@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import com.grupo8.app.dto.AddProductoRequest;
+import com.grupo8.app.dto.ProductoDTO;
 import com.grupo8.app.dto.PromoFijaDTO;
 
 import java.awt.*;
@@ -17,7 +18,7 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 	private ActionListener actionListener;
 	private JButton btnVolver;
 	private JTextField textFieldNombrePromocion;
-	private JList listaProductos;
+	private JList<ProductoDTO> listaProductos;
 	private JCheckBox chckbxLunes;
 	private JCheckBox chckbxMartes;
 	private JCheckBox chckbxMiercoles;
@@ -267,7 +268,7 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		request.setDtoPorCant(this.rdbtnDescuentoPorCant.isSelected());
 		if(this.rdbtnDescuentoPorCant.isSelected()) {
 			request.setDtoPorCantPrecioU(Double.parseDouble(this.textFieldPrecioUnitario.getText()));
-			request.setDtoPorCantMin(Integer.parseInt(this.textFieldCantidadMinima));
+			request.setDtoPorCantMin(Integer.parseInt(this.textFieldCantidadMinima.getText()));
 		}
 		return request;
 	}
