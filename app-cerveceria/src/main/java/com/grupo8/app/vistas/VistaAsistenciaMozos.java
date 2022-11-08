@@ -48,17 +48,29 @@ public class VistaAsistenciaMozos extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JButton btnAgregar = new JButton("Listo");
-		btnAgregar.setBounds(126, 228, 173, 23);
-		panel.add(btnAgregar);
+		JButton btnListo = new JButton("Listo");
+		btnListo.setBounds(126, 228, 173, 23);
+		panel.add(btnListo);
 		
 		JList listaMozos = new JList();
-		listaMozos.setBounds(49, 36, 334, 181);
+		listaMozos.setBounds(0, 36, 300, 181);
 		panel.add(listaMozos);
 		
-		JLabel lblNewJgoodiesTitle = DefaultComponentFactory.getInstance().createTitle("ASISTENCIA MOZOS");
+		JLabel lblNewJgoodiesTitle = DefaultComponentFactory.getInstance().createTitle("Asistencia Mozos");
 		lblNewJgoodiesTitle.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewJgoodiesTitle.setBounds(148, 11, 138, 14);
+		lblNewJgoodiesTitle.setBounds(10, 11, 138, 14);
 		panel.add(lblNewJgoodiesTitle);
+		
+		JButton btnPresente = new JButton("Presente");
+		btnPresente.setBounds(310, 54, 89, 23);
+		panel.add(btnPresente);
+		
+		JButton btnFranco = new JButton("Franco");
+		btnFranco.setBounds(310, 106, 89, 23);
+		panel.add(btnFranco);
+		
+		JButton btnAusente = new JButton("Ausente");
+		btnAusente.setBounds(310, 158, 89, 23);
+		panel.add(btnAusente);
 	}
 }

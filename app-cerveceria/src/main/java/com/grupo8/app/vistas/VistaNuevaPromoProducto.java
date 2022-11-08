@@ -143,12 +143,12 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		panel_1_2.setLayout(null);
 		
 		rdbtnDescuentoPorCant = new JRadioButton("Descuento por cantidad");
-		rdbtnDescuentoPorCant.setBounds(71, 7, 428, 48);
+		rdbtnDescuentoPorCant.setBounds(6, 7, 428, 48);
 		rdbtnDescuentoPorCant.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_1_2.add(rdbtnDescuentoPorCant);
 		
 	    rdbtnDosPorUno = new JRadioButton("2x1");
-		rdbtnDosPorUno.setBounds(71, 71, 428, 48);
+		rdbtnDosPorUno.setBounds(6, 58, 428, 48);
 		rdbtnDosPorUno.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_1_2.add(rdbtnDosPorUno);
 		
@@ -182,7 +182,7 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		General.add(lblPrecioUnitario);
 		
 		textFieldPrecioUnitario = new JTextField();
-		textFieldPrCecioUnitario.setColumns(10);
+		textFieldPrecioUnitario.setColumns(10);
 		textFieldPrecioUnitario.setBounds(443, 542, 86, 20);
 		General.add(textFieldPrecioUnitario);
 		
@@ -216,27 +216,7 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		
 	}
 
-	public void mouseReleased(MouseEvent e) {/*
-		// TODO Auto-generated method stub
-		
-		if(this.GrupoEstudios.getSelection()!=null)
-			this.Estudios = this.GrupoEstudios.getSelection().getActionCommand();
-		if(this.GrupoRemuneracion.getSelection()!=null)
-			this.Remuneracion = this.GrupoRemuneracion.getSelection().getActionCommand();
-		if(this.GrupoHorario.getSelection()!=null)
-			this.Horario = this.GrupoHorario.getSelection().getActionCommand();
-		if(this.GrupoPuesto.getSelection()!=null)
-			this.Puesto = this.GrupoPuesto.getSelection().getActionCommand();
-		if(this.GrupoREtario.getSelection()!=null)
-			this.REtario = this.GrupoREtario.getSelection().getActionCommand();
-		if(this.GrupoExperiencia.getSelection()!=null)
-			this.Experiencia = this.GrupoExperiencia.getSelection().getActionCommand();
-		if(this.GrupoLocacion.getSelection()!=null)
-			this.Locacion = this.GrupoLocacion.getSelection().getActionCommand();
-		if(this.GrupoEstudios.getSelection()!=null && this.GrupoRemuneracion.getSelection()!=null && this.GrupoHorario.getSelection()!=null
-				&& this.GrupoPuesto.getSelection()!=null && this.GrupoREtario.getSelection()!=null  && this.GrupoExperiencia.getSelection()!=null
-				&& this.GrupoLocacion.getSelection()!=null)
-			this.btnFinalizar.setEnabled(true);*/
+	public void mouseReleased(MouseEvent e) {
 	}
 
 	@Override
@@ -253,12 +233,17 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 
 	
 	public void limpiaCampos() {
-		this.
-		this.GrupoEstudios.clearSelection();
-		
-		
-		this.pesocargaHoraria.setText("");
-		;
+		this.textFieldNombrePromocion.setText("");
+		this.rdbtnDosPorUno.setSelected(false);
+		this.rdbtnDescuentoPorCant.setSelected(false);
+		this.chckbxLunes.setSelected(false);
+		this.chckbxMartes.setSelected(false);
+		this.chckbxMiercoles.setSelected(false);
+		this.chckbxJueves.setSelected(false);
+		this.chckbxViernes.setSelected(false);
+		this.chckbxSabado.setSelected(false);
+		this.chckbxDomingo.setSelected(false);
+			
 	}
 
 	
@@ -271,9 +256,7 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		this.setVisible(false);
 		
 	}
-	public int obtenerIdSeleccionado() {
-		return this.listaMesasElim.getSelectedValue().getNroMesa();
-	}
+	
 
 	
 	
