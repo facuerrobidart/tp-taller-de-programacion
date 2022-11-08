@@ -3,15 +3,15 @@ package com.grupo8.app.controladores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import com.grupo8.app.vistas.VistaPromoProducto;
+import com.grupo8.app.vistas.VistaPromo;
 
 public class ControladorPromociones implements ActionListener {
 
 	private static ControladorPromociones instancia = null;
-	private VistaPromoProducto vista = null;
+	private final VistaPromo vista;
 
 	private ControladorPromociones() {
-		this.vista = new VistaPromoProducto();
+		this.vista = new VistaPromo();
 		this.vista.setActionListener(this);
 	}
 
@@ -31,11 +31,11 @@ public class ControladorPromociones implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case "NuevaPromo":
-			ControladorNuevaPromoProducto.getControladorControladorNuevaPromoProducto(true);
+			ControladorNuevaPromo.getControlador(true);
 			this.vista.esconder();
 			break;
 		case "EditarPromo":
-			ControladorNuevaPromoProducto.getControladorNuevaPromoProducto(true);
+			//Controlado.ge(true); TODO
 			this.vista.esconder();
 			break;
 		case "EliminarPromo":

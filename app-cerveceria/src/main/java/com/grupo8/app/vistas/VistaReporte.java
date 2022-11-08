@@ -6,20 +6,12 @@ import com.grupo8.app.dto.ReporteMesaDto;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.SwingConstants;
-import javax.swing.JButton;
-import javax.swing.BoxLayout;
-import javax.swing.JTextPane;
-import javax.swing.JList;
-import javax.swing.ListSelectionModel;
 
 public class VistaReporte extends JFrame implements MouseListener {
 
@@ -62,6 +54,7 @@ public class VistaReporte extends JFrame implements MouseListener {
 		contentPane.setLayout(null);
 		
 		btnVolver = new JButton("Volver");
+		btnVolver.setActionCommand("VOLVER");
 		btnVolver.setBounds(204, 397, 89, 23);
 		contentPane.add(btnVolver);
 		
@@ -104,6 +97,7 @@ public class VistaReporte extends JFrame implements MouseListener {
 		contentPane.add(listMozos);
 		
 		btnVer = new JButton("Ver");
+		btnVer.setActionCommand("VER");
 		btnVer.setBounds(261, 267, 68, 23);
 		contentPane.add(btnVer);
 		
@@ -166,5 +160,22 @@ public class VistaReporte extends JFrame implements MouseListener {
 	@Override
 	public void mouseExited(MouseEvent e) {
 
+	}
+
+	public void mostrar() {
+		this.setVisible(true);
+
+	}
+
+	public void esconder() {
+		this.setVisible(false);
+	}
+
+	public MozoDTO getMozoSeleccionado() {
+		return this.listMozos.getSelectedValue();
+	}
+
+	public void mostrarMensaje(String mensaje) {
+		JOptionPane.showMessageDialog(this, mensaje);
 	}
 }

@@ -12,4 +12,9 @@ public class ReporteVentaDto {
   private Float total;
   private Float promedio;
   private Integer cantVentas;
+
+  @Override
+  public String toString() {
+    return "Mozo: " + mozo.getNombreCompleto() + " - Total: " + total + " - Promedio: " + promedio + " - Cantidad de ventas: " + cantVentas;
+  }
 }
