@@ -123,6 +123,8 @@ public class VistaEditarProducto extends JFrame implements MouseListener {
     }
 
     public void mouseReleased(MouseEvent e) {
+    	
+    }
         // TODO Auto-generated method stub
 
 	
