@@ -32,25 +32,22 @@ public class ControladorNuevaPromoProducto implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
-		case "NuevaPromo":
-			ControladorNuevaPromoProducto.getControladorControladorNuevaPromoProducto(true);
-			this.vista.esconder();
-			break;
-		case "EditarPromo":
-			ControladorNuevaPromoProducto.getControladorNuevaPromoProducto(true);
-			this.vista.esconder();
-			break;
-		case "EliminarPromo":
-			ControladorEliminarPromo.getControlador(true);
-			this.vista.esconder();
-			break;
-		case "Volver":
-			ControladorSesionOperario.getControladorSesionOperario(true);
-			this.vista.esconder();
-			break;
-
+			case "NuevaPromo":
+				ControladorNuevaPromo.getControlador(true);
+				this.vista.esconder();
+				break;
+			case "EditarPromo":
+				//TODO: ControladorEditarPromo.getControladorEditarPromo(true);
+				this.vista.esconder();
+				break;
+			case "EliminarPromo":
+				ControladorEliminarPromo.getControlador(true);
+				this.vista.esconder();
+				break;
+			case "Volver":
+				ControladorSesionOperario.getControladorSesionOperario(true);
+				this.vista.esconder();
+				break;
 		}
 	}
 }
-
-|

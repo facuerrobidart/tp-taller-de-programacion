@@ -221,7 +221,7 @@ public class VistaNuevaPromoPorMedioDePago extends JFrame implements MouseListen
 	}
 	
 	public PromoTemporalDTO getFormulario() {
-		PromoTemporalDTO request = new PromoFijaDTO();
+		PromoTemporalDTO request = new PromoTemporalDTO();
 		request.setFormaPago(this.textFieldMedioDePago.getText());
 		request.setPorcentajeDescuento(Integer.parseInt(this.textFieldPorcentajeDescuento.getText()));
 		request.setAcumulable(this.rdbtnAcumulable.isSelected());

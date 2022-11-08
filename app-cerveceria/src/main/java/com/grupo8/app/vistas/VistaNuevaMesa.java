@@ -199,7 +199,7 @@ public class VistaNuevaMesa extends JFrame implements MouseListener{
 		MesaDTO request = new MesaDTO();
 		request.setCantSillas(Integer.parseInt(this.textFieldCantSillas.getText()));
 		request.setNroMesa(Integer.parseInt(this.textFieldNumeroMesas.getText()));
-		request.setMozo((MozoDTO)this.listaMozos.getSelectedValue());
+		request.setMozoAsignado(this.listaMozos.getSelectedValue());
 		request.setEstadoMesa(EstadoMesa.LIBRE);
 		return request;
 	}

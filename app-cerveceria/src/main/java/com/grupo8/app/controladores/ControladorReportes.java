@@ -18,6 +18,7 @@ public class ControladorReportes implements ActionListener {
   private ControladorReportes() {
     this.gestionDeReportes = new GestionDeReportes();
     this.vistaReportes = new VistaReporte();
+    this.vistaReportes.setActionListener(this);
   }
 
   public static ControladorReportes getInstancia(boolean mostrar) {
@@ -53,7 +54,11 @@ public class ControladorReportes implements ActionListener {
 
     switch (comando) {
       case "VOLVER":
-        ControladorIniciarTurno.getControladorIniciarTurno(true);
+        if (ControladorLogin.getControladorLogin(false).getLogueado().getUsername().equals("admin")) {
+            ControladorSesionAdmin.getControladorSesionAdmin(true);
+        } else {
+            ControladorIniciarTurno.getControladorIniciarTurno(true);
+        }
         this.vistaReportes.esconder();
         break;
       case "VER":

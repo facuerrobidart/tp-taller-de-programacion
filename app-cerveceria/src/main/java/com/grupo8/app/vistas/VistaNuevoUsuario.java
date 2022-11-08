@@ -9,8 +9,6 @@ import javax.swing.border.EmptyBorder;
 
 import com.grupo8.app.dto.AddOperarioRequest;
 
-import dto.RegistroRequestEmpleado;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -128,12 +126,20 @@ public class VistaNuevoUsuario extends JFrame implements ActionListener{
 		nombreCompleto.length()>0 && usuario.length()>0 && password.length()>0);
 	}
 		
-		public AddOperarioRequest getFormulario() {
+		/*public RegistroRequestUsuario getFormulario() {
 			
-			AddOperarioRequest req= new AddOperarioRequest();
-			req.setUserName(this.usuario);
-			req.setPassword(this.password);
-			req.setNombreCompleto(this.nombreCompleto);
+			AddOperarioRequest req= new RegistroRequestEmpleado(this.nombre,this.apellido,this.telefono,
+			this.usuario,this.contrasena,this.email,this.edadI);
+			
+			System.out.println(req.getNombreUsuario() + " | " + req.getNombre());
+			
 			return req;
-		}
+		}*/
+
+	public void mostrar() {
+		this.setVisible(true);
+	}
+	public void esconder() {
+		this.setVisible(false);
+	}
 }

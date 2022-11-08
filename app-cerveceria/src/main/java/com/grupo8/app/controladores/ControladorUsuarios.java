@@ -28,7 +28,12 @@ public class ControladorUsuarios implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		String comando = e.getActionCommand();
+		switch (comando) {
+		case "VOLVER":
+			ControladorIniciarTurno.getControladorIniciarTurno(true);
+			this.vista.esconder();
+			break;
 		}
 	}
 }

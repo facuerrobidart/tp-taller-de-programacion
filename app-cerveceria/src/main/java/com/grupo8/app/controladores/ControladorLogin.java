@@ -42,9 +42,14 @@ public class ControladorLogin implements ActionListener {
 				vista.error("Error", "Usuario o contraseña incorrectos");
 				break;
 			}
-			if (logueado.getUsername().equals("admin")) {
-				this.vista.esconder();
-				ControladorSesionAdmin CAdmin = ControladorSesionAdmin.get(true);
+			if (this.logueado != null) {
+				if (logueado.getUsername().equals("admin")) {
+					ControladorSesionAdmin CAdmin = ControladorSesionAdmin.getControladorSesionAdmin(true);
+					this.vista.esconder();
+				} else {
+					this.vista.esconder();
+					ControladorIniciarTurno.getControladorIniciarTurno(true);
+				}
 			}
 			break;
 		case "SALIR":
@@ -55,6 +60,10 @@ public class ControladorLogin implements ActionListener {
 
 	public ILogin getVista() {
 		return vista;
+	}
+
+	public Operario getLogueado() {
+		return logueado;
 	}
 
 }

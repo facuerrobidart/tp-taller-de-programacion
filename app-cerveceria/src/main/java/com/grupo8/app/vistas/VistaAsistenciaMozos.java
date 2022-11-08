@@ -11,7 +11,6 @@ import javax.swing.JList;
 import javax.swing.JLabel;
 
 import com.grupo8.app.dto.MozoDTO;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
 import java.awt.Font;
 
 public class VistaAsistenciaMozos extends JFrame {
@@ -64,7 +63,7 @@ public class VistaAsistenciaMozos extends JFrame {
 		listaMozos.setBounds(0, 36, 300, 181);
 		panel.add(listaMozos);
 		
-		JLabel lblNewJgoodiesTitle = DefaultComponentFactory.getInstance().createTitle("Asistencia Mozos");
+		JLabel lblNewJgoodiesTitle = new JLabel("Asistencia Mozos");
 		lblNewJgoodiesTitle.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewJgoodiesTitle.setBounds(10, 11, 138, 14);
 		panel.add(lblNewJgoodiesTitle);

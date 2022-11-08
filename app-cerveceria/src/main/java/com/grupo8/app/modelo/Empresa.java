@@ -64,6 +64,7 @@ public class Empresa {
             this.operarios = new HashSet<>();
             operarios.add(Operario.administrador());
             try {
+                persistencia.abrirOutput("operarios.xml");
                 persistencia.escribir(operarios);
             } catch (IOException e) {}
         }
@@ -83,6 +84,7 @@ public class Empresa {
         } catch (Exception err) {
             this.cierreComandas = new ArrayList<>();
             try {
+                persistencia.abrirOutput("cierres.xml");
                 persistencia.escribir(cierreComandas);
             } catch (IOException e) {}
         }
@@ -102,6 +104,7 @@ public class Empresa {
         } catch (Exception err) {
             this.promocionesFijas = new HashSet<>();
             try {
+                persistencia.abrirOutput("promocionesFijas.xml");
                 persistencia.escribir(promocionesFijas);
             } catch (IOException e) {}
         }
@@ -121,6 +124,7 @@ public class Empresa {
         } catch (Exception err) {
             this.promocionesTemporales = new HashSet<>();
             try {
+                persistencia.abrirOutput("promocionesTemporales.xml");
                 persistencia.escribir(promocionesTemporales);
             } catch (IOException e) {}
         }
