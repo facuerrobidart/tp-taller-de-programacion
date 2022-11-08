@@ -2,6 +2,10 @@ package com.grupo8.app.vistas;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import com.grupo8.app.dto.AddProductoRequest;
+import com.grupo8.app.dto.PromoFijaDTO;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -13,6 +17,22 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 	private ActionListener actionListener;
 	private JButton btnVolver;
 	private JTextField textFieldNombrePromocion;
+	private JList listaProductos;
+	private JCheckBox chckbxLunes;
+	private JCheckBox chckbxMartes;
+	private JCheckBox chckbxMiercoles;
+	private JCheckBox chckbxJueves;
+	private JCheckBox chckbxViernes;
+	private JCheckBox chckbxSabado;
+	private JCheckBox chckbxDomingo;
+	private JRadioButton rdbtnDescuentoPorCant;
+	private JRadioButton rdbtnDosPorUno;
+	private JTextField textFieldCantidadMinima;
+	private JTextField textFieldPrecioUnitario;
+	private JLabel lblPrecioUnitario;
+	private JLabel lblCantMinima;
+	private JButton btnAceptar;
+	
 	
 	
 
@@ -73,7 +93,7 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_11.add(lblNewLabel_5);
 		
-		JList listaProductos = new JList();
+	    listaProductos = new JList();
 		listaProductos.setBounds(0, 52, 428, 171);
 		panel_11.add(listaProductos);
 		
@@ -89,31 +109,31 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		lblrDelProducto.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_1_1.add(lblrDelProducto);
 		
-		JCheckBox chckbxMartes = new JCheckBox("MARTES");
+		 chckbxMartes = new JCheckBox("MARTES");
 		chckbxMartes.setBounds(182, 56, 97, 23);
 		panel_1_1.add(chckbxMartes);
 		
-		JCheckBox chckbxViernes = new JCheckBox("VIERNES");
+		chckbxViernes = new JCheckBox("VIERNES");
 		chckbxViernes.setBounds(293, 37, 97, 23);
 		panel_1_1.add(chckbxViernes);
 		
-		JCheckBox chckbxSabado = new JCheckBox("SABADO");
+		 chckbxSabado = new JCheckBox("SABADO");
 		chckbxSabado.setBounds(293, 63, 97, 23);
 		panel_1_1.add(chckbxSabado);
 		
-		JCheckBox chckbxLunes = new JCheckBox("LUNES");
+		 chckbxLunes = new JCheckBox("LUNES");
 		chckbxLunes.setBounds(182, 30, 97, 23);
 		panel_1_1.add(chckbxLunes);
 		
-		JCheckBox chckbxMiercoles = new JCheckBox("MIERCOLES");
+		chckbxMiercoles = new JCheckBox("MIERCOLES");
 		chckbxMiercoles.setBounds(182, 79, 97, 23);
 		panel_1_1.add(chckbxMiercoles);
 		
-		JCheckBox chckbxJueves = new JCheckBox("JUEVES");
+		chckbxJueves = new JCheckBox("JUEVES");
 		chckbxJueves.setBounds(182, 105, 97, 23);
 		panel_1_1.add(chckbxJueves);
 		
-		JCheckBox chckbxDomingo = new JCheckBox("DOMINGO");
+		chckbxDomingo = new JCheckBox("DOMINGO");
 		chckbxDomingo.setBounds(293, 89, 97, 23);
 		panel_1_1.add(chckbxDomingo);
 		
@@ -122,13 +142,13 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		panel.add(panel_1_2);
 		panel_1_2.setLayout(null);
 		
-		JRadioButton rdbtnDescuentoPorCant = new JRadioButton("Descuento por cantidad");
-		rdbtnDescuentoPorCant.setBounds(71, 7, 428, 48);
+		rdbtnDescuentoPorCant = new JRadioButton("Descuento por cantidad");
+		rdbtnDescuentoPorCant.setBounds(6, 7, 428, 48);
 		rdbtnDescuentoPorCant.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_1_2.add(rdbtnDescuentoPorCant);
 		
-		JRadioButton rdbtnDosPorUno = new JRadioButton("2x1");
-		rdbtnDosPorUno.setBounds(71, 71, 428, 48);
+	    rdbtnDosPorUno = new JRadioButton("2x1");
+		rdbtnDosPorUno.setBounds(6, 58, 428, 48);
 		rdbtnDosPorUno.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_1_2.add(rdbtnDosPorUno);
 		
@@ -142,9 +162,34 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnVolver);
 		
-		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar = new JButton("Aceptar");
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnAceptar);
+		
+		textFieldCantidadMinima = new JTextField();
+		textFieldCantidadMinima.setColumns(10);
+		textFieldCantidadMinima.setBounds(443, 469, 86, 20);
+		General.add(textFieldCantidadMinima);
+		
+	    lblCantMinima = new JLabel("Cantidad minima");
+		lblCantMinima.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblCantMinima.setBounds(443, 439, 156, 25);
+		General.add(lblCantMinima);
+		
+	    lblPrecioUnitario = new JLabel("Precio unitario");
+		lblPrecioUnitario.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblPrecioUnitario.setBounds(443, 506, 128, 25);
+		General.add(lblPrecioUnitario);
+		
+		textFieldPrecioUnitario = new JTextField();
+		textFieldPrecioUnitario.setColumns(10);
+		textFieldPrecioUnitario.setBounds(443, 542, 86, 20);
+		General.add(textFieldPrecioUnitario);
+		
+		this.textFieldPrecioUnitario.setVisible(false);
+		this.textFieldCantidadMinima.setVisible(false);
+		this.lblCantMinima.setVisible(false);
+		this.lblPrecioUnitario.setVisible(false);
 		
 	}
 
@@ -156,7 +201,12 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+		if(this.rdbtnDescuentoPorCant.isSelected()) {
+			this.textFieldPrecioUnitario.setVisible(true);
+			this.textFieldCantidadMinima.setVisible(true);
+			this.lblCantMinima.setVisible(true);
+			this.lblPrecioUnitario.setVisible(true);
+		}
 		
 	}
 
@@ -166,27 +216,7 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		
 	}
 
-	public void mouseReleased(MouseEvent e) {/*
-		// TODO Auto-generated method stub
-		
-		if(this.GrupoEstudios.getSelection()!=null)
-			this.Estudios = this.GrupoEstudios.getSelection().getActionCommand();
-		if(this.GrupoRemuneracion.getSelection()!=null)
-			this.Remuneracion = this.GrupoRemuneracion.getSelection().getActionCommand();
-		if(this.GrupoHorario.getSelection()!=null)
-			this.Horario = this.GrupoHorario.getSelection().getActionCommand();
-		if(this.GrupoPuesto.getSelection()!=null)
-			this.Puesto = this.GrupoPuesto.getSelection().getActionCommand();
-		if(this.GrupoREtario.getSelection()!=null)
-			this.REtario = this.GrupoREtario.getSelection().getActionCommand();
-		if(this.GrupoExperiencia.getSelection()!=null)
-			this.Experiencia = this.GrupoExperiencia.getSelection().getActionCommand();
-		if(this.GrupoLocacion.getSelection()!=null)
-			this.Locacion = this.GrupoLocacion.getSelection().getActionCommand();
-		if(this.GrupoEstudios.getSelection()!=null && this.GrupoRemuneracion.getSelection()!=null && this.GrupoHorario.getSelection()!=null
-				&& this.GrupoPuesto.getSelection()!=null && this.GrupoREtario.getSelection()!=null  && this.GrupoExperiencia.getSelection()!=null
-				&& this.GrupoLocacion.getSelection()!=null)
-			this.btnFinalizar.setEnabled(true);*/
+	public void mouseReleased(MouseEvent e) {
 	}
 
 	@Override
@@ -201,24 +231,20 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		
 	}
 
-	/*@Override
+	
 	public void limpiaCampos() {
-		this.GrupoEstudios.clearSelection();
-		this.GrupoExperiencia.clearSelection();
-		this.GrupoHorario.clearSelection();
-		this.GrupoLocacion.clearSelection();
-		this.GrupoPuesto.clearSelection();
-		this.GrupoRemuneracion.clearSelection();
-		this.GrupoREtario.clearSelection();
-		
-		this.pesocargaHoraria.setText("");
-		this.pesoEstudios.setText("");
-		this.pesoExperiencia.setText("");
-		this.pesoLocacion.setText("");
-		this.pesoRangoEtario.setText("");
-		this.pesoRemuneracion.setText("");
-		this.pesoTipoDePuesto.setText("");
-	}*/
+		this.textFieldNombrePromocion.setText("");
+		this.rdbtnDosPorUno.setSelected(false);
+		this.rdbtnDescuentoPorCant.setSelected(false);
+		this.chckbxLunes.setSelected(false);
+		this.chckbxMartes.setSelected(false);
+		this.chckbxMiercoles.setSelected(false);
+		this.chckbxJueves.setSelected(false);
+		this.chckbxViernes.setSelected(false);
+		this.chckbxSabado.setSelected(false);
+		this.chckbxDomingo.setSelected(false);
+			
+	}
 
 	
 	public void mostrar() {
@@ -231,4 +257,18 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		
 	}
 	
+
+	
+	
+	public PromoFijaDTO getFormulario() {
+		PromoFijaDTO request = new PromoFijaDTO();
+		request.setProducto(this.listaProductos.getSelectedValue());
+		request.setDosPorUno(this.rdbtnDosPorUno.isSelected());
+		request.setDtoPorCant(this.rdbtnDescuentoPorCant.isSelected());
+		if(this.rdbtnDescuentoPorCant.isSelected()) {
+			request.setDtoPorCantPrecioU(Double.parseDouble(this.textFieldPrecioUnitario.getText()));
+			request.setDtoPorCantMin(Integer.parseInt(this.textFieldCantidadMinima));
+		}
+		return request;
+	}
 }
