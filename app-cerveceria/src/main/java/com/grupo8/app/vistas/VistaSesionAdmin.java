@@ -30,6 +30,7 @@ public class VistaSesionAdmin extends JFrame {
 	private JButton btnEstadisticas;
 	private JButton btnCerrarSesion;
 	private JButton btnAbmMesas;
+	private JButton btnAbmUsuarios;
 	private ActionListener actionListener;
 
 	public VistaSesionAdmin() {
@@ -105,7 +106,7 @@ public class VistaSesionAdmin extends JFrame {
 		JPanel panel_1_2_1 = new JPanel();
 		panel.add(panel_1_2_1);
 		
-		JButton btnAbmUsuarios = new JButton("ABM usuarios");
+		btnAbmUsuarios = new JButton("ABM usuarios");
 		btnAbmUsuarios.setPreferredSize(new Dimension(200, 35));
 		btnAbmUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnAbmUsuarios.setActionCommand("ABMUsuarios");
@@ -139,7 +140,7 @@ public class VistaSesionAdmin extends JFrame {
 		this.btnCerrarSesion.addActionListener(actionListener);
 		this.btnABMProductos.addActionListener(actionListener);
 		this.btnPromociones.addActionListener(actionListener);
-		
+		this.btnAbmUsuarios.addActionListener(actionListener);
 		this.btnIniciarTurno.addActionListener(actionListener);
 		this.btnAbmMesas.addActionListener(actionListener);
 	

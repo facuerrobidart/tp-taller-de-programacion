@@ -105,6 +105,7 @@ public class VistaSesionOperario extends JFrame {
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
 		btnCerrarSesion = new JButton("Cerrar sesion");
+		btnCerrarSesion.setActionCommand("CerrarSesion");
 		btnCerrarSesion.setPreferredSize(new Dimension(200, 35));
 		btnCerrarSesion.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_3.add(btnCerrarSesion);

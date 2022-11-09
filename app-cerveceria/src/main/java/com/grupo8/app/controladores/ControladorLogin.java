@@ -19,6 +19,7 @@ public class ControladorLogin implements ActionListener {
 		this.logueado = null;
 		this.empresa = Empresa.getEmpresa();
 		this.vista.setActionListener(this);
+		
 	}
 
 	public static ControladorLogin getControladorLogin(boolean mostrar) {
@@ -28,6 +29,8 @@ public class ControladorLogin implements ActionListener {
 		if (mostrar) {
 			instancia.vista.mostrar();
 		}
+		instancia.vista.limpiaCampos();
+		//ver como deshabilitar el boton Entrar cuando vuelvo al Login
 		return instancia;
 	}
 

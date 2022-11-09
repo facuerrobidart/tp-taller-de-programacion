@@ -88,6 +88,7 @@ public class VistaLogin extends JFrame implements KeyListener, ILogin {
 		panelSur.add(btnEntrar);
 
 		this.setVisible(true);
+		
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -150,9 +151,9 @@ public class VistaLogin extends JFrame implements KeyListener, ILogin {
 
 	@Override
 	public void limpiaCampos() {
-		this.usernameField.setText("");
-		this.contrasenaField.setText("");
-		this.username = null;
-		this.contrasena = null;
+		usernameField.setText("");
+		contrasenaField.setText("");
+		username = null;
+		contrasena = null;
 	}
 }
