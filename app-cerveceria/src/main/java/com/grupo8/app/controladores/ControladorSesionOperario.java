@@ -46,7 +46,7 @@ public class ControladorSesionOperario implements ActionListener {
 			this.vista.esconder();
 			break;
 		case "Estadisticas":
-			ControladorLogin.getControladorLogin(true);
+			ControladorReportes.getInstancia(true);
 			vista.esconder();
 			break;
 		case "CERRAR":

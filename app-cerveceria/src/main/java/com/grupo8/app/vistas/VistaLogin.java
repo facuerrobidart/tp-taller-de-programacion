@@ -31,7 +31,6 @@ public class VistaLogin extends JFrame implements KeyListener, ILogin {
 	private JPanel contentPane;
 	private JTextField usernameField;
 	private JButton btnEntrar;
-	private JButton btnRegistrarse;
 	private ActionListener actionListener;
 	private String username;
 	private String contrasena;
@@ -88,11 +87,6 @@ public class VistaLogin extends JFrame implements KeyListener, ILogin {
 		btnEntrar.setEnabled(false);
 		panelSur.add(btnEntrar);
 
-		btnRegistrarse = new JButton("Registrarse");
-		btnRegistrarse.setActionCommand("REGISTRAR");
-		btnRegistrarse.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panelSur.add(btnRegistrarse);
-
 		this.setVisible(true);
 	}
 
@@ -122,7 +116,6 @@ public class VistaLogin extends JFrame implements KeyListener, ILogin {
 	@Override
 	public void setActionListener(ActionListener actionListener) {
 		this.btnEntrar.addActionListener(actionListener);
-		this.btnRegistrarse.addActionListener(actionListener);
 		this.actionListener = actionListener;
 	}
 

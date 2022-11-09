@@ -51,8 +51,11 @@ public class ControladorMesa implements ActionListener {
 			break;
 		case "Volver":
 			this.vista.esconder();
-			ControladorIniciarTurno.getControladorIniciarTurno(true);
-
+			if (ControladorLogin.getControladorLogin(false).getLogueado().getUsername().equals("admin")) {
+		        ControladorSesionAdmin.getControladorSesionAdmin(true);
+		    } else {
+		         ControladorIniciarTurno.getControladorIniciarTurno(true);
+		      }
 			break;
 
 		}
