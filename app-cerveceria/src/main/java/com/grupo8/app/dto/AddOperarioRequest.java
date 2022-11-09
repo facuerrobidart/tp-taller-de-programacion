@@ -11,4 +11,10 @@ public class AddOperarioRequest {
     private String username;
     private String nombreCompleto;
     private String password;
+
+    public AddOperarioRequest(String nombreCompleto, String username, String password) {
+        this.nombreCompleto = nombreCompleto;
+        this.username = username;
+        this.password = password;
+    }
 }

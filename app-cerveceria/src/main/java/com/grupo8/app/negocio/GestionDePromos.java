@@ -23,22 +23,25 @@ public class GestionDePromos {
         this.empresa = Empresa.getEmpresa();
     }
 
-    public void agregarPromoTemporal(PromoTemporalRequest request) throws MalaSolicitudException {
+    public PromoTemporalDTO agregarPromoTemporal(PromoTemporalRequest request) throws MalaSolicitudException {
         if (request.getDiasPromo().size() < 1) {
             throw new MalaSolicitudException("Debe seleccionar al menos un dia");
         }
         if (request.getPorcentajeDescuento() <= 0 && request.getPorcentajeDescuento() > 100) {
             throw new MalaSolicitudException("El porcentaje de descuento debe ser mayor a 0 y menor a 100");
         }
-        this.empresa.getPromocionesTemporales().add(
-                new PromocionTemporal(
-                        request.getNombre(),
-                        request.getDiasPromo(),
-                        request.getFormaPago(),
-                        request.getPorcentajeDescuento(),
-                        request.isAcumulable()
-                ));
+
+        PromocionTemporal nuevo = new PromocionTemporal(
+                request.getNombre(),
+                request.getDiasPromo(),
+                request.getFormaPago(),
+                request.getPorcentajeDescuento(),
+                request.isAcumulable()
+        );
+        this.empresa.getPromocionesTemporales().add(nuevo);
         persistirPromosTemporales();
+
+        return PromoTemporalDTO.of(nuevo);
     }
 
     public void editarPromoTemporal(PromoTemporalRequest request, String id) throws EntidadNoEncontradaException {

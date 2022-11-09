@@ -4,6 +4,7 @@ package com.grupo8.app.modelo;
 import com.grupo8.app.tipos.EstadoMozo;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 
 import java.util.Date;
@@ -14,6 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Mozo {
     private String nombreCompleto;
+    @NonNull
     private Date fechaNacimiento;
     private int cantidadHijos;
     private EstadoMozo estadoMozo;
