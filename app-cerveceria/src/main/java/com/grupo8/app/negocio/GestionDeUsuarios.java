@@ -22,8 +22,8 @@ public class GestionDeUsuarios {
         this.empresa = Empresa.getEmpresa();
     }
 
-    public void login(String username, String password) throws CredencialesInvalidasException {
-        this.empresa.login(username, password);
+    public Operario login(String username, String password) throws CredencialesInvalidasException {
+        return this.empresa.login(username, password);
     }
 
     public void logout() {

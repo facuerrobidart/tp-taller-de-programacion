@@ -2,6 +2,7 @@ package com.grupo8.app.controladores;
 
 import com.grupo8.app.modelo.Empresa;
 import com.grupo8.app.modelo.Operario;
+import com.grupo8.app.negocio.GestionDeUsuarios;
 import com.grupo8.app.vistas.ILogin;
 import com.grupo8.app.vistas.VistaLogin;
 
@@ -13,13 +14,14 @@ public class ControladorLogin implements ActionListener {
 	private Operario logueado;
 	private static ControladorLogin instancia = null;
 	private Empresa empresa;
+	private GestionDeUsuarios gestionDeUsuarios;
 
 	public ControladorLogin() {
 		this.vista = new VistaLogin();
 		this.logueado = null;
 		this.empresa = Empresa.getEmpresa();
 		this.vista.setActionListener(this);
-		
+		this.gestionDeUsuarios = new GestionDeUsuarios();
 	}
 
 	public static ControladorLogin getControladorLogin(boolean mostrar) {
@@ -40,7 +42,7 @@ public class ControladorLogin implements ActionListener {
 		switch (comando) {
 		case "LOGIN":
 			try {
-				this.logueado = empresa.login(vista.getUsername(), vista.getContrasena());
+				this.logueado = gestionDeUsuarios.login(vista.getUsername(), vista.getContrasena());
 			} catch (Exception exception) {
 				vista.error("Error", "Usuario o contraseña incorrectos");
 				break;
