@@ -3,15 +3,13 @@ package com.grupo8.app.vistas;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JList;
+
 import com.grupo8.app.dto.MesaDTO;
-import javax.swing.JLabel;
+
 import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.ListSelectionModel;
+import java.awt.event.ActionListener;
 
 public class VistaAgregarComanda extends JFrame {
 
@@ -20,6 +18,7 @@ public class VistaAgregarComanda extends JFrame {
 	
 	private JButton btnConfirmar;
 	private JButton btnAtras;
+	private ActionListener actionListener;
 	
 	/**
 	 * Launch the application.
@@ -65,10 +64,12 @@ public class VistaAgregarComanda extends JFrame {
 		
 		
 		btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.setActionCommand("CONFIRMAR");
 		btnConfirmar.setBounds(202, 521, 172, 23);
 		panel.add(btnConfirmar);
 		
 		btnAtras = new JButton("Atras");
+		btnAtras.setActionCommand("ATRAS");
 		btnAtras.setBounds(10, 521, 172, 23);
 		panel.add(btnAtras);
 	}
@@ -82,8 +83,22 @@ public class VistaAgregarComanda extends JFrame {
 	public MesaDTO getMesa() {
 		return this.listaMesas.getSelectedValue();
 	}
+
+	public void setListaMesas(MesaDTO[] mesas) {
+		this.listaMesas.setListData(mesas);
+	}
 	
     public void esconder() {
         this.setVisible(false);
     }
+
+	public void setActionListener(ActionListener actionListener) {
+		this.actionListener = actionListener;
+		this.btnConfirmar.addActionListener(actionListener);
+		this.btnAtras.addActionListener(actionListener);
+	}
+
+	public void mostrarMensaje(String mensaje) {
+		JOptionPane.showMessageDialog(this, mensaje);
+	}
 }

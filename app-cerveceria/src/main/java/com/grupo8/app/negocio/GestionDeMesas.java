@@ -228,6 +228,13 @@ public class GestionDeMesas {
                 .collect(Collectors.toList());
     }
 
+    public List<MesaDTO> obtenerMesasLibres() {
+        return this.empresa.getMesas().stream()
+                .filter(mesa -> mesa.getEstadoMesa().equals(EstadoMesa.LIBRE))
+                .map(MesaDTO::of)
+                .collect(Collectors.toList());
+    }
+
     public List<ComandaDTO> obtenerComandas() {
         return this.empresa.getComandas().stream()
                 .map(ComandaDTO::of)

@@ -2,6 +2,7 @@ package com.grupo8.app.vistas;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -84,5 +85,11 @@ public class VistaGestionComandas extends JFrame {
     public void esconder() {
         this.setVisible(false);
     }
+
+	public void setActionListener(ActionListener ac) {
+		this.btnAgregarComanda.addActionListener(ac);
+		this.btnCerrar.addActionListener(ac);
+		this.btnVolver.addActionListener(ac);
+	}
 	
 }
