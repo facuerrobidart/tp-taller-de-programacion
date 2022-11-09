@@ -3,6 +3,8 @@ package com.grupo8.app.controladores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.grupo8.app.excepciones.PermisoDenegadoException;
+import com.grupo8.app.negocio.GestionDeUsuarios;
 import com.grupo8.app.vistas.VistaNuevoUsuario;
 
 public class ControladorUsuarios implements ActionListener {
@@ -30,8 +32,17 @@ public class ControladorUsuarios implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
 		switch (comando) {
-		case "VOLVER":
-			ControladorIniciarTurno.getControladorIniciarTurno(true);
+		case "Registrar":
+			GestionDeUsuarios g= new GestionDeUsuarios();
+			try {
+				g.addOperario(this.vista.getFormulario());
+				this.vista.mensajeExito("El operario se registro con exito");
+			} catch (PermisoDenegadoException e1) {
+				this.vista.mensajeError("Permiso denegado");
+			}
+			break;
+		case "Atras":
+			ControladorSesionAdmin.getControladorSesionAdmin(true);
 			this.vista.esconder();
 			break;
 		}

@@ -58,6 +58,7 @@ public class ControladorIniciarTurno implements ActionListener {
 			}
 			break;
 		case "Volver":
+			this.vista.esconder();
 	        if (ControladorLogin.getControladorLogin(false).getLogueado().getUsername().equals("admin")) {
 	            ControladorSesionAdmin.getControladorSesionAdmin(true);
 	        } else {

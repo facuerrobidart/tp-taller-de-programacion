@@ -42,7 +42,7 @@ public class ControladorProductos implements ActionListener {
 			vista.esconder();
 			break;
 		case "Volver":
-			ControladorLogin.getControladorLogin(true);
+			ControladorSesionOperario.getControladorSesionOperario(true);
 			vista.esconder();
 			break;
 		}
