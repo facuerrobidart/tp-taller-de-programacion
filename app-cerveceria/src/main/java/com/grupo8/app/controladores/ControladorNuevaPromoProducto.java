@@ -17,7 +17,7 @@ public class ControladorNuevaPromoProducto implements ActionListener {
 		this.vista.setActionListener(this);
 	}
 
-	public static ControladorNuevaPromoProducto getControladorPromociones(boolean mostrar) {
+	public static ControladorNuevaPromoProducto getControladorNuevaPromoProducto(boolean mostrar) {
 		if (instancia == null) {
 			instancia = new ControladorNuevaPromoProducto();
 		}

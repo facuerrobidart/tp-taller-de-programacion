@@ -11,13 +11,15 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import java.awt.Font;
 import java.awt.FlowLayout;
 
-public class VistaNuevoProducto extends JFrame implements  MouseListener{
+public class VistaNuevoProducto extends JFrame implements KeyListener, MouseListener{
 
 	private JPanel General;
 	private ActionListener actionListener;
@@ -27,6 +29,7 @@ public class VistaNuevoProducto extends JFrame implements  MouseListener{
 	private JTextField textFieldPrecio;
 	private JTextField textFieldStock;
 	private ProductoDTO productoEditable;
+	private JButton btnAceptar;
 	
 
 
@@ -73,6 +76,7 @@ public class VistaNuevoProducto extends JFrame implements  MouseListener{
 		textFieldNombreProducto = new JTextField();
 		panel_1.add(textFieldNombreProducto);
 		textFieldNombreProducto.setColumns(10);
+		textFieldNombreProducto.addKeyListener(this);
 		
 		
 		JPanel panel_11 = new JPanel();
@@ -85,6 +89,7 @@ public class VistaNuevoProducto extends JFrame implements  MouseListener{
 		textFieldCostoProducto = new JTextField();
 		textFieldCostoProducto.setColumns(10);
 		panel_11.add(textFieldCostoProducto);
+		textFieldCostoProducto.addKeyListener(this);
 		
 		
 		JPanel panel_1_1 = new JPanel();
@@ -97,6 +102,7 @@ public class VistaNuevoProducto extends JFrame implements  MouseListener{
 		textFieldPrecio = new JTextField();
 		textFieldPrecio.setColumns(10);
 		panel_1_1.add(textFieldPrecio);
+		textFieldPrecio.addKeyListener(this);
 		
 		JPanel panel_1_2 = new JPanel();
 		panel.add(panel_1_2);
@@ -108,6 +114,7 @@ public class VistaNuevoProducto extends JFrame implements  MouseListener{
 		textFieldStock = new JTextField();
 		textFieldStock.setColumns(10);
 		panel_1_2.add(textFieldStock);
+		textFieldStock.addKeyListener(this);
 		
 		JPanel panel_15 = new JPanel();
 		panel_15.setBounds(5, 592, 620, 29);
@@ -118,11 +125,11 @@ public class VistaNuevoProducto extends JFrame implements  MouseListener{
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnVolver);
 		
-		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar = new JButton("Aceptar");
 		btnAceptar.setActionCommand("ACEPTAR");
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnAceptar);
-
+		btnAceptar.setEnabled(false);
 
 		this.productoEditable = productoEditable;
 	}
@@ -148,28 +155,19 @@ public class VistaNuevoProducto extends JFrame implements  MouseListener{
 		
 	}
 
-	public void mouseReleased(MouseEvent e) {/*
+	@Override
+	public void keyReleased(KeyEvent e) {
+		
+
+		this.btnAceptar.setEnabled(textFieldStock.getText().length() > 0 && textFieldPrecio.getText().length() > 0 &&
+								   textFieldCostoProducto.getText().length() > 0   && textFieldNombreProducto.getText().length() > 0);
+	}
+	
+	
+	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
-		if(this.GrupoEstudios.getSelection()!=null)
-			this.Estudios = this.GrupoEstudios.getSelection().getActionCommand();
-		if(this.GrupoRemuneracion.getSelection()!=null)
-			this.Remuneracion = this.GrupoRemuneracion.getSelection().getActionCommand();
-		if(this.GrupoHorario.getSelection()!=null)
-			this.Horario = this.GrupoHorario.getSelection().getActionCommand();
-		if(this.GrupoPuesto.getSelection()!=null)
-			this.Puesto = this.GrupoPuesto.getSelection().getActionCommand();
-		if(this.GrupoREtario.getSelection()!=null)
-			this.REtario = this.GrupoREtario.getSelection().getActionCommand();
-		if(this.GrupoExperiencia.getSelection()!=null)
-			this.Experiencia = this.GrupoExperiencia.getSelection().getActionCommand();
-		if(this.GrupoLocacion.getSelection()!=null)
-			this.Locacion = this.GrupoLocacion.getSelection().getActionCommand();
-		if(this.GrupoEstudios.getSelection()!=null && this.GrupoRemuneracion.getSelection()!=null && this.GrupoHorario.getSelection()!=null
-				&& this.GrupoPuesto.getSelection()!=null && this.GrupoREtario.getSelection()!=null  && this.GrupoExperiencia.getSelection()!=null
-				&& this.GrupoLocacion.getSelection()!=null)
-			this.btnFinalizar.setEnabled(true);
-	*/}
+		}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
@@ -245,5 +243,17 @@ public class VistaNuevoProducto extends JFrame implements  MouseListener{
 
 	public void mostrarMensaje(String mensaje) {
 		JOptionPane.showMessageDialog(this, mensaje);
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -31,7 +31,7 @@ public class ControladorNuevaPromo implements ActionListener {
         String comando = e.getActionCommand();
         switch (comando) {
             case "PROMO_PRODUCTO":
-                //ControladorNuevaPromoProducto.get(true); // TODO
+                ControladorNuevaPromoProducto.getControladorNuevaPromoProducto(true); // TODO
                 this.vista.esconder();
                 break;
             case "PROMO_CANTIDAD":

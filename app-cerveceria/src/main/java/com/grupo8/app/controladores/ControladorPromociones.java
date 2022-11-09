@@ -30,15 +30,15 @@ public class ControladorPromociones implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
-		case "NuevaPromo":
+		case "NuevaPromocion":
 			ControladorNuevaPromo.getControlador(true);
 			this.vista.esconder();
 			break;
-		case "EditarPromo":
+		case "EditarPromocion":
 			//Controlado.ge(true); TODO
 			this.vista.esconder();
 			break;
-		case "EliminarPromo":
+		case "EliminarPromocion":
 			ControladorEliminarPromo.getControlador(true);
 			this.vista.esconder();
 			break;

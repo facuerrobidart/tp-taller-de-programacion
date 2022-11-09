@@ -1,5 +1,6 @@
 package com.grupo8.app.controladores;
 
+import com.grupo8.app.negocio.GestionDeUsuarios;
 import com.grupo8.app.vistas.VistaSesionAdmin;
 
 import java.awt.event.ActionEvent;
@@ -55,6 +56,8 @@ public class ControladorSesionAdmin implements ActionListener {
 			break;
 		case "CERRAR":
 			ControladorLogin.getControladorLogin(true);
+			GestionDeUsuarios g= new GestionDeUsuarios();
+			g.logout();
 			vista.esconder();
 		}
 	}
