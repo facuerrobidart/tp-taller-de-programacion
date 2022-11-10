@@ -21,7 +21,7 @@ public class GestionDeProductos {
         this.empresa = Empresa.getEmpresa();
     }
 
-    public void addProducto(AddProductoRequest request) {
+    public ProductoDTO addProducto(AddProductoRequest request) {
         if (request.getCosto() <= 0 || request.getPrecio() <= 0) {
             throw new IllegalArgumentException("El costo y el precio deben ser mayores a 0");
         }
@@ -30,9 +30,11 @@ public class GestionDeProductos {
             throw new IllegalArgumentException("El precio debe ser mayor al costo");
         }
 
-        this.empresa.getProductos().add(
-                new Producto(request.getNombre(), request.getPrecio(), request.getCosto(), request.getStock()));
+        Producto producto = new Producto(request.getNombre(), request.getPrecio(), request.getCosto(), request.getStock());
+        this.empresa.getProductos().add(producto);
         persistir();
+
+        return ProductoDTO.of(producto);
     }
 
     public void deleteProducto(@NonNull String id) {

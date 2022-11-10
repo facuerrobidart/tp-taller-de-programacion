@@ -20,4 +20,17 @@ public class PromoFijaRequest {
     private Integer dtoPorCantMin;
     private Double dtoPorCantPrecioU;
     private boolean activa;
+
+    public static PromoFijaRequest of(PromoFijaDTO promoFijaDTO) {
+        PromoFijaRequest promoFijaRequest = new PromoFijaRequest();
+        promoFijaRequest.setNombre(promoFijaDTO.getNombre());
+        promoFijaRequest.setDiasPromo(promoFijaDTO.getDiasPromo());
+        promoFijaRequest.setIdProducto(promoFijaDTO.getProducto().getId());
+        promoFijaRequest.setDosPorUno(promoFijaDTO.getDosPorUno());
+        promoFijaRequest.setDtoPorCantidad(promoFijaDTO.getDtoPorCant());
+        promoFijaRequest.setDtoPorCantMin(promoFijaDTO.getDtoPorCantMin());
+        promoFijaRequest.setDtoPorCantPrecioU(promoFijaDTO.getDtoPorCantPrecioU());
+        promoFijaRequest.setActiva(promoFijaDTO.isActivo());
+        return promoFijaRequest;
+    }
 }

@@ -68,14 +68,9 @@ public class GestionDePromos {
         }
     }
 
-    public void agregarPromoFija(PromoFijaRequest request) throws MalaSolicitudException {
-        Optional<Producto> producto = this.empresa.getProductos().stream()
-                .filter(p -> p.getId().equals(request.getIdProducto()))
-                .findFirst();
 
-        if (!producto.isPresent()) {
-            throw new MalaSolicitudException("El producto no existe");
-        }
+    public void validarUpdatePromoFija(PromoFijaRequest request) throws MalaSolicitudException {
+
         if (request.getDiasPromo().size() < 1) {
             throw new MalaSolicitudException("Debe seleccionar al menos un dia");
         }
@@ -85,23 +80,39 @@ public class GestionDePromos {
         if (!request.getDosPorUno() && !request.getDtoPorCantidad()) {
             throw new MalaSolicitudException("Debe seleccionar al menos una opcion de descuento");
         }
-
-        this.empresa.getPromocionesFijas().add(
-                new PromocionFija(
-                        request.getNombre(),
-                        request.getDiasPromo(),
-                        producto.get(),
-                        request.getDosPorUno(),
-                        request.getDtoPorCantidad(),
-                        request.getDtoPorCantMin(),
-                        request.getDtoPorCantPrecioU()
-                ));
-        persistirPromosFijas();
     }
 
-    public void editarPromoFija(PromoFijaRequest request, String id) throws EntidadNoEncontradaException {
+    public PromoFijaDTO agregarPromoFija(PromoFijaRequest request) throws MalaSolicitudException {
+        Optional<Producto> producto = this.empresa.getProductos().stream()
+                .filter(p -> p.getId().equals(request.getIdProducto()))
+                .findFirst();
+
+        if (!producto.isPresent()) {
+            throw new MalaSolicitudException("El producto no existe");
+        }
+
+        validarUpdatePromoFija(request);
+
+        PromocionFija promo = new PromocionFija(
+                request.getNombre(),
+                request.getDiasPromo(),
+                producto.get(),
+                request.getDosPorUno(),
+                request.getDtoPorCantidad(),
+                request.getDtoPorCantMin(),
+                request.getDtoPorCantPrecioU()
+        );
+
+        this.empresa.getPromocionesFijas().add(promo);
+        persistirPromosFijas();
+
+        return PromoFijaDTO.of(promo);
+    }
+
+    public PromoFijaDTO editarPromoFija(PromoFijaRequest request, String id) throws EntidadNoEncontradaException, MalaSolicitudException {
         Optional<PromocionFija> promo = this.empresa.getPromocionesFijas().stream().filter(p -> p.getIdPromocion().equals(id)).findFirst();
         if (promo.isPresent()) {
+            validarUpdatePromoFija(request);
             PromocionFija promoFija = (PromocionFija) promo.get();
             promoFija.setNombre(request.getNombre());
             promoFija.setDiasPromo(request.getDiasPromo());
@@ -110,6 +121,7 @@ public class GestionDePromos {
             promoFija.setDtoPorCantMin(request.getDtoPorCantMin());
             promoFija.setDtoPorCantPrecioU(request.getDtoPorCantPrecioU());
             persistirPromosFijas();
+            return PromoFijaDTO.of(promoFija);
         } else {
             throw new EntidadNoEncontradaException("No se encontro la promocion fija");
         }
