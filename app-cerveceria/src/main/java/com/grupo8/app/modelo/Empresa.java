@@ -113,7 +113,7 @@ public class Empresa {
     private void cargarPromocionesTemporales() {
         Ipersistencia<Set<PromocionTemporal>> persistencia = new PersistenciaXML();
 
-        try { // cargar los datos de la agencia desde el archivo XML
+        try { //cargar los datos de la agencia desde el archivo XML
             persistencia.abrirInput("promocionesTemporales.xml");
             this.promocionesTemporales = persistencia.lee();
             if (promocionesTemporales == null) {

@@ -22,25 +22,7 @@ public class VistaGestionComandas extends JFrame {
 	private JButton btnCerrar;
 	private JButton btnVolver;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaGestionComandas frame = new VistaGestionComandas();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public VistaGestionComandas() {
 		setTitle("Gestion Comandas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
