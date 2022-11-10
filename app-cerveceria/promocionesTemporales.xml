@@ -13,6 +13,28 @@
      <string>Efectivo</string>
     </void>
     <void property="idPromocion">
+     <string>13a92af5-1c91-4fe0-b51a-8e26b815098d</string>
+    </void>
+    <void property="nombre">
+     <string>Test promo editada</string>
+    </void>
+    <void property="porcentajeDescuento">
+     <int>25</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.grupo8.app.modelo.Promociones.PromocionTemporal">
+    <void property="activo">
+     <boolean>true</boolean>
+    </void>
+    <void property="acumulable">
+     <boolean>true</boolean>
+    </void>
+    <void property="formaPago">
+     <string>Efectivo</string>
+    </void>
+    <void property="idPromocion">
      <string>e27fd268-8f12-414a-b860-52b524d854e2</string>
     </void>
     <void property="nombre">
@@ -20,6 +42,25 @@
     </void>
     <void property="porcentajeDescuento">
      <int>50</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.grupo8.app.modelo.Promociones.PromocionTemporal">
+    <void property="activo">
+     <boolean>true</boolean>
+    </void>
+    <void property="acumulable">
+     <boolean>true</boolean>
+    </void>
+    <void property="formaPago">
+     <string>Efectivo</string>
+    </void>
+    <void property="idPromocion">
+     <string>d174888b-8d58-46cd-b498-72a65cce53df</string>
+    </void>
+    <void property="nombre">
+     <string>Test promo</string>
     </void>
    </object>
   </void>

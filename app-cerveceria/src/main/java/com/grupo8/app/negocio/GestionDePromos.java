@@ -44,9 +44,16 @@ public class GestionDePromos {
         return PromoTemporalDTO.of(nuevo);
     }
 
-    public void editarPromoTemporal(PromoTemporalRequest request, String id) throws EntidadNoEncontradaException {
+    public PromoTemporalDTO editarPromoTemporal(PromoTemporalRequest request, String id) throws EntidadNoEncontradaException, MalaSolicitudException {
         Optional<PromocionTemporal> promo = this.empresa.getPromocionesTemporales().stream().filter(p -> p.getIdPromocion().equals(id)).findFirst();
         if (promo.isPresent()) {
+            if (request.getDiasPromo().size() < 1) {
+                throw new MalaSolicitudException("Debe seleccionar al menos un dia");
+            }
+            if (request.getPorcentajeDescuento() <= 0 && request.getPorcentajeDescuento() > 100) {
+                throw new MalaSolicitudException("El porcentaje de descuento debe ser mayor a 0 y menor a 100");
+            }
+
             PromocionTemporal promoTemporal = (PromocionTemporal) promo.get();
             promoTemporal.setNombre(request.getNombre());
             promoTemporal.setDiasPromo(request.getDiasPromo());
@@ -54,6 +61,8 @@ public class GestionDePromos {
             promoTemporal.setPorcentajeDescuento(request.getPorcentajeDescuento());
             promoTemporal.setAcumulable(request.isAcumulable());
             persistirPromosTemporales();
+
+            return PromoTemporalDTO.of(promoTemporal);
         } else {
             throw new EntidadNoEncontradaException("No se encontro la promocion temporal");
         }
