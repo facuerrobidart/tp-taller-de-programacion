@@ -127,13 +127,14 @@ public class GestionDePromos {
         }
     }
 
-    public void eliminarPromoFija(String id) throws MalaSolicitudException {
+    public boolean eliminarPromoFija(String id) throws MalaSolicitudException {
         Optional<PromocionFija> promo = this.empresa.getPromocionesFijas().stream()
                 .filter(p -> p.getIdPromocion().equals(id))
                 .findFirst();
         if (promo.isPresent()) {
             this.empresa.getPromocionesFijas().remove(promo.get());
             persistirPromosFijas();
+            return true;
         } else {
             throw new MalaSolicitudException("La promocion no existe");
         }

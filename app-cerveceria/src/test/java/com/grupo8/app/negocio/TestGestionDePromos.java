@@ -208,4 +208,74 @@ public class TestGestionDePromos {
         Assert.assertNotNull(gestionDePromos.editarPromoFija(req, promo.getIdPromocion()));
     }
 
+
+    @Test(expected = MalaSolicitudException.class)
+    public void testEditarPromoFijaFalla() throws EntidadNoEncontradaException, MalaSolicitudException {
+        PromoFijaRequest req = new PromoFijaRequest();
+        req.setDiasPromo(List.of(DayOfWeek.SATURDAY,DayOfWeek.SUNDAY));
+        req.setDosPorUno(true);
+        req.setDtoPorCantidad(false);
+        req.setNombre("Test promo");
+        req.setActiva(true);
+
+        ProductoDTO producto = crearProducto();
+        req.setIdProducto(producto.getId());
+
+        PromoFijaDTO promo = gestionDePromos.agregarPromoFija(req);
+        Assert.assertNotNull(promo);
+
+        promo.setDosPorUno(true);
+        promo.setDtoPorCant(true); //Deberia fallar por tener dos tipos de promo
+        promo.setNombre("Test promo editada");
+
+        req = PromoFijaRequest.of(promo);
+        Assert.assertNotNull(gestionDePromos.editarPromoFija(req, promo.getIdPromocion()));
+    }
+
+    @Test(expected = MalaSolicitudException.class)
+    public void testEditarPromoFijaFalla2() throws EntidadNoEncontradaException, MalaSolicitudException {
+        PromoFijaRequest req = new PromoFijaRequest();
+        req.setDiasPromo(List.of(DayOfWeek.SATURDAY,DayOfWeek.SUNDAY));
+        req.setDosPorUno(true);
+        req.setDtoPorCantidad(false);
+        req.setNombre("Test promo");
+        req.setActiva(true);
+
+        ProductoDTO producto = crearProducto();
+        req.setIdProducto("fallar"); //Deberia fallar por no tener un id de producto valido
+
+        PromoFijaDTO promo = gestionDePromos.agregarPromoFija(req);
+        Assert.assertNotNull(promo);
+
+        promo.setDosPorUno(false);
+        promo.setDtoPorCant(true);
+        promo.setNombre("Test promo editada");
+
+        req = PromoFijaRequest.of(promo);
+        Assert.assertNotNull(gestionDePromos.editarPromoFija(req, promo.getIdPromocion()));
+    }
+
+    @Test
+    public void testEliminarPromoFija() throws MalaSolicitudException, EntidadNoEncontradaException {
+        PromoFijaRequest req = new PromoFijaRequest();
+        req.setDiasPromo(List.of(DayOfWeek.SATURDAY,DayOfWeek.SUNDAY));
+        req.setDosPorUno(true);
+        req.setDtoPorCantidad(false);
+        req.setNombre("Test promo");
+        req.setActiva(true);
+
+        ProductoDTO producto = crearProducto();
+        req.setIdProducto(producto.getId());
+
+        PromoFijaDTO promo = gestionDePromos.agregarPromoFija(req);
+        Assert.assertNotNull(promo);
+
+        Assert.assertTrue(gestionDePromos.eliminarPromoFija(promo.getIdPromocion()));
+    }
+
+    @Test(expected = EntidadNoEncontradaException.class)
+    public void testEliminarPromoFijaFalla() throws MalaSolicitudException {
+        Assert.assertTrue(gestionDePromos.eliminarPromoFija("fallar"));
+    }
+
 }
