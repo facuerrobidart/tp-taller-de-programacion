@@ -34,12 +34,8 @@ public class ControladorNuevaPromo implements ActionListener {
                 ControladorNuevaPromoProducto.getControladorNuevaPromoProducto(true); // TODO
                 this.vista.esconder();
                 break;
-            case "PROMO_CANTIDAD":
-                //ControladorNuevaPromoProductoCant.get(true); // TODO
-                this.vista.esconder();
-                break;
-            case "PROMO_MEDIO_PAGO":
-                //ControladorNuevaPromoPorMedioDePago.get(true); // TODO
+             case "PROMO_MEDIO_PAGO":
+                ControladorNuevaPromoPorMedioDePago.getControlador(true); // TODO
                 this.vista.esconder();
                 break;
             case "VOLVER":
