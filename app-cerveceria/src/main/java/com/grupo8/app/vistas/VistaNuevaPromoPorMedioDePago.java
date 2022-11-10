@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.grupo8.app.dto.PromoFijaDTO;
 import com.grupo8.app.dto.PromoTemporalDTO;
+import com.grupo8.app.dto.PromoTemporalRequest;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
@@ -219,9 +220,19 @@ public class VistaNuevaPromoPorMedioDePago extends JFrame implements MouseListen
 		this.setVisible(false);
 		
 	}
+
+	public void mensajeError(String mensaje) {
+		JOptionPane.showMessageDialog(this, mensaje);
+	}
 	
-	public PromoTemporalDTO getFormulario() {
-		PromoTemporalDTO request = new PromoTemporalDTO();
+	public void mensajeExito(String mensaje) {
+		JOptionPane.showMessageDialog(this, mensaje);
+		
+	}
+
+	
+	public PromoTemporalRequest getFormulario() {
+	    PromoTemporalRequest request = new PromoTemporalRequest();
 		request.setFormaPago(this.textFieldMedioDePago.getText());
 		request.setPorcentajeDescuento(Integer.parseInt(this.textFieldPorcentajeDescuento.getText()));
 		request.setAcumulable(this.rdbtnAcumulable.isSelected());
