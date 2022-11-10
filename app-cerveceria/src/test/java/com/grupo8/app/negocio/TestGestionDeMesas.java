@@ -31,4 +31,17 @@ public class TestGestionDeMesas {
 
         gestionDeMesas.addMesa(addMesaRequest); //deberia fallar porque ya existe una mesa con ese numero
     }
+
+    @Test
+    public void testDeleteMesa() throws NumeroMesaInvalidoException {
+        gestionDeMesas.deleteMesa(69); //Borro la mesa por las dudas que exista
+
+        AddMesaRequest addMesaRequest = new AddMesaRequest();
+        addMesaRequest.setNroMesa(69);
+        addMesaRequest.setCantSillas(4);
+
+        gestionDeMesas.addMesa(addMesaRequest);
+
+        Assert.assertTrue(gestionDeMesas.deleteMesa(1));
+    }
 }

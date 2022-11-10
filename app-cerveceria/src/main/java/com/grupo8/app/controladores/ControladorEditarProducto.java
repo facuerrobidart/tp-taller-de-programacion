@@ -33,6 +33,7 @@ public class ControladorEditarProducto implements ActionListener {
         if (mostrar) {
             instancia.vista.mostrar();
         }
+        instancia.vista.setListaAEditar(instancia.gestionDeProductos.obtenerProductos().toArray(new ProductoDTO[0]));
         return instancia;
     }
 

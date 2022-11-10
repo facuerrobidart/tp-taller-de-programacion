@@ -57,9 +57,10 @@ public class GestionDeMesas {
 
     }
 
-    public void deleteMesa(Integer nroMesa) {
+    public boolean deleteMesa(Integer nroMesa) {
         this.empresa.getMesas().removeIf(mesa -> nroMesa.equals(mesa.getNroMesa()));
         persistir();
+        return true;
     }
 
     private void persistir() {

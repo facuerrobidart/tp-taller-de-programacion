@@ -27,7 +27,7 @@ public class GestionDePromos {
         if (request.getDiasPromo().size() < 1) {
             throw new MalaSolicitudException("Debe seleccionar al menos un dia");
         }
-        if (request.getPorcentajeDescuento() <= 0 && request.getPorcentajeDescuento() > 100) {
+        if (request.getPorcentajeDescuento() <= 0 || request.getPorcentajeDescuento() > 100) {
             throw new MalaSolicitudException("El porcentaje de descuento debe ser mayor a 0 y menor a 100");
         }
 
@@ -50,7 +50,7 @@ public class GestionDePromos {
             if (request.getDiasPromo().size() < 1) {
                 throw new MalaSolicitudException("Debe seleccionar al menos un dia");
             }
-            if (request.getPorcentajeDescuento() <= 0 && request.getPorcentajeDescuento() > 100) {
+            if (request.getPorcentajeDescuento() <= 0 || request.getPorcentajeDescuento() > 100) {
                 throw new MalaSolicitudException("El porcentaje de descuento debe ser mayor a 0 y menor a 100");
             }
 

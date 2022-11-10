@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="11.0.17" class="java.beans.XMLDecoder">
+<java version="18.0.2" class="java.beans.XMLDecoder">
  <object class="java.util.HashSet">
   <void method="add">
    <object class="com.grupo8.app.modelo.Operario">
@@ -39,6 +39,54 @@
      <boolean>true</boolean>
     </void>
     <void property="nombreCompleto">
+     <string>Juan Perez</string>
+    </void>
+    <void property="password">
+     <string>jperez1234</string>
+    </void>
+    <void property="username">
+     <string>jperez</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.grupo8.app.modelo.Operario">
+    <void property="activo">
+     <boolean>true</boolean>
+    </void>
+    <void property="nombreCompleto">
+     <string>Juan Perez</string>
+    </void>
+    <void property="password">
+     <string>jperez1234</string>
+    </void>
+    <void property="username">
+     <string>jperez</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.grupo8.app.modelo.Operario">
+    <void property="activo">
+     <boolean>true</boolean>
+    </void>
+    <void property="nombreCompleto">
+     <string>Juan Perez</string>
+    </void>
+    <void property="password">
+     <string>jperez1234</string>
+    </void>
+    <void property="username">
+     <string>jperez</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.grupo8.app.modelo.Operario">
+    <void property="activo">
+     <boolean>true</boolean>
+    </void>
+    <void property="nombreCompleto">
      <string>a</string>
     </void>
     <void property="password">
@@ -46,6 +94,54 @@
     </void>
     <void property="username">
      <string>a</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.grupo8.app.modelo.Operario">
+    <void property="activo">
+     <boolean>true</boolean>
+    </void>
+    <void property="nombreCompleto">
+     <string>Juan Perez</string>
+    </void>
+    <void property="password">
+     <string>jperez1234</string>
+    </void>
+    <void property="username">
+     <string>jperez</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.grupo8.app.modelo.Operario">
+    <void property="activo">
+     <boolean>true</boolean>
+    </void>
+    <void property="nombreCompleto">
+     <string>Juan Perez</string>
+    </void>
+    <void property="password">
+     <string>jperez1234</string>
+    </void>
+    <void property="username">
+     <string>jperez</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.grupo8.app.modelo.Operario">
+    <void property="activo">
+     <boolean>true</boolean>
+    </void>
+    <void property="nombreCompleto">
+     <string>Juan Perez</string>
+    </void>
+    <void property="password">
+     <string>jperez1234</string>
+    </void>
+    <void property="username">
+     <string>jperez</string>
     </void>
    </object>
   </void>

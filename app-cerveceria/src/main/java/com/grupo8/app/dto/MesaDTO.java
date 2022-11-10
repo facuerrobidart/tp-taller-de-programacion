@@ -21,7 +21,10 @@ public class MesaDTO {
         mesaDTO.setNroMesa(mesa.getNroMesa());
         mesaDTO.setCantSillas(mesa.getCantSillas());
         mesaDTO.setEstadoMesa(mesa.getEstadoMesa());
-        mesaDTO.setMozoAsignado(MozoDTO.of(mesa.getMozoAsignado()));
+
+        if (mesa.getMozoAsignado() != null) {
+            mesaDTO.setMozoAsignado(MozoDTO.of(mesa.getMozoAsignado()));
+        }
 
         return mesaDTO;
     }

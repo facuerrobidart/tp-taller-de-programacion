@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="18.0.2" class="java.beans.XMLDecoder">
+ <object class="java.util.HashSet">
+  <void method="add">
+   <object class="com.grupo8.app.modelo.Mesa">
+    <void property="cantSillas">
+     <int>4</int>
+    </void>
+    <void property="estadoMesa">
+     <object class="java.lang.Enum" method="valueOf">
+      <class>com.grupo8.app.tipos.EstadoMesa</class>
+      <string>LIBRE</string>
+     </object>
+    </void>
+    <void property="nroMesa">
+     <int>69</int>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>
