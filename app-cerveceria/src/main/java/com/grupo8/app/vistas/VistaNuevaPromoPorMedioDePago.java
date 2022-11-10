@@ -2,19 +2,15 @@ package com.grupo8.app.vistas;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
 import com.grupo8.app.dto.PromoFijaDTO;
 import com.grupo8.app.dto.PromoTemporalDTO;
 import com.grupo8.app.dto.PromoTemporalRequest;
-
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import java.awt.Font;
 import java.awt.FlowLayout;
 import java.awt.CardLayout;
@@ -154,23 +150,9 @@ public class VistaNuevaPromoPorMedioDePago extends JFrame implements MouseListen
 	}
 
 	
-	/*public void limpiaCampos() {
-		this.GrupoEstudios.clearSelection();
-		this.GrupoExperiencia.clearSelection();
-		this.GrupoHorario.clearSelection();
-		this.GrupoLocacion.clearSelection();
-		this.GrupoPuesto.clearSelection();
-		this.GrupoRemuneracion.clearSelection();
-		this.GrupoREtario.clearSelection();
+	public void limpiaCampos() {
 		
-		this.pesocargaHoraria.setText("");
-		this.pesoEstudios.setText("");
-		this.pesoExperiencia.setText("");
-		this.pesoLocacion.setText("");
-		this.pesoRangoEtario.setText("");
-		this.pesoRemuneracion.setText("");
-		this.pesoTipoDePuesto.setText("");
-	}*/
+	}
 
 	public void mostrar() {
 		this.setVisible(true);

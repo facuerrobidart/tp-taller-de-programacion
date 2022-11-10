@@ -2,21 +2,23 @@ package com.grupo8.app.vistas;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import com.grupo8.app.dto.AddMozoRequest;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import javax.swing.JButton;
+import java.awt.Label;
 
 public class VistaNuevoMozo extends JFrame {
 
@@ -77,6 +79,12 @@ public class VistaNuevoMozo extends JFrame {
 		btnListo.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnListo.setBounds(220, 234, 214, 27);
 		contentPane.add(btnListo);
+		
+		Label label = new Label("dd-MM-yyyy");
+		label.setFont(new Font("Dialog", Font.ITALIC, 15));
+		label.setAlignment(Label.CENTER);
+		label.setBounds(163, 115, 175, 22);
+		contentPane.add(label);
 	}
 	
 	public void mostrar() {
@@ -88,6 +96,11 @@ public class VistaNuevoMozo extends JFrame {
 		this.setVisible(false);
 	}
 	
+	public void limpiaCampos() {
+		this.textFieldCantHijos.setText("");
+		this.textFieldFechaNac.setText("");
+		this.textFieldNombreCompleto.setText("");
+	}
 	
 	public void setActionListener(ActionListener actionListener) {
 		this.actionListener=actionListener;
@@ -104,9 +117,15 @@ public class VistaNuevoMozo extends JFrame {
 		AddMozoRequest request = new AddMozoRequest();
 		request.setNombreCompleto(this.textFieldNombreCompleto.getText());
 		request.setCantidadHijos(Integer.parseInt(this.textFieldCantHijos.getText()));
-		request.setFechaNacimiento(Date.parseDate(this.textFieldFechaNacimiento.getText()));
+		String fechaNac= this.textFieldFechaNac.getText();
+		Date date= new Date();
+		SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");// formato obligatorio
+	    try {
+			date = format.parse(fechaNac);
+		} catch (ParseException e) {
+			
+		}
+	    request.setFechaNacimiento(date);
 		return request;
 	}
-
-
 }
