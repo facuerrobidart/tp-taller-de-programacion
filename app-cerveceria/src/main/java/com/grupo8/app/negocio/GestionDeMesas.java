@@ -28,15 +28,17 @@ public class GestionDeMesas {
         this.empresa = Empresa.getEmpresa();
     }
 
-    public void addMesa(AddMesaRequest request) throws NumeroMesaInvalidoException {
-
+    public MesaDTO addMesa(AddMesaRequest request) throws NumeroMesaInvalidoException {
         Optional<Mesa> potencialDuplicado =
                 this.empresa.getMesas().stream()
                         .filter(mesa -> Objects.equals(mesa.getNroMesa(), request.getNroMesa())).findFirst();
 
         if (!potencialDuplicado.isPresent()) {
-            this.empresa.getMesas().add(new Mesa(request.getNroMesa(), request.getCantSillas()));
+            Mesa mesa = new Mesa(request.getNroMesa(), request.getCantSillas());
+            this.empresa.getMesas().add(mesa);
             persistir();
+
+            return MesaDTO.of(mesa);
         } else {
             throw new NumeroMesaInvalidoException("Ya existe una mesa con ese numero");
         }
