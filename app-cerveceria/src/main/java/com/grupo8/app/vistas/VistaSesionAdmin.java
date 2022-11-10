@@ -72,14 +72,21 @@ public class VistaSesionAdmin extends JFrame {
 		panel_6.add(btnAbmMesas);
 		btnAbmMesas.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
+		btnABMProductos = new JButton("ABM productos");
+		panel_6.add(btnABMProductos);
+		btnABMProductos.setActionCommand("ABMProductos");
+		btnABMProductos.setPreferredSize(new Dimension(200, 35));
+		btnABMProductos.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
 		
-		btnABMProductos = new JButton("ABM productos");
-		btnABMProductos.setActionCommand("ABMProductos");
-		btnABMProductos.setPreferredSize(new Dimension(200, 35));
-		panel_1.add(btnABMProductos);
-		btnABMProductos.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		JButton btnAgregarMozo = new JButton("Agregar mozo");
+		btnAgregarMozo.setActionCommand("AgregarMozo");
+		btnAgregarMozo.setVerticalAlignment(SwingConstants.BOTTOM);
+		btnAgregarMozo.setPreferredSize(new Dimension(200, 35));
+		btnAgregarMozo.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		panel_1.add(btnAgregarMozo);
 		
 		JPanel panel_1_1 = new JPanel();
 		panel.add(panel_1_1);

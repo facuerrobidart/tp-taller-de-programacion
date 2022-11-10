@@ -31,6 +31,7 @@ public class VistaSesionOperario extends JFrame {
 	private JButton btnCerrarSesion;
 	private JButton btnAbmMesas;
 	private ActionListener actionListener;
+	private JButton btnAgregarMozo;
 
 	public VistaSesionOperario() {
 		setTitle("Sesion Operario");
@@ -38,11 +39,12 @@ public class VistaSesionOperario extends JFrame {
 		setBounds(100, 100, 532, 464);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.CENTER);
+		panel.setBounds(5, 5, 506, 380);
+		contentPane.add(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JPanel panel_4 = new JPanel();
@@ -53,6 +55,7 @@ public class VistaSesionOperario extends JFrame {
 		panel_4.add(lblNewLabel_1);
 		
 		btnIniciaTurno = new JButton("Iniciar turno");
+		btnIniciaTurno.setActionCommand("IniciarTurno");
 		btnIniciaTurno.setPreferredSize(new Dimension(200, 35));
 		btnIniciaTurno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -64,15 +67,23 @@ public class VistaSesionOperario extends JFrame {
 		JPanel panel_6 = new JPanel();
 		panel.add(panel_6);
 		
-		btnAbmMesas = new JButton("ABM mesas");
-		btnAbmMesas.setPreferredSize(new Dimension(200, 35));
-		panel_6.add(btnAbmMesas);
-		btnAbmMesas.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnAgregarMozo = new JButton("Agregar Mozo");
+		btnAgregarMozo.setActionCommand("AgregarMozo");
+		panel_6.add(btnAgregarMozo);
+		btnAgregarMozo.setPreferredSize(new Dimension(200, 35));
+		btnAgregarMozo.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
 		
+		btnAbmMesas = new JButton("ABM mesas");
+		panel_1.add(btnAbmMesas);
+		btnAbmMesas.setActionCommand("ABMMesas");
+		btnAbmMesas.setPreferredSize(new Dimension(200, 35));
+		btnAbmMesas.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
 		btnABMProductos = new JButton("ABM productos");
+		btnABMProductos.setActionCommand("ABMProductos");
 		btnABMProductos.setPreferredSize(new Dimension(200, 35));
 		panel_1.add(btnABMProductos);
 		btnABMProductos.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -97,11 +108,11 @@ public class VistaSesionOperario extends JFrame {
 		btnEstadisticas = new JButton("Estadisticas");
 		btnEstadisticas.setPreferredSize(new Dimension(200, 35));
 		panel_1_2.add(btnEstadisticas);
-		btnEstadisticas.setActionCommand("Ingresar");
 		btnEstadisticas.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		JPanel panel_3 = new JPanel();
-		contentPane.add(panel_3, BorderLayout.SOUTH);
+		panel_3.setBounds(5, 385, 506, 35);
+		contentPane.add(panel_3);
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
 		btnCerrarSesion = new JButton("Cerrar sesion");
@@ -130,6 +141,7 @@ public class VistaSesionOperario extends JFrame {
 		this.btnIniciaTurno.addActionListener(actionListener);
 		this.btnAbmMesas.addActionListener(actionListener);
 		this.btnEstadisticas.addActionListener(actionListener);
+		this.btnAgregarMozo.addActionListener(actionListener);
 	}
 
 	
