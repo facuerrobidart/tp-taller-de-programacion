@@ -2,11 +2,8 @@ package com.grupo8.app.vistas;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
-import com.grupo8.app.dto.AddProductoRequest;
 import com.grupo8.app.dto.ProductoDTO;
 import com.grupo8.app.dto.PromoFijaDTO;
-
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -35,27 +32,6 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 	private JButton btnAceptar;
 	
 	
-	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaNuevaPromoProducto frame = new VistaNuevaPromoProducto();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public VistaNuevaPromoProducto() {
 		setTitle("Nuevo Promocion por Producto");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -94,7 +70,7 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_11.add(lblNewLabel_5);
 		
-	    listaProductos = new JList();
+	    listaProductos = new JList<ProductoDTO>();
 	    listaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listaProductos.setBounds(0, 52, 428, 171);
 		panel_11.add(listaProductos);
@@ -258,9 +234,6 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		this.setVisible(false);
 		
 	}
-	
-
-	
 	
 	public PromoFijaDTO getFormulario() {
 		PromoFijaDTO request = new PromoFijaDTO();

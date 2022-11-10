@@ -1,17 +1,12 @@
 package com.grupo8.app.vistas;
 
 import com.grupo8.app.dto.ProductoDTO;
-
-import java.awt.EventQueue;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import java.awt.Font;
 
 public class VistaEditarProducto extends JFrame implements MouseListener {
@@ -21,27 +16,6 @@ public class VistaEditarProducto extends JFrame implements MouseListener {
     private JButton btnVolver;
     private JList<ProductoDTO> listaAEditar;
 
-
-
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    VistaEliminarProducto frame = new VistaEliminarProducto();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    /**
-     * Create the frame.
-     */
     public VistaEditarProducto() {
         setTitle("Editar producto");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

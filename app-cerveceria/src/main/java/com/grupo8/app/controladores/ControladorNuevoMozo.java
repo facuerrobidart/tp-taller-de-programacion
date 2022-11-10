@@ -40,18 +40,9 @@ public class ControladorNuevoMozo implements ActionListener {
 			this.vista.mostrarMensaje("La mesa se registro con exito");
 			break;
 		case "Atras":
-			if (this.logueado != null) {
-				if (logueado.getUsername().equals("admin")) {
-					ControladorSesionAdmin CAdmin = ControladorSesionAdmin.getControladorSesionAdmin(true);
+			 ControladorSesionAdmin.getControladorSesionAdmin(true);
 					this.vista.esconder();
-				} else {
-					this.vista.esconder();
-					ControladorIniciarTurno.getControladorIniciarTurno(true);
-				}
-			}
-			
-			break;
-		
+				break;
 		}
 	}
 }

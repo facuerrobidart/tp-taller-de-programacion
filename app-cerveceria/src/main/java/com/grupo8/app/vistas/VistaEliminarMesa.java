@@ -25,26 +25,6 @@ public class VistaEliminarMesa extends JFrame implements MouseListener{
 	private JButton btnVolver;
 	private JButton btnEliminar;
 	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaEliminarMesa frame = new VistaEliminarMesa();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public VistaEliminarMesa() {
 		setTitle("Eliminar Mesa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

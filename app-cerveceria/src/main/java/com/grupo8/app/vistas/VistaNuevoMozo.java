@@ -99,6 +99,7 @@ public class VistaNuevoMozo extends JFrame {
 	public void mostrarMensaje(String mensaje) {
 		JOptionPane.showMessageDialog(this, mensaje);
 	}
+	
 	public AddMozoRequest getFormulario() {
 		AddMozoRequest request = new AddMozoRequest();
 		request.setNombreCompleto(this.textFieldNombreCompleto.getText());

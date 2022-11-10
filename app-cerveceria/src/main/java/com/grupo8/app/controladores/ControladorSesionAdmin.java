@@ -54,15 +54,15 @@ public class ControladorSesionAdmin implements ActionListener {
 			ControladorUsuarios.getControladorUsuarios(true);
 			vista.esconder();
 			break;
+		case "AgregarMozo":
+			ControladorNuevoMozo.getControlador(true);
+			this.vista.esconder();
+			break;
 		case "CERRAR":
 			ControladorLogin.getControladorLogin(true);
 			GestionDeUsuarios g= new GestionDeUsuarios();
 			g.logout();
 			vista.esconder();
-			break;
-		case "AgregarMozo":
-			ControladorNuevoMozo.getControlador(true);
-			this.vista.esconder();
 			break;
 		}
 	}

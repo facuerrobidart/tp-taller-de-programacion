@@ -45,8 +45,9 @@ public class ControladorNuevaPromoProducto implements ActionListener {
 				this.vista.esconder();
 				break;
 			case "Volver":
-				ControladorSesionOperario.getControladorSesionOperario(true);
+				ControladorNuevaPromo.getControlador(true); // TODO
 				this.vista.esconder();
+				
 				break;
 		}
 	}

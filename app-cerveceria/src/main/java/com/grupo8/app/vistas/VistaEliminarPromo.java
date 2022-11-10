@@ -2,21 +2,14 @@ package com.grupo8.app.vistas;
 
 import com.grupo8.app.dto.PromocionDTO;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import java.awt.Font;
-import java.awt.FlowLayout;
-import java.awt.Color;
-import java.awt.Component;
+
 
 public class VistaEliminarPromo extends JFrame implements MouseListener{
 
@@ -26,25 +19,7 @@ public class VistaEliminarPromo extends JFrame implements MouseListener{
 	private JList<PromocionDTO> listPromo;
 	private JButton btnEliminar;
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaEliminarPromo frame = new VistaEliminarPromo();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public VistaEliminarPromo() {
 		setTitle("Eliminar promocion");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

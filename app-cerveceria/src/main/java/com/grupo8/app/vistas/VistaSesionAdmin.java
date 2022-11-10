@@ -1,8 +1,6 @@
 package com.grupo8.app.vistas;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -13,12 +11,8 @@ import javax.swing.JButton;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.BoxLayout;
-import java.awt.CardLayout;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 import java.awt.Dimension;
 
 public class VistaSesionAdmin extends JFrame {
@@ -31,6 +25,7 @@ public class VistaSesionAdmin extends JFrame {
 	private JButton btnCerrarSesion;
 	private JButton btnAbmMesas;
 	private JButton btnAbmUsuarios;
+	private JButton btnAgregarMozo;
 	private ActionListener actionListener;
 
 	public VistaSesionAdmin() {
@@ -81,7 +76,7 @@ public class VistaSesionAdmin extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
 		
-		JButton btnAgregarMozo = new JButton("Agregar mozo");
+		btnAgregarMozo = new JButton("Agregar mozo");
 		btnAgregarMozo.setActionCommand("AgregarMozo");
 		btnAgregarMozo.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnAgregarMozo.setPreferredSize(new Dimension(200, 35));
@@ -150,7 +145,7 @@ public class VistaSesionAdmin extends JFrame {
 		this.btnAbmUsuarios.addActionListener(actionListener);
 		this.btnIniciarTurno.addActionListener(actionListener);
 		this.btnAbmMesas.addActionListener(actionListener);
-	
+		this.btnAgregarMozo.addActionListener(actionListener);
 		this.btnEstadisticas.addActionListener(actionListener);
 	}
 

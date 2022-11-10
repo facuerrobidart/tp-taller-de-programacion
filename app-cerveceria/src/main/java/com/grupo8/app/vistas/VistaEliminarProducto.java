@@ -2,21 +2,15 @@ package com.grupo8.app.vistas;
 
 import com.grupo8.app.dto.ProductoDTO;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import java.awt.Font;
-import java.awt.FlowLayout;
-import java.awt.Color;
-import java.awt.Component;
+
 
 public class VistaEliminarProducto extends JFrame implements MouseListener {
 
@@ -26,26 +20,6 @@ public class VistaEliminarProducto extends JFrame implements MouseListener {
 	private JList<ProductoDTO> listProductosElim;
 
 	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaEliminarProducto frame = new VistaEliminarProducto();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public VistaEliminarProducto() {
 		setTitle("Eliminar producto");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -129,26 +103,7 @@ public class VistaEliminarProducto extends JFrame implements MouseListener {
 	}
 
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	/*	if(this.GrupoEstudios.getSelection()!=null)
-			this.Estudios = this.GrupoEstudios.getSelection().getActionCommand();
-		if(this.GrupoRemuneracion.getSelection()!=null)
-			this.Remuneracion = this.GrupoRemuneracion.getSelection().getActionCommand();
-		if(this.GrupoHorario.getSelection()!=null)
-			this.Horario = this.GrupoHorario.getSelection().getActionCommand();
-		if(this.GrupoPuesto.getSelection()!=null)
-			this.Puesto = this.GrupoPuesto.getSelection().getActionCommand();
-		if(this.GrupoREtario.getSelection()!=null)
-			this.REtario = this.GrupoREtario.getSelection().getActionCommand();
-		if(this.GrupoExperiencia.getSelection()!=null)
-			this.Experiencia = this.GrupoExperiencia.getSelection().getActionCommand();
-		if(this.GrupoLocacion.getSelection()!=null)
-			this.Locacion = this.GrupoLocacion.getSelection().getActionCommand();
-		if(this.GrupoEstudios.getSelection()!=null && this.GrupoRemuneracion.getSelection()!=null && this.GrupoHorario.getSelection()!=null
-				&& this.GrupoPuesto.getSelection()!=null && this.GrupoREtario.getSelection()!=null  && this.GrupoExperiencia.getSelection()!=null
-				&& this.GrupoLocacion.getSelection()!=null)
-			this.btnFinalizar.setEnabled(true);*/
+	
 	}
 
 	
@@ -188,37 +143,7 @@ public class VistaEliminarProducto extends JFrame implements MouseListener {
 	}
 
 	
-	/*public TicketDeEmpleadoRequest getFormulario(){
-		
-		TicketDeEmpleadoRequest ticketDeEmpleadoRequest=null;
-		int pesos = -1; //Esta variable se usa para corroborar que anden los parseos
-		
-		try {
-			
-		 ticketDeEmpleadoRequest = new TicketDeEmpleadoRequest(this.Locacion, Integer.parseInt(this.pesoLocacion.getText()), 
-																					  this.Estudios, Integer.parseInt(this.pesoEstudios.getText()),
-																					  this.Experiencia, Integer.parseInt(this.pesoExperiencia.getText()), 
-																					  this.Horario,Integer.parseInt(this.pesocargaHoraria.getText()), 
-																					  this.REtario, Integer.parseInt(this.pesoRangoEtario.getText()),
-																					  this.Remuneracion, Integer.parseInt(this.pesoRemuneracion.getText()), 
-																					  this.Puesto, Integer.parseInt(this.pesoTipoDePuesto.getText()));
-		}
-		catch(Exception e) {
-
-				JOptionPane.showMessageDialog(null, "No ingreso correctamente uno o mas pesos", "Error", JOptionPane.ERROR_MESSAGE);
-				this.pesoLocacion.setText("");
-				this.pesoEstudios.setText("");
-				this.pesoExperiencia.setText("");
-				this.pesocargaHoraria.setText("");
-				this.pesoRangoEtario.setText("");
-				this.pesoRemuneracion.setText("");
-				this.pesoTipoDePuesto.setText("");
-				
-		}
-		
-		return ticketDeEmpleadoRequest;
-		
-	}*/
+	
 
 	
 }
