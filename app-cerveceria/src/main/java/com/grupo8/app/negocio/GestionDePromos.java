@@ -127,7 +127,7 @@ public class GestionDePromos {
         }
     }
 
-    public boolean eliminarPromoFija(String id) throws MalaSolicitudException {
+    public boolean eliminarPromoFija(String id) throws EntidadNoEncontradaException {
         Optional<PromocionFija> promo = this.empresa.getPromocionesFijas().stream()
                 .filter(p -> p.getIdPromocion().equals(id))
                 .findFirst();
@@ -136,7 +136,7 @@ public class GestionDePromos {
             persistirPromosFijas();
             return true;
         } else {
-            throw new MalaSolicitudException("La promocion no existe");
+            throw new EntidadNoEncontradaException("La promocion no existe");
         }
     }
 
@@ -193,7 +193,7 @@ public class GestionDePromos {
     public void eliminarPromo(String id) throws MalaSolicitudException {
         try {
             eliminarPromoFija(id);
-        } catch (MalaSolicitudException e) {
+        } catch (EntidadNoEncontradaException e) {
             eliminarPromoTemporal(id);
         }
     }

@@ -1,9 +1,6 @@
 	package com.grupo8.app.negocio;
 
-import com.grupo8.app.dto.AddMesaRequest;
-import com.grupo8.app.dto.ComandaDTO;
-import com.grupo8.app.dto.MesaDTO;
-import com.grupo8.app.dto.PedidoRequest;
+import com.grupo8.app.dto.*;
 import com.grupo8.app.excepciones.EntidadNoEncontradaException;
 import com.grupo8.app.excepciones.EstadoInvalidoException;
 import com.grupo8.app.excepciones.NumeroMesaInvalidoException;
@@ -92,7 +89,7 @@ public class GestionDeMesas {
         promos.addAll(this.empresa.getPromocionesFijas());
         promos.addAll(this.empresa.getPromocionesTemporales());
 
-        List<Promocion> promosActivas = promos.stream().filter(promo -> promo.getDiasPromo().contains(LocalDate.now().getDayOfWeek()) && promo.isActivo()).collect(Collectors.toList());
+        List<Promocion> promosActivas = promos.stream().filter(promo -> promo.getDiasPromo() != null && promo.getDiasPromo().contains(LocalDate.now().getDayOfWeek()) && promo.isActivo()).collect(Collectors.toList());
 
         if (promosActivas.size() < 2) {
             throw new EstadoInvalidoException("Debe haber al menos 2 promociones activas para iniciar el turno");
@@ -100,7 +97,7 @@ public class GestionDeMesas {
     }
 
 
-    public void crearComanda(Integer nroMesa) throws EntidadNoEncontradaException, EstadoInvalidoException {
+    public ComandaDTO crearComanda(Integer nroMesa) throws EntidadNoEncontradaException, EstadoInvalidoException {
         Optional<Mesa> mesa = this.empresa.getMesas().stream()
                 .filter(me -> Objects.equals(me.getNroMesa(), nroMesa)).findFirst();
 
@@ -109,6 +106,7 @@ public class GestionDeMesas {
             if (mesa.get().getMozoAsignado() != null || mesa.get().getMozoAsignado().getEstadoMozo() != EstadoMozo.ACTIVO) {
                 Comanda comanda = new Comanda(mesa.get());
                 this.empresa.getComandas().add(comanda);
+                return ComandaDTO.of(comanda);
             } else if (mesa.get().getMozoAsignado() == null) {
                 throw new EntidadNoEncontradaException("No se encontro mozo asignado");
             } else {
@@ -250,5 +248,22 @@ public class GestionDeMesas {
             throw new EstadoInvalidoException("No se puede cerrar el turno, hay comandas abiertas");
         }
         persistirCierreComandas();
+    }
+
+    public void asignarMozo(Integer nroMesa, MozoDTO mozoDTO) throws EntidadNoEncontradaException {
+        Optional<Mozo> mozo = this.empresa.getMozos().stream()
+                .filter(m -> Objects.equals(m.getId(), mozoDTO.getId())).findFirst();
+        if (mozo.isPresent()) {
+            Optional<Mesa> mesa = this.empresa.getMesas().stream()
+                    .filter(m -> Objects.equals(m.getNroMesa(), nroMesa)).findFirst();
+            if (mesa.isPresent()) {
+                mesa.get().setMozoAsignado(mozo.get());
+                persistir();
+            } else {
+                throw new EntidadNoEncontradaException("No se encontro la mesa");
+            }
+        } else {
+            throw new EntidadNoEncontradaException("No se encontro el mozo");
+        }
     }
 }

@@ -5,13 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class PromocionFija extends Promocion {
+public class PromocionFija extends Promocion implements Serializable {
 	private Producto producto;
 	private Boolean dosPorUno;
 	private Boolean dtoPorCant;

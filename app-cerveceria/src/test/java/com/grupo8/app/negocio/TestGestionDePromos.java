@@ -274,7 +274,7 @@ public class TestGestionDePromos {
     }
 
     @Test(expected = EntidadNoEncontradaException.class)
-    public void testEliminarPromoFijaFalla() throws MalaSolicitudException {
+    public void testEliminarPromoFijaFalla() throws EntidadNoEncontradaException {
         Assert.assertTrue(gestionDePromos.eliminarPromoFija("fallar"));
     }
 

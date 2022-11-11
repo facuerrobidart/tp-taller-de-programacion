@@ -40,10 +40,12 @@ public class GestionDeUsuarios {
         }
     }
 
-    public void addMozo(AddMozoRequest request) {
-        this.empresa.getMozos().add(new Mozo(
-                request.getNombreCompleto(), request.getFechaNacimiento(), request.getCantidadHijos()));
+    public MozoDTO addMozo(AddMozoRequest request) {
+        Mozo nuevoMozo = new Mozo(request.getNombreCompleto(), request.getFechaNacimiento(), request.getCantidadHijos());
+        this.empresa.getMozos().add(nuevoMozo);
+
         persistirMozo();
+        return MozoDTO.of(nuevoMozo);
     }
 
     private void persistirMozo() {

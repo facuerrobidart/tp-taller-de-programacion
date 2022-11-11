@@ -2,8 +2,10 @@ package com.grupo8.app.modelo;
 
 import com.grupo8.app.tipos.EstadoComanda;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +15,8 @@ import java.util.UUID;
 //Representa una comanda de una mesa
 @Getter
 @Setter
-public class Comanda {
+@NoArgsConstructor
+public class Comanda implements Serializable {
   private String id;
   private List<Pedido> pedidos;
   private EstadoComanda estadoPedido;
@@ -27,7 +30,7 @@ public class Comanda {
     estadoPedido = EstadoComanda.ABIERTA;
     apertura = Instant.now();
     cierre = null;
-    mesa = mesa;
+    this.mesa = mesa;
     id = UUID.randomUUID().toString();
   }
 

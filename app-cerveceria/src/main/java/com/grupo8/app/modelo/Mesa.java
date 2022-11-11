@@ -5,10 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @NoArgsConstructor
-public class Mesa {
+public class Mesa implements Serializable {
     private Integer nroMesa;
     private Integer cantSillas;
     private EstadoMesa estadoMesa;

@@ -4,10 +4,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @NoArgsConstructor
-public class Operario {
+public class Operario implements Serializable {
     private String nombreCompleto;
     private String username;
     private String password;

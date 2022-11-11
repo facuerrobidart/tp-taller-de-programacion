@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="18.0.2" class="java.beans.XMLDecoder">
+<java version="11.0.16" class="java.beans.XMLDecoder">
  <object class="java.util.HashSet">
   <void method="add">
    <object class="com.grupo8.app.modelo.Mesa">
@@ -12,8 +12,29 @@
       <string>LIBRE</string>
      </object>
     </void>
+    <void property="mozoAsignado">
+     <object class="com.grupo8.app.modelo.Mozo">
+      <void property="estadoMozo">
+       <object class="java.lang.Enum" method="valueOf">
+        <class>com.grupo8.app.tipos.EstadoMozo</class>
+        <string>ACTIVO</string>
+       </object>
+      </void>
+      <void property="fechaNacimiento">
+       <object class="java.util.Date">
+        <long>1668130386760</long>
+       </object>
+      </void>
+      <void property="id">
+       <string>ea6fe7e2-701a-4f5a-bfeb-3c4aafd611ab</string>
+      </void>
+      <void property="nombreCompleto">
+       <string>test</string>
+      </void>
+     </object>
+    </void>
     <void property="nroMesa">
-     <int>69</int>
+     <int>1000</int>
     </void>
    </object>
   </void>

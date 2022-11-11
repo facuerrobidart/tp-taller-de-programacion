@@ -4,15 +4,18 @@ package com.grupo8.app.modelo;
 import com.grupo8.app.modelo.Promociones.Promocion;
 import com.grupo8.app.tipos.EstadoComanda;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
-public class CierreComanda extends Comanda {
+@NoArgsConstructor
+public class CierreComanda extends Comanda implements Serializable {
   private List<Promocion> promociones;
   private Float total;
 
