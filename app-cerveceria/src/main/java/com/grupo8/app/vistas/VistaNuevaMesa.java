@@ -33,25 +33,6 @@ public class VistaNuevaMesa extends JFrame implements KeyListener, MouseListener
 	private JButton btnAceptar;
 	private JList<MozoDTO> listaMozos;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaNuevaMesa frame = new VistaNuevaMesa();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public VistaNuevaMesa() {
 		setTitle("Nueva Mesa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,12 +43,12 @@ public class VistaNuevaMesa extends JFrame implements KeyListener, MouseListener
 		General.setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(5, 5, 428, 587);
+		panel.setBounds(5, 5, 620, 587);
 		General.add(panel);
 		panel.setLayout(null);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(28, 46, 349, 64);
+		panel_1.setBounds(10, 11, 349, 64);
 		panel.add(panel_1);
 
 		JLabel lblNewLabel = new JLabel("Ingrese cantidad de sillas");
@@ -80,33 +61,34 @@ public class VistaNuevaMesa extends JFrame implements KeyListener, MouseListener
 		textFieldCantSillas.addKeyListener(this);
 
 		JPanel panel_11 = new JPanel();
-		panel_11.setBounds(0, 196, 377, 64);
+		panel_11.setBounds(10, 122, 367, 64);
 		panel.add(panel_11);
 		panel_11.setLayout(null);
 
 		JLabel lblNewLabel_5 = new JLabel("Ingrese numero de mesa ");
-		lblNewLabel_5.setBounds(74, 5, 229, 25);
+		lblNewLabel_5.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_5.setBounds(31, 1, 229, 25);
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_11.add(lblNewLabel_5);
 
 		textFieldNumeroMesas = new JTextField();
-		textFieldNumeroMesas.setBounds(308, 7, 46, 20);
+		textFieldNumeroMesas.setBounds(270, 7, 46, 20);
 		textFieldNumeroMesas.setColumns(5);
 		panel_11.add(textFieldNumeroMesas);
 		textFieldNumeroMesas.addKeyListener(this);
 
 		JPanel panel_13 = new JPanel();
-		panel_13.setBounds(0, 354, 377, 232);
+		panel_13.setBounds(20, 238, 600, 299);
 		panel.add(panel_13);
 		panel_13.setLayout(null);
 
 		listaMozos = new JList<>();
 		listaMozos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listaMozos.setBounds(10, 11, 360, 210);
+		listaMozos.setBounds(10, 11, 580, 277);
 		panel_13.add(listaMozos);
 
 		JLabel lblNewLabel_5_1 = new JLabel("Asigne Mozo: ");
-		lblNewLabel_5_1.setBounds(0, 298, 302, 30);
+		lblNewLabel_5_1.setBounds(10, 197, 182, 30);
 		panel.add(lblNewLabel_5_1);
 		lblNewLabel_5_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
