@@ -3,13 +3,13 @@ package com.grupo8.app.vistas;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import com.grupo8.app.dto.ProductoDTO;
-import com.grupo8.app.dto.PromoFijaDTO;
+import com.grupo8.app.dto.PromoFijaRequest;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
+public class VistaNuevaPromoProducto extends JFrame {
 
 	private JPanel General;
 	private ActionListener actionListener;
@@ -174,42 +174,10 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 	public void setActionListener(ActionListener actionListener) {
 		// TODO Auto-generated method stub
         this.btnVolver.addActionListener(actionListener);
+        this.btnAceptar.addActionListener(actionListener);
         this.actionListener = actionListener;
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		if(this.rdbtnDescuentoPorCant.isSelected()) {
-			this.textFieldPrecioUnitario.setVisible(true);
-			this.textFieldCantidadMinima.setVisible(true);
-			this.lblCantMinima.setVisible(true);
-			this.lblPrecioUnitario.setVisible(true);
-		}
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void mouseReleased(MouseEvent e) {
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
 	public void limpiaCampos() {
 		this.textFieldNombrePromocion.setText("");
 		this.rdbtnDosPorUno.setSelected(false);
@@ -224,6 +192,9 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 			
 	}
 
+	public void mostrarMensaje(String mensaje) {
+		JOptionPane.showMessageDialog(this, mensaje);
+	}
 	
 	public void mostrar() {
 		this.setVisible(true);
@@ -235,16 +206,16 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		
 	}
 	
-	public PromoFijaDTO getFormulario() {
-		PromoFijaDTO request = new PromoFijaDTO();
-		request.setProducto(this.listaProductos.getSelectedValue());
+	public PromoFijaRequest getFormulario() {
+		PromoFijaRequest request = new PromoFijaRequest();
+		request.setIdProducto(this.listaProductos.getSelectedValue().getId());
 		request.setDosPorUno(this.rdbtnDosPorUno.isSelected());
-		request.setDtoPorCant(this.rdbtnDescuentoPorCant.isSelected());
+		request.setDtoPorCantidad(this.rdbtnDescuentoPorCant.isSelected());
 		if(this.rdbtnDescuentoPorCant.isSelected()) {
 			request.setDtoPorCantPrecioU(Double.parseDouble(this.textFieldPrecioUnitario.getText()));
 			request.setDtoPorCantMin(Integer.parseInt(this.textFieldCantidadMinima.getText()));
 		}
-		
+		request.isActiva(true);
 		return request;
 	}
 }

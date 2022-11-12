@@ -3,6 +3,8 @@ package com.grupo8.app.controladores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.grupo8.app.excepciones.MalaSolicitudException;
+import com.grupo8.app.negocio.GestionDePromos;
 import com.grupo8.app.vistas.VistaNuevaPromoProducto;
 
 
@@ -32,23 +34,23 @@ public class ControladorNuevaPromoProducto implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
-			case "NuevaPromo":
-				ControladorNuevaPromo.getControlador(true);
-				this.vista.esconder();
-				break;
-			case "EditarPromo":
-				//TODO: ControladorEditarPromo.getControladorEditarPromo(true);
-				this.vista.esconder();
-				break;
-			case "EliminarPromo":
-				ControladorEliminarPromo.getControlador(true);
+			case "Aceptar":
+				GestionDePromos g=new GestionDePromos();
+			try {
+				g.agregarPromoFija(this.vista.getFormulario());
+				this.vista.mostrarMensaje("La promo se creo con exito");
+			} catch (MalaSolicitudException e1) {
+				this.vista.mostrarMensaje("No se pudo crear la promo");
+				e1.printStackTrace();
+			}
+				
 				this.vista.esconder();
 				break;
 			case "Volver":
-				ControladorNuevaPromo.getControlador(true); // TODO
-				this.vista.esconder();
 				
+				this.vista.esconder();
 				break;
+			
 		}
 	}
 }

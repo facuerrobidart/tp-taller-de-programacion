@@ -14,7 +14,6 @@ public class ControladorNuevoMozo implements ActionListener {
 	private ControladorNuevoMozo() {
 		this.vista = new VistaNuevoMozo();
 		this.vista.setActionListener(this);
-		
 	}
 
 	public static ControladorNuevoMozo getControlador(boolean mostrar) {
@@ -33,7 +32,6 @@ public class ControladorNuevoMozo implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case "Listo":
-			this.vista.getFormulario();
 			GestionDeUsuarios g= new GestionDeUsuarios();
 			g.addMozo(this.vista.getFormulario());
 			this.vista.mostrarMensaje("El mozo se registro con exito");

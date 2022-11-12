@@ -19,7 +19,7 @@ import java.awt.event.MouseListener;
 import java.awt.Font;
 import java.awt.FlowLayout;
 
-public class VistaNuevoProducto extends JFrame implements KeyListener, MouseListener{
+public class VistaNuevoProducto extends JFrame implements KeyListener{
 
 	private JPanel General;
 	private ActionListener actionListener;
@@ -31,27 +31,6 @@ public class VistaNuevoProducto extends JFrame implements KeyListener, MouseList
 	private ProductoDTO productoEditable;
 	private JButton btnAceptar;
 	
-
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaNuevoProducto frame = new VistaNuevoProducto(null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public VistaNuevoProducto(ProductoDTO productoEditable) {
 		setTitle("Nuevo Producto");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -138,24 +117,12 @@ public class VistaNuevoProducto extends JFrame implements KeyListener, MouseList
 
 	
 	public void setActionListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
+		this.actionListener = actionListener;
         this.btnVolver.addActionListener(actionListener);
-        this.actionListener = actionListener;
+        this.btnAceptar.addActionListener(actionListener);
+        
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void keyReleased(KeyEvent e) {
 		
 
@@ -164,41 +131,6 @@ public class VistaNuevoProducto extends JFrame implements KeyListener, MouseList
 	}
 	
 	
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-		}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void limpiaCampos() {/*
-		this.GrupoEstudios.clearSelection();
-		this.GrupoExperiencia.clearSelection();
-		this.GrupoHorario.clearSelection();
-		this.GrupoLocacion.clearSelection();
-		this.GrupoPuesto.clearSelection();
-		this.GrupoRemuneracion.clearSelection();
-		this.GrupoREtario.clearSelection();
-		
-		this.pesocargaHoraria.setText("");
-		this.pesoEstudios.setText("");
-		this.pesoExperiencia.setText("");
-		this.pesoLocacion.setText("");
-		this.pesoRangoEtario.setText("");
-		this.pesoRemuneracion.setText("");
-		this.pesoTipoDePuesto.setText("");
-	*/}
-
 	public void mostrar() {
 		this.setVisible(true);
 		
@@ -244,16 +176,19 @@ public class VistaNuevoProducto extends JFrame implements KeyListener, MouseList
 	public void mostrarMensaje(String mensaje) {
 		JOptionPane.showMessageDialog(this, mensaje);
 	}
+	
+	public void limpiaCampos() {
+		this.textFieldNombreProducto.setText("");
+		this.textFieldPrecio.setText("");
+		this.textFieldStock.setText("");
+		this.textFieldCostoProducto.setText("");
+	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 }

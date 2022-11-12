@@ -15,7 +15,7 @@ import java.awt.Font;
 import java.awt.FlowLayout;
 import java.awt.CardLayout;
 
-public class VistaNuevaPromoPorMedioDePago extends JFrame implements MouseListener{
+public class VistaNuevaPromoPorMedioDePago extends JFrame {
 
 	private JPanel General;
 	private ActionListener actionListener;
@@ -121,33 +121,7 @@ public class VistaNuevaPromoPorMedioDePago extends JFrame implements MouseListen
         
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void mouseReleased(MouseEvent e) {
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	
 	public void limpiaCampos() {

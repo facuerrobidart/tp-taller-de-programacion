@@ -1,25 +1,20 @@
 package com.grupo8.app.controladores;
 
 import com.grupo8.app.modelo.Empresa;
-import com.grupo8.app.negocio.GestionDeMesas;
-import com.grupo8.app.negocio.GestionDeProductos;
-import com.grupo8.app.vistas.VistaNuevaMesa;
-import com.grupo8.app.vistas.VistaNuevoProducto;
-import com.grupo8.app.vistas.VistaNuevoUsuario;
 
+import com.grupo8.app.negocio.GestionDeProductos;
+import com.grupo8.app.vistas.VistaNuevoProducto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ControladorNuevoProducto implements ActionListener {
 
     private VistaNuevoProducto vista;
-    private Empresa empresa;
-    private static ControladorNuevoProducto instancia = null;
+ private static ControladorNuevoProducto instancia = null;
     private GestionDeProductos gestionDeProductos;
 
     public ControladorNuevoProducto() {
         this.vista = new VistaNuevoProducto(null);
-        this.empresa = Empresa.getEmpresa();
         this.vista.setActionListener(this);
         this.gestionDeProductos = new GestionDeProductos();
     }
@@ -49,7 +44,7 @@ public class ControladorNuevoProducto implements ActionListener {
         if (vista.getIdEditable() == null) { //Creacion de producto nuevo
             switch (comando) {
                 case "ACEPTAR":
-                    gestionDeProductos.addProducto(vista.getFormulario());
+                    gestionDeProductos.addProducto(this.vista.getFormulario());
                     vista.mostrarMensaje("Producto creado correctamente");
                     break;
                 case "VOLVER":
