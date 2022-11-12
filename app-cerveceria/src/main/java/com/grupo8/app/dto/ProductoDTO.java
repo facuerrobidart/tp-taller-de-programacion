@@ -32,7 +32,7 @@ public class ProductoDTO {
     @Override
     public String toString() {
         return "{" +
-                ", nombre='" + nombre + '\'' +
+                "nombre='" + nombre + '\'' +
                 ", precio=" + precio +
                 ", costo=" + costo +
                 ", stock=" + stock +
