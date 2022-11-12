@@ -83,6 +83,13 @@ public class VistaSesionAdmin extends JFrame {
 		btnAgregarMozo.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_1.add(btnAgregarMozo);
 		
+		JButton btnEliminarMozo = new JButton("Eliminar mozo");
+		btnEliminarMozo.setVerticalAlignment(SwingConstants.BOTTOM);
+		btnEliminarMozo.setPreferredSize(new Dimension(200, 35));
+		btnEliminarMozo.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnEliminarMozo.setActionCommand("EliminarMozo");
+		panel_1.add(btnEliminarMozo);
+		
 		JPanel panel_1_1 = new JPanel();
 		panel.add(panel_1_1);
 		
