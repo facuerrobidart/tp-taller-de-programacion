@@ -12,12 +12,13 @@ import java.awt.event.MouseListener;
 import java.awt.Font;
 
 
-public class VistaEliminarProducto extends JFrame implements MouseListener {
+public class VistaEliminarProducto extends JFrame  {
 
 	private JPanel General;
 	private ActionListener actionListener;
 	private JButton btnVolver;
 	private JList<ProductoDTO> listProductosElim;
+	private JButton btnAceptar;
 
 	
 	public VistaEliminarProducto() {
@@ -56,7 +57,7 @@ public class VistaEliminarProducto extends JFrame implements MouseListener {
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnVolver);
 		
-		JButton btnAceptar = new JButton("Eliminar");
+		 btnAceptar = new JButton("Eliminar");
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnAceptar);
 		
@@ -87,58 +88,14 @@ public class VistaEliminarProducto extends JFrame implements MouseListener {
 
 	
 	public void setActionListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
+		
         this.btnVolver.addActionListener(actionListener);
-        
+        this.btnAceptar.addActionListener(actionListener);
         this.actionListener = actionListener;
 	}
 
 	
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void mouseReleased(MouseEvent e) {
-	
-	}
-
-	
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-	public void limpiaCampos() {/*
-		this.GrupoEstudios.clearSelection();
-		this.GrupoExperiencia.clearSelection();
-		this.GrupoHorario.clearSelection();
-		this.GrupoLocacion.clearSelection();
-		this.GrupoPuesto.clearSelection();
-		this.GrupoRemuneracion.clearSelection();
-		this.GrupoREtario.clearSelection();
-		
-		this.pesocargaHoraria.setText("");
-		this.pesoEstudios.setText("");
-		this.pesoExperiencia.setText("");
-		this.pesoLocacion.setText("");
-		this.pesoRangoEtario.setText("");
-		this.pesoRemuneracion.setText("");
-		this.pesoTipoDePuesto.setText("");*/
-	}
 
 	
 	public void success(String titulo, String mensaje) {

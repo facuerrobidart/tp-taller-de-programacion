@@ -58,6 +58,8 @@ public class ControladorNuevoProducto implements ActionListener {
                     try {
                         gestionDeProductos.editProducto(vista.getIdEditable(), vista.getFormulario());
                         vista.mostrarMensaje("Producto editado correctamente");
+                        ControladorProductos.getControladorProductos(true);
+                        this.vista.esconder();
                     } catch (Exception ex) {
                         vista.mostrarMensaje(ex.getMessage());
                     }
