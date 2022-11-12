@@ -35,7 +35,7 @@ public class ControladorPromociones implements ActionListener {
 			this.vista.esconder();
 			break;
 		case "EditarPromocion":
-			//Controlado.ge(true); TODO
+			ControladorActivarDesactivarPromocion.get(true);
 			this.vista.esconder();
 			break;
 		case "EliminarPromocion":
