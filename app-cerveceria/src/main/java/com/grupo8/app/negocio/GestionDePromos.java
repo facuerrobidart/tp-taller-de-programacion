@@ -199,4 +199,38 @@ public class GestionDePromos {
             eliminarPromoTemporal(id);
         }
     }
+
+    private boolean activarDesactivarPromoFija(String id) throws EntidadNoEncontradaException {
+        Optional<PromocionFija> promo = this.empresa.getPromocionesFijas().getPromocionesFijas().stream()
+                .filter(p -> p.getIdPromocion().equals(id))
+                .findFirst();
+        if (promo.isPresent()) {
+            promo.get().setActivo(!promo.get().isActivo());
+            persistirPromosFijas();
+            return promo.get().isActivo();
+        } else {
+            throw new EntidadNoEncontradaException("La promocion no existe");
+        }
+    }
+
+    private boolean activarDesactivarPromoTemporal(String id) throws EntidadNoEncontradaException {
+Optional<PromocionTemporal> promo = this.empresa.getPromocionesTemporales().getPromocionesTemporales().stream()
+                .filter(p -> p.getIdPromocion().equals(id))
+                .findFirst();
+        if (promo.isPresent()) {
+            promo.get().setActivo(!promo.get().isActivo());
+            persistirPromosTemporales();
+            return promo.get().isActivo();
+        } else {
+            throw new EntidadNoEncontradaException("La promocion no existe");
+        }
+    }
+
+    public boolean activarDesactivarPromo(String id) throws EntidadNoEncontradaException {
+        try {
+            return activarDesactivarPromoFija(id);
+        } catch (EntidadNoEncontradaException e) {
+            return activarDesactivarPromoTemporal(id);
+        }
+    }
 }

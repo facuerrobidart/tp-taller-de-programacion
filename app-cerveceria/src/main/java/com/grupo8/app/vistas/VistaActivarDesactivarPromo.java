@@ -63,18 +63,23 @@ public class VistaActivarDesactivarPromo extends JFrame implements MouseListener
     General.add(panel_15);
     panel_15.setLayout(new GridLayout(1, 0, 0, 0));
     btnVolver = new JButton("Volver");
+    btnVolver.setActionCommand("VOLVER");
     btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 16));
     panel_15.add(btnVolver);
 
-    btnSwitch = new JButton("Eliminar");
+    btnSwitch = new JButton("Desactivar");
+    btnSwitch.setActionCommand("CAMBIAR");
     btnSwitch.setFont(new Font("Tahoma", Font.PLAIN, 16));
     panel_15.add(btnSwitch);
+
+    listPromo.addMouseListener(this);
 
   }
 
   public void setActionListener(ActionListener actionListener) {
     // TODO Auto-generated method stub
     this.btnVolver.addActionListener(actionListener);
+    this.btnSwitch.addActionListener(actionListener);
     this.actionListener = actionListener;
   }
 
@@ -106,8 +111,14 @@ public class VistaActivarDesactivarPromo extends JFrame implements MouseListener
 
   @Override
   public void mouseReleased(MouseEvent e) {
-    // TODO Auto-generated method stub
-
+    if (listPromo.getSelectedValue() != null) {
+      btnSwitch.setEnabled(true);
+      if (listPromo.getSelectedValue().isActivo()) {
+        btnSwitch.setText("Desactivar");
+      } else {
+        btnSwitch.setText("Activar");
+      }
+    }
   }
 
   public void mostrar() {
