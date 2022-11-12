@@ -28,4 +28,15 @@ public class PedidoDTO {
 
         return pedidoDTO;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "producto=" + producto +
+                ", cantidad=" + cantidad +
+                ", subtotal=" + subtotal +
+                ", timestamp=" + timestamp +
+                ", esPromo=" + esPromo +
+                '}';
+    }
 }

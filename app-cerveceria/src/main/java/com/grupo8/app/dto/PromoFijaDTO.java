@@ -31,4 +31,15 @@ public class PromoFijaDTO extends PromocionDTO {
         promoDTO.setDiasPromo(promo.getDiasPromo());
         return promoDTO;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "producto=" + producto +
+                ", dosPorUno=" + dosPorUno +
+                ", dtoPorCant=" + dtoPorCant +
+                ", dtoPorCantMin=" + dtoPorCantMin +
+                ", dtoPorCantPrecioU=" + dtoPorCantPrecioU +
+                '}';
+    }
 }

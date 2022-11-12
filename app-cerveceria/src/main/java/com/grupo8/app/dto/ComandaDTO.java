@@ -36,4 +36,15 @@ public class ComandaDTO {
 
         return comandaDTO;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "pedidos=" + pedidos +
+                ", mesa=" + mesa +
+                ", estadoPedido=" + estadoPedido +
+                ", apertura=" + apertura +
+                ", cierre=" + cierre +
+                '}';
+    }
 }

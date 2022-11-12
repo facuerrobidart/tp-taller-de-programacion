@@ -28,4 +28,14 @@ public class MesaDTO {
 
         return mesaDTO;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "nroMesa=" + nroMesa +
+                ", cantSillas=" + cantSillas +
+                ", estadoMesa=" + estadoMesa +
+                ", mozoAsignado=" + mozoAsignado.getNombreCompleto() +
+                '}';
+    }
 }

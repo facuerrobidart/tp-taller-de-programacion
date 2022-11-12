@@ -50,6 +50,16 @@ public class GestionDeUsuarios {
         return MozoDTO.of(nuevoMozo);
     }
 
+    public void deleteMozo(MozoDTO mozo) {
+        this.empresa.getMozos().getMozos().removeIf(m -> m.getId().equals(mozo.getId()));
+        persistirMozo();
+    }
+
+    public void deleteMozoPorNombre(String nombre) {
+        this.empresa.getMozos().getMozos().removeIf(m -> m.getNombreCompleto().contains(nombre));
+        persistirMozo();
+    }
+
     private void persistirMozo() {
         Ipersistencia<MozoWrapper> persistencia = new PersistenciaXML();
         try {

@@ -48,24 +48,25 @@ public class TestGestionDeUsuarios {
     public void addOperarioExito() throws PermisoDenegadoException, CredencialesInvalidasException {
         this.gestionDeUsuarios.login("admin", "admin1234");
 
-        this.gestionDeUsuarios.addOperario(new AddOperarioRequest("Juan Perez", "jperez", "jperez1234"));
+        this.gestionDeUsuarios.addOperario(new AddOperarioRequest("[TEST] Juan Perez", "jperez", "jperez1234"));
     }
 
     @Test
     public void addOperarioFallo() throws PermisoDenegadoException {
         //No hay usuario logueado
-        this.gestionDeUsuarios.addOperario(new AddOperarioRequest("Juan Perez", "jperez", "jperez1234"));
+        this.gestionDeUsuarios.addOperario(new AddOperarioRequest("[TEST] Juan Perez", "jperez", "jperez1234"));
     }
 
     @Test
     public void addMozoExito() {
-        MozoDTO resultado = this.gestionDeUsuarios.addMozo(new AddMozoRequest("Juan Perez", Date.valueOf(LocalDate.of(1989,10,17)), 2));
+        MozoDTO resultado = this.gestionDeUsuarios.addMozo(new AddMozoRequest("[TEST] Juan Perez", Date.valueOf(LocalDate.of(1989,10,17)), 2));
         Assert.assertNotNull(resultado);
+        this.gestionDeUsuarios.deleteMozoPorNombre("[TEST]");
     }
 
     @Test
     public void addMozoFallo() {
-        this.gestionDeUsuarios.addMozo(new AddMozoRequest("Juan Perez", null, 2));
+        this.gestionDeUsuarios.addMozo(new AddMozoRequest("[TEST] Juan Perez", null, 2));
     }
 
     @Test

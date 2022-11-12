@@ -123,7 +123,7 @@ public class GestionDeMesas {
         }
     }
 
-    public void agregarPedidoAComanda(PedidoRequest pedido) throws EntidadNoEncontradaException {
+    public void agregarPedidoAComanda(PedidoRequest pedido) throws EntidadNoEncontradaException, EstadoInvalidoException {
         Optional<Comanda> comanda = this.empresa.getComandas().getComandas().stream()
                 .filter(c -> Objects.equals(c.getId(), pedido.getIdComanda())).findFirst();
 
@@ -131,6 +131,11 @@ public class GestionDeMesas {
             Optional<Producto> productoAAgregar = this.empresa.getProductos().getProductos().stream()
                     .filter(producto -> Objects.equals(producto.getId(), pedido.getIdProducto())).findFirst();
             if (productoAAgregar.isPresent()) {
+
+                if (pedido.getCantidad() > productoAAgregar.get().getStock()) {
+                    throw new EstadoInvalidoException("No hay stock suficiente");
+                }
+
                 Optional<Pedido> pedidoExistente = comanda.get().getPedidos().stream()
                         .filter(p -> Objects.equals(p.getProducto().getId(), pedido.getIdProducto())).findFirst();
                 if (pedidoExistente.isPresent()) { //los pedidos se agrupan por producto
@@ -139,6 +144,8 @@ public class GestionDeMesas {
                 } else { //si no existe el pedido se crea
                     comanda.get().getPedidos().add(new Pedido(productoAAgregar.get(), pedido.getCantidad()));
                 }
+
+                productoAAgregar.get().setStock(productoAAgregar.get().getStock() - pedido.getCantidad());
             } else {
                 throw new EntidadNoEncontradaException("No se encontro el producto");
             }
