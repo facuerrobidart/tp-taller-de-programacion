@@ -73,6 +73,13 @@ public class VistaSesionOperario extends JFrame {
 		btnAgregarMozo.setPreferredSize(new Dimension(200, 35));
 		btnAgregarMozo.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
+		JButton btnEliminarMozo = new JButton("Eliminar mozo");
+		btnEliminarMozo.setVerticalAlignment(SwingConstants.BOTTOM);
+		btnEliminarMozo.setPreferredSize(new Dimension(200, 35));
+		btnEliminarMozo.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnEliminarMozo.setActionCommand("EliminarMozo");
+		panel_6.add(btnEliminarMozo);
+		
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
 		
