@@ -21,7 +21,6 @@ public class ControladorEliminarMozo implements ActionListener {
 		this.empresa = Empresa.getEmpresa();
 		this.vista.setActionListener(this);
 		this.gestionUsuarios = new GestionDeUsuarios();
-		this.vista.setListaMozos(gestionUsuarios.obtenerMozos().toArray(new MozoDTO[0]));
 	}
 
 	public static ControladorEliminarMozo getControladorEliminarMozo(boolean mostrar) {
@@ -31,6 +30,7 @@ public class ControladorEliminarMozo implements ActionListener {
 		if (mostrar) {
 			instancia.vista.mostrar();
 		}
+		instancia.vista.setListaMozos(instancia.gestionUsuarios.obtenerMozos().toArray(new MozoDTO[0]));
 		return instancia;
 	}
 	

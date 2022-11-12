@@ -16,7 +16,6 @@ public class VistaEliminarPromo extends JFrame implements MouseListener{
 	private JPanel General;
 	private ActionListener actionListener;
 	private JButton btnVolver;
-	private JList<PromocionDTO> listPromo;
 	private JButton btnEliminar;
 	
 
@@ -30,7 +29,7 @@ public class VistaEliminarPromo extends JFrame implements MouseListener{
 		General.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(5, 5, 428, 587);
+		panel.setBounds(5, 5, 620, 587);
 		General.add(panel);
 		panel.setLayout(null);
 		
@@ -44,17 +43,20 @@ public class VistaEliminarPromo extends JFrame implements MouseListener{
 		lblNewLabel_5_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_13.add(lblNewLabel_5_1);
-
-		listPromo = new JList();
-		listPromo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listPromo.setBounds(46, 57, 347, 488);
-		panel.add(listPromo);
 		
 		JLabel lblNewLabel_5_1_1 = new JLabel("Clickee sobre la promocion a eliminar: ");
 		lblNewLabel_5_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_5_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_5_1_1.setBounds(46, 5, 347, 25);
 		panel.add(lblNewLabel_5_1_1);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(20, 66, 590, 488);
+		panel.add(scrollPane);
+		
+		JList listPromo = new JList();
+		scrollPane.setViewportView(listPromo);
+		listPromo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		
 		

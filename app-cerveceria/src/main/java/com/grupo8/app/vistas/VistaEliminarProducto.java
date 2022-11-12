@@ -17,7 +17,6 @@ public class VistaEliminarProducto extends JFrame implements MouseListener {
 	private JPanel General;
 	private ActionListener actionListener;
 	private JButton btnVolver;
-	private JList<ProductoDTO> listProductosElim;
 
 	
 	public VistaEliminarProducto() {
@@ -30,19 +29,22 @@ public class VistaEliminarProducto extends JFrame implements MouseListener {
 		General.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(5, 5, 428, 587);
+		panel.setBounds(5, 5, 620, 587);
 		General.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Seleccione el producto a eliminar");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(55, 26, 307, 77);
+		lblNewLabel.setBounds(37, 11, 307, 77);
 		panel.add(lblNewLabel);
 		
-		listProductosElim = new JList<>();
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 142, 600, 434);
+		panel.add(scrollPane);
+		
+		JList<ProductoDTO> listProductosElim = new JList<ProductoDTO>();
+		scrollPane.setViewportView(listProductosElim);
 		listProductosElim.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listProductosElim.setBounds(10, 142, 408, 434);
-		panel.add(listProductosElim);
 		
 		
 		JPanel panel_15 = new JPanel();

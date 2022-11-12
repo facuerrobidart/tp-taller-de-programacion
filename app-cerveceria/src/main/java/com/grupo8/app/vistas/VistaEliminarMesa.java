@@ -21,9 +21,10 @@ public class VistaEliminarMesa extends JFrame implements MouseListener{
 	private JPanel General;
 	private ActionListener actionListener;
 	private int idMesa;
-	private JList<MesaDTO> listaMesasElim;
 	private JButton btnVolver;
 	private JButton btnEliminar;
+	private JScrollPane scrollPane;
+	private JList<MesaDTO> listaMesasElim;
 	
 	public VistaEliminarMesa() {
 		setTitle("Eliminar Mesa");
@@ -50,19 +51,22 @@ public class VistaEliminarMesa extends JFrame implements MouseListener{
 		panel_15.add(btnEliminar);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 384, 581);
+		panel.setBounds(0, 0, 625, 581);
 		General.add(panel);
 		panel.setLayout(null);
 		
-		listaMesasElim = new JList<MesaDTO>();
-		listaMesasElim.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listaMesasElim.setBounds(10, 128, 364, 442);
-		panel.add(listaMesasElim);
-		
 		JLabel lblNewLabel = new JLabel("Seleccione la mesa a eliminar");
-		lblNewLabel.setBounds(46, 48, 265, 25);
+		lblNewLabel.setBounds(41, 27, 265, 25);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel.add(lblNewLabel);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 128, 605, 442);
+		panel.add(scrollPane);
+		
+		listaMesasElim = new JList<MesaDTO>();
+		scrollPane.setViewportView(listaMesasElim);
+		listaMesasElim.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 	}
 

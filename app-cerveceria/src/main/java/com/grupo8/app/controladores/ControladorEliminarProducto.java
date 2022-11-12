@@ -24,7 +24,6 @@ public class ControladorEliminarProducto implements ActionListener {
         this.empresa = Empresa.getEmpresa();
         this.vista.setActionListener(this);
         this.gestionDeProductos = new GestionDeProductos();
-        this.vista.setListProductosElim(gestionDeProductos.obtenerProductos().toArray(new ProductoDTO[0]));
     }
 
     public static ControladorEliminarProducto get(boolean mostrar) {
@@ -34,6 +33,7 @@ public class ControladorEliminarProducto implements ActionListener {
         if (mostrar) {
             instancia.vista.mostrar();
         }
+        instancia.vista.setListProductosElim(instancia.gestionDeProductos.obtenerProductos().toArray(new ProductoDTO[0]));
         return instancia;
     }
 
