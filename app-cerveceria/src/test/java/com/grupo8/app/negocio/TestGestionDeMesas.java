@@ -138,7 +138,7 @@ public class TestGestionDeMesas {
 
         ComandaDTO comanda = gestionDeMesas.crearComanda(1000);
         Producto producto = new Producto("Test", 100.0F, 50.0F, 200);
-        Empresa.getEmpresa().getProductos().add(producto);
+        Empresa.getEmpresa().getProductos().getProductos().add(producto);
         PedidoRequest addPedidoRequest = new PedidoRequest();
         addPedidoRequest.setCantidad(2);
         addPedidoRequest.setIdProducto(producto.getId());
@@ -153,7 +153,7 @@ public class TestGestionDeMesas {
 
         ComandaDTO comanda = gestionDeMesas.crearComanda(1000);
         Producto producto = new Producto("Test", 100.0F, 50.0F, 200);
-        Empresa.getEmpresa().getProductos().add(producto);
+        Empresa.getEmpresa().getProductos().getProductos().add(producto);
         PedidoRequest addPedidoRequest = new PedidoRequest();
         addPedidoRequest.setCantidad(2);
         addPedidoRequest.setIdProducto(producto.getId());

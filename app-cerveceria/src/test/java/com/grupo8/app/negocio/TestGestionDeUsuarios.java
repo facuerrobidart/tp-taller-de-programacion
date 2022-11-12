@@ -61,6 +61,7 @@ public class TestGestionDeUsuarios {
         this.gestionDeUsuarios.addMozo(new AddMozoRequest("Juan Perez", Date.valueOf(LocalDate.of(1989,10,17)), 2));
         Assert.assertNotNull(
                 Empresa.getEmpresa().getMozos()
+                        .getMozos()
                         .stream()
                         .filter(mozo -> mozo.getNombreCompleto().equals("Juan Perez"))
                         .findFirst().orElseGet(null)
