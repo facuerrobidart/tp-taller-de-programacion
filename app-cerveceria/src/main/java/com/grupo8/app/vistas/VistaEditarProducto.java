@@ -9,12 +9,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.Font;
 
-public class VistaEditarProducto extends JFrame implements MouseListener {
+public class VistaEditarProducto extends JFrame {
 
     private JPanel General;
     private ActionListener actionListener;
     private JButton btnVolver;
     private JList<ProductoDTO> listaAEditar;
+    private JButton btnEditar;
 
     public VistaEditarProducto() {
         setTitle("Editar producto");
@@ -26,7 +27,7 @@ public class VistaEditarProducto extends JFrame implements MouseListener {
         General.setLayout(null);
 
         JPanel panel = new JPanel();
-        panel.setBounds(5, 5, 428, 587);
+        panel.setBounds(5, 5, 599, 587);
         General.add(panel);
         panel.setLayout(null);
 
@@ -34,11 +35,14 @@ public class VistaEditarProducto extends JFrame implements MouseListener {
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
         lblNewLabel.setBounds(55, 26, 307, 77);
         panel.add(lblNewLabel);
-
-        listaAEditar = new JList<>();
+        
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(20, 114, 606, 434);
+        panel.add(scrollPane);
+        
+        listaAEditar = new JList<ProductoDTO>();
+        scrollPane.setViewportView(listaAEditar);
         listaAEditar.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        listaAEditar.setBounds(10, 142, 408, 434);
-        panel.add(listaAEditar);
 
 
         JPanel panel_15 = new JPanel();
@@ -50,7 +54,7 @@ public class VistaEditarProducto extends JFrame implements MouseListener {
         btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 16));
         panel_15.add(btnVolver);
 
-        JButton btnEditar = new JButton("Editar");
+        btnEditar = new JButton("Editar");
         btnEditar.setActionCommand("EDITAR");
         btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 16));
         panel_15.add(btnEditar);
@@ -78,46 +82,15 @@ public class VistaEditarProducto extends JFrame implements MouseListener {
 
 
     public void setActionListener(ActionListener actionListener) {
-        // TODO Auto-generated method stub
-        this.btnVolver.addActionListener(actionListener);
-
+        
+        this.btnEditar.addActionListener(actionListener);
+    	this.btnVolver.addActionListener(actionListener);
         this.actionListener = actionListener;
-    }
-
-
-    public void mouseClicked(MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
-
-
-    public void mousePressed(MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
-
-    public void mouseReleased(MouseEvent e) {
-    	
-    }
-        // TODO Auto-generated method stub
-
-	
-
-
-    public void mouseEntered(MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
-
-
-    public void mouseExited(MouseEvent e) {
-        // TODO Auto-generated method stub
-
+        
     }
 
 
     public void success(String titulo, String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
     }
-
 }
