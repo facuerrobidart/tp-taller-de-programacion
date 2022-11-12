@@ -2,7 +2,9 @@ package com.grupo8.app.controladores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.stream.Collectors;
 
+import com.grupo8.app.dto.MozoDTO;
 import com.grupo8.app.excepciones.NumeroMesaInvalidoException;
 import com.grupo8.app.excepciones.PermisoDenegadoException;
 import com.grupo8.app.modelo.Empresa;
@@ -28,6 +30,7 @@ public class ControladorNuevaMesa implements ActionListener {
 		if (instancia == null) {
 			instancia = new ControladorNuevaMesa();
 		}
+		instancia.vista.setListaMozos(instancia.empresa.getMozos().getMozos().stream().map(MozoDTO::of).toArray(MozoDTO[]::new));
 		if (mostrar) {
 			instancia.vista.mostrar();
 		}

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="16.0.2" class="java.beans.XMLDecoder">
+ <object class="com.grupo8.app.wrappers.PromocionesTemporalesWrapper">
+  <void property="promocionesTemporales">
+   <object class="java.util.HashSet">
+    <void method="add">
+     <object class="com.grupo8.app.modelo.Promociones.PromocionTemporal">
+      <void property="activo">
+       <boolean>true</boolean>
+      </void>
+      <void property="acumulable">
+       <boolean>true</boolean>
+      </void>
+      <void property="formaPago">
+       <string>Efectivo</string>
+      </void>
+      <void property="idPromocion">
+       <string>fbeb1878-7654-4d92-bb8d-0c32acf1abb0</string>
+      </void>
+      <void property="nombre">
+       <string>Test promo</string>
+      </void>
+      <void property="porcentajeDescuento">
+       <int>50</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.grupo8.app.modelo.Promociones.PromocionTemporal">
+      <void property="activo">
+       <boolean>true</boolean>
+      </void>
+      <void property="acumulable">
+       <boolean>true</boolean>
+      </void>
+      <void property="formaPago">
+       <string>Efectivo</string>
+      </void>
+      <void property="idPromocion">
+       <string>583e6914-fa30-45c2-9ce5-010315ddbbbc</string>
+      </void>
+      <void property="nombre">
+       <string>Test promo editada</string>
+      </void>
+      <void property="porcentajeDescuento">
+       <int>25</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.grupo8.app.modelo.Promociones.PromocionTemporal">
+      <void property="activo">
+       <boolean>true</boolean>
+      </void>
+      <void property="acumulable">
+       <boolean>true</boolean>
+      </void>
+      <void property="formaPago">
+       <string>Efectivo</string>
+      </void>
+      <void property="idPromocion">
+       <string>2ea38b59-26db-42b4-8f50-e111a9ae8d65</string>
+      </void>
+      <void property="nombre">
+       <string>Test promo</string>
+      </void>
+      <void property="porcentajeDescuento">
+       <int>50</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.grupo8.app.modelo.Promociones.PromocionTemporal">
+      <void property="activo">
+       <boolean>true</boolean>
+      </void>
+      <void property="acumulable">
+       <boolean>true</boolean>
+      </void>
+      <void property="formaPago">
+       <string>Efectivo</string>
+      </void>
+      <void property="idPromocion">
+       <string>a5c397cc-20ba-4d59-abe5-866662dd3f54</string>
+      </void>
+      <void property="nombre">
+       <string>Test promo</string>
+      </void>
+      <void property="porcentajeDescuento">
+       <int>50</int>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

@@ -15,7 +15,6 @@ public class PersistenciaXML implements Ipersistencia {
   @Override
   public void abrirInput(String nombre) throws IOException {
     fileinput = new FileInputStream(nombre);
-    fileinput.reset();
     xmlDecoder = new XMLDecoder(fileinput);
   }
 

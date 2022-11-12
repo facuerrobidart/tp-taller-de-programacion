@@ -9,6 +9,8 @@ import com.grupo8.app.excepciones.PermisoDenegadoException;
 import com.grupo8.app.modelo.*;
 import com.grupo8.app.persistencia.Ipersistencia;
 import com.grupo8.app.persistencia.PersistenciaXML;
+import com.grupo8.app.wrappers.MozoWrapper;
+import com.grupo8.app.wrappers.OperariosWrapper;
 
 import java.util.List;
 import java.util.Set;
@@ -32,7 +34,7 @@ public class GestionDeUsuarios {
 
     public void addOperario(AddOperarioRequest request) throws PermisoDenegadoException {
         if (this.empresa.getUsuarioLogueado().getUsername().equals("admin")) {
-            this.empresa.getOperarios().add(
+            this.empresa.getOperarios().getOperarios().add(
                     new Operario(request.getNombreCompleto(), request.getUsername(), request.getPassword()));
             persistirOperarios();
         } else {
@@ -42,14 +44,14 @@ public class GestionDeUsuarios {
 
     public MozoDTO addMozo(AddMozoRequest request) {
         Mozo nuevoMozo = new Mozo(request.getNombreCompleto(), request.getFechaNacimiento(), request.getCantidadHijos());
-        this.empresa.getMozos().add(nuevoMozo);
+        this.empresa.getMozos().getMozos().add(nuevoMozo);
 
         persistirMozo();
         return MozoDTO.of(nuevoMozo);
     }
 
     private void persistirMozo() {
-        Ipersistencia<Set<Mozo>> persistencia = new PersistenciaXML();
+        Ipersistencia<MozoWrapper> persistencia = new PersistenciaXML();
         try {
             persistencia.abrirOutput("mozos.xml");
             persistencia.escribir(this.empresa.getMozos());
@@ -59,7 +61,7 @@ public class GestionDeUsuarios {
     }
 
     private void persistirOperarios() {
-        Ipersistencia<Set<Operario>> persistencia = new PersistenciaXML();
+        Ipersistencia<OperariosWrapper> persistencia = new PersistenciaXML();
         try {
             persistencia.abrirOutput("operarios.xml");
             persistencia.escribir(this.empresa.getOperarios());
@@ -70,12 +72,14 @@ public class GestionDeUsuarios {
 
     public List<MozoDTO> obtenerMozos() {
         return this.empresa.getMozos()
+                .getMozos()
                 .stream().map(MozoDTO::of)
                 .collect(Collectors.toList());
     }
 
     public List<OperarioDTO> obtenerOperarios() {
         return this.empresa.getOperarios()
+                .getOperarios()
                 .stream().map(OperarioDTO::of)
                 .collect(Collectors.toList());
     }

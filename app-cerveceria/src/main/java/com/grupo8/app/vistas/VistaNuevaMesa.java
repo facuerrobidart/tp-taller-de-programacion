@@ -100,11 +100,10 @@ public class VistaNuevaMesa extends JFrame implements KeyListener, MouseListener
 		panel.add(panel_13);
 		panel_13.setLayout(null);
 
-		listaMozos = new JList();
+		listaMozos = new JList<>();
 		listaMozos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listaMozos.setBounds(10, 11, 360, 210);
 		panel_13.add(listaMozos);
-		listaMozos.addKeyListener(this);
 
 		JLabel lblNewLabel_5_1 = new JLabel("Asigne Mozo: ");
 		lblNewLabel_5_1.setBounds(0, 298, 302, 30);
@@ -215,6 +214,10 @@ public class VistaNuevaMesa extends JFrame implements KeyListener, MouseListener
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public void setListaMozos(MozoDTO[] mozos) {
+		listaMozos.setListData(mozos);
 	}
 
 }

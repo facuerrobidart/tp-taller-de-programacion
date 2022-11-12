@@ -13,6 +13,8 @@ import com.grupo8.app.persistencia.PersistenciaXML;
 import com.grupo8.app.tipos.EstadoComanda;
 import com.grupo8.app.tipos.EstadoMesa;
 import com.grupo8.app.tipos.EstadoMozo;
+import com.grupo8.app.wrappers.CierreComandaWrapper;
+import com.grupo8.app.wrappers.MesasWrapper;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -27,12 +29,14 @@ public class GestionDeMesas {
 
     public MesaDTO addMesa(AddMesaRequest request) throws NumeroMesaInvalidoException {
         Optional<Mesa> potencialDuplicado =
-                this.empresa.getMesas().stream()
+                this.empresa.getMesas()
+                        .getMesas()
+                        .stream()
                         .filter(mesa -> Objects.equals(mesa.getNroMesa(), request.getNroMesa())).findFirst();
 
         if (!potencialDuplicado.isPresent()) {
             Mesa mesa = new Mesa(request.getNroMesa(), request.getCantSillas());
-            this.empresa.getMesas().add(mesa);
+            this.empresa.getMesas().getMesas().add(mesa);
             persistir();
 
             return MesaDTO.of(mesa);
@@ -42,7 +46,7 @@ public class GestionDeMesas {
     }
 
     public void editMesa(AddMesaRequest request) throws EntidadNoEncontradaException {
-        Optional<Mesa> mesaAEditar = this.empresa.getMesas().stream()
+        Optional<Mesa> mesaAEditar = this.empresa.getMesas().getMesas().stream()
                 .filter(mesa -> Objects.equals(mesa.getNroMesa(), request.getNroMesa())).findFirst();
 
         if (mesaAEditar.isPresent()) {
@@ -55,13 +59,13 @@ public class GestionDeMesas {
     }
 
     public boolean deleteMesa(Integer nroMesa) {
-        this.empresa.getMesas().removeIf(mesa -> nroMesa.equals(mesa.getNroMesa()));
+        this.empresa.getMesas().getMesas().removeIf(mesa -> nroMesa.equals(mesa.getNroMesa()));
         persistir();
         return true;
     }
 
     private void persistir() {
-        Ipersistencia<Set<Mesa>> persistencia = new PersistenciaXML();
+        Ipersistencia<MesasWrapper> persistencia = new PersistenciaXML();
         try {
             persistencia.abrirOutput("mesas.xml");
             persistencia.escribir(this.empresa.getMesas());
@@ -71,7 +75,7 @@ public class GestionDeMesas {
     }
 
     private void persistirCierreComandas() {
-        Ipersistencia<List<CierreComanda>> persistencia = new PersistenciaXML();
+        Ipersistencia<CierreComandaWrapper> persistencia = new PersistenciaXML();
         try {
             persistencia.abrirOutput("cierres.xml");
             persistencia.escribir(this.empresa.getCierreComandas());
@@ -81,13 +85,13 @@ public class GestionDeMesas {
     }
 
     public void iniciarTurno() throws EstadoInvalidoException {
-        for (Mesa mesa : this.empresa.getMesas()) {
+        for (Mesa mesa : this.empresa.getMesas().getMesas()) {
             mesa.setEstadoMesa(EstadoMesa.LIBRE);
             mesa.setMozoAsignado(null);
         }
         List<Promocion> promos = new ArrayList<>();
-        promos.addAll(this.empresa.getPromocionesFijas());
-        promos.addAll(this.empresa.getPromocionesTemporales());
+        promos.addAll(this.empresa.getPromocionesFijas().getPromocionesFijas());
+        promos.addAll(this.empresa.getPromocionesTemporales().getPromocionesTemporales());
 
         List<Promocion> promosActivas = promos.stream().filter(promo -> promo.getDiasPromo() != null && promo.getDiasPromo().contains(LocalDate.now().getDayOfWeek()) && promo.isActivo()).collect(Collectors.toList());
 
@@ -98,14 +102,14 @@ public class GestionDeMesas {
 
 
     public ComandaDTO crearComanda(Integer nroMesa) throws EntidadNoEncontradaException, EstadoInvalidoException {
-        Optional<Mesa> mesa = this.empresa.getMesas().stream()
+        Optional<Mesa> mesa = this.empresa.getMesas().getMesas().stream()
                 .filter(me -> Objects.equals(me.getNroMesa(), nroMesa)).findFirst();
 
         if (mesa.isPresent() && mesa.get().getEstadoMesa() == EstadoMesa.LIBRE) {
             mesa.get().setEstadoMesa(EstadoMesa.OCUPADA);
             if (mesa.get().getMozoAsignado() != null || mesa.get().getMozoAsignado().getEstadoMozo() != EstadoMozo.ACTIVO) {
                 Comanda comanda = new Comanda(mesa.get());
-                this.empresa.getComandas().add(comanda);
+                this.empresa.getComandas().getComandas().add(comanda);
                 return ComandaDTO.of(comanda);
             } else if (mesa.get().getMozoAsignado() == null) {
                 throw new EntidadNoEncontradaException("No se encontro mozo asignado");
@@ -120,11 +124,11 @@ public class GestionDeMesas {
     }
 
     public void agregarPedidoAComanda(PedidoRequest pedido) throws EntidadNoEncontradaException {
-        Optional<Comanda> comanda = this.empresa.getComandas().stream()
+        Optional<Comanda> comanda = this.empresa.getComandas().getComandas().stream()
                 .filter(c -> Objects.equals(c.getId(), pedido.getIdComanda())).findFirst();
 
         if (comanda.isPresent()) {
-            Optional<Producto> productoAAgregar = this.empresa.getProductos().stream()
+            Optional<Producto> productoAAgregar = this.empresa.getProductos().getProductos().stream()
                     .filter(producto -> Objects.equals(producto.getId(), pedido.getIdProducto())).findFirst();
             if (productoAAgregar.isPresent()) {
                 Optional<Pedido> pedidoExistente = comanda.get().getPedidos().stream()
@@ -146,8 +150,8 @@ public class GestionDeMesas {
     private boolean aplicarPromocionesFijas(CierreComanda cierreComanda) {
         boolean aplicoPromo = false;
         List<Promocion> promos = new ArrayList<>();
-        promos.addAll(this.empresa.getPromocionesFijas());
-        promos.addAll(this.empresa.getPromocionesTemporales());
+        promos.addAll(this.empresa.getPromocionesFijas().getPromocionesFijas());
+        promos.addAll(this.empresa.getPromocionesTemporales().getPromocionesTemporales());
 
         List<Promocion> promosFijas =
                 promos
@@ -186,6 +190,7 @@ public class GestionDeMesas {
     private void sumarTotal(CierreComanda cierreComanda, String medioDePago) {
         List<PromocionTemporal> promosTemporales =
                 this.empresa.getPromocionesTemporales()
+                        .getPromocionesTemporales()
                         .stream()
                         .filter(promo -> promo.getDiasPromo().contains(LocalDate.now().getDayOfWeek()) && promo.isActivo())
                         .collect(Collectors.toList());
@@ -206,7 +211,7 @@ public class GestionDeMesas {
     }
 
     public void cerrarComanda(String idComanda, String medioDePago) throws EntidadNoEncontradaException {
-        Optional<Comanda> comanda = this.empresa.getComandas().stream()
+        Optional<Comanda> comanda = this.empresa.getComandas().getComandas().stream()
                 .filter(c -> Objects.equals(c.getId(), idComanda)).findFirst();
         if (comanda.isPresent()) {
             CierreComanda cierre = new CierreComanda(comanda.get());
@@ -214,8 +219,8 @@ public class GestionDeMesas {
             sumarTotal(cierre, medioDePago);
             cierre.setEstadoPedido(EstadoComanda.CERRADA);
 
-            this.empresa.getCierreComandas().add(cierre);
-            this.empresa.getComandas().remove(comanda.get());
+            this.empresa.getCierreComandas().getCierreComandas().add(cierre);
+            this.empresa.getComandas().getComandas().remove(comanda.get());
 
             persistirCierreComandas();
         } else {
@@ -224,37 +229,43 @@ public class GestionDeMesas {
     }
 
     public List<MesaDTO> obtenerMesas() {
-        return this.empresa.getMesas().stream()
+        return this.empresa.getMesas()
+                .getMesas()
+                .stream()
                 .map(MesaDTO::of)
                 .collect(Collectors.toList());
     }
 
     public List<MesaDTO> obtenerMesasLibres() {
-        return this.empresa.getMesas().stream()
+        return this.empresa.getMesas()
+                .getMesas()
+                .stream()
                 .filter(mesa -> mesa.getEstadoMesa().equals(EstadoMesa.LIBRE))
                 .map(MesaDTO::of)
                 .collect(Collectors.toList());
     }
 
     public List<ComandaDTO> obtenerComandas() {
-        return this.empresa.getComandas().stream()
+        return this.empresa.getComandas()
+                .getComandas()
+                .stream()
                 .map(ComandaDTO::of)
                 .collect(Collectors.toList());
     }
 
 
     public void cerrarTurno() throws EstadoInvalidoException {
-        if (empresa.getComandas().size() > 0) {
+        if (empresa.getComandas().getComandas().size() > 0) {
             throw new EstadoInvalidoException("No se puede cerrar el turno, hay comandas abiertas");
         }
         persistirCierreComandas();
     }
 
     public void asignarMozo(Integer nroMesa, MozoDTO mozoDTO) throws EntidadNoEncontradaException {
-        Optional<Mozo> mozo = this.empresa.getMozos().stream()
+        Optional<Mozo> mozo = this.empresa.getMozos().getMozos().stream()
                 .filter(m -> Objects.equals(m.getId(), mozoDTO.getId())).findFirst();
         if (mozo.isPresent()) {
-            Optional<Mesa> mesa = this.empresa.getMesas().stream()
+            Optional<Mesa> mesa = this.empresa.getMesas().getMesas().stream()
                     .filter(m -> Objects.equals(m.getNroMesa(), nroMesa)).findFirst();
             if (mesa.isPresent()) {
                 mesa.get().setMozoAsignado(mozo.get());

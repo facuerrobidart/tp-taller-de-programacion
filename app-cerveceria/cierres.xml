@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="16.0.2" class="java.beans.XMLDecoder">
+ <object class="com.grupo8.app.wrappers.CierreComandaWrapper">
+  <void property="cierreComandas">
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object class="com.grupo8.app.modelo.CierreComanda">
+      <void property="estadoPedido">
+       <object class="java.lang.Enum" method="valueOf">
+        <class>com.grupo8.app.tipos.EstadoComanda</class>
+        <string>CERRADA</string>
+       </object>
+      </void>
+      <void property="id">
+       <string>807daabf-af9f-4c02-bd09-c92f183b5c64</string>
+      </void>
+      <void property="mesa">
+       <object class="com.grupo8.app.modelo.Mesa">
+        <void property="cantSillas">
+         <int>4</int>
+        </void>
+        <void property="estadoMesa">
+         <object class="java.lang.Enum" method="valueOf">
+          <class>com.grupo8.app.tipos.EstadoMesa</class>
+          <string>OCUPADA</string>
+         </object>
+        </void>
+        <void property="mozoAsignado">
+         <object class="com.grupo8.app.modelo.Mozo">
+          <void property="estadoMozo">
+           <object class="java.lang.Enum" method="valueOf">
+            <class>com.grupo8.app.tipos.EstadoMozo</class>
+            <string>ACTIVO</string>
+           </object>
+          </void>
+          <void property="fechaNacimiento">
+           <object class="java.util.Date">
+            <long>1668272496357</long>
+           </object>
+          </void>
+          <void property="id">
+           <string>210de9d9-cf84-429e-9fad-8119e58c7b8d</string>
+          </void>
+          <void property="nombreCompleto">
+           <string>test</string>
+          </void>
+         </object>
+        </void>
+        <void property="nroMesa">
+         <int>1000</int>
+        </void>
+       </object>
+      </void>
+      <void property="pedidos">
+       <object class="java.util.ArrayList">
+        <void method="add">
+         <object class="com.grupo8.app.modelo.Pedido">
+          <void property="cantidad">
+           <int>2</int>
+          </void>
+          <void property="id">
+           <string>e08d8173-59ec-4a5c-8930-5b17d0bb7792</string>
+          </void>
+          <void property="producto">
+           <object class="com.grupo8.app.modelo.Producto">
+            <void property="costo">
+             <float>50.0</float>
+            </void>
+            <void property="id">
+             <string>7f1b714f-9ebc-42ec-80e6-423c5e86b866</string>
+            </void>
+            <void property="nombre">
+             <string>Test</string>
+            </void>
+            <void property="precio">
+             <float>100.0</float>
+            </void>
+            <void property="stock">
+             <int>200</int>
+            </void>
+           </object>
+          </void>
+          <void property="subtotal">
+           <float>200.0</float>
+          </void>
+         </object>
+        </void>
+       </object>
+      </void>
+      <void property="promociones">
+       <object class="java.util.ArrayList"/>
+      </void>
+      <void property="total">
+       <float>200.0</float>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

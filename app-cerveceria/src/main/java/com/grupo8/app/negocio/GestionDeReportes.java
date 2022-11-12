@@ -21,7 +21,7 @@ public class GestionDeReportes {
   }
 
   public List<ReporteMesaDto> generarPromedioDeVentaPorMesa() {
-    List<CierreComanda> cierres = empresa.getCierreComandas();
+    List<CierreComanda> cierres = empresa.getCierreComandas().getCierreComandas();
     List<ReporteMesaDto> resultado = new ArrayList<>();
 
     for (CierreComanda cierre : cierres) {
@@ -46,7 +46,7 @@ public class GestionDeReportes {
   }
 
   private List<ReporteVentaDto> generarReporteDeVentas() {
-    List<CierreComanda> cierres = empresa.getCierreComandas();
+    List<CierreComanda> cierres = empresa.getCierreComandas().getCierreComandas();
     List<ReporteVentaDto> resultado = new ArrayList<>();
 
     for (CierreComanda cierre : cierres) {

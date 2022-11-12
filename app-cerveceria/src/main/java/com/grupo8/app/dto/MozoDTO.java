@@ -27,4 +27,15 @@ public class MozoDTO {
         mozoDTO.setEstadoMozo(mozo.getEstadoMozo());
         return mozoDTO;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "nombreCompleto='" + nombreCompleto + '\'' +
+                ", fechaNacimiento=" + fechaNacimiento +
+                ", id='" + id + '\'' +
+                ", cantidadHijos=" + cantidadHijos +
+                ", estadoMozo=" + estadoMozo +
+                '}';
+    }
 }
