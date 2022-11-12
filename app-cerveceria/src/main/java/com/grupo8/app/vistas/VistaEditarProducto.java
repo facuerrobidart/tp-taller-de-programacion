@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.Font;
 
-public class VistaEditarProducto extends JFrame {
+public class VistaEditarProducto extends JFrame implements MouseListener {
 
     private JPanel General;
     private ActionListener actionListener;
@@ -58,6 +58,10 @@ public class VistaEditarProducto extends JFrame {
         btnEditar.setActionCommand("EDITAR");
         btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 16));
         panel_15.add(btnEditar);
+        
+        listaAEditar.addMouseListener(this);
+        btnEditar.setEnabled(false);
+        
 
     }
 
@@ -93,4 +97,39 @@ public class VistaEditarProducto extends JFrame {
     public void success(String titulo, String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
     }
+
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		 if(this.listaAEditar.getSelectedValue() != null)
+            this.btnEditar.setEnabled(true);
+	}
+
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }

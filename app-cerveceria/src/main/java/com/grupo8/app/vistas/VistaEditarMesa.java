@@ -19,7 +19,7 @@ public class VistaEditarMesa extends JFrame implements MouseListener {
     private JButton btnEditar;
 
     public VistaEditarMesa() {
-        setTitle("Editar producto");
+        setTitle("Editar mesas");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 646, 665);
         General = new JPanel();

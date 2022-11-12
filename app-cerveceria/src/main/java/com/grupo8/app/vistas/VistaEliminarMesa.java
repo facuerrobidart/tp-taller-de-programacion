@@ -16,7 +16,7 @@ import java.awt.event.MouseListener;
 import java.awt.Font;
 import java.awt.FlowLayout;
 
-public class VistaEliminarMesa extends JFrame {
+public class VistaEliminarMesa extends JFrame implements MouseListener {
 
 	private JPanel General;
 	private ActionListener actionListener;
@@ -68,6 +68,8 @@ public class VistaEliminarMesa extends JFrame {
 		scrollPane.setViewportView(listaMesasElim);
 		listaMesasElim.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
+		 listaMesasElim.addMouseListener(this);
+	     btnEliminar.setEnabled(false);
 	}
 
 	public void mostrar() {
@@ -105,6 +107,36 @@ public class VistaEliminarMesa extends JFrame {
 
 	public void success(String titulo, String mensaje) {
 		JOptionPane.showMessageDialog(this, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+        if(this.listaMesasElim.getSelectedValue() != null)
+             this.btnEliminar.setEnabled(true);
+    }
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

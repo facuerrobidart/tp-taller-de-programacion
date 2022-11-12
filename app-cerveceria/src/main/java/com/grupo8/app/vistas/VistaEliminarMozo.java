@@ -15,10 +15,12 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 
-public class VistaEliminarMozo extends JFrame {
+public class VistaEliminarMozo extends JFrame implements MouseListener {
 
 	private ActionListener actionListener;
 	private JPanel contentPane;
@@ -59,6 +61,10 @@ public class VistaEliminarMozo extends JFrame {
 		
 		listaMozos = new JList<MozoDTO>();
 		scrollPane.setViewportView(listaMozos);
+		
+		listaMozos.addMouseListener(this);
+        btnListo.setEnabled(false);
+
 	}
 	
 	public void mensajeError(String mensaje) {
@@ -94,5 +100,36 @@ public class VistaEliminarMozo extends JFrame {
 
 	public  MozoDTO getMozo() {
 		return this.listaMozos.getSelectedValue();
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		 if(this.listaMozos.getSelectedValue() != null)
+             this.btnListo.setEnabled(true);
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
