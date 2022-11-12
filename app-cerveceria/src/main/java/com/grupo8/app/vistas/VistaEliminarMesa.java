@@ -16,7 +16,7 @@ import java.awt.event.MouseListener;
 import java.awt.Font;
 import java.awt.FlowLayout;
 
-public class VistaEliminarMesa extends JFrame implements MouseListener{
+public class VistaEliminarMesa extends JFrame {
 
 	private JPanel General;
 	private ActionListener actionListener;
@@ -85,9 +85,10 @@ public class VistaEliminarMesa extends JFrame implements MouseListener{
 		// TODO Auto-generated method stub
         this.btnVolver.addActionListener(actionListener);
         this.actionListener = actionListener;
+        this.btnEliminar.addActionListener(actionListener);
 	}
 
-	public int obtenerIdSeleccionado() {
+	public int obtenerNroMesa() {
 		return this.listaMesasElim.getSelectedValue().getNroMesa();
 	}
 
@@ -100,69 +101,6 @@ public class VistaEliminarMesa extends JFrame implements MouseListener{
 	}
 
 	
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-		/*if(this.GrupoEstudios.getSelection()!=null)
-			this.Estudios = this.GrupoEstudios.getSelection().getActionCommand();
-		if(this.GrupoRemuneracion.getSelection()!=null)
-			this.Remuneracion = this.GrupoRemuneracion.getSelection().getActionCommand();
-		if(this.GrupoHorario.getSelection()!=null)
-			this.Horario = this.GrupoHorario.getSelection().getActionCommand();
-		if(this.GrupoPuesto.getSelection()!=null)
-			this.Puesto = this.GrupoPuesto.getSelection().getActionCommand();
-		if(this.GrupoREtario.getSelection()!=null)
-			this.REtario = this.GrupoREtario.getSelection().getActionCommand();
-		if(this.GrupoExperiencia.getSelection()!=null)
-			this.Experiencia = this.GrupoExperiencia.getSelection().getActionCommand();
-		if(this.GrupoLocacion.getSelection()!=null)
-			this.Locacion = this.GrupoLocacion.getSelection().getActionCommand();
-		if(this.GrupoEstudios.getSelection()!=null && this.GrupoRemuneracion.getSelection()!=null && this.GrupoHorario.getSelection()!=null
-				&& this.GrupoPuesto.getSelection()!=null && this.GrupoREtario.getSelection()!=null  && this.GrupoExperiencia.getSelection()!=null
-				&& this.GrupoLocacion.getSelection()!=null)
-			this.btnFinalizar.setEnabled(true);*/
-	}
-
-	
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-	/*public void limpiaCampos() {
-		this.GrupoEstudios.clearSelection();
-		this.GrupoExperiencia.clearSelection();
-		this.GrupoHorario.clearSelection();
-		this.GrupoLocacion.clearSelection();
-		this.GrupoPuesto.clearSelection();
-		this.GrupoRemuneracion.clearSelection();
-		this.GrupoREtario.clearSelection();
-		
-		this.pesocargaHoraria.setText("");
-		this.pesoEstudios.setText("");
-		this.pesoExperiencia.setText("");
-		this.pesoLocacion.setText("");
-		this.pesoRangoEtario.setText("");
-		this.pesoRemuneracion.setText("");
-		this.pesoTipoDePuesto.setText("");
-	}*/
 
 
 	public void success(String titulo, String mensaje) {
