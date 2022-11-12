@@ -14,8 +14,19 @@ import java.awt.event.MouseListener;
 import java.awt.Font;
 import java.awt.FlowLayout;
 import java.awt.CardLayout;
+import java.time.DayOfWeek;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VistaNuevaPromoPorMedioDePago extends JFrame {
+
+	private final JCheckBox chckbxLunes;
+	private final JCheckBox chckbxMartes;
+	private final JCheckBox chckbxMiercoles;
+	private final JCheckBox chckbxJueves;
+	private final JCheckBox chckbxViernes;
+	private final JCheckBox chckbxSabado;
+	private final JCheckBox chckbxDomingo;
 
 	private JPanel General;
 	private ActionListener actionListener;
@@ -24,8 +35,8 @@ public class VistaNuevaPromoPorMedioDePago extends JFrame {
 	private JTextField textFieldMedioDePago;
 	private JTextField textFieldPorcentajeDescuento;
 	private JButton btnAceptar;
-	private JRadioButton rdbtnAcumulable;
-	private JRadioButton rdbtnActivo;
+	private JCheckBox chkBtnAcumulable;
+	private JCheckBox chkBtnActivo;
 	
 	public VistaNuevaPromoPorMedioDePago() {
 		setTitle("Nuevo Promocion por Medio de Pago");
@@ -86,15 +97,15 @@ public class VistaNuevaPromoPorMedioDePago extends JFrame {
 		panel.add(panel_1_2);
 		panel_1_2.setLayout(null);
 		
-		rdbtnActivo = new JRadioButton("Activo");
-		rdbtnActivo.setBounds(71, 7, 351, 48);
-		rdbtnActivo.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panel_1_2.add(rdbtnActivo);
+		chkBtnActivo = new JCheckBox("Activo");
+		chkBtnActivo.setBounds(71, 7, 351, 48);
+		chkBtnActivo.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		panel_1_2.add(chkBtnActivo);
 		
-		rdbtnAcumulable = new JRadioButton("Acumulable");
-		rdbtnAcumulable.setBounds(71, 71, 340, 48);
-		rdbtnAcumulable.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panel_1_2.add(rdbtnAcumulable);
+		chkBtnAcumulable = new JCheckBox("Acumulable");
+		chkBtnAcumulable.setBounds(71, 71, 340, 48);
+		chkBtnAcumulable.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		panel_1_2.add(chkBtnAcumulable);
 		
 		JPanel panel_15 = new JPanel();
 		panel_15.setBounds(5, 592, 620, 29);
@@ -107,6 +118,34 @@ public class VistaNuevaPromoPorMedioDePago extends JFrame {
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnAceptar);
+
+		chckbxMartes = new JCheckBox("MARTES");
+		chckbxMartes.setBounds(182, 56, 97, 23);
+		panel_1_1.add(chckbxMartes);
+
+		chckbxViernes = new JCheckBox("VIERNES");
+		chckbxViernes.setBounds(293, 37, 97, 23);
+		panel_1_1.add(chckbxViernes);
+
+		chckbxSabado = new JCheckBox("SABADO");
+		chckbxSabado.setBounds(293, 63, 97, 23);
+		panel_1_1.add(chckbxSabado);
+
+		chckbxLunes = new JCheckBox("LUNES");
+		chckbxLunes.setBounds(182, 30, 97, 23);
+		panel_1_1.add(chckbxLunes);
+
+		chckbxMiercoles = new JCheckBox("MIERCOLES");
+		chckbxMiercoles.setBounds(182, 79, 97, 23);
+		panel_1_1.add(chckbxMiercoles);
+
+		chckbxJueves = new JCheckBox("JUEVES");
+		chckbxJueves.setBounds(182, 105, 97, 23);
+		panel_1_1.add(chckbxJueves);
+
+		chckbxDomingo = new JCheckBox("DOMINGO");
+		chckbxDomingo.setBounds(293, 89, 97, 23);
+		panel_1_1.add(chckbxDomingo);
 		
 	}
 
@@ -115,8 +154,8 @@ public class VistaNuevaPromoPorMedioDePago extends JFrame {
 		// TODO Auto-generated method stub
         this.btnVolver.addActionListener(actionListener);
         this.btnAceptar.addActionListener(actionListener);
-        this.rdbtnAcumulable.addActionListener(actionListener);
-        this.rdbtnActivo.addActionListener(actionListener);
+        this.chkBtnAcumulable.addActionListener(actionListener);
+        this.chkBtnActivo.addActionListener(actionListener);
         this.actionListener = actionListener;
         
 	}
@@ -151,8 +190,37 @@ public class VistaNuevaPromoPorMedioDePago extends JFrame {
 	    PromoTemporalRequest request = new PromoTemporalRequest();
 		request.setFormaPago(this.textFieldMedioDePago.getText());
 		request.setPorcentajeDescuento(Integer.parseInt(this.textFieldPorcentajeDescuento.getText()));
-		request.setAcumulable(this.rdbtnAcumulable.isSelected());
+		request.setAcumulable(this.chkBtnAcumulable.isSelected());
+		request.setDiasPromo(this.getDiasSelecccionados());
+		request.setActiva(this.chkBtnActivo.isSelected());
 		return request;
+	}
+
+	public List<DayOfWeek> getDiasSelecccionados() {
+		List<DayOfWeek> dias = new ArrayList<DayOfWeek>();
+		if(this.chckbxLunes.isSelected()) {
+			dias.add(DayOfWeek.MONDAY);
+		}
+		if(this.chckbxMartes.isSelected()) {
+			dias.add(DayOfWeek.TUESDAY);
+		}
+		if(this.chckbxMiercoles.isSelected()) {
+			dias.add(DayOfWeek.WEDNESDAY);
+		}
+		if(this.chckbxJueves.isSelected()) {
+			dias.add(DayOfWeek.THURSDAY);
+		}
+		if(this.chckbxViernes.isSelected()) {
+			dias.add(DayOfWeek.FRIDAY);
+		}
+		if(this.chckbxSabado.isSelected()) {
+			dias.add(DayOfWeek.SATURDAY);
+		}
+		if(this.chckbxDomingo.isSelected()) {
+			dias.add(DayOfWeek.SUNDAY);
+		}
+
+		return dias;
 	}
 
 	
