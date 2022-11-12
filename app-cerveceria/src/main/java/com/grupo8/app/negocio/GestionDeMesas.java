@@ -163,7 +163,7 @@ public class GestionDeMesas {
         List<Promocion> promosFijas =
                 promos
                 .stream()
-                .filter(promo -> promo.getDiasPromo().contains(LocalDate.now().getDayOfWeek()) && promo.isActivo() && promo instanceof PromocionFija)
+                .filter(promo -> promo.getDiasPromo() != null && promo.getDiasPromo().contains(LocalDate.now().getDayOfWeek()) && promo.isActivo() && promo instanceof PromocionFija)
                 .collect(Collectors.toList());
 
         for (Promocion promo : promosFijas) {
@@ -199,7 +199,7 @@ public class GestionDeMesas {
                 this.empresa.getPromocionesTemporales()
                         .getPromocionesTemporales()
                         .stream()
-                        .filter(promo -> promo.getDiasPromo().contains(LocalDate.now().getDayOfWeek()) && promo.isActivo())
+                        .filter(promo -> promo.getDiasPromo() != null && promo.getDiasPromo().contains(LocalDate.now().getDayOfWeek()) && promo.isActivo())
                         .collect(Collectors.toList());
 
         Optional<PromocionTemporal> promoTemporal = promosTemporales.stream()

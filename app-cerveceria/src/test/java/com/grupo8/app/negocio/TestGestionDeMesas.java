@@ -172,8 +172,11 @@ public class TestGestionDeMesas {
 
     @Test
     public void testCerrarTurno() throws NumeroMesaInvalidoException, EntidadNoEncontradaException, EstadoInvalidoException {
-        ComandaDTO comanda = crearYAsignarComanda();
-        gestionDeMesas.cerrarComanda(comanda.getId(), "Efectivo");
+        gestionDeMesas.obtenerComandas().forEach(c -> {
+            try {
+                gestionDeMesas.cerrarComanda(c.getId(), "Efectivo");
+            } catch (EntidadNoEncontradaException ex) {}
+        });
         gestionDeMesas.cerrarTurno();
         borrarMesa();
     }
