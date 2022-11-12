@@ -5,14 +5,17 @@ import com.grupo8.app.dto.AddOperarioRequest;
 import com.grupo8.app.dto.MozoDTO;
 import com.grupo8.app.dto.OperarioDTO;
 import com.grupo8.app.excepciones.CredencialesInvalidasException;
+import com.grupo8.app.excepciones.EntidadNoEncontradaException;
 import com.grupo8.app.excepciones.PermisoDenegadoException;
 import com.grupo8.app.modelo.*;
 import com.grupo8.app.persistencia.Ipersistencia;
 import com.grupo8.app.persistencia.PersistenciaXML;
+import com.grupo8.app.tipos.EstadoMozo;
 import com.grupo8.app.wrappers.MozoWrapper;
 import com.grupo8.app.wrappers.OperariosWrapper;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -92,5 +95,15 @@ public class GestionDeUsuarios {
                 .getOperarios()
                 .stream().map(OperarioDTO::of)
                 .collect(Collectors.toList());
+    }
+
+    public void tomarAsistencia(String id, EstadoMozo estado) throws EntidadNoEncontradaException {
+        Optional<Mozo> mozo = this.empresa.getMozos().getMozos().stream().filter(m -> m.getId().equals(id)).findFirst();
+
+        if (mozo.isPresent()) {
+            mozo.get().setEstadoMozo(estado);
+        } else {
+            throw new EntidadNoEncontradaException("No se encontro el mozo con id " + id);
+        }
     }
 }

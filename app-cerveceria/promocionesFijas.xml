@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="16.0.2" class="java.beans.XMLDecoder">
+ <object class="com.grupo8.app.wrappers.PromocionesFijasWrapper">
+  <void property="promocionesFijas">
+   <object class="java.util.HashSet">
+    <void method="add">
+     <object class="com.grupo8.app.modelo.Promociones.PromocionFija">
+      <void property="activo">
+       <boolean>true</boolean>
+      </void>
+      <void property="diasPromo">
+       <object class="java.util.ArrayList">
+        <void method="add">
+         <object class="java.lang.Enum" method="valueOf">
+          <class>java.time.DayOfWeek</class>
+          <string>MONDAY</string>
+         </object>
+        </void>
+        <void method="add">
+         <object class="java.lang.Enum" method="valueOf">
+          <class>java.time.DayOfWeek</class>
+          <string>TUESDAY</string>
+         </object>
+        </void>
+       </object>
+      </void>
+      <void property="dosPorUno">
+       <boolean>true</boolean>
+      </void>
+      <void property="dtoPorCant">
+       <boolean>false</boolean>
+      </void>
+      <void property="idPromocion">
+       <string>1bf72ffb-92cf-403c-8280-1a074e4ac371</string>
+      </void>
+      <void property="producto">
+       <object class="com.grupo8.app.modelo.Producto">
+        <void property="costo">
+         <float>50.0</float>
+        </void>
+        <void property="id">
+         <string>19f36837-ce88-4700-ae8a-06a811bcdc4e</string>
+        </void>
+        <void property="nombre">
+         <string>test</string>
+        </void>
+        <void property="precio">
+         <float>100.0</float>
+        </void>
+        <void property="stock">
+         <int>200</int>
+        </void>
+       </object>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

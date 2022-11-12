@@ -11,13 +11,14 @@ import javax.swing.JLabel;
 import com.grupo8.app.dto.MozoDTO;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.ListSelectionModel;
 import javax.swing.JScrollPane;
 
-public class VistaAsistenciaMozos extends JFrame {
+public class VistaAsistenciaMozos extends JFrame implements MouseListener {
 
 	private JPanel contentPane;
-	private JButton btnListo;
 	private JButton btnPresente;
 	private JButton btnFranco ;
 	private JButton btnAusente;
@@ -38,11 +39,7 @@ public class VistaAsistenciaMozos extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		 btnListo = new JButton("Listo");
-		 btnListo.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnListo.setBounds(246, 309, 255, 33);
-		panel.add(btnListo);
-		
+
 		JLabel lblNewJgoodiesTitle = new JLabel("Asistencia Mozos");
 		lblNewJgoodiesTitle.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblNewJgoodiesTitle.setBounds(10, 0, 145, 21);
@@ -58,8 +55,8 @@ public class VistaAsistenciaMozos extends JFrame {
 		btnFranco.setBounds(401, 122, 100, 33);
 		panel.add(btnFranco);
 		
-		 btnAusente = new JButton("Ausente");
-		 btnAusente.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	 	btnAusente = new JButton("Ausente");
+	 	btnAusente.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnAusente.setBounds(401, 201, 100, 33);
 		panel.add(btnAusente);
 		
@@ -72,24 +69,33 @@ public class VistaAsistenciaMozos extends JFrame {
 		listaMozos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		btnAtras = new JButton("Atras");
-		btnAtras.setActionCommand("Atras");
 		btnAtras.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnAtras.setBounds(0, 309, 247, 33);
 		panel.add(btnAtras);
+
+		listaMozos.addMouseListener(this);
 	}
 	public void mostrar() {
         this.setVisible(true);
-
-    }
+	}
 	
-public void setActionListener(ActionListener actionListener) {
+	public void setActionListener(ActionListener actionListener) {
 		
 		this.actionListener = actionListener;
 		this.btnPresente.addActionListener(actionListener);
-		this.btnListo.addActionListener(actionListener);
+		this.btnAusente.addActionListener(actionListener);
 		this.btnFranco.addActionListener(actionListener);
 		this.btnAtras.addActionListener(actionListener);
 	
+	}
+
+	public MozoDTO getMozoSeleccionado() {
+		return listaMozos.getSelectedValue();
+	}
+
+
+	public void mostrarMensaje(String mensaje) {
+		JOptionPane.showMessageDialog(this, mensaje);
 	}
 	
 	public void esconder() {
@@ -106,6 +112,33 @@ public void setActionListener(ActionListener actionListener) {
 
 	public void mensajeExito(String mensaje) {
 		JOptionPane.showMessageDialog(this, mensaje);
+	}
+
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		btnAusente.setEnabled(listaMozos.getSelectedValue() != null);
+		btnPresente.setEnabled(listaMozos.getSelectedValue() != null);
+		btnFranco.setEnabled(listaMozos.getSelectedValue() != null);
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
 
 	}
 }

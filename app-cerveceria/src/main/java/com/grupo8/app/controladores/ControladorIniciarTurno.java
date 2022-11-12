@@ -38,7 +38,7 @@ public class ControladorIniciarTurno implements ActionListener {
 		switch (comando) {
 		case "AsistenciaMozos":
 			this.vista.esconder();
-			//TODO: ControladorAsistenciaMozos.getControladorAsistencia(true);
+		 	ControladorAsistenciaMozos.getControladorAsistencia(true);
 			break;
 		case "GestionarMesas":
 			this.vista.esconder();
