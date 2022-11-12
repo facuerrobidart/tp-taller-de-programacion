@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="16.0.2" class="java.beans.XMLDecoder">
+<java version="11.0.17" class="java.beans.XMLDecoder">
  <object class="com.grupo8.app.wrappers.MesasWrapper">
   <void property="mesas">
    <object class="java.util.HashSet">
@@ -29,6 +29,40 @@
       </void>
       <void property="nroMesa">
        <int>1</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.grupo8.app.modelo.Mesa">
+      <void property="cantSillas">
+       <int>4</int>
+      </void>
+      <void property="estadoMesa">
+       <object idref="EstadoMesa0"/>
+      </void>
+      <void property="mozoAsignado">
+       <object class="com.grupo8.app.modelo.Mozo">
+        <void property="estadoMozo">
+         <object class="java.lang.Enum" method="valueOf">
+          <class>com.grupo8.app.tipos.EstadoMozo</class>
+          <string>ACTIVO</string>
+         </object>
+        </void>
+        <void property="fechaNacimiento">
+         <object class="java.util.Date">
+          <long>985143600000</long>
+         </object>
+        </void>
+        <void property="id">
+         <string>cdc3f06d-ddc4-4096-afb2-324674c07a4c</string>
+        </void>
+        <void property="nombreCompleto">
+         <string>Facundo ERRO</string>
+        </void>
+       </object>
+      </void>
+      <void property="nroMesa">
+       <int>67</int>
       </void>
      </object>
     </void>

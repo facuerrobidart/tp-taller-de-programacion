@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.stream.Collectors;
 
 import com.grupo8.app.dto.MozoDTO;
+import com.grupo8.app.excepciones.MalaSolicitudException;
 import com.grupo8.app.excepciones.NumeroMesaInvalidoException;
 import com.grupo8.app.excepciones.PermisoDenegadoException;
 import com.grupo8.app.modelo.Empresa;
@@ -50,7 +51,7 @@ public class ControladorNuevaMesa implements ActionListener {
 			try {
 				g.addMesa(this.vista.getFormulario());
 				this.vista.mensajeExito("La mesa se registro con exito");
-			} catch (NumeroMesaInvalidoException e1) {
+			} catch (NumeroMesaInvalidoException|MalaSolicitudException e1) {
 				this.vista.mensajeError("Numero de mesa invalido");
 			}
 				
