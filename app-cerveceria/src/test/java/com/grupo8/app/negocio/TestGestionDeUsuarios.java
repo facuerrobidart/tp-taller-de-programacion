@@ -2,6 +2,7 @@ package com.grupo8.app.negocio;
 
 import com.grupo8.app.dto.AddMozoRequest;
 import com.grupo8.app.dto.AddOperarioRequest;
+import com.grupo8.app.dto.MozoDTO;
 import com.grupo8.app.excepciones.CredencialesInvalidasException;
 import com.grupo8.app.excepciones.PermisoDenegadoException;
 import com.grupo8.app.modelo.Empresa;
@@ -58,14 +59,8 @@ public class TestGestionDeUsuarios {
 
     @Test
     public void addMozoExito() {
-        this.gestionDeUsuarios.addMozo(new AddMozoRequest("Juan Perez", Date.valueOf(LocalDate.of(1989,10,17)), 2));
-        Assert.assertNotNull(
-                Empresa.getEmpresa().getMozos()
-                        .getMozos()
-                        .stream()
-                        .filter(mozo -> mozo.getNombreCompleto().equals("Juan Perez"))
-                        .findFirst().orElseGet(null)
-        );
+        MozoDTO resultado = this.gestionDeUsuarios.addMozo(new AddMozoRequest("Juan Perez", Date.valueOf(LocalDate.of(1989,10,17)), 2));
+        Assert.assertNotNull(resultado);
     }
 
     @Test

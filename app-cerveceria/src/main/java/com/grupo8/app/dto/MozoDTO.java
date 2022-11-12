@@ -23,6 +23,7 @@ public class MozoDTO {
         MozoDTO mozoDTO = new MozoDTO();
         mozoDTO.setNombreCompleto(mozo.getNombreCompleto());
         mozoDTO.setId(mozo.getId());
+        mozoDTO.setFechaNacimiento(mozo.getFechaNacimiento());
         mozoDTO.setCantidadHijos(mozo.getCantidadHijos());
         mozoDTO.setEstadoMozo(mozo.getEstadoMozo());
         return mozoDTO;
@@ -33,7 +34,6 @@ public class MozoDTO {
         return "{" +
                 "nombreCompleto='" + nombreCompleto + '\'' +
                 ", fechaNacimiento=" + fechaNacimiento +
-                ", id='" + id + '\'' +
                 ", cantidadHijos=" + cantidadHijos +
                 ", estadoMozo=" + estadoMozo +
                 '}';
