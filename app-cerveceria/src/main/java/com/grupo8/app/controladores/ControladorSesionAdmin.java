@@ -58,6 +58,10 @@ public class ControladorSesionAdmin implements ActionListener {
 			ControladorNuevoMozo.getControlador(true);
 			this.vista.esconder();
 			break;
+		case "EliminarMozo":
+			ControladorEliminarMozo.getControladorEliminarMozo(true);
+			this.vista.esconder();
+			break;
 		case "CERRAR":
 			ControladorLogin.getControladorLogin(true);
 			GestionDeUsuarios g= new GestionDeUsuarios();
