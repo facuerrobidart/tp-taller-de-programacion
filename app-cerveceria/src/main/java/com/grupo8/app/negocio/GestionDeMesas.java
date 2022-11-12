@@ -59,6 +59,11 @@ public class GestionDeMesas {
                 .filter(mesa -> Objects.equals(mesa.getNroMesa(), request.getNroMesa())).findFirst();
 
         if (mesaAEditar.isPresent()) {
+            Optional<Mozo> mozoAsignado = this.empresa.getMozos().getMozos().stream()
+                    .filter(mozo -> Objects.equals(mozo.getId(), request.getMozoAsignado().getId())).findFirst();
+
+            mozoAsignado.ifPresent(mozo -> mesaAEditar.get().setMozoAsignado(mozo));
+
             mesaAEditar.get().setCantSillas(request.getCantSillas());
             persistir();
         } else {
