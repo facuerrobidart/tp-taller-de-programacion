@@ -215,7 +215,7 @@ public class VistaNuevaPromoProducto extends JFrame {
 			request.setDtoPorCantPrecioU(Double.parseDouble(this.textFieldPrecioUnitario.getText()));
 			request.setDtoPorCantMin(Integer.parseInt(this.textFieldCantidadMinima.getText()));
 		}
-		request.isActiva(true);
+		request.setActiva(true);
 		return request;
 	}
 }

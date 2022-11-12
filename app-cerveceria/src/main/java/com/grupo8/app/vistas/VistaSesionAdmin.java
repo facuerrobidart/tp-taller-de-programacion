@@ -27,6 +27,7 @@ public class VistaSesionAdmin extends JFrame {
 	private JButton btnAbmUsuarios;
 	private JButton btnAgregarMozo;
 	private ActionListener actionListener;
+	private JButton btnEliminarMozo;
 
 	public VistaSesionAdmin() {
 		setTitle("Sesion Admin");
@@ -83,7 +84,7 @@ public class VistaSesionAdmin extends JFrame {
 		btnAgregarMozo.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_1.add(btnAgregarMozo);
 		
-		JButton btnEliminarMozo = new JButton("Eliminar mozo");
+		btnEliminarMozo = new JButton("Eliminar mozo");
 		btnEliminarMozo.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnEliminarMozo.setPreferredSize(new Dimension(200, 35));
 		btnEliminarMozo.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -154,6 +155,7 @@ public class VistaSesionAdmin extends JFrame {
 		this.btnAbmMesas.addActionListener(actionListener);
 		this.btnAgregarMozo.addActionListener(actionListener);
 		this.btnEstadisticas.addActionListener(actionListener);
+		this.btnEliminarMozo.addActionListener(actionListener);
 	}
 
 	
