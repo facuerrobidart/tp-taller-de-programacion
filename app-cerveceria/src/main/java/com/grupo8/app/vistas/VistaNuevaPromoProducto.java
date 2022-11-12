@@ -218,4 +218,8 @@ public class VistaNuevaPromoProducto extends JFrame {
 		request.setActiva(true);
 		return request;
 	}
+
+	public void setListaProductos(ProductoDTO[] productos) {
+		listaProductos.setListData(productos);
+	}
 }

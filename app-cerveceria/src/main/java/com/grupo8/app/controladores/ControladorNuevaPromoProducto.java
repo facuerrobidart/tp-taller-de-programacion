@@ -3,7 +3,9 @@ package com.grupo8.app.controladores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.grupo8.app.dto.ProductoDTO;
 import com.grupo8.app.excepciones.MalaSolicitudException;
+import com.grupo8.app.negocio.GestionDeProductos;
 import com.grupo8.app.negocio.GestionDePromos;
 import com.grupo8.app.vistas.VistaNuevaPromoProducto;
 
@@ -13,10 +15,14 @@ public class ControladorNuevaPromoProducto implements ActionListener {
 
 	private static ControladorNuevaPromoProducto instancia = null;
 	private VistaNuevaPromoProducto vista = null;
+	private GestionDeProductos gestionDeProductos;
+	private GestionDePromos gestionDePromos;
 
 	private ControladorNuevaPromoProducto() {
 		this.vista = new VistaNuevaPromoProducto();
 		this.vista.setActionListener(this);
+		gestionDeProductos = new GestionDeProductos();
+		gestionDePromos = new GestionDePromos();
 	}
 
 	public static ControladorNuevaPromoProducto getControladorNuevaPromoProducto(boolean mostrar) {
@@ -27,6 +33,8 @@ public class ControladorNuevaPromoProducto implements ActionListener {
 		if (mostrar) {
 			instancia.vista.mostrar();
 		}
+
+		instancia.vista.setListaProductos(instancia.gestionDeProductos.obtenerProductos().toArray(ProductoDTO[]::new));
 
 		return instancia;
 	}
