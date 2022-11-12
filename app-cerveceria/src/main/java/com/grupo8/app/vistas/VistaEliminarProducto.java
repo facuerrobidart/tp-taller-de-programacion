@@ -17,6 +17,7 @@ public class VistaEliminarProducto extends JFrame implements MouseListener {
 	private JPanel General;
 	private ActionListener actionListener;
 	private JButton btnVolver;
+	private JList<ProductoDTO> listProductosElim;
 
 	
 	public VistaEliminarProducto() {
@@ -42,7 +43,7 @@ public class VistaEliminarProducto extends JFrame implements MouseListener {
 		scrollPane.setBounds(10, 142, 600, 434);
 		panel.add(scrollPane);
 		
-		JList<ProductoDTO> listProductosElim = new JList<ProductoDTO>();
+		listProductosElim = new JList<ProductoDTO>();
 		scrollPane.setViewportView(listProductosElim);
 		listProductosElim.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		

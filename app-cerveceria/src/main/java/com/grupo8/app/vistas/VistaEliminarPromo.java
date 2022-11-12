@@ -17,6 +17,7 @@ public class VistaEliminarPromo extends JFrame implements MouseListener{
 	private ActionListener actionListener;
 	private JButton btnVolver;
 	private JButton btnEliminar;
+	private JList<PromocionDTO> listPromo;
 	
 
 	public VistaEliminarPromo() {
@@ -54,7 +55,7 @@ public class VistaEliminarPromo extends JFrame implements MouseListener{
 		scrollPane.setBounds(20, 66, 590, 488);
 		panel.add(scrollPane);
 		
-		JList listPromo = new JList();
+		listPromo = new JList();
 		scrollPane.setViewportView(listPromo);
 		listPromo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
