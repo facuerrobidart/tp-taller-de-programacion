@@ -25,13 +25,13 @@ public class TestGestionDeMesas {
     }
 
     @Test
-    public void testAddMesa() throws NumeroMesaInvalidoException, EntidadNoEncontradaException {
+    public void testAddMesa() throws NumeroMesaInvalidoException, EntidadNoEncontradaException, MalaSolicitudException {
 
         Assert.assertNotNull(crearMesa());
     }
 
     @Test(expected = NumeroMesaInvalidoException.class)
-    public void testAddMesaNumeroInvalido() throws NumeroMesaInvalidoException {
+    public void testAddMesaNumeroInvalido() throws NumeroMesaInvalidoException, MalaSolicitudException {
         AddMesaRequest addMesaRequest = new AddMesaRequest();
         addMesaRequest.setNroMesa(1);
         addMesaRequest.setCantSillas(4);
@@ -42,7 +42,7 @@ public class TestGestionDeMesas {
     }
 
     @Test
-    public void testDeleteMesa() throws NumeroMesaInvalidoException, EntidadNoEncontradaException {
+    public void testDeleteMesa() throws NumeroMesaInvalidoException, EntidadNoEncontradaException, MalaSolicitudException {
         crearMesa();
         Assert.assertTrue(gestionDeMesas.deleteMesa(1000));
     }
@@ -101,7 +101,7 @@ public class TestGestionDeMesas {
         gestionDeMesas.asignarMozo(1000, mozo);
     }
 
-    private MesaDTO crearMesa() throws NumeroMesaInvalidoException, EntidadNoEncontradaException {
+    private MesaDTO crearMesa() throws NumeroMesaInvalidoException, EntidadNoEncontradaException, MalaSolicitudException {
         borrarMesa(); //borro la mesa por si ya existe
         AddMesaRequest addMesaRequest = new AddMesaRequest();
         addMesaRequest.setNroMesa(1000);
@@ -118,7 +118,7 @@ public class TestGestionDeMesas {
     }
 
     @Test
-    public void testCrearComanda() throws NumeroMesaInvalidoException, EntidadNoEncontradaException, EstadoInvalidoException {
+    public void testCrearComanda() throws NumeroMesaInvalidoException, EntidadNoEncontradaException, EstadoInvalidoException, MalaSolicitudException {
         crearMesa();
         ComandaDTO comanda = gestionDeMesas.crearComanda(1000);
         Assert.assertNotNull(comanda);
@@ -126,14 +126,14 @@ public class TestGestionDeMesas {
     }
 
     @Test(expected = EstadoInvalidoException.class)
-    public void testCrearComandaFalla() throws NumeroMesaInvalidoException, EntidadNoEncontradaException, EstadoInvalidoException {
+    public void testCrearComandaFalla() throws NumeroMesaInvalidoException, EntidadNoEncontradaException, EstadoInvalidoException, MalaSolicitudException {
         crearMesa();
         gestionDeMesas.crearComanda(1000);
         gestionDeMesas.crearComanda(1000); //deberia fallar porque la mesa ya se ocupo
     }
 
     @Test
-    public void testAgregarPedidoAComanda() throws NumeroMesaInvalidoException, EntidadNoEncontradaException, EstadoInvalidoException {
+    public void testAgregarPedidoAComanda() throws NumeroMesaInvalidoException, EntidadNoEncontradaException, EstadoInvalidoException, MalaSolicitudException {
         crearMesa();
 
         ComandaDTO comanda = gestionDeMesas.crearComanda(1000);
@@ -148,7 +148,7 @@ public class TestGestionDeMesas {
         borrarMesa();
     }
 
-    private ComandaDTO crearYAsignarComanda() throws EntidadNoEncontradaException, NumeroMesaInvalidoException, EstadoInvalidoException {
+    private ComandaDTO crearYAsignarComanda() throws EntidadNoEncontradaException, NumeroMesaInvalidoException, EstadoInvalidoException, MalaSolicitudException {
         crearMesa();
 
         ComandaDTO comanda = gestionDeMesas.crearComanda(1000);
@@ -164,7 +164,7 @@ public class TestGestionDeMesas {
     }
 
     @Test
-    public void testCerrarComanda() throws NumeroMesaInvalidoException, EntidadNoEncontradaException, EstadoInvalidoException {
+    public void testCerrarComanda() throws NumeroMesaInvalidoException, EntidadNoEncontradaException, EstadoInvalidoException, MalaSolicitudException {
         ComandaDTO comanda = crearYAsignarComanda();
         gestionDeMesas.cerrarComanda(comanda.getId(), "Efectivo");
         borrarMesa();
@@ -182,7 +182,7 @@ public class TestGestionDeMesas {
     }
 
     @Test(expected = EstadoInvalidoException.class)
-    public void testCerrarTurnoFallo() throws EntidadNoEncontradaException, NumeroMesaInvalidoException, EstadoInvalidoException {
+    public void testCerrarTurnoFallo() throws EntidadNoEncontradaException, NumeroMesaInvalidoException, EstadoInvalidoException, MalaSolicitudException {
         ComandaDTO comanda = crearYAsignarComanda();
         gestionDeMesas.cerrarTurno();
     }
