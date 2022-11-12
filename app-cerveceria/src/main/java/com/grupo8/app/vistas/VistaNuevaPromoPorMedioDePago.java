@@ -50,9 +50,10 @@ public class VistaNuevaPromoPorMedioDePago extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBounds(5, 5, 428, 587);
 		General.add(panel);
-		panel.setLayout(new GridLayout(0, 1, 0, 0));
+		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(0, 1, 428, 69);
 		panel.add(panel_1);
 		
 		JLabel lblNewLabel = new JLabel("Nombre de la promo");
@@ -65,6 +66,7 @@ public class VistaNuevaPromoPorMedioDePago extends JFrame {
 		
 		
 		JPanel panel_11 = new JPanel();
+		panel_11.setBounds(0, 81, 428, 81);
 		panel.add(panel_11);
 		panel_11.setLayout(null);
 		
@@ -80,20 +82,22 @@ public class VistaNuevaPromoPorMedioDePago extends JFrame {
 		
 		
 		JPanel panel_1_1 = new JPanel();
+		panel_1_1.setBounds(0, 173, 428, 266);
 		panel.add(panel_1_1);
 		panel_1_1.setLayout(null);
 		
 		JLabel lblrDelProducto = new JLabel("Porcentaje de descuento");
-		lblrDelProducto.setBounds(85, 11, 220, 25);
+		lblrDelProducto.setBounds(10, 0, 220, 25);
 		lblrDelProducto.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_1_1.add(lblrDelProducto);
 		
 		textFieldPorcentajeDescuento = new JTextField();
 		textFieldPorcentajeDescuento.setColumns(10);
-		textFieldPorcentajeDescuento.setBounds(315, 17, 56, 20);
+		textFieldPorcentajeDescuento.setBounds(240, 6, 56, 20);
 		panel_1_1.add(textFieldPorcentajeDescuento);
 		
 		JPanel panel_1_2 = new JPanel();
+		panel_1_2.setBounds(0, 439, 428, 146);
 		panel.add(panel_1_2);
 		panel_1_2.setLayout(null);
 		
@@ -120,32 +124,37 @@ public class VistaNuevaPromoPorMedioDePago extends JFrame {
 		panel_15.add(btnAceptar);
 
 		chckbxMartes = new JCheckBox("MARTES");
-		chckbxMartes.setBounds(182, 56, 97, 23);
+		chckbxMartes.setBounds(10, 151, 88, 25);
 		panel_1_1.add(chckbxMartes);
 
-		chckbxViernes = new JCheckBox("VIERNES");
-		chckbxViernes.setBounds(293, 37, 97, 23);
-		panel_1_1.add(chckbxViernes);
-
 		chckbxSabado = new JCheckBox("SABADO");
-		chckbxSabado.setBounds(293, 63, 97, 23);
+		chckbxSabado.setBounds(133, 166, 97, 23);
 		panel_1_1.add(chckbxSabado);
 
 		chckbxLunes = new JCheckBox("LUNES");
-		chckbxLunes.setBounds(182, 30, 97, 23);
+		chckbxLunes.setBounds(10, 111, 88, 25);
 		panel_1_1.add(chckbxLunes);
 
 		chckbxMiercoles = new JCheckBox("MIERCOLES");
-		chckbxMiercoles.setBounds(182, 79, 97, 23);
+		chckbxMiercoles.setBounds(10, 191, 97, 23);
 		panel_1_1.add(chckbxMiercoles);
 
 		chckbxJueves = new JCheckBox("JUEVES");
-		chckbxJueves.setBounds(182, 105, 97, 23);
+		chckbxJueves.setBounds(10, 236, 97, 23);
 		panel_1_1.add(chckbxJueves);
 
 		chckbxDomingo = new JCheckBox("DOMINGO");
-		chckbxDomingo.setBounds(293, 89, 97, 23);
+		chckbxDomingo.setBounds(133, 212, 97, 23);
 		panel_1_1.add(chckbxDomingo);
+		
+				chckbxViernes = new JCheckBox("VIERNES");
+				chckbxViernes.setBounds(133, 124, 97, 23);
+				panel_1_1.add(chckbxViernes);
+				
+				JLabel lblNewLabel_1 = new JLabel("Dias de promo");
+				lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+				lblNewLabel_1.setBounds(10, 53, 189, 37);
+				panel_1_1.add(lblNewLabel_1);
 		
 	}
 
@@ -222,6 +231,4 @@ public class VistaNuevaPromoPorMedioDePago extends JFrame {
 
 		return dias;
 	}
-
-	
 }
