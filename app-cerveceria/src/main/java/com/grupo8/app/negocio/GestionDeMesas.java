@@ -295,4 +295,14 @@ public class GestionDeMesas {
             throw new EntidadNoEncontradaException("No se encontro el mozo");
         }
     }
+
+
+    public MesaDTO obtenerPorNro(Integer nroMesa) throws EntidadNoEncontradaException{
+        Optional <MesaDTO> mesa= this.obtenerMesas().stream().filter(m->m.getNroMesa().equals(nroMesa)).findFirst();
+        if(mesa.isPresent())
+            return mesa.get();
+        else throw new EntidadNoEncontradaException(" no se encontro la mesa");
+
+
+    }
 }

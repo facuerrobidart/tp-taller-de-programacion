@@ -23,7 +23,7 @@ import java.awt.event.MouseListener;
 import java.awt.Font;
 import java.awt.FlowLayout;
 
-public class VistaNuevaMesa extends JFrame implements KeyListener, MouseListener {
+public class VistaNuevaMesa extends JFrame implements KeyListener {
 
 	private JPanel General;
 	private ActionListener actionListener;
@@ -32,8 +32,11 @@ public class VistaNuevaMesa extends JFrame implements KeyListener, MouseListener
 	private JButton btnVolver;
 	private JButton btnAceptar;
 	private JList<MozoDTO> listaMozos;
+	private MesaDTO mesaEditable=null;
 
-	public VistaNuevaMesa() {
+	private JLabel lblNewLabel_5;
+
+	public VistaNuevaMesa(MesaDTO mesaEditable) {
 		setTitle("Nueva Mesa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 646, 665);
@@ -65,7 +68,7 @@ public class VistaNuevaMesa extends JFrame implements KeyListener, MouseListener
 		panel.add(panel_11);
 		panel_11.setLayout(null);
 
-		JLabel lblNewLabel_5 = new JLabel("Ingrese numero de mesa ");
+		lblNewLabel_5 = new JLabel("Ingrese numero de mesa ");
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_5.setBounds(31, 1, 229, 25);
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -109,11 +112,11 @@ public class VistaNuevaMesa extends JFrame implements KeyListener, MouseListener
 	}
 
 	public void setActionListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
+		
 		this.actionListener = actionListener;
 		this.btnVolver.addActionListener(actionListener);
 		this.btnAceptar.addActionListener(actionListener);
-		/* this.listaMozos.addActionListener(actionListener); */
+		
 
 	}
 
@@ -145,58 +148,55 @@ public class VistaNuevaMesa extends JFrame implements KeyListener, MouseListener
 		this.setVisible(true);
 
 	}
+	
+	public Integer getNroMesaEditable() {
+		if (this.mesaEditable != null) {
+			return this.mesaEditable.getNroMesa();
+		} else {
+			return null;
+		}
+	}
+
+	public void setMesaEditable(MesaDTO mesa){
+		this.mesaEditable=mesa;
+		this.textFieldNumeroMesas.setText((mesa.getNroMesa().toString()));
+		this.textFieldCantSillas.setText(mesa.getCantSillas().toString());
+		this.btnAceptar.setEnabled(true);
+		if(mesa!=null) {
+			this.textFieldNumeroMesas.setEnabled(false);
+			this.lblNewLabel_5.setEnabled(false);
+		}
+	}
+
+	public void resetearEditable() {
+		this.mesaEditable = null;
+		this.textFieldCantSillas.setText("");
+		this.textFieldNumeroMesas.setText("");
+
+	}
+
 
 	public void esconder() {
 		this.setVisible(false);
+
 
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+
 
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-
 	}
-
 	@Override
 	public void keyReleased(KeyEvent e) {
-		this.btnAceptar.setEnabled( textFieldCantSillas.getText().length() > 0
+		this.btnAceptar.setEnabled(textFieldCantSillas.getText().length() > 0
 				&& textFieldNumeroMesas.getText().length() > 0 && this.listaMozos != null);
-	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public void setListaMozos(MozoDTO[] mozos) {
