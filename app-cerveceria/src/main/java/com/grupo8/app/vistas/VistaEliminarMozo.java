@@ -16,14 +16,15 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
 public class VistaEliminarMozo extends JFrame {
 
 	private ActionListener actionListener;
 	private JPanel contentPane;
-	private JList<MozoDTO> listaMozos ;
 	private JButton btnListo;
 	private JButton btnAtras;
+	private JList<MozoDTO> listaMozos;
 	
 	public VistaEliminarMozo() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,10 +33,6 @@ public class VistaEliminarMozo extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		listaMozos = new JList<>();
-		listaMozos.setBounds(10, 59, 430, 194);
-		contentPane.add(listaMozos);
 		
 		JLabel lblNewLabel = new JLabel("Seleccione mozo a eliminar");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -55,6 +52,13 @@ public class VistaEliminarMozo extends JFrame {
 		btnListo.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnListo.setBounds(231, 280, 209, 23);
 		contentPane.add(btnListo);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 59, 430, 194);
+		contentPane.add(scrollPane);
+		
+		listaMozos = new JList<MozoDTO>();
+		scrollPane.setViewportView(listaMozos);
 	}
 	
 	public void mensajeError(String mensaje) {
@@ -91,5 +95,4 @@ public class VistaEliminarMozo extends JFrame {
 	public  MozoDTO getMozo() {
 		return this.listaMozos.getSelectedValue();
 	}
-	
 }
