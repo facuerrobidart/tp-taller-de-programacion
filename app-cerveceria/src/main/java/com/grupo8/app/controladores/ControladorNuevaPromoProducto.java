@@ -43,16 +43,14 @@ public class ControladorNuevaPromoProducto implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 			case "Aceptar":
-				GestionDePromos g=new GestionDePromos();
-			try {
-				g.agregarPromoFija(this.vista.getFormulario());
-				this.vista.mostrarMensaje("La promo se creo con exito");
-			} catch (MalaSolicitudException e1) {
-				this.vista.mostrarMensaje("No se pudo crear la promo");
-				e1.printStackTrace();
-			}
-				
+				try {
+					gestionDePromos.agregarPromoFija(this.vista.getFormulario());
+					this.vista.mostrarMensaje("La promo se creo con exito");
+				} catch (MalaSolicitudException e1) {
+					this.vista.mostrarMensaje(e1.getMessage());
+				}
 				this.vista.esconder();
+				ControladorNuevaPromo.getControlador(true);
 				break;
 			case "Volver":
 				ControladorNuevaPromo.getControlador(true);
