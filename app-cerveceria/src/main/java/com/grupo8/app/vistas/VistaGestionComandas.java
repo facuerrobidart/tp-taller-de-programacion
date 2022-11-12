@@ -13,6 +13,9 @@ import com.grupo8.app.dto.ComandaDTO;
 import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.ListSelectionModel;
+import javax.swing.JScrollPane;
+import java.awt.Font;
+import javax.swing.JLabel;
 
 public class VistaGestionComandas extends JFrame {
 
@@ -21,12 +24,14 @@ public class VistaGestionComandas extends JFrame {
 	private JButton btnAgregarComanda;
 	private JButton btnCerrar;
 	private JButton btnVolver;
+	private JScrollPane scrollPane;
+	private JLabel lblNewLabel;
 
 
 	public VistaGestionComandas() {
 		setTitle("Gestion Comandas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 506, 488);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -36,22 +41,33 @@ public class VistaGestionComandas extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		listComandas = new JList();
-		listComandas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listComandas.setBounds(10, 47, 262, 179);
-		panel.add(listComandas);
-		
 		btnAgregarComanda = new JButton("Agregar Comanda");
-		btnAgregarComanda.setBounds(282, 85, 132, 23);
+		btnAgregarComanda.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnAgregarComanda.setBounds(338, 76, 142, 32);
 		panel.add(btnAgregarComanda);
 		
 	    btnCerrar = new JButton("Cerrar comanda");
-		btnCerrar.setBounds(282, 161, 132, 23);
+	    btnCerrar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnCerrar.setBounds(338, 211, 142, 32);
 		panel.add(btnCerrar);
 		
 		btnVolver = new JButton("Volver");
-		btnVolver.setBounds(335, 228, 89, 23);
+		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnVolver.setBounds(348, 374, 122, 37);
 		panel.add(btnVolver);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 49, 318, 354);
+		panel.add(scrollPane);
+		
+		listComandas = new JList();
+		scrollPane.setViewportView(listComandas);
+		listComandas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		lblNewLabel = new JLabel("Gestionar Comandas");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel.setBounds(49, 11, 154, 26);
+		panel.add(lblNewLabel);
 	}
 	
 	public ComandaDTO getComanda() {

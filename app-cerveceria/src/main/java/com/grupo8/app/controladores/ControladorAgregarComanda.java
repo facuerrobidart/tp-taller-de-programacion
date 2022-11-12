@@ -4,7 +4,7 @@ import com.grupo8.app.dto.MesaDTO;
 import com.grupo8.app.excepciones.EntidadNoEncontradaException;
 import com.grupo8.app.excepciones.EstadoInvalidoException;
 import com.grupo8.app.negocio.GestionDeMesas;
-import com.grupo8.app.vistas.VistaAgregarComanda;
+import com.grupo8.app.vistas.VistaSeleccionarMesaComanda;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,11 +12,11 @@ import java.awt.event.ActionListener;
 public class ControladorAgregarComanda implements ActionListener {
     private static ControladorAgregarComanda instancia = null;
 
-    private final VistaAgregarComanda vista;
+    private final VistaSeleccionarMesaComanda vista;
     private final GestionDeMesas gestionDeMesas;
 
     public ControladorAgregarComanda() {
-        this.vista = new VistaAgregarComanda();
+        this.vista = new VistaSeleccionarMesaComanda();
         this.vista.setActionListener(this);
         this.gestionDeMesas = new GestionDeMesas();
     }
@@ -42,7 +42,7 @@ public class ControladorAgregarComanda implements ActionListener {
         String comando = e.getActionCommand();
 
         switch (comando) {
-            case "AGREGAR":
+            case "CONFIRMAR":
                 try {
                     gestionDeMesas.crearComanda(this.vista.getMesa().getNroMesa());
                     this.vista.mostrarMensaje("Comanda agregada correctamente para la mesa " + this.vista.getMesa().getNroMesa());
@@ -53,8 +53,8 @@ public class ControladorAgregarComanda implements ActionListener {
                 }
                 actualizarMesas();
                 break;
-            case "VOLVER":
-                ControladorGestionComanda.getControladorGestionComanda(true);
+            case "ATRAS":
+                ControladorIniciarTurno.getControladorIniciarTurno(true);
                 this.vista.esconder();
                 break;
         }
