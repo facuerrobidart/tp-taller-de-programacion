@@ -128,6 +128,7 @@ public class VistaNuevaMesa extends JFrame implements KeyListener, MouseListener
 		AddMesaRequest request = new AddMesaRequest();
 		request.setCantSillas(Integer.parseInt(this.textFieldCantSillas.getText()));
 		request.setNroMesa(Integer.parseInt(this.textFieldNumeroMesas.getText()));
+		request.setMozoAsignado(listaMozos.getSelectedValue());
 		return request;
 	}
 

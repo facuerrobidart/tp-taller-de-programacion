@@ -11,4 +11,5 @@ import lombok.Setter;
 public class AddMesaRequest {
     private Integer nroMesa;
     private Integer cantSillas;
+    private MozoDTO mozoAsignado;
 }

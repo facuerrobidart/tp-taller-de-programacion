@@ -61,7 +61,7 @@ public class Empresa {
                 operarios.getOperarios().add(Operario.administrador()); //cargar admin por default
                 persistencia.escribir(operarios);
             }
-
+            persistencia.escribir(operarios);
             persistencia.cerrarInput();
         } catch (Exception err) {
             operarios = new OperariosWrapper();
@@ -84,7 +84,6 @@ public class Empresa {
                 cierreComandas = new CierreComandaWrapper();
                 cierreComandas.setCierreComandas(new ArrayList<>());
             }
-
             persistencia.cerrarInput();
         } catch (Exception err) {
             cierreComandas = new CierreComandaWrapper();

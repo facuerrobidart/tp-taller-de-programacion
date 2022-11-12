@@ -3,6 +3,7 @@
 import com.grupo8.app.dto.*;
 import com.grupo8.app.excepciones.EntidadNoEncontradaException;
 import com.grupo8.app.excepciones.EstadoInvalidoException;
+import com.grupo8.app.excepciones.MalaSolicitudException;
 import com.grupo8.app.excepciones.NumeroMesaInvalidoException;
 import com.grupo8.app.modelo.*;
 import com.grupo8.app.modelo.Promociones.Promocion;
@@ -27,7 +28,7 @@ public class GestionDeMesas {
         this.empresa = Empresa.getEmpresa();
     }
 
-    public MesaDTO addMesa(AddMesaRequest request) throws NumeroMesaInvalidoException {
+    public MesaDTO addMesa(AddMesaRequest request) throws NumeroMesaInvalidoException, MalaSolicitudException {
         Optional<Mesa> potencialDuplicado =
                 this.empresa.getMesas()
                         .getMesas()
@@ -37,6 +38,14 @@ public class GestionDeMesas {
         if (!potencialDuplicado.isPresent()) {
             Mesa mesa = new Mesa(request.getNroMesa(), request.getCantSillas());
             this.empresa.getMesas().getMesas().add(mesa);
+
+            Optional<Mozo> mozo = Empresa.getEmpresa().getMozos().getMozos().stream().filter(m -> m.getId().equals(request.getMozoAsignado().getId())).findFirst();
+            if (mozo.isPresent()) {
+                mesa.setMozoAsignado(mozo.get());
+            } else {
+                throw new MalaSolicitudException("No existe el mozo");
+            }
+
             persistir();
 
             return MesaDTO.of(mesa);
@@ -239,6 +248,7 @@ public class GestionDeMesas {
         return this.empresa.getMesas()
                 .getMesas()
                 .stream()
+                .filter(mesa -> mesa.getMozoAsignado() != null)
                 .map(MesaDTO::of)
                 .collect(Collectors.toList());
     }
@@ -247,6 +257,7 @@ public class GestionDeMesas {
         return this.empresa.getMesas()
                 .getMesas()
                 .stream()
+                .filter(mesa -> mesa.getMozoAsignado() != null)
                 .filter(mesa -> mesa.getEstadoMesa().equals(EstadoMesa.LIBRE))
                 .map(MesaDTO::of)
                 .collect(Collectors.toList());
