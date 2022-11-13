@@ -43,23 +43,25 @@ public class VistaCerrarComanda extends JFrame implements MouseListener {
 		contentPane.add(btnAtras);
 		
 		rdbtnCdni = new JRadioButton("Cuenta DNI");
-		rdbtnCdni.setActionCommand("Cdni");
+		rdbtnCdni.setActionCommand("CuentaDNI");
 		rdbtnCdni.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		rdbtnCdni.setBounds(27, 226, 109, 23);
 		contentPane.add(rdbtnCdni);
 		
-		 rdbtnMP = new JRadioButton("Mercado Pago");
+	 rdbtnMP = new JRadioButton("Mercado Pago");
 		rdbtnMP.setActionCommand("MP");
 		rdbtnMP.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		rdbtnMP.setBounds(184, 226, 144, 23);
 		contentPane.add(rdbtnMP);
 		
-	    rdbtnTarjeta = new JRadioButton("Tarjeta");
+		rdbtnTarjeta = new JRadioButton("Tarjeta");
+		rdbtnTarjeta.setActionCommand("Tarjeta");
 		rdbtnTarjeta.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		rdbtnTarjeta.setBounds(184, 171, 109, 23);
 		contentPane.add(rdbtnTarjeta);
 		
 		 rdbtnEfectivo = new JRadioButton("Efectivo");
+		rdbtnEfectivo.setActionCommand("Efectivo");
 		rdbtnEfectivo.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		rdbtnEfectivo.setBounds(27, 171, 109, 23);
 		contentPane.add(rdbtnEfectivo);
@@ -113,7 +115,10 @@ public class VistaCerrarComanda extends JFrame implements MouseListener {
 		if(this.comandaSeleccionada!=null){
 			this.textFieldMonto.setText(String.valueOf(comandaSeleccionada.getSubtotal()));
 		}
+	}
 
+	public ComandaDTO getComanda() {
+		return this.comandaSeleccionada;
 	}
 	public void setActionListener(ActionListener ac) {
 		this.actionListener=ac;
@@ -150,5 +155,9 @@ public class VistaCerrarComanda extends JFrame implements MouseListener {
 	@Override
 	public void mouseExited(MouseEvent e) {
 
+	}
+
+	public String getMedioPagoSeleccionado() {
+		return this.radioGroup.getSelection().getActionCommand();
 	}
 }

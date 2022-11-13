@@ -251,15 +251,19 @@ public class GestionDeMesas {
     public void cerrarComanda(String idComanda, String medioDePago) throws EntidadNoEncontradaException {
         Optional<Comanda> comanda = this.empresa.getComandas().getComandas().stream()
                 .filter(c -> Objects.equals(c.getId(), idComanda)).findFirst();
+
         if (comanda.isPresent()) {
             CierreComanda cierre = new CierreComanda(comanda.get());
             aplicarPromocionesFijas(cierre);
             sumarTotal(cierre, medioDePago);
             cierre.setEstadoPedido(EstadoComanda.CERRADA);
+            comanda.get().getMesa().setEstadoMesa(EstadoMesa.LIBRE);
 
             this.empresa.getCierreComandas().getCierreComandas().add(cierre);
             this.empresa.getComandas().getComandas().remove(comanda.get());
 
+            persistir();
+            persistirComandas();
             persistirCierreComandas();
         } else {
             throw new EntidadNoEncontradaException("No se encontro la comanda");

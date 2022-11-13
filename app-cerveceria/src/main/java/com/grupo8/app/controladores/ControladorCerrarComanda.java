@@ -1,6 +1,7 @@
 package com.grupo8.app.controladores;
 
 import com.grupo8.app.dto.ComandaDTO;
+import com.grupo8.app.excepciones.EntidadNoEncontradaException;
 import com.grupo8.app.modelo.Empresa;
 import com.grupo8.app.negocio.GestionDeMesas;
 import com.grupo8.app.vistas.VistaCerrarComanda;
@@ -45,7 +46,13 @@ public class ControladorCerrarComanda implements ActionListener {
         String comando = e.getActionCommand();
         switch (comando) {
             case "CerrarComanda":
-                this.vista.mostrarMensaje("La comanda se cerro correctamente");
+                try {
+                    gestionMesas.cerrarComanda(this.vista.getComanda().getId(), this.vista.getMedioPagoSeleccionado());
+                    this.vista.mostrarMensaje("La comanda se cerro correctamente");
+                } catch (EntidadNoEncontradaException ex) {
+                    this.vista.mostrarMensaje(ex.getMessage());
+                }
+
                 this.vista.esconder();
                 ControladorGestionComanda.getControladorGestionComanda(true);
                 break;
