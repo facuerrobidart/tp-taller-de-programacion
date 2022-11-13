@@ -12,7 +12,7 @@ import java.awt.event.MouseListener;
 import java.awt.Font;
 
 
-public class VistaEliminarProducto extends JFrame  {
+public class VistaEliminarProducto extends JFrame implements MouseListener {
 
 	private JPanel General;
 	private ActionListener actionListener;
@@ -57,15 +57,21 @@ public class VistaEliminarProducto extends JFrame  {
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnVolver);
 		
-		 btnAceptar = new JButton("Eliminar");
+		btnAceptar = new JButton("Eliminar");
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnAceptar);
+		btnAceptar.setEnabled(false);
+
+		listProductosElim.addMouseListener(this);
+		
 		
 	}
 
 	
 	public void mostrar() {
 		this.setVisible(true);
+		btnAceptar.setEnabled(false);
+		
 		
 	}
 
@@ -100,6 +106,42 @@ public class VistaEliminarProducto extends JFrame  {
 	
 	public void success(String titulo, String mensaje) {
 		JOptionPane.showMessageDialog(this, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
+	}
+
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		this.btnAceptar.setEnabled( this.listProductosElim.getSelectedValue() != null);
+		
+		
+	}
+
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		
+		
 	}
 
 	
