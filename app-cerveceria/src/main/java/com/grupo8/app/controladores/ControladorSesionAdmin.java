@@ -50,8 +50,12 @@ public class ControladorSesionAdmin implements ActionListener {
 			ControladorReportes.getInstancia(true);
 			vista.esconder();
 			break;
-		case "ABMUsuarios":
+		case "AgregarOperarios":
 			ControladorUsuarios.getControladorUsuarios(true);
+			vista.esconder();
+			break;
+		case "EliminarOperarios":
+			//
 			vista.esconder();
 			break;
 		case "AgregarMozo":
