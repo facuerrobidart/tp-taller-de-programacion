@@ -77,13 +77,13 @@ public class VistaReporte extends JFrame implements MouseListener {
 		
 		JLabel lblEstadisticasIndividuales = new JLabel("Estadisticas individuales:");
 		lblEstadisticasIndividuales.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblEstadisticasIndividuales.setBounds(27, 339, 168, 23);
+		lblEstadisticasIndividuales.setBounds(82, 334, 168, 23);
 		contentPane.add(lblEstadisticasIndividuales);
 		
 		btnVer = new JButton("Ver");
 		btnVer.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnVer.setActionCommand("VER");
-		btnVer.setBounds(367, 440, 85, 39);
+		btnVer.setBounds(367, 448, 85, 39);
 		contentPane.add(btnVer);
 		btnVer.setEnabled(false);
 		
@@ -114,7 +114,7 @@ public class VistaReporte extends JFrame implements MouseListener {
 		scrollPane_2.setViewportView(txtMinimo);
 		
 		JScrollPane scrollPane_3 = new JScrollPane();
-		scrollPane_3.setBounds(20, 380, 307, 196);
+		scrollPane_3.setBounds(20, 380, 307, 193);
 		contentPane.add(scrollPane_3);
 		
 		listMozos = new JList<>();
@@ -122,7 +122,7 @@ public class VistaReporte extends JFrame implements MouseListener {
 		listMozos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		JScrollPane scrollPane_4 = new JScrollPane();
-		scrollPane_4.setBounds(492, 374, 261, 202);
+		scrollPane_4.setBounds(482, 383, 271, 192);
 		contentPane.add(scrollPane_4);
 		
 		JTextPane textIndividual = new JTextPane();
