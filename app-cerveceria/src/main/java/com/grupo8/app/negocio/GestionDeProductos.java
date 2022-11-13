@@ -12,7 +12,6 @@ import lombok.NonNull;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class GestionDeProductos {
@@ -62,7 +61,7 @@ public class GestionDeProductos {
         }
     }
 
-    private void persistir() {
+    public void persistir() {
         Ipersistencia<ProductoWrapper> persistencia = new PersistenciaXML();
         try {
             persistencia.abrirOutput("productos.xml");

@@ -175,6 +175,8 @@ public class GestionDeMesas {
                 }
 
                 productoAAgregar.get().setStock(productoAAgregar.get().getStock() - pedido.getCantidad());
+                persistirComandas();
+                new GestionDeProductos().persistir();
             } else {
                 throw new EntidadNoEncontradaException("No se encontro el producto");
             }

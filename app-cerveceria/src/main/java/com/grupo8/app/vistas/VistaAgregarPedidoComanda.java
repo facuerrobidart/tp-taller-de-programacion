@@ -13,11 +13,11 @@ import java.awt.event.MouseListener;
 
 public class VistaAgregarPedidoComanda extends JFrame implements MouseListener {
 
-	private JPanel contentPane;
-	private JTextField textFieldCantProd;
-	private JList <ComandaDTO> listComandas;
-	private JButton btnAgregar;
-	private JList<ProductoDTO> listProductos;
+	private final JTextField textFieldCantProd;
+	private final JList <ComandaDTO> listComandas;
+	private final JButton btnAgregar;
+	private final JButton btnVolver;
+	private final JList<ProductoDTO> listProductos;
 
 	/**
 	 * Launch the application.
@@ -41,8 +41,8 @@ public class VistaAgregarPedidoComanda extends JFrame implements MouseListener {
 	public VistaAgregarPedidoComanda() {
 		setTitle("Agregar pedido a comanda");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
+		setBounds(100, 100, 579, 504);
+		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
@@ -53,25 +53,13 @@ public class VistaAgregarPedidoComanda extends JFrame implements MouseListener {
 		
 		btnAgregar = new JButton("Agregar pedido a la comanda");
 		btnAgregar.setActionCommand("AGREGAR");
-		btnAgregar.setBounds(251, 228, 173, 23);
+		btnAgregar.setBounds(370, 421, 173, 23);
 		panel.add(btnAgregar);
-		
-		listProductos = new JList();
-		listProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listProductos.setBounds(170, 36, 140, 181);
-		panel.add(listProductos);
-		listProductos.addMouseListener(this);
 		
 		JLabel lbl = new JLabel("Seleccione productos");
 		lbl.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lbl.setBounds(182, 11, 135, 14);
+		lbl.setBounds(305, 11, 135, 14);
 		panel.add(lbl);
-		
-		listComandas = new JList();
-		listComandas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listComandas.setBounds(10, 36, 140, 181);
-		panel.add(listComandas);
-		listComandas.addMouseListener(this);
 		
 		JLabel lblNewLabel = new JLabel("Seleccione comanda ");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -79,26 +67,41 @@ public class VistaAgregarPedidoComanda extends JFrame implements MouseListener {
 		panel.add(lblNewLabel);
 		
 		textFieldCantProd = new JTextField();
-		textFieldCantProd.setBounds(328, 106, 86, 20);
+		textFieldCantProd.setBounds(182, 364, 86, 20);
 		panel.add(textFieldCantProd);
 		textFieldCantProd.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Ingrese cantidad");
-		lblNewLabel_1.setBounds(332, 62, 92, 23);
+		JLabel lblNewLabel_1 = new JLabel("Cantidad de items");
+		lblNewLabel_1.setBounds(10, 363, 92, 23);
 		panel.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("de productos");
-		lblNewLabel_2.setBounds(334, 82, 80, 14);
-		panel.add(lblNewLabel_2);
-		
-		JButton btnVolver = new JButton("Volver");
+		btnVolver = new JButton("Volver");
 		btnVolver.setActionCommand("VOLVER");
-		btnVolver.setBounds(0, 228, 89, 23);
+		btnVolver.setBounds(10, 421, 89, 23);
 		panel.add(btnVolver);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 36, 258, 299);
+		panel.add(scrollPane);
+		
+		listComandas = new JList<>();
+		scrollPane.setRowHeaderView(listComandas);
+		listComandas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(312, 36, 231, 299);
+		panel.add(scrollPane_1);
+		
+		listProductos = new JList<>();
+		scrollPane_1.setViewportView(listProductos);
+		listProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		listProductos.addMouseListener(this);
+		listComandas.addMouseListener(this);
 	}
 
 	public void setActionListener(ActionListener lis){
 		btnAgregar.addActionListener(lis);
+		btnVolver.addActionListener(lis);
 	}
 	public void mostrar() {
 		btnAgregar.setEnabled(false);
