@@ -35,7 +35,7 @@ public class MesaDTO {
                 "nroMesa=" + nroMesa +
                 ", cantSillas=" + cantSillas +
                 ", estadoMesa=" + estadoMesa +
-                ", mozoAsignado=" + mozoAsignado.getNombreCompleto() +
+                ", mozoAsignado= " + (mozoAsignado != null ? mozoAsignado.getNombreCompleto() : "NO") +
                 '}';
     }
 }
