@@ -24,26 +24,9 @@ public class VistaReporte extends JFrame implements MouseListener {
 	private JList<MozoDTO> listMozos;
 	private JButton btnVolver;
 	private JButton btnVer;
+	private JTextPane textIndividual;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaReporte frame = new VistaReporte();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public VistaReporte() {
 		setTitle("Reportes de Venta");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -125,7 +108,7 @@ public class VistaReporte extends JFrame implements MouseListener {
 		scrollPane_4.setBounds(482, 383, 271, 192);
 		contentPane.add(scrollPane_4);
 		
-		JTextPane textIndividual = new JTextPane();
+	    textIndividual = new JTextPane();
 		scrollPane_4.setViewportView(textIndividual);
 		listMozos.addMouseListener(this);
 	}
