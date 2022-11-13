@@ -1,25 +1,10 @@
 package com.grupo8.app.vistas;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import java.awt.GridLayout;
-import java.awt.event.ActionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
-import javax.swing.BoxLayout;
-import java.awt.CardLayout;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Dimension;
+import java.awt.event.ActionListener;
 
 public class VistaIniciarTurno extends JFrame {
 
@@ -80,12 +65,12 @@ public class VistaIniciarTurno extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-				btnGestionarComandas = new JButton("Agregar pedido a comanda");
-				btnGestionarComandas.setBounds(130, 11, 250, 45);
-				panel_1.add(btnGestionarComandas);
-				btnGestionarComandas.setPreferredSize(new Dimension(250, 45));
-				btnGestionarComandas.setFont(new Font("Tahoma", Font.PLAIN, 16));
-				btnGestionarComandas.setActionCommand("GestionarComandas");
+		btnGestionarComandas = new JButton("Gestionar comandas");
+		btnGestionarComandas.setBounds(130, 11, 250, 45);
+		panel_1.add(btnGestionarComandas);
+		btnGestionarComandas.setPreferredSize(new Dimension(250, 45));
+		btnGestionarComandas.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnGestionarComandas.setActionCommand("GestionarComandas");
 
 		JPanel panel_1_2_1 = new JPanel();
 		panel.add(panel_1_2_1);

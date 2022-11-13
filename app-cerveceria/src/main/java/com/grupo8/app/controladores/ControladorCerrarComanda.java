@@ -1,45 +1,59 @@
 package com.grupo8.app.controladores;
 
+import com.grupo8.app.dto.ComandaDTO;
+import com.grupo8.app.modelo.Empresa;
+import com.grupo8.app.negocio.GestionDeMesas;
+import com.grupo8.app.vistas.VistaCerrarComanda;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import com.grupo8.app.dto.MozoDTO;
-import com.grupo8.app.excepciones.MalaSolicitudException;
-import com.grupo8.app.excepciones.NumeroMesaInvalidoException;
-import com.grupo8.app.modelo.Empresa;
-import com.grupo8.app.negocio.GestionDeMesas;
-import com.grupo8.app.vistas.;
-
 public class ControladorCerrarComanda implements ActionListener {
 
-    private  vista;
+    private final VistaCerrarComanda vista;
     private Empresa empresa;
     private static ControladorCerrarComanda instancia = null;
     private GestionDeMesas gestionMesas;
+    private ComandaDTO comandaSeleccionada;
 
 
 
     public ControladorCerrarComanda() {
-        this.vista = new VistaCerrarComandas(null);
+        this.vista = new VistaCerrarComanda();
         this.empresa = Empresa.getEmpresa();
         this.vista.setActionListener(this);
         this.gestionMesas = new GestionDeMesas();
     }
 
-    public static ControladorCerrarComanda getControladorCerrarComanda(boolean mostrar, Integer nroMesa) {
+    public static ControladorCerrarComanda getControladorCerrarComanda(boolean mostrar, ComandaDTO comandaSeleccionada) {
         if (instancia == null) {
             instancia = new ControladorCerrarComanda();
         }
-         if (mostrar) {
+        if (mostrar) {
             instancia.vista.mostrar();
         }
+        instancia.setComandaSeleccionada(comandaSeleccionada);
         return instancia;
+    }
+
+    private void setComandaSeleccionada(ComandaDTO comandaSeleccionada) {
+        this.comandaSeleccionada = comandaSeleccionada;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
-
+        switch (comando) {
+            case "CerrarComanda":
+                this.vista.mostrarMensaje("La comanda se cerro correctamente");
+                this.vista.esconder();
+                ControladorGestionComanda.getControladorGestionComanda(true);
+                break;
+            case "Atras":
+                this.vista.esconder();
+                ControladorGestionComanda.getControladorGestionComanda(true);
+                break;
+        }
     }
 
 }
