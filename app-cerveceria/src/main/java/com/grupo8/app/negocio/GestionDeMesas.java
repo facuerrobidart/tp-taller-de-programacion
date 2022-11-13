@@ -15,6 +15,7 @@ import com.grupo8.app.tipos.EstadoComanda;
 import com.grupo8.app.tipos.EstadoMesa;
 import com.grupo8.app.tipos.EstadoMozo;
 import com.grupo8.app.wrappers.CierreComandaWrapper;
+import com.grupo8.app.wrappers.ComandasWrapper;
 import com.grupo8.app.wrappers.MesasWrapper;
 
 import java.time.LocalDate;
@@ -88,6 +89,16 @@ public class GestionDeMesas {
         }
     }
 
+    private void persistirComandas() {
+        Ipersistencia<ComandasWrapper> persistencia = new PersistenciaXML();
+        try {
+            persistencia.abrirOutput("comandas.xml");
+            persistencia.escribir(this.empresa.getComandas());
+            persistencia.cerrarOutput();
+        } catch (Exception e) {
+        }
+    }
+
     private void persistirCierreComandas() {
         Ipersistencia<CierreComandaWrapper> persistencia = new PersistenciaXML();
         try {
@@ -121,15 +132,19 @@ public class GestionDeMesas {
 
         if (mesa.isPresent() && mesa.get().getEstadoMesa() == EstadoMesa.LIBRE) {
             mesa.get().setEstadoMesa(EstadoMesa.OCUPADA);
+            persistir();
+
             if (mesa.get().getMozoAsignado() != null || mesa.get().getMozoAsignado().getEstadoMozo() != EstadoMozo.ACTIVO) {
                 Comanda comanda = new Comanda(mesa.get());
                 this.empresa.getComandas().getComandas().add(comanda);
+                persistirComandas();
                 return ComandaDTO.of(comanda);
             } else if (mesa.get().getMozoAsignado() == null) {
                 throw new EntidadNoEncontradaException("No se encontro mozo asignado");
             } else {
                 throw new EstadoInvalidoException("El mozo asignado no esta activo");
             }
+
         } else if (mesa.get().getEstadoMesa() == EstadoMesa.OCUPADA) {
             throw new EstadoInvalidoException("La mesa ya esta ocupada");
         } else {

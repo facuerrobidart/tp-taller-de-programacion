@@ -24,12 +24,13 @@ import java.awt.Dimension;
 public class VistaIniciarTurno extends JFrame {
 
 	private JPanel contentPane;
-	private JButton btnAgregarPedido;
+	private JButton btnCrearComanda;
 	private JButton btnAsistenciaMozos;
 	private JButton btnVolver;
 	private JButton btnGestionarMesas;
 	private JButton btnGestionarComandas;
 	private ActionListener actionListener;
+	private JButton btnAgregarPedido;
 
 	public VistaIniciarTurno() {
 		setTitle("Iniciar Turno");
@@ -81,10 +82,17 @@ public class VistaIniciarTurno extends JFrame {
 		panel_6.add(btnGestionarMesas);
 		btnGestionarMesas.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
-		btnGestionarComandas = new JButton("Gestionar comandas");
+		btnGestionarComandas = new JButton("Cerrar comanda");
 		btnGestionarComandas.setPreferredSize(new Dimension(250, 45));
 		btnGestionarComandas.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnGestionarComandas.setActionCommand("GestionarComanda");
+		btnGestionarComandas.setBounds(270, 11, 223, 45);
+		panel_6.add(btnGestionarComandas);
+
+		btnAgregarPedido = new JButton("Agregar pedido a comanda");
+		btnGestionarComandas.setPreferredSize(new Dimension(250, 45));
+		btnGestionarComandas.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnGestionarComandas.setActionCommand("AgregarPedido");
 		btnGestionarComandas.setBounds(270, 11, 223, 45);
 		panel_6.add(btnGestionarComandas);
 
@@ -92,12 +100,12 @@ public class VistaIniciarTurno extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
-		btnAgregarPedido = new JButton("Crear comanda");
-		btnAgregarPedido.setBounds(128, 5, 250, 45);
-		btnAgregarPedido.setActionCommand("AgregarPedido");
-		btnAgregarPedido.setPreferredSize(new Dimension(250, 45));
-		panel_1.add(btnAgregarPedido);
-		btnAgregarPedido.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnCrearComanda = new JButton("Crear comanda");
+		btnCrearComanda.setBounds(128, 5, 250, 45);
+		btnCrearComanda.setActionCommand("CrearComanda");
+		btnCrearComanda.setPreferredSize(new Dimension(250, 45));
+		panel_1.add(btnCrearComanda);
+		btnCrearComanda.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
 		JPanel panel_1_2_1 = new JPanel();
 		panel.add(panel_1_2_1);
@@ -127,6 +135,7 @@ public class VistaIniciarTurno extends JFrame {
 
 		this.btnAsistenciaMozos.addActionListener(actionListener);
 		this.btnGestionarMesas.addActionListener(actionListener);
+		this.btnCrearComanda.addActionListener(actionListener);
 
 		this.btnGestionarComandas.addActionListener(actionListener);
 		this.actionListener=actionListener;

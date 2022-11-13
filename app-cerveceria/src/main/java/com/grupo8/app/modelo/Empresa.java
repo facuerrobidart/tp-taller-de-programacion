@@ -45,6 +45,7 @@ public class Empresa {
         cargarProductos();
         cargarOperarios();
         cargarComandasCerradas();
+        cargarComandas();
         cargarPromocionesFijas();
         cargarPromocionesTemporales();
     }
@@ -187,6 +188,22 @@ public class Empresa {
         } catch (Exception err) {
             mozos = new MozoWrapper();
             mozos.setMozos(new HashSet<>());
+        }
+    }
+    public void cargarComandas() {
+        Ipersistencia<ComandasWrapper> persistencia = new PersistenciaXML();
+
+        try { // cargar las comandas desde el archivo XML
+            persistencia.abrirInput("./comandas.xml");
+            this.comandas = persistencia.lee();
+            if (comandas == null) {
+                comandas = new ComandasWrapper();
+                comandas.setComandas(new ArrayList<>());
+            }
+            persistencia.cerrarInput();
+        } catch (Exception err) {
+            comandas = new ComandasWrapper();
+            comandas.setComandas(new ArrayList<>());
         }
     }
 

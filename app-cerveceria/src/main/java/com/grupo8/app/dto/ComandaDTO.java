@@ -7,8 +7,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Getter
 @Setter
@@ -39,12 +43,15 @@ public class ComandaDTO {
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime( FormatStyle.SHORT )
+                .withLocale( Locale.UK )
+                .withZone( ZoneId.systemDefault() );
         return "{" +
                 "pedidos=" + pedidos +
                 ", mesa=" + mesa +
                 ", estadoPedido=" + estadoPedido +
-                ", apertura=" + apertura +
-                ", cierre=" + cierre +
+                ", apertura=" + formatter.format(apertura) +
+                (cierre != null ? ", cierre=" + cierre : "") +
                 '}';
     }
 }

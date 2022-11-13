@@ -48,9 +48,9 @@ public class ControladorIniciarTurno implements ActionListener {
 			this.vista.esconder();
 			ControladorGestionComanda.getControladorGestionComanda(true);
 			break;
-		case "AgregarPedido":
+		case "CrearComanda":
 			this.vista.esconder();
-			 ControladorAgregarComanda.getControladorAgregarComanda(true);
+		 	ControladorAgregarComanda.getControladorAgregarComanda(true);
 			break;
 		case "CerrarTurno":
 			try {
