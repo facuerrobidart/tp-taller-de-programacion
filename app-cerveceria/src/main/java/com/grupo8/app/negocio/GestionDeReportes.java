@@ -93,7 +93,7 @@ public class GestionDeReportes {
     if (reporte.isPresent()) {
       return reporte.get();
     } else {
-      throw new EntidadNoEncontradaException("No se encontró el reporte del mozo");
+      throw new EntidadNoEncontradaException("No hay ventas para el mozo seleccionado");
     }
   }
 

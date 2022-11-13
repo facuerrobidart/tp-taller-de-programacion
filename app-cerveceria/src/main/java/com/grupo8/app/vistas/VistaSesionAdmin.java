@@ -116,7 +116,7 @@ public class VistaSesionAdmin extends JFrame {
 		JPanel panel_1_2_1 = new JPanel();
 		panel.add(panel_1_2_1);
 		
-		btnAbmUsuarios = new JButton("ABM usuarios");
+		btnAbmUsuarios = new JButton("ABM operarios");
 		btnAbmUsuarios.setPreferredSize(new Dimension(200, 35));
 		btnAbmUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnAbmUsuarios.setActionCommand("ABMUsuarios");

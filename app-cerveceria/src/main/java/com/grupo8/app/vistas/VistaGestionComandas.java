@@ -1,7 +1,6 @@
 package com.grupo8.app.vistas;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
@@ -21,7 +20,7 @@ public class VistaGestionComandas extends JFrame {
 
 	private JPanel contentPane;
 	private JList<ComandaDTO> listComandas;
-	private JButton btnAgregarComanda;
+	private JButton btnAgregarPedido;
 	private JButton btnCerrar;
 	private JButton btnVolver;
 	private JScrollPane scrollPane;
@@ -41,17 +40,20 @@ public class VistaGestionComandas extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		btnAgregarComanda = new JButton("Agregar Comanda");
-		btnAgregarComanda.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnAgregarComanda.setBounds(338, 76, 142, 32);
-		panel.add(btnAgregarComanda);
+		btnAgregarPedido = new JButton("Agregar pedido");
+		btnAgregarPedido.setActionCommand("AGREGAR");
+		btnAgregarPedido.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnAgregarPedido.setBounds(338, 76, 142, 32);
+		panel.add(btnAgregarPedido);
 		
-	    btnCerrar = new JButton("Cerrar comanda");
-	    btnCerrar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnCerrar = new JButton("Cerrar comanda");
+		btnCerrar.setActionCommand("CERRAR");
+		btnCerrar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnCerrar.setBounds(338, 211, 142, 32);
 		panel.add(btnCerrar);
 		
 		btnVolver = new JButton("Volver");
+		btnVolver.setActionCommand("VOLVER");
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnVolver.setBounds(348, 374, 122, 37);
 		panel.add(btnVolver);
@@ -60,7 +62,7 @@ public class VistaGestionComandas extends JFrame {
 		scrollPane.setBounds(10, 49, 318, 354);
 		panel.add(scrollPane);
 		
-		listComandas = new JList();
+		listComandas = new JList<>();
 		scrollPane.setViewportView(listComandas);
 		listComandas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
@@ -75,17 +77,20 @@ public class VistaGestionComandas extends JFrame {
 	}
 	
 	public void mostrar() {
-        this.setVisible(true);
+		this.setVisible(true);
+	}
 
-    }
+	public void setListComandas(ComandaDTO[] comandas) {
+		this.listComandas.setListData(comandas);
+	}
 
 
-    public void esconder() {
+	public void esconder() {
         this.setVisible(false);
     }
 
 	public void setActionListener(ActionListener ac) {
-		this.btnAgregarComanda.addActionListener(ac);
+		this.btnAgregarPedido.addActionListener(ac);
 		this.btnCerrar.addActionListener(ac);
 		this.btnVolver.addActionListener(ac);
 	}

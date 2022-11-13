@@ -92,7 +92,7 @@ public class VistaIniciarTurno extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
-		btnAgregarPedido = new JButton("Agregar pedido a la mesa");
+		btnAgregarPedido = new JButton("Crear comanda");
 		btnAgregarPedido.setBounds(128, 5, 250, 45);
 		btnAgregarPedido.setActionCommand("AgregarPedido");
 		btnAgregarPedido.setPreferredSize(new Dimension(250, 45));

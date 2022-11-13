@@ -95,11 +95,13 @@ public class VistaReporte extends JFrame implements MouseListener {
 		listMozos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listMozos.setBounds(10, 235, 241, 91);
 		contentPane.add(listMozos);
+		listMozos.addMouseListener(this);
 		
 		btnVer = new JButton("Ver");
 		btnVer.setActionCommand("VER");
 		btnVer.setBounds(261, 267, 68, 23);
 		contentPane.add(btnVer);
+		btnVer.setEnabled(false);
 		
 		JLabel lblMesa = new JLabel("Estadisticas de mesas");
 		lblMesa.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -149,7 +151,9 @@ public class VistaReporte extends JFrame implements MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-
+		if (listMozos.getSelectedIndex() != -1) {
+			btnVer.setEnabled(true);
+		}
 	}
 
 	@Override
