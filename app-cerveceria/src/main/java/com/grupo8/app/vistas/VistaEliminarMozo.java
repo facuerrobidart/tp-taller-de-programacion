@@ -78,6 +78,7 @@ public class VistaEliminarMozo extends JFrame implements MouseListener {
 
 	public void mostrar() {
 		this.setVisible(true);
+		btnListo.setEnabled(false);
 
 	}
 

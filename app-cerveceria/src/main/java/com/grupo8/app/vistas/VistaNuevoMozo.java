@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -20,7 +20,7 @@ import java.util.Date;
 import javax.swing.JButton;
 import java.awt.Label;
 
-public class VistaNuevoMozo extends JFrame {
+public class VistaNuevoMozo extends JFrame implements KeyListener {
 
 	private JPanel contentPane;
 	private JTextField textFieldNombreCompleto;
@@ -85,13 +85,22 @@ public class VistaNuevoMozo extends JFrame {
 		label.setAlignment(Label.CENTER);
 		label.setBounds(163, 115, 175, 22);
 		contentPane.add(label);
+
+		btnListo.setEnabled(false);
+
+		this.textFieldNombreCompleto.addKeyListener(this);
+		this.textFieldFechaNac.addKeyListener(this);
+		this.textFieldCantHijos.addKeyListener(this);
+
+
 	}
 	
 	public void mostrar() {
 		this.setVisible(true);
+		btnListo.setEnabled(false);
+		this.limpiaCampos();
 	}
 
-	
 	public void esconder() {
 		this.setVisible(false);
 	}
@@ -127,5 +136,23 @@ public class VistaNuevoMozo extends JFrame {
 		}
 	    request.setFechaNacimiento(date);
 		return request;
+	}
+
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		btnListo.setEnabled(this.textFieldCantHijos.getText().length() > 0 && this.textFieldFechaNac.getText().length() >0 &&
+				this.textFieldNombreCompleto.getText().length() > 0);
+
 	}
 }
