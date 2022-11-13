@@ -68,6 +68,7 @@ public class VistaEditarProducto extends JFrame implements MouseListener {
 
     public void mostrar() {
         this.setVisible(true);
+        btnEditar.setEnabled(false);
 
     }
 

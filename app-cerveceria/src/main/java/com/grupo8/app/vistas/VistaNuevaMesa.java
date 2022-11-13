@@ -146,6 +146,7 @@ public class VistaNuevaMesa extends JFrame implements KeyListener {
 
 	public void mostrar() {
 		this.setVisible(true);
+		btnAceptar.setEnabled(false);
 
 	}
 	
@@ -194,7 +195,7 @@ public class VistaNuevaMesa extends JFrame implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		this.btnAceptar.setEnabled(textFieldCantSillas.getText().length() > 0
-				&& textFieldNumeroMesas.getText().length() > 0 && this.listaMozos != null);
+				&& textFieldNumeroMesas.getText().length() > 0 && this.listaMozos.getSelectedValue() != null);
 
 
 	}

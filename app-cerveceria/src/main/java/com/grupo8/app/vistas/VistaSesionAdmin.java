@@ -28,6 +28,7 @@ public class VistaSesionAdmin extends JFrame {
 	private JButton btnAgregarMozo;
 	private ActionListener actionListener;
 	private JButton btnEliminarMozo;
+	private JButton btnEliminarOperario;
 
 	public VistaSesionAdmin() {
 		setTitle("Sesion Admin");
@@ -116,11 +117,17 @@ public class VistaSesionAdmin extends JFrame {
 		JPanel panel_1_2_1 = new JPanel();
 		panel.add(panel_1_2_1);
 		
-		btnAbmUsuarios = new JButton("ABM operarios");
+		btnAbmUsuarios = new JButton("Agregar operarios");
 		btnAbmUsuarios.setPreferredSize(new Dimension(200, 35));
 		btnAbmUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnAbmUsuarios.setActionCommand("ABMUsuarios");
+		btnAbmUsuarios.setActionCommand("AgregarOperarios");
 		panel_1_2_1.add(btnAbmUsuarios);
+		
+		btnEliminarOperario = new JButton("Eliminar operarios");
+		btnEliminarOperario.setPreferredSize(new Dimension(200, 35));
+		btnEliminarOperario.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnEliminarOperario.setActionCommand("EliminarOperarios");
+		panel_1_2_1.add(btnEliminarOperario);
 		
 		JPanel panel_3 = new JPanel();
 		contentPane.add(panel_3, BorderLayout.SOUTH);
