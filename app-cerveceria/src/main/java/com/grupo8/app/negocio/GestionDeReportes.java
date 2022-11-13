@@ -56,10 +56,13 @@ public class GestionDeReportes {
       if (yaExiste.isPresent()) { //si existe el mozo en el reporte lo actualizo
         ReporteVentaDto reporte = yaExiste.get();
         reporte.setTotal(reporte.getTotal() + cierre.getTotal());
+        reporte.setCantVentas(reporte.getCantVentas() + 1);
+        reporte.setPromedio(reporte.getTotal() / reporte.getCantVentas());
       } else { //sino lo agrego
         ReporteVentaDto reporte = new ReporteVentaDto();
         reporte.setMozo(mozo);
         reporte.setTotal(cierre.getTotal());
+        reporte.setCantVentas(1);
         resultado.add(reporte);
       }
     }
