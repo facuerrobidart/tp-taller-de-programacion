@@ -72,7 +72,7 @@ public class VistaAgregarPedidoComanda extends JFrame implements MouseListener {
 		textFieldCantProd.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Cantidad de items");
-		lblNewLabel_1.setBounds(10, 363, 92, 23);
+		lblNewLabel_1.setBounds(10, 363, 162, 23);
 		panel.add(lblNewLabel_1);
 		
 		btnVolver = new JButton("Volver");
