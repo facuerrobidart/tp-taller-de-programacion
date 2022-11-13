@@ -30,7 +30,6 @@ public class VistaIniciarTurno extends JFrame {
 	private JButton btnGestionarMesas;
 	private JButton btnGestionarComandas;
 	private ActionListener actionListener;
-	private JButton btnAgregarPedido;
 
 	public VistaIniciarTurno() {
 		setTitle("Iniciar Turno");
@@ -50,13 +49,8 @@ public class VistaIniciarTurno extends JFrame {
 		panel.add(panel_4);
 		panel_4.setLayout(null);
 
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(128, 27, 0, 0);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		panel_4.add(lblNewLabel_1);
-
 		btnAsistenciaMozos = new JButton("Asistencia Mozos");
-		btnAsistenciaMozos.setBounds(133, 5, 250, 45);
+		btnAsistenciaMozos.setBounds(132, 18, 250, 45);
 		btnAsistenciaMozos.setActionCommand("AsistenciaMozos");
 		btnAsistenciaMozos.setPreferredSize(new Dimension(250, 45));
 		btnAsistenciaMozos.addActionListener(new ActionListener() {
@@ -71,7 +65,7 @@ public class VistaIniciarTurno extends JFrame {
 		panel.add(panel_6);
 
 		btnGestionarMesas = new JButton("Gestionar mesas");
-		btnGestionarMesas.setBounds(10, 11, 223, 45);
+		btnGestionarMesas.setBounds(133, 11, 243, 45);
 		btnGestionarMesas.setActionCommand("GestionarMesas");
 		btnGestionarMesas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -81,42 +75,37 @@ public class VistaIniciarTurno extends JFrame {
 		btnGestionarMesas.setPreferredSize(new Dimension(250, 45));
 		panel_6.add(btnGestionarMesas);
 		btnGestionarMesas.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		
-		btnGestionarComandas = new JButton("Cerrar comanda");
-		btnGestionarComandas.setPreferredSize(new Dimension(250, 45));
-		btnGestionarComandas.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnGestionarComandas.setActionCommand("GestionarComanda");
-		btnGestionarComandas.setBounds(270, 11, 223, 45);
-		panel_6.add(btnGestionarComandas);
-
-		btnAgregarPedido = new JButton("Agregar pedido a comanda");
-		btnGestionarComandas.setPreferredSize(new Dimension(250, 45));
-		btnGestionarComandas.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnGestionarComandas.setActionCommand("AgregarPedido");
-		btnGestionarComandas.setBounds(270, 11, 223, 45);
-		panel_6.add(btnGestionarComandas);
 
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
 		panel_1.setLayout(null);
-
-		btnCrearComanda = new JButton("Crear comanda");
-		btnCrearComanda.setBounds(128, 5, 250, 45);
-		btnCrearComanda.setActionCommand("CrearComanda");
-		btnCrearComanda.setPreferredSize(new Dimension(250, 45));
-		panel_1.add(btnCrearComanda);
-		btnCrearComanda.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+				btnGestionarComandas = new JButton("Agregar pedido a comanda");
+				btnGestionarComandas.setBounds(130, 11, 250, 45);
+				panel_1.add(btnGestionarComandas);
+				btnGestionarComandas.setPreferredSize(new Dimension(250, 45));
+				btnGestionarComandas.setFont(new Font("Tahoma", Font.PLAIN, 16));
+				btnGestionarComandas.setActionCommand("GestionarComandas");
 
 		JPanel panel_1_2_1 = new JPanel();
 		panel.add(panel_1_2_1);
 		panel_1_2_1.setLayout(null);
-
-		JButton btnCerrarTurno = new JButton("Cerrar turno");
-		btnCerrarTurno.setBounds(128, 5, 250, 45);
-		btnCerrarTurno.setPreferredSize(new Dimension(250, 45));
-		btnCerrarTurno.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnCerrarTurno.setActionCommand("CerrarTurno");
-		panel_1_2_1.add(btnCerrarTurno);
+		
+				btnCrearComanda = new JButton("Crear comanda");
+				btnCrearComanda.setBounds(129, 11, 250, 45);
+				panel_1_2_1.add(btnCrearComanda);
+				btnCrearComanda.setActionCommand("CrearComanda");
+				btnCrearComanda.setPreferredSize(new Dimension(250, 45));
+				btnCrearComanda.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		JPanel panel_2 = new JPanel();
+		panel.add(panel_2);
+		
+				JButton btnCerrarTurno = new JButton("Cerrar turno");
+				panel_2.add(btnCerrarTurno);
+				btnCerrarTurno.setPreferredSize(new Dimension(250, 45));
+				btnCerrarTurno.setFont(new Font("Tahoma", Font.PLAIN, 16));
+				btnCerrarTurno.setActionCommand("CerrarTurno");
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(5, 375, 506, 45);
@@ -131,7 +120,6 @@ public class VistaIniciarTurno extends JFrame {
 
 	public void setActionListener(ActionListener actionListener) {
 		this.btnVolver.addActionListener(actionListener);
-		this.btnAgregarPedido.addActionListener(actionListener);
 
 		this.btnAsistenciaMozos.addActionListener(actionListener);
 		this.btnGestionarMesas.addActionListener(actionListener);
