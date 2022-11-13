@@ -106,4 +106,9 @@ public class GestionDeUsuarios {
             throw new EntidadNoEncontradaException("No se encontro el mozo con id " + id);
         }
     }
+
+    public void deleteOperario(OperarioDTO operarioDTO) {
+        this.empresa.getOperarios().getOperarios().removeIf(o -> o.getUsername().equals(operarioDTO.getUsername()));
+        persistirOperarios();
+    }
 }
