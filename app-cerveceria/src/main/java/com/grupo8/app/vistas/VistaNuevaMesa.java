@@ -123,8 +123,8 @@ public class VistaNuevaMesa extends JFrame implements KeyListener {
 
 	public void limpiaCampos() {
 		this.listaMozos.clearSelection();
-		this.textFieldCantSillas.setText("");
-		this.textFieldNumeroMesas.setText("");
+		this.textFieldCantSillas.setText("0");
+		this.textFieldNumeroMesas.setText("0");
 
 	}
 

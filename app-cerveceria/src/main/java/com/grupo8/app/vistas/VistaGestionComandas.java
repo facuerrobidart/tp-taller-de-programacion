@@ -1,32 +1,29 @@
 package com.grupo8.app.vistas;
 
-import java.awt.BorderLayout;
+
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import com.grupo8.app.dto.ComandaDTO;
-
 import javax.swing.JList;
 import javax.swing.JButton;
-import javax.swing.ListSelectionModel;
 import javax.swing.JScrollPane;
 import java.awt.Font;
 import javax.swing.JLabel;
 
-public class VistaGestionComandas extends JFrame implements MouseListener {
+public class VistaGestionComandas extends JFrame {
 
 	private JPanel contentPane;
-	private JScrollPane scrollPane;
-	private JList<ComandaDTO> listComandas;
-	private JButton btnAtras;
-	private JLabel lblNewLabel;
-	private JButton btnAgregarPedido;
+	private ActionListener actionListener;
 	private JButton btnCerrar;
+	private JLabel lblNewLabel;
+	private JButton btnAtras;
+	private JScrollPane scrollPane;
+	private JButton btnAgregarPedido;
+	private JList<ComandaDTO> listComandas;
 
 	public VistaGestionComandas() {
 		setTitle("Gestion Comandas");
@@ -37,31 +34,39 @@ public class VistaGestionComandas extends JFrame implements MouseListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 492, 432);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		btnCerrar = new JButton("Cerrar comanda");
+		btnCerrar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnCerrar.setBounds(166, 398, 136, 23);
+		btnCerrar.setActionCommand("Cerrar");
+		panel.add(btnCerrar);
+		
+		lblNewLabel = new JLabel("Gestion comandas");
+		lblNewLabel.setBounds(151, 7, 176, 19);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panel.add(lblNewLabel);
+		
+		btnAtras = new JButton("Atras");
+		btnAtras.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnAtras.setBounds(54, 398, 70, 23);
+		panel.add(btnAtras);
+		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(61, 43, 378, 337);
-		contentPane.add(scrollPane);
+		scrollPane.setBounds(54, 49, 393, 309);
+		panel.add(scrollPane);
 		
 		listComandas = new JList<>();
 		scrollPane.setViewportView(listComandas);
 		
-		btnCerrar = new JButton("Cerrar comanda");
-		btnCerrar.setActionCommand("Cerrar");
-		btnCerrar.setBounds(197, 398, 116, 23);
-		contentPane.add(btnCerrar);
-		
-		btnAtras = new JButton("Atras");
-		btnAtras.setBounds(61, 398, 89, 23);
-		contentPane.add(btnAtras);
-		
-		lblNewLabel = new JLabel("Gestion comandas");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel.setBounds(68, 11, 153, 21);
-		contentPane.add(lblNewLabel);
-		
 		btnAgregarPedido = new JButton("Agregar pedido");
+		btnAgregarPedido.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnAgregarPedido.setBounds(340, 398, 142, 23);
 		btnAgregarPedido.setActionCommand("Agregar");
-		btnAgregarPedido.setBounds(344, 398, 116, 23);
-		contentPane.add(btnAgregarPedido);
+		panel.add(btnAgregarPedido);
 		
 		
 
@@ -88,36 +93,6 @@ public class VistaGestionComandas extends JFrame implements MouseListener {
 		this.btnAgregarPedido.addActionListener(ac);
 		this.btnCerrar.addActionListener(ac);
 		this.btnAtras.addActionListener(ac);
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		this.btnCerrar.setEnabled(this.listComandas.getSelectedValue() != null );
-		this.btnAgregarPedido.setEnabled(this.listComandas.getSelectedValue() != null);
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		this.actionListener=ac;
 	}
 }

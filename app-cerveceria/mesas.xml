@@ -6,7 +6,7 @@
     <void method="add">
      <object class="com.grupo8.app.modelo.Mesa">
       <void property="cantSillas">
-       <int>12</int>
+       <int>20</int>
       </void>
       <void property="estadoMesa">
        <object class="java.lang.Enum" id="EstadoMesa0" method="valueOf">
@@ -16,14 +16,154 @@
       </void>
       <void property="mozoAsignado">
        <object class="com.grupo8.app.modelo.Mozo">
-        <void property="cantidadHijos">
-         <int>2</int>
-        </void>
         <void property="estadoMozo">
          <object class="java.lang.Enum" id="EstadoMozo0" method="valueOf">
           <class>com.grupo8.app.tipos.EstadoMozo</class>
           <string>ACTIVO</string>
          </object>
+        </void>
+        <void property="fechaNacimiento">
+         <object class="java.util.Date">
+          <long>984625200000</long>
+         </object>
+        </void>
+        <void property="id">
+         <string>b2d42b1f-ebaf-4e09-bec5-9bc5a457a2cb</string>
+        </void>
+        <void property="nombreCompleto">
+         <string>Jeremias Savarino</string>
+        </void>
+       </object>
+      </void>
+      <void property="nroMesa">
+       <int>122</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.grupo8.app.modelo.Mesa">
+      <void property="cantSillas">
+       <int>2</int>
+      </void>
+      <void property="estadoMesa">
+       <object class="java.lang.Enum" id="EstadoMesa1" method="valueOf">
+        <class>com.grupo8.app.tipos.EstadoMesa</class>
+        <string>LIBRE</string>
+       </object>
+      </void>
+      <void property="nroMesa">
+       <int>25</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.grupo8.app.modelo.Mesa">
+      <void property="cantSillas">
+       <int>10</int>
+      </void>
+      <void property="estadoMesa">
+       <object idref="EstadoMesa0"/>
+      </void>
+      <void property="mozoAsignado">
+       <object class="com.grupo8.app.modelo.Mozo">
+        <void property="estadoMozo">
+         <object idref="EstadoMozo0"/>
+        </void>
+        <void property="fechaNacimiento">
+         <object class="java.util.Date">
+          <long>1668272496501</long>
+         </object>
+        </void>
+        <void property="id">
+         <string>c52dc457-656b-497f-b436-f83a89cac87a</string>
+        </void>
+        <void property="nombreCompleto">
+         <string>test</string>
+        </void>
+       </object>
+      </void>
+      <void property="nroMesa">
+       <int>217</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.grupo8.app.modelo.Mesa">
+      <void property="cantSillas">
+       <int>12</int>
+      </void>
+      <void property="estadoMesa">
+       <object idref="EstadoMesa0"/>
+      </void>
+      <void property="mozoAsignado">
+       <object class="com.grupo8.app.modelo.Mozo">
+        <void property="estadoMozo">
+         <object idref="EstadoMozo0"/>
+        </void>
+        <void property="fechaNacimiento">
+         <object class="java.util.Date">
+          <long>984625200000</long>
+         </object>
+        </void>
+        <void property="id">
+         <string>b2d42b1f-ebaf-4e09-bec5-9bc5a457a2cb</string>
+        </void>
+        <void property="nombreCompleto">
+         <string>Jeremias Savarino</string>
+        </void>
+       </object>
+      </void>
+      <void property="nroMesa">
+       <int>211</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.grupo8.app.modelo.Mesa">
+      <void property="cantSillas">
+       <int>33</int>
+      </void>
+      <void property="estadoMesa">
+       <object idref="EstadoMesa0"/>
+      </void>
+      <void property="mozoAsignado">
+       <object class="com.grupo8.app.modelo.Mozo">
+        <void property="estadoMozo">
+         <object idref="EstadoMozo0"/>
+        </void>
+        <void property="fechaNacimiento">
+         <object class="java.util.Date">
+          <long>984625200000</long>
+         </object>
+        </void>
+        <void property="id">
+         <string>b2d42b1f-ebaf-4e09-bec5-9bc5a457a2cb</string>
+        </void>
+        <void property="nombreCompleto">
+         <string>Jeremias Savarino</string>
+        </void>
+       </object>
+      </void>
+      <void property="nroMesa">
+       <int>33</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.grupo8.app.modelo.Mesa">
+      <void property="cantSillas">
+       <int>12</int>
+      </void>
+      <void property="estadoMesa">
+       <object idref="EstadoMesa0"/>
+      </void>
+      <void property="mozoAsignado">
+       <object class="com.grupo8.app.modelo.Mozo">
+        <void property="cantidadHijos">
+         <int>2</int>
+        </void>
+        <void property="estadoMozo">
+         <object idref="EstadoMozo0"/>
         </void>
         <void property="fechaNacimiento">
          <object class="java.sql.Date">
@@ -70,61 +210,14 @@
        </object>
       </void>
       <void property="nroMesa">
-       <int>222</int>
+       <int>131</int>
       </void>
      </object>
     </void>
     <void method="add">
      <object class="com.grupo8.app.modelo.Mesa">
       <void property="cantSillas">
-       <int>4</int>
-      </void>
-      <void property="estadoMesa">
-       <object class="java.lang.Enum" id="EstadoMesa1" method="valueOf">
-        <class>com.grupo8.app.tipos.EstadoMesa</class>
-        <string>LIBRE</string>
-       </object>
-      </void>
-      <void property="nroMesa">
        <int>1</int>
-      </void>
-     </object>
-    </void>
-    <void method="add">
-     <object class="com.grupo8.app.modelo.Mesa">
-      <void property="cantSillas">
-       <int>10</int>
-      </void>
-      <void property="estadoMesa">
-       <object idref="EstadoMesa0"/>
-      </void>
-      <void property="mozoAsignado">
-       <object class="com.grupo8.app.modelo.Mozo">
-        <void property="estadoMozo">
-         <object idref="EstadoMozo0"/>
-        </void>
-        <void property="fechaNacimiento">
-         <object class="java.util.Date">
-          <long>984625200000</long>
-         </object>
-        </void>
-        <void property="id">
-         <string>b2d42b1f-ebaf-4e09-bec5-9bc5a457a2cb</string>
-        </void>
-        <void property="nombreCompleto">
-         <string>Jeremias Savarino</string>
-        </void>
-       </object>
-      </void>
-      <void property="nroMesa">
-       <int>56</int>
-      </void>
-     </object>
-    </void>
-    <void method="add">
-     <object class="com.grupo8.app.modelo.Mesa">
-      <void property="cantSillas">
-       <int>10</int>
       </void>
       <void property="estadoMesa">
        <object idref="EstadoMesa0"/>
@@ -148,7 +241,38 @@
        </object>
       </void>
       <void property="nroMesa">
-       <int>217</int>
+       <int>210</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.grupo8.app.modelo.Mesa">
+      <void property="cantSillas">
+       <int>12</int>
+      </void>
+      <void property="estadoMesa">
+       <object idref="EstadoMesa0"/>
+      </void>
+      <void property="mozoAsignado">
+       <object class="com.grupo8.app.modelo.Mozo">
+        <void property="estadoMozo">
+         <object idref="EstadoMozo0"/>
+        </void>
+        <void property="fechaNacimiento">
+         <object class="java.util.Date">
+          <long>1668272496337</long>
+         </object>
+        </void>
+        <void property="id">
+         <string>0369f050-3f22-4a66-adb6-2b90e78917eb</string>
+        </void>
+        <void property="nombreCompleto">
+         <string>test</string>
+        </void>
+       </object>
+      </void>
+      <void property="nroMesa">
+       <int>77</int>
       </void>
      </object>
     </void>
@@ -186,7 +310,7 @@
     <void method="add">
      <object class="com.grupo8.app.modelo.Mesa">
       <void property="cantSillas">
-       <int>33</int>
+       <int>2</int>
       </void>
       <void property="estadoMesa">
        <object idref="EstadoMesa0"/>
@@ -210,7 +334,7 @@
        </object>
       </void>
       <void property="nroMesa">
-       <int>33</int>
+       <int>2121</int>
       </void>
      </object>
     </void>
@@ -220,10 +344,90 @@
        <int>2</int>
       </void>
       <void property="estadoMesa">
-       <object idref="EstadoMesa1"/>
+       <object idref="EstadoMesa0"/>
+      </void>
+      <void property="mozoAsignado">
+       <object class="com.grupo8.app.modelo.Mozo">
+        <void property="estadoMozo">
+         <object idref="EstadoMozo0"/>
+        </void>
+        <void property="fechaNacimiento">
+         <object class="java.util.Date">
+          <long>984625200000</long>
+         </object>
+        </void>
+        <void property="id">
+         <string>b2d42b1f-ebaf-4e09-bec5-9bc5a457a2cb</string>
+        </void>
+        <void property="nombreCompleto">
+         <string>Jeremias Savarino</string>
+        </void>
+       </object>
       </void>
       <void property="nroMesa">
-       <int>25</int>
+       <int>5</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.grupo8.app.modelo.Mesa">
+      <void property="cantSillas">
+       <int>10</int>
+      </void>
+      <void property="estadoMesa">
+       <object idref="EstadoMesa0"/>
+      </void>
+      <void property="mozoAsignado">
+       <object class="com.grupo8.app.modelo.Mozo">
+        <void property="estadoMozo">
+         <object idref="EstadoMozo0"/>
+        </void>
+        <void property="fechaNacimiento">
+         <object class="java.util.Date">
+          <long>984625200000</long>
+         </object>
+        </void>
+        <void property="id">
+         <string>b2d42b1f-ebaf-4e09-bec5-9bc5a457a2cb</string>
+        </void>
+        <void property="nombreCompleto">
+         <string>Jeremias Savarino</string>
+        </void>
+       </object>
+      </void>
+      <void property="nroMesa">
+       <int>56</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.grupo8.app.modelo.Mesa">
+      <void property="cantSillas">
+       <int>2</int>
+      </void>
+      <void property="estadoMesa">
+       <object idref="EstadoMesa0"/>
+      </void>
+      <void property="mozoAsignado">
+       <object class="com.grupo8.app.modelo.Mozo">
+        <void property="estadoMozo">
+         <object idref="EstadoMozo0"/>
+        </void>
+        <void property="fechaNacimiento">
+         <object class="java.util.Date">
+          <long>1668272496501</long>
+         </object>
+        </void>
+        <void property="id">
+         <string>c52dc457-656b-497f-b436-f83a89cac87a</string>
+        </void>
+        <void property="nombreCompleto">
+         <string>test</string>
+        </void>
+       </object>
+      </void>
+      <void property="nroMesa">
+       <int>222</int>
       </void>
      </object>
     </void>
@@ -264,31 +468,13 @@
     <void method="add">
      <object class="com.grupo8.app.modelo.Mesa">
       <void property="cantSillas">
-       <int>2</int>
+       <int>4</int>
       </void>
       <void property="estadoMesa">
-       <object idref="EstadoMesa0"/>
-      </void>
-      <void property="mozoAsignado">
-       <object class="com.grupo8.app.modelo.Mozo">
-        <void property="estadoMozo">
-         <object idref="EstadoMozo0"/>
-        </void>
-        <void property="fechaNacimiento">
-         <object class="java.util.Date">
-          <long>984625200000</long>
-         </object>
-        </void>
-        <void property="id">
-         <string>b2d42b1f-ebaf-4e09-bec5-9bc5a457a2cb</string>
-        </void>
-        <void property="nombreCompleto">
-         <string>Jeremias Savarino</string>
-        </void>
-       </object>
+       <object idref="EstadoMesa1"/>
       </void>
       <void property="nroMesa">
-       <int>5</int>
+       <int>1</int>
       </void>
      </object>
     </void>
@@ -320,37 +506,6 @@
       </void>
       <void property="nroMesa">
        <int>100</int>
-      </void>
-     </object>
-    </void>
-    <void method="add">
-     <object class="com.grupo8.app.modelo.Mesa">
-      <void property="cantSillas">
-       <int>20</int>
-      </void>
-      <void property="estadoMesa">
-       <object idref="EstadoMesa0"/>
-      </void>
-      <void property="mozoAsignado">
-       <object class="com.grupo8.app.modelo.Mozo">
-        <void property="estadoMozo">
-         <object idref="EstadoMozo0"/>
-        </void>
-        <void property="fechaNacimiento">
-         <object class="java.util.Date">
-          <long>984625200000</long>
-         </object>
-        </void>
-        <void property="id">
-         <string>b2d42b1f-ebaf-4e09-bec5-9bc5a457a2cb</string>
-        </void>
-        <void property="nombreCompleto">
-         <string>Jeremias Savarino</string>
-        </void>
-       </object>
-      </void>
-      <void property="nroMesa">
-       <int>122</int>
       </void>
      </object>
     </void>
