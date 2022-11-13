@@ -5,7 +5,6 @@ import com.grupo8.app.excepciones.EntidadNoEncontradaException;
 import com.grupo8.app.excepciones.EstadoInvalidoException;
 import com.grupo8.app.excepciones.MalaSolicitudException;
 import com.grupo8.app.excepciones.NumeroMesaInvalidoException;
-import com.grupo8.app.modelo.Comanda;
 import com.grupo8.app.modelo.Empresa;
 import com.grupo8.app.modelo.Producto;
 import org.junit.Assert;
@@ -26,7 +25,6 @@ public class TestGestionDeMesas {
 
     @Test
     public void testAddMesa() throws NumeroMesaInvalidoException, EntidadNoEncontradaException, MalaSolicitudException {
-
         Assert.assertNotNull(crearMesa());
     }
 
@@ -95,20 +93,28 @@ public class TestGestionDeMesas {
         gestionDeMesas.iniciarTurno(); //no creo las promociones antes
     }
 
-    private void crearYAsignarMozo() throws EntidadNoEncontradaException {
+    private MozoDTO crearMozo() {
         GestionDeUsuarios gestionDeUsuarios = new GestionDeUsuarios();
-        MozoDTO mozo = gestionDeUsuarios.addMozo(new AddMozoRequest("test", new Date(), 0));
-        gestionDeMesas.asignarMozo(1000, mozo);
+        return gestionDeUsuarios.addMozo(new AddMozoRequest("TEST", new Date(), 0));
     }
 
+    private void borrarMozo() {
+        GestionDeUsuarios gestionDeUsuarios = new GestionDeUsuarios();
+        List<MozoDTO> mozos = gestionDeUsuarios.obtenerMozos();
+        for (MozoDTO mozo : mozos) {
+            if (mozo.getNombreCompleto().equals("TEST")) {
+                gestionDeUsuarios.deleteMozo(mozo);
+            }
+        }
+    }
     private MesaDTO crearMesa() throws NumeroMesaInvalidoException, EntidadNoEncontradaException, MalaSolicitudException {
         borrarMesa(); //borro la mesa por si ya existe
         AddMesaRequest addMesaRequest = new AddMesaRequest();
         addMesaRequest.setNroMesa(1000);
         addMesaRequest.setCantSillas(4);
+        addMesaRequest.setMozoAsignado(crearMozo());
         MesaDTO mesa = gestionDeMesas.addMesa(addMesaRequest);
-
-        crearYAsignarMozo();
+        borrarMozo();
 
         return mesa;
     }

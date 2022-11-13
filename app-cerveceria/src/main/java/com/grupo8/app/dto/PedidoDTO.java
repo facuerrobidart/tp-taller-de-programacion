@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.Instant;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -14,7 +14,7 @@ public class PedidoDTO {
     private ProductoDTO producto;
     private int cantidad;
     private float subtotal;
-    private Instant timestamp;
+    private Date timestamp;
     private boolean esPromo;
 
     public static PedidoDTO of(Pedido pedido) {

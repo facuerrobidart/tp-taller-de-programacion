@@ -15,7 +15,7 @@
        <string>Efectivo</string>
       </void>
       <void property="idPromocion">
-       <string>991cb4d1-79be-4adf-b56d-96d26366af8b</string>
+       <string>fb175c81-5034-4e11-a1ff-55d9103c7a90</string>
       </void>
       <void property="nombre">
        <string>Test promo</string>
@@ -37,7 +37,7 @@
        <string>Efectivo</string>
       </void>
       <void property="idPromocion">
-       <string>59fbee0b-27ef-47e6-9be8-72618743bdd4</string>
+       <string>169ede0f-e010-4e0b-a233-fa3f8ceed074</string>
       </void>
       <void property="nombre">
        <string>Test promo</string>
@@ -59,35 +59,35 @@
        <string>Efectivo</string>
       </void>
       <void property="idPromocion">
-       <string>585ee5e8-69b0-420b-bb86-88f862b5632c</string>
-      </void>
-      <void property="nombre">
-       <string>Test promo</string>
-      </void>
-      <void property="porcentajeDescuento">
-       <int>50</int>
-      </void>
-     </object>
-    </void>
-    <void method="add">
-     <object class="com.grupo8.app.modelo.Promociones.PromocionTemporal">
-      <void property="activo">
-       <boolean>true</boolean>
-      </void>
-      <void property="acumulable">
-       <boolean>true</boolean>
-      </void>
-      <void property="formaPago">
-       <string>Efectivo</string>
-      </void>
-      <void property="idPromocion">
-       <string>aa447373-d164-470a-8035-7c40eb22d89c</string>
+       <string>a2ea5cfc-6085-493a-8d01-2cd2e4b544a5</string>
       </void>
       <void property="nombre">
        <string>Test promo editada</string>
       </void>
       <void property="porcentajeDescuento">
        <int>25</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.grupo8.app.modelo.Promociones.PromocionTemporal">
+      <void property="activo">
+       <boolean>true</boolean>
+      </void>
+      <void property="acumulable">
+       <boolean>true</boolean>
+      </void>
+      <void property="formaPago">
+       <string>Efectivo</string>
+      </void>
+      <void property="idPromocion">
+       <string>391c1e3f-4c40-4934-a199-642281e8cb35</string>
+      </void>
+      <void property="nombre">
+       <string>Test promo</string>
+      </void>
+      <void property="porcentajeDescuento">
+       <int>50</int>
       </void>
      </object>
     </void>

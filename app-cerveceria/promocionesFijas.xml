@@ -8,6 +8,44 @@
       <void property="activo">
        <boolean>true</boolean>
       </void>
+      <void property="dosPorUno">
+       <boolean>true</boolean>
+      </void>
+      <void property="dtoPorCant">
+       <boolean>false</boolean>
+      </void>
+      <void property="idPromocion">
+       <string>636f6c05-7cf7-4e2d-8a58-230e497d7588</string>
+      </void>
+      <void property="nombre">
+       <string>Test promo</string>
+      </void>
+      <void property="producto">
+       <object class="com.grupo8.app.modelo.Producto">
+        <void property="costo">
+         <float>50.0</float>
+        </void>
+        <void property="id">
+         <string>e03cd9a4-cf4e-4065-bfe9-8cc69d0e2eb0</string>
+        </void>
+        <void property="nombre">
+         <string>test</string>
+        </void>
+        <void property="precio">
+         <float>100.0</float>
+        </void>
+        <void property="stock">
+         <int>200</int>
+        </void>
+       </object>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.grupo8.app.modelo.Promociones.PromocionFija">
+      <void property="activo">
+       <boolean>true</boolean>
+      </void>
       <void property="diasPromo">
        <object class="java.util.ArrayList" id="ArrayList0">
         <void method="add">
@@ -55,22 +93,16 @@
        </object>
       </void>
       <void property="dosPorUno">
-       <boolean>false</boolean>
-      </void>
-      <void property="dtoPorCant">
        <boolean>true</boolean>
       </void>
-      <void property="dtoPorCantMin">
-       <int>3</int>
-      </void>
-      <void property="dtoPorCantPrecioU">
-       <double>50.0</double>
+      <void property="dtoPorCant">
+       <boolean>false</boolean>
       </void>
       <void property="idPromocion">
-       <string>13e1a09c-e8be-4a41-8f2f-e299ca0f72fc</string>
+       <string>1eb72c38-eef8-49f7-968b-8d17853c2891</string>
       </void>
       <void property="nombre">
-       <string>Test promo 2</string>
+       <string>Test promo</string>
       </void>
       <void property="producto">
        <object class="com.grupo8.app.modelo.Producto" id="Producto0">
@@ -78,7 +110,7 @@
          <float>50.0</float>
         </void>
         <void property="id">
-         <string>e1f58fcf-7544-4916-9f5f-bc88ff97fee2</string>
+         <string>cadf84bf-c4ed-4324-9626-47647ade5171</string>
         </void>
         <void property="nombre">
          <string>test</string>
@@ -102,16 +134,22 @@
        <object idref="ArrayList0"/>
       </void>
       <void property="dosPorUno">
-       <boolean>true</boolean>
-      </void>
-      <void property="dtoPorCant">
        <boolean>false</boolean>
       </void>
+      <void property="dtoPorCant">
+       <boolean>true</boolean>
+      </void>
+      <void property="dtoPorCantMin">
+       <int>3</int>
+      </void>
+      <void property="dtoPorCantPrecioU">
+       <double>50.0</double>
+      </void>
       <void property="idPromocion">
-       <string>e0dd2da8-10b0-42b8-a480-be7cf008957a</string>
+       <string>97e4e3ce-5aa8-431a-ab27-63be2ffcbeb0</string>
       </void>
       <void property="nombre">
-       <string>Test promo</string>
+       <string>Test promo 2</string>
       </void>
       <void property="producto">
        <object idref="Producto0"/>
@@ -124,51 +162,13 @@
        <boolean>true</boolean>
       </void>
       <void property="dosPorUno">
-       <boolean>true</boolean>
-      </void>
-      <void property="dtoPorCant">
-       <boolean>false</boolean>
-      </void>
-      <void property="idPromocion">
-       <string>3da4f6ad-312e-4db0-a051-5c6322b8f90b</string>
-      </void>
-      <void property="nombre">
-       <string>Test promo</string>
-      </void>
-      <void property="producto">
-       <object class="com.grupo8.app.modelo.Producto">
-        <void property="costo">
-         <float>50.0</float>
-        </void>
-        <void property="id">
-         <string>b21502de-2bd3-47ff-9c26-733716194242</string>
-        </void>
-        <void property="nombre">
-         <string>test</string>
-        </void>
-        <void property="precio">
-         <float>100.0</float>
-        </void>
-        <void property="stock">
-         <int>200</int>
-        </void>
-       </object>
-      </void>
-     </object>
-    </void>
-    <void method="add">
-     <object class="com.grupo8.app.modelo.Promociones.PromocionFija">
-      <void property="activo">
-       <boolean>true</boolean>
-      </void>
-      <void property="dosPorUno">
        <boolean>false</boolean>
       </void>
       <void property="dtoPorCant">
        <boolean>true</boolean>
       </void>
       <void property="idPromocion">
-       <string>d5f6240a-d794-40b4-a28d-43a7b9715548</string>
+       <string>8ba2393e-5677-49ce-b44b-ccc15687f8d9</string>
       </void>
       <void property="nombre">
        <string>Test promo editada</string>
@@ -179,7 +179,7 @@
          <float>50.0</float>
         </void>
         <void property="id">
-         <string>f0557fce-fac9-4ff5-8041-27322e5c389b</string>
+         <string>e7ebdfde-fabc-475d-8575-c92b53f0349f</string>
         </void>
         <void property="nombre">
          <string>test</string>
@@ -206,7 +206,7 @@
        <boolean>false</boolean>
       </void>
       <void property="idPromocion">
-       <string>397cc863-9927-4253-8e03-1fcd5fd0e15d</string>
+       <string>3b09380e-9e8e-4175-820b-cdeaa3f22f39</string>
       </void>
       <void property="nombre">
        <string>Test promo</string>
@@ -217,7 +217,7 @@
          <float>50.0</float>
         </void>
         <void property="id">
-         <string>b5619c0d-3e8f-4ab2-a341-bc646c3f6df3</string>
+         <string>86dbfaff-4d0a-485d-837c-06a720d7a702</string>
         </void>
         <void property="nombre">
          <string>test</string>
