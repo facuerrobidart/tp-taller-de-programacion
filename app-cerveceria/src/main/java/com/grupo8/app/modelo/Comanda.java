@@ -8,6 +8,7 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,15 +21,15 @@ public class Comanda implements Serializable {
   private String id;
   private List<Pedido> pedidos;
   private EstadoComanda estadoPedido;
-  private Instant apertura;
-  private Instant cierre;
+  private Date apertura;
+  private Date cierre;
   private Mesa mesa;
 
 
   public Comanda(Mesa mesa) {
     pedidos = new ArrayList<>();
     estadoPedido = EstadoComanda.ABIERTA;
-    apertura = Instant.now();
+    apertura = new Date();
     cierre = null;
     this.mesa = mesa;
     id = UUID.randomUUID().toString();

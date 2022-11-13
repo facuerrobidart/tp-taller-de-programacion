@@ -11,6 +11,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -22,8 +23,8 @@ public class ComandaDTO {
     private MesaDTO mesa;
     private String id;
     private EstadoComanda estadoPedido;
-    private Instant apertura;
-    private Instant cierre;
+    private Date apertura;
+    private Date cierre;
 
 
     public static ComandaDTO of(Comanda comanda) {
@@ -43,14 +44,11 @@ public class ComandaDTO {
 
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime( FormatStyle.SHORT )
-                .withLocale( Locale.UK )
-                .withZone( ZoneId.systemDefault() );
         return "{" +
                 "pedidos=" + pedidos +
                 ", mesa=" + mesa +
                 ", estadoPedido=" + estadoPedido +
-                ", apertura=" + formatter.format(apertura) +
+                (apertura != null ? ", apertura=" + apertura : "") +
                 (cierre != null ? ", cierre=" + cierre : "") +
                 '}';
     }

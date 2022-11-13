@@ -10,6 +10,7 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -28,7 +29,7 @@ public class CierreComanda extends Comanda implements Serializable {
 
   public CierreComanda(Comanda comanda) {
     super(comanda.getMesa());
-    this.setCierre(Instant.now());
+    this.setCierre(new Date());
     this.setApertura(comanda.getApertura());
     this.setId(this.getId());
     this.setPedidos(comanda.getPedidos());
