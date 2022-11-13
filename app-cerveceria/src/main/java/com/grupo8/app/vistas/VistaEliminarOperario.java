@@ -4,9 +4,7 @@ package com.grupo8.app.vistas;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import com.grupo8.app.dto.OperarioDTO;
-
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -81,6 +79,16 @@ public void setActionListener(ActionListener actionListener) {
         this.btnEliminar.addActionListener(actionListener);
         this.actionListener = actionListener;
 	}
+
+
+public void setListaOperarios(OperarioDTO[] operarios) {
+	this.listaOperarios.setListData(operarios);
+}
+
+
+public  OperarioDTO getOperario() {
+	return this.listaOperarios.getSelectedValue();
+}
 
 @Override
 public void mouseClicked(MouseEvent e) {

@@ -35,15 +35,15 @@ public class ControladorGestionComanda implements ActionListener {
         String comando = e.getActionCommand();
 
         switch (comando) {
-            case "AGREGAR":
+            case "Agregar":
                 ControladorAgregarComanda.getControladorAgregarComanda(true);
                 this.vista.esconder();
                 break;
-            case "CERRAR":
+            case "Cerrar":
                 //TODO: ControladorCerrarComanda.get(true);
                 this.vista.esconder();
                 break;
-            case "VOLVER":
+            case "Atras":
                 ControladorIniciarTurno.getControladorIniciarTurno(true);
                 this.vista.esconder();
                 break;

@@ -108,6 +108,7 @@ public class VistaNuevaMesa extends JFrame implements KeyListener {
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnAceptar);
 		btnAceptar.setEnabled(false);
+		this.limpiaCampos();
 
 	}
 
@@ -185,6 +186,8 @@ public class VistaNuevaMesa extends JFrame implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
+		this.btnAceptar.setEnabled(textFieldCantSillas.getText().length() > 0
+				&& textFieldNumeroMesas.getText().length() > 0 && this.listaMozos.getSelectedValue() != null);
 
 
 	}
@@ -194,8 +197,7 @@ public class VistaNuevaMesa extends JFrame implements KeyListener {
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
-		this.btnAceptar.setEnabled(textFieldCantSillas.getText().length() > 0
-				&& textFieldNumeroMesas.getText().length() > 0 && this.listaMozos.getSelectedValue() != null);
+
 
 
 	}

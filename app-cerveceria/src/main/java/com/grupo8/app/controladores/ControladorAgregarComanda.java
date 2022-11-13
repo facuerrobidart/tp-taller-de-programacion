@@ -46,8 +46,9 @@ public class ControladorAgregarComanda implements ActionListener {
                 try {
                     gestionDeMesas.crearComanda(this.vista.getMesa().getNroMesa());
                     this.vista.mostrarMensaje("Comanda agregada correctamente para la mesa " + this.vista.getMesa().getNroMesa());
-                    this.vista.esconder();
                     ControladorGestionComanda.getControladorGestionComanda(true);
+                    this.vista.esconder();
+                    
                 } catch (EstadoInvalidoException | EntidadNoEncontradaException ex) {
                     this.vista.mostrarMensaje(ex.getMessage());
                 }

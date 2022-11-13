@@ -163,6 +163,7 @@ public class VistaSesionAdmin extends JFrame {
 		this.btnAgregarMozo.addActionListener(actionListener);
 		this.btnEstadisticas.addActionListener(actionListener);
 		this.btnEliminarMozo.addActionListener(actionListener);
+		this.btnEliminarOperario.addActionListener(actionListener);
 	}
 
 	

@@ -85,6 +85,10 @@ public class VistaNuevoUsuario extends JFrame implements ActionListener, KeyList
 		panel.add(btnAtras);
 
 		this.btnRegistrar.setEnabled(false);
+
+		this.textFieldUsuario.addKeyListener(this);
+		this.textFieldContrasena.addKeyListener(this);
+		this.textFieldNombreCompleto.addKeyListener(this);
 	}
 
 	@Override

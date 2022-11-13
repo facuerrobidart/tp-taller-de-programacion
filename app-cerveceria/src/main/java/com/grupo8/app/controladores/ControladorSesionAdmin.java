@@ -55,7 +55,7 @@ public class ControladorSesionAdmin implements ActionListener {
 			vista.esconder();
 			break;
 		case "EliminarOperarios":
-			//
+			ControladorEliminarOperario.getControladorEliminarOperario(true);
 			vista.esconder();
 			break;
 		case "AgregarMozo":

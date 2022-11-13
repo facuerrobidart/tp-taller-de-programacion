@@ -66,6 +66,7 @@ public class ControladorNuevaMesa implements ActionListener {
 				try {
 					g.addMesa(this.vista.getFormulario());
 					this.vista.mensajeExito("La mesa se registro con exito");
+					this.vista.limpiaCampos();
 				} catch (NumeroMesaInvalidoException | MalaSolicitudException e1) {
 					this.vista.mensajeError(e1.getMessage());
 				}

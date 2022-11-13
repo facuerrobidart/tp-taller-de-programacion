@@ -10,8 +10,10 @@ import com.grupo8.app.dto.MesaDTO;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class VistaSeleccionarMesaComanda extends JFrame {
+public class VistaSeleccionarMesaComanda extends JFrame implements MouseListener{
 
 	private JPanel contentPane;
 	
@@ -60,11 +62,14 @@ public class VistaSeleccionarMesaComanda extends JFrame {
 		listaMesas = new JList<MesaDTO>();
 		scrollPane.setViewportView(listaMesas);
 		listaMesas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		;
+		
+		this.listaMesas.addMouseListener(this);
+		this.btnConfirmar.setEnabled(false);
 	}
 
 	public void mostrar() {
         this.setVisible(true);
+		this.btnConfirmar.setEnabled(false);
 
     }
 	
@@ -89,5 +94,36 @@ public class VistaSeleccionarMesaComanda extends JFrame {
 
 	public void mostrarMensaje(String mensaje) {
 		JOptionPane.showMessageDialog(this, mensaje);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		if(this.listaMesas.getSelectedValue() != null)
+			this.btnConfirmar.setEnabled(true);
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
