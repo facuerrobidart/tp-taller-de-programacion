@@ -7,14 +7,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ControladorAgregarPedido implements ActionListener {
-  private static final ControladorAgregarPedido instancia = null;
+  private static ControladorAgregarPedido instancia = null;
   private final GestionDeMesas gestionDeMesas;
   private final VistaAgregarPedidoComanda vista;
 
   private ControladorAgregarPedido() {
     this.gestionDeMesas = new GestionDeMesas();
     this.vista = new VistaAgregarPedidoComanda();
-    this.vista.setActionListener(this);
+    vista.setActionListener(this);
+  }
+
+  public static ControladorAgregarPedido get(boolean mostrar) {
+    if (instancia == null) {
+      instancia = new ControladorAgregarPedido();
+    }
+
+    if (mostrar) {
+      instancia.vista.mostrar();
+    }
+
+    return instancia;
   }
 
   @Override

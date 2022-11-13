@@ -1,15 +1,12 @@
 package com.grupo8.app.vistas;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
 import com.grupo8.app.dto.ComandaDTO;
 import com.grupo8.app.dto.PedidoRequest;
 import com.grupo8.app.dto.ProductoDTO;
-import java.awt.Font;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -102,7 +99,6 @@ public class VistaAgregarPedidoComanda extends JFrame implements MouseListener {
 
 	public void setActionListener(ActionListener lis){
 		btnAgregar.addActionListener(lis);
-		this.setActionListener(lis);
 	}
 	public void mostrar() {
 		btnAgregar.setEnabled(false);

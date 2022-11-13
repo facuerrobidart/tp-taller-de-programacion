@@ -6,14 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.Instant;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 @Getter
 @Setter
@@ -51,5 +46,13 @@ public class ComandaDTO {
                 (apertura != null ? ", apertura=" + apertura : "") +
                 (cierre != null ? ", cierre=" + cierre : "") +
                 '}';
+    }
+
+    public float getSubtotal() {
+        float subtotal = 0;
+        for (PedidoDTO pedido : pedidos) {
+            subtotal += pedido.getSubtotal();
+        }
+        return subtotal;
     }
 }

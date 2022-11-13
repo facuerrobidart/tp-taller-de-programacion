@@ -36,11 +36,11 @@ public class ControladorGestionComanda implements ActionListener {
 
         switch (comando) {
             case "Agregar":
-                ControladorAgregarComanda.getControladorAgregarComanda(true);
+                ControladorAgregarPedido.get(true);
                 this.vista.esconder();
                 break;
             case "Cerrar":
-                //TODO: ControladorCerrarComanda.get(true);
+                ControladorCerrarComanda.getControladorCerrarComanda(true, this.vista.getComanda());
                 this.vista.esconder();
                 break;
             case "Atras":
