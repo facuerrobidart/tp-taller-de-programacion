@@ -53,7 +53,7 @@ public class VistaAgregarPedidoComanda extends JFrame implements MouseListener {
 		
 		btnAgregar = new JButton("Agregar pedido a la comanda");
 		btnAgregar.setActionCommand("AGREGAR");
-		btnAgregar.setBounds(370, 421, 173, 23);
+		btnAgregar.setBounds(342, 421, 201, 23);
 		panel.add(btnAgregar);
 		
 		JLabel lbl = new JLabel("Seleccione productos");
@@ -72,7 +72,8 @@ public class VistaAgregarPedidoComanda extends JFrame implements MouseListener {
 		textFieldCantProd.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Cantidad de items");
-		lblNewLabel_1.setBounds(10, 363, 92, 23);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel_1.setBounds(21, 364, 135, 23);
 		panel.add(lblNewLabel_1);
 		
 		btnVolver = new JButton("Volver");
