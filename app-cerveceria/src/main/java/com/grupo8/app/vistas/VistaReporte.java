@@ -20,7 +20,6 @@ public class VistaReporte extends JFrame implements MouseListener {
 	private JPanel contentPane;
 	private JTextPane txtMinimo;
 	private JTextPane txtMaximo;
-	private JTextPane textIndividual;
 	private JList<ReporteMesaDto> listMesa;
 	private JList<MozoDTO> listMozos;
 	private JButton btnVolver;
@@ -46,71 +45,89 @@ public class VistaReporte extends JFrame implements MouseListener {
 	 * Create the frame.
 	 */
 	public VistaReporte() {
+		setTitle("Reportes de Venta");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 520, 470);
+		setBounds(100, 100, 798, 660);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		btnVolver = new JButton("Volver");
+		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnVolver.setActionCommand("VOLVER");
-		btnVolver.setBounds(204, 397, 89, 23);
+		btnVolver.setBounds(0, 594, 164, 27);
 		contentPane.add(btnVolver);
 		
 		JLabel lblTitulo = new JLabel("Reportes de venta");
-		lblTitulo.setBounds(176, 11, 164, 22);
+		lblTitulo.setBounds(288, 11, 164, 22);
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 18));
 		contentPane.add(lblTitulo);
 		
 		JLabel lblMax = new JLabel("Mozo con mayores ventas");
 		lblMax.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblMax.setBounds(10, 69, 148, 14);
+		lblMax.setBounds(10, 56, 176, 39);
 		contentPane.add(lblMax);
 		
 		JLabel lblMin = new JLabel("Mozo con menores ventas");
 		lblMin.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblMin.setBounds(346, 69, 148, 14);
+		lblMin.setBounds(607, 62, 185, 27);
 		contentPane.add(lblMin);
 		
-		txtMaximo = new JTextPane();
-		txtMaximo.setBounds(10, 94, 148, 69);
-		contentPane.add(txtMaximo);
-		
-		txtMinimo = new JTextPane();
-		txtMinimo.setBounds(346, 94, 148, 69);
-		contentPane.add(txtMinimo);
-		
 		JLabel lblEstadisticasIndividuales = new JLabel("Estadisticas individuales:");
-		lblEstadisticasIndividuales.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblEstadisticasIndividuales.setBounds(10, 196, 148, 14);
+		lblEstadisticasIndividuales.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblEstadisticasIndividuales.setBounds(27, 339, 168, 23);
 		contentPane.add(lblEstadisticasIndividuales);
 		
-		textIndividual = new JTextPane();
-		textIndividual.setBounds(346, 235, 148, 91);
-		contentPane.add(textIndividual);
-		
-		listMozos = new JList<>();
-		listMozos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listMozos.setBounds(10, 235, 241, 91);
-		contentPane.add(listMozos);
-		listMozos.addMouseListener(this);
-		
 		btnVer = new JButton("Ver");
+		btnVer.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnVer.setActionCommand("VER");
-		btnVer.setBounds(261, 267, 68, 23);
+		btnVer.setBounds(367, 440, 85, 39);
 		contentPane.add(btnVer);
 		btnVer.setEnabled(false);
 		
 		JLabel lblMesa = new JLabel("Estadisticas de mesas");
-		lblMesa.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblMesa.setBounds(189, 69, 124, 14);
+		lblMesa.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblMesa.setBounds(288, 68, 164, 14);
 		contentPane.add(lblMesa);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 94, 129, 218);
+		contentPane.add(scrollPane);
+		
+		txtMaximo = new JTextPane();
+		scrollPane.setViewportView(txtMaximo);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(182, 94, 392, 217);
+		contentPane.add(scrollPane_1);
+		
 		listMesa = new JList<>();
-		listMesa.setBounds(176, 94, 148, 69);
-		contentPane.add(listMesa);
+		scrollPane_1.setViewportView(listMesa);
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(616, 94, 117, 217);
+		contentPane.add(scrollPane_2);
+		
+		txtMinimo = new JTextPane();
+		scrollPane_2.setViewportView(txtMinimo);
+		
+		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3.setBounds(20, 380, 307, 196);
+		contentPane.add(scrollPane_3);
+		
+		listMozos = new JList<>();
+		scrollPane_3.setViewportView(listMozos);
+		listMozos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		JScrollPane scrollPane_4 = new JScrollPane();
+		scrollPane_4.setBounds(492, 374, 261, 202);
+		contentPane.add(scrollPane_4);
+		
+		JTextPane textIndividual = new JTextPane();
+		scrollPane_4.setViewportView(textIndividual);
+		listMozos.addMouseListener(this);
 	}
 
 	public void setActionListener(ActionListener actionListener) {
