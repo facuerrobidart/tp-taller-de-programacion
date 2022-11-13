@@ -12,9 +12,11 @@ import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 
-public class VistaGestionComandas extends JFrame {
+public class VistaGestionComandas extends JFrame implements MouseListener {
 
 	private JPanel contentPane;
 	private ActionListener actionListener;
@@ -68,7 +70,8 @@ public class VistaGestionComandas extends JFrame {
 		btnAgregarPedido.setActionCommand("Agregar");
 		panel.add(btnAgregarPedido);
 		
-		
+		this.btnCerrar.setEnabled(false);
+		this.listComandas.addMouseListener(this);
 
 	}
 	
@@ -94,5 +97,32 @@ public class VistaGestionComandas extends JFrame {
 		this.btnCerrar.addActionListener(ac);
 		this.btnAtras.addActionListener(ac);
 		this.actionListener=ac;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		if(this.listComandas.getSelectedValue()!=null)
+			this.btnCerrar.setEnabled(true);
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+
 	}
 }

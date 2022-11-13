@@ -6,8 +6,10 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class VistaCerrarComanda extends JFrame {
+public class VistaCerrarComanda extends JFrame implements MouseListener {
 
 	private final JButton btnCerrarComanda;
 	private final JButton btnAtras;
@@ -17,6 +19,8 @@ public class VistaCerrarComanda extends JFrame {
 	private JRadioButton rdbtnTarjeta;
 	private ActionListener actionListener;
 	private ComandaDTO comandaSeleccionada;
+	private JTextField textFieldMonto;
+	private ButtonGroup radioGroup;
 	
 	public VistaCerrarComanda() {
 		setTitle("Cerrar comanda");
@@ -70,14 +74,30 @@ public class VistaCerrarComanda extends JFrame {
 		lblElMontoA.setBounds(25, 71, 151, 23);
 		contentPane.add(lblElMontoA);
 
-		JTextField textFieldMonto = new JTextField();
+		textFieldMonto = new JTextField();
 		textFieldMonto.setBounds(195, 74, 86, 20);
 		contentPane.add(textFieldMonto);
 		textFieldMonto.setColumns(10);
+		
+		radioGroup = new ButtonGroup();
+        radioGroup.add(rdbtnTarjeta);
+        radioGroup.add(rdbtnCdni);
+        radioGroup.add(rdbtnEfectivo);
+        radioGroup.add(rdbtnMP);
+
+		this.btnCerrarComanda.setEnabled(false);
+		this.textFieldMonto.setEnabled(false);
+
+		 this.rdbtnCdni.addMouseListener(this);
+		 this.rdbtnEfectivo.addMouseListener(this);
+		 this.rdbtnMP.addMouseListener(this);
+		 this.rdbtnTarjeta.addMouseListener(this);
+
 	}
 
 	public void mostrar() {
 		this.setVisible(true);
+
 	}
 
 	public void esconder() {
@@ -88,6 +108,13 @@ public class VistaCerrarComanda extends JFrame {
 		JOptionPane.showMessageDialog(this, mensaje);
 	}
 	
+	public void setComanda(ComandaDTO comanda) {
+		this.comandaSeleccionada=comanda;
+		if(this.comandaSeleccionada!=null){
+			this.textFieldMonto.setText(String.valueOf(comandaSeleccionada.getSubtotal()));
+		}
+
+	}
 	public void setActionListener(ActionListener ac) {
 		this.actionListener=ac;
 		this.rdbtnCdni.addActionListener(ac);
@@ -96,6 +123,32 @@ public class VistaCerrarComanda extends JFrame {
 		this.rdbtnTarjeta.addActionListener(ac);
 		this.btnAtras.addActionListener(ac);
 		this.btnCerrarComanda.addActionListener(ac);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		this.btnCerrarComanda.setEnabled(this.rdbtnTarjeta.isSelected() || this.rdbtnMP.isSelected() ||
+				this.rdbtnEfectivo.isSelected() || this.rdbtnCdni.isSelected());
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
 
 	}
 }

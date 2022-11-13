@@ -32,7 +32,7 @@ public class ControladorCerrarComanda implements ActionListener {
         if (mostrar) {
             instancia.vista.mostrar();
         }
-        instancia.setComandaSeleccionada(comandaSeleccionada);
+        instancia.vista.setComanda(comandaSeleccionada);
         return instancia;
     }
 
