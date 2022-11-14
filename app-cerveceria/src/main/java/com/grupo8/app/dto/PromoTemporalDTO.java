@@ -30,7 +30,7 @@ public class PromoTemporalDTO extends PromocionDTO {
 
     @Override
     public String toString() {
-        return "{" +
+        return super.toString()+"{" +
                 "formaPago='" + formaPago + '\'' +
                 ", porcentajeDescuento=" + porcentajeDescuento +
                 ", acumulable=" + acumulable +

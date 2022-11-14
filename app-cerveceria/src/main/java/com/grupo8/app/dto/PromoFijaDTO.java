@@ -34,7 +34,7 @@ public class PromoFijaDTO extends PromocionDTO {
 
     @Override
     public String toString() {
-        return "{" +
+        return  super.toString()+"{" +
                 "producto=" + producto +
                 ", dosPorUno=" + dosPorUno +
                 ", dtoPorCant=" + dtoPorCant +
