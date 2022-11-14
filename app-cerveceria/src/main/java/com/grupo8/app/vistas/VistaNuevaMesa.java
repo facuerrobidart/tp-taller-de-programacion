@@ -23,7 +23,7 @@ import java.awt.event.MouseListener;
 import java.awt.Font;
 import java.awt.FlowLayout;
 
-public class VistaNuevaMesa extends JFrame implements KeyListener {
+public class VistaNuevaMesa extends JFrame implements KeyListener,MouseListener {
 
 	private JPanel General;
 	private ActionListener actionListener;
@@ -89,6 +89,7 @@ public class VistaNuevaMesa extends JFrame implements KeyListener {
 		listaMozos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listaMozos.setBounds(10, 11, 580, 277);
 		panel_13.add(listaMozos);
+		listaMozos.addMouseListener(this);
 
 		JLabel lblNewLabel_5_1 = new JLabel("Asigne Mozo: ");
 		lblNewLabel_5_1.setBounds(10, 197, 182, 30);
@@ -125,6 +126,7 @@ public class VistaNuevaMesa extends JFrame implements KeyListener {
 		this.listaMozos.clearSelection();
 		this.textFieldCantSillas.setText("0");
 		this.textFieldNumeroMesas.setText("0");
+		this.btnAceptar.setEnabled(false);
 
 	}
 
@@ -163,17 +165,20 @@ public class VistaNuevaMesa extends JFrame implements KeyListener {
 		this.mesaEditable=mesa;
 		this.textFieldNumeroMesas.setText((mesa.getNroMesa().toString()));
 		this.textFieldCantSillas.setText(mesa.getCantSillas().toString());
-		this.btnAceptar.setEnabled(true);
+		
 		if(mesa!=null) {
 			this.textFieldNumeroMesas.setEnabled(false);
 			this.lblNewLabel_5.setEnabled(false);
 		}
+		
+		
 	}
 
 	public void resetearEditable() {
 		this.mesaEditable = null;
 		this.textFieldCantSillas.setText("");
 		this.textFieldNumeroMesas.setText("");
+		this.btnAceptar.setEnabled(false);
 
 	}
 
@@ -186,8 +191,7 @@ public class VistaNuevaMesa extends JFrame implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		this.btnAceptar.setEnabled(textFieldCantSillas.getText().length() > 0
-				&& textFieldNumeroMesas.getText().length() > 0 && this.listaMozos.getSelectedValue() != null);
+		
 
 
 	}
@@ -197,6 +201,8 @@ public class VistaNuevaMesa extends JFrame implements KeyListener {
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
+		this.btnAceptar.setEnabled(textFieldCantSillas.getText().length() > 0
+				&& textFieldNumeroMesas.getText().length() > 0 && this.listaMozos.getSelectedValue() != null);
 
 
 
@@ -204,6 +210,37 @@ public class VistaNuevaMesa extends JFrame implements KeyListener {
 
 	public void setListaMozos(MozoDTO[] mozos) {
 		listaMozos.setListData(mozos);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		this.btnAceptar.setEnabled(textFieldCantSillas.getText().length() > 0
+				&& textFieldNumeroMesas.getText().length() > 0 && this.listaMozos.getSelectedValue() != null);
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
