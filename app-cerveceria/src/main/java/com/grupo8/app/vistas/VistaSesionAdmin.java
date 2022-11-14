@@ -1,19 +1,10 @@
 package com.grupo8.app.vistas;
 
-import java.awt.BorderLayout;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import java.awt.GridLayout;
-import java.awt.event.ActionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import java.awt.Dimension;
+import java.awt.event.ActionListener;
 
 public class VistaSesionAdmin extends JFrame {
 
@@ -29,11 +20,15 @@ public class VistaSesionAdmin extends JFrame {
 	private ActionListener actionListener;
 	private JButton btnEliminarMozo;
 	private JButton btnEliminarOperario;
+	private JPanel panel_1_2_2;
+	private JLabel lblNewLabel_2;
+	private JTextField textFieldSueldo;
+	private JButton btnActualizarSueldo;
 
 	public VistaSesionAdmin() {
 		setTitle("Sesion Admin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 532, 464);
+		setBounds(100, 100, 532, 606);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -129,6 +124,27 @@ public class VistaSesionAdmin extends JFrame {
 		btnEliminarOperario.setActionCommand("EliminarOperarios");
 		panel_1_2_1.add(btnEliminarOperario);
 		
+		panel_1_2_2 = new JPanel();
+		panel.add(panel_1_2_2);
+		panel_1_2_2.setLayout(null);
+		
+		lblNewLabel_2 = new JLabel("Actualizar sueldo base");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewLabel_2.setBounds(56, 11, 147, 14);
+		panel_1_2_2.add(lblNewLabel_2);
+		
+		textFieldSueldo = new JTextField();
+		textFieldSueldo.setBounds(56, 36, 147, 20);
+		panel_1_2_2.add(textFieldSueldo);
+		textFieldSueldo.setColumns(10);
+		
+		btnActualizarSueldo = new JButton("Actualizar");
+		btnActualizarSueldo.setPreferredSize(new Dimension(200, 35));
+		btnActualizarSueldo.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnActualizarSueldo.setActionCommand("ActualizarSueldo");
+		btnActualizarSueldo.setBounds(249, 29, 180, 30);
+		panel_1_2_2.add(btnActualizarSueldo);
+		
 		JPanel panel_3 = new JPanel();
 		contentPane.add(panel_3, BorderLayout.SOUTH);
 		panel_3.setLayout(new BorderLayout(0, 0));
@@ -164,6 +180,7 @@ public class VistaSesionAdmin extends JFrame {
 		this.btnEstadisticas.addActionListener(actionListener);
 		this.btnEliminarMozo.addActionListener(actionListener);
 		this.btnEliminarOperario.addActionListener(actionListener);
+		this.btnActualizarSueldo.addActionListener(actionListener);
 	}
 
 	
@@ -176,4 +193,11 @@ public class VistaSesionAdmin extends JFrame {
 		JOptionPane.showMessageDialog(null, titulo, ok, JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	public String getSueldo() {
+		return this.textFieldSueldo.getText();
+	}
+
+	public void setTextFieldSueldo(String sueldo) {
+		this.textFieldSueldo.setText(sueldo);
+	}
 }

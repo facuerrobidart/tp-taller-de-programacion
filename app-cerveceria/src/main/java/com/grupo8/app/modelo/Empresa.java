@@ -1,9 +1,6 @@
 package com.grupo8.app.modelo;
 
 import com.grupo8.app.excepciones.CredencialesInvalidasException;
-import com.grupo8.app.modelo.Promociones.Promocion;
-import com.grupo8.app.modelo.Promociones.PromocionFija;
-import com.grupo8.app.modelo.Promociones.PromocionTemporal;
 import com.grupo8.app.persistencia.Ipersistencia;
 import com.grupo8.app.persistencia.PersistenciaXML;
 import com.grupo8.app.wrappers.*;
@@ -11,7 +8,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -28,6 +27,7 @@ public class Empresa {
     private PromocionesFijasWrapper promocionesFijas;
     private PromocionesTemporalesWrapper promocionesTemporales;
     private Operario usuarioLogueado;
+    private Float sueldoBase;
 
 
     public static Empresa getEmpresa() {
@@ -48,6 +48,7 @@ public class Empresa {
         cargarComandas();
         cargarPromocionesFijas();
         cargarPromocionesTemporales();
+        this.sueldoBase = 10000F;
     }
 
     private void cargarOperarios() {
@@ -205,6 +206,36 @@ public class Empresa {
             comandas = new ComandasWrapper();
             comandas.setComandas(new ArrayList<>());
         }
+    }
+
+    public void cargarSueldo() {
+        Ipersistencia<Float> persistencia = new PersistenciaXML();
+
+        try {
+            persistencia.abrirInput("./sueldo.xml");
+            this.sueldoBase = persistencia.lee();
+            if (sueldoBase == null) {
+                sueldoBase = 10000f;
+                persistirSueldo();
+            }
+            persistencia.cerrarInput();
+
+        } catch (Exception err) {
+            sueldoBase = 10000f;
+            try {
+                persistencia.abrirOutput("./sueldo.xml");
+                persistencia.escribir(sueldoBase);
+            } catch (IOException e) {}
+        }
+    }
+
+    public void persistirSueldo() {
+        Ipersistencia<Float> persistencia = new PersistenciaXML();
+
+        try {
+            persistencia.abrirOutput("./sueldo.xml");
+            persistencia.escribir(sueldoBase);
+        } catch (IOException e) {}
     }
 
 

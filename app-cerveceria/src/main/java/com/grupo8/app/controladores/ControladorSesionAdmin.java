@@ -1,5 +1,6 @@
 package com.grupo8.app.controladores;
 
+import com.grupo8.app.modelo.Empresa;
 import com.grupo8.app.negocio.GestionDeUsuarios;
 import com.grupo8.app.vistas.VistaSesionAdmin;
 
@@ -24,6 +25,7 @@ public class ControladorSesionAdmin implements ActionListener {
 			instancia.vista.mostrar();
 		}
 
+		instancia.vista.setTextFieldSueldo(Empresa.getEmpresa().getSueldoBase().toString());
 		return instancia;
 	}
 
@@ -65,6 +67,15 @@ public class ControladorSesionAdmin implements ActionListener {
 		case "EliminarMozo":
 			ControladorEliminarMozo.getControladorEliminarMozo(true);
 			this.vista.esconder();
+			break;
+		case "ActualizarSueldo":
+			try {
+				Empresa.getEmpresa().setSueldoBase(Float.parseFloat(vista.getSueldo()));
+				Empresa.getEmpresa().persistirSueldo();
+				this.vista.success("Sueldo actualizado", "Exito");
+			} catch (NumberFormatException e1) {
+				this.vista.failure("Ingrese un numero valido", "Error");
+			}
 			break;
 		case "CERRAR":
 			ControladorLogin.getControladorLogin(true);
