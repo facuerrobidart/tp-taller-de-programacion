@@ -8,10 +8,12 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class VistaAgregarPedidoComanda extends JFrame implements MouseListener {
+public class VistaAgregarPedidoComanda extends JFrame implements MouseListener,KeyListener{
 
 	private final JTextField textFieldCantProd;
 	private final JList <ComandaDTO> listComandas;
@@ -19,25 +21,7 @@ public class VistaAgregarPedidoComanda extends JFrame implements MouseListener {
 	private final JButton btnVolver;
 	private final JList<ProductoDTO> listProductos;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaAgregarPedidoComanda frame = new VistaAgregarPedidoComanda();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public VistaAgregarPedidoComanda() {
 		setTitle("Agregar pedido a comanda");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -99,6 +83,8 @@ public class VistaAgregarPedidoComanda extends JFrame implements MouseListener {
 		listProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listProductos.addMouseListener(this);
 		listComandas.addMouseListener(this);
+	
+		btnAgregar.setEnabled(false);
 	}
 
 	public void setActionListener(ActionListener lis){
@@ -116,6 +102,7 @@ public class VistaAgregarPedidoComanda extends JFrame implements MouseListener {
 
 	public void setListProductos(ProductoDTO[] productos){
 		listProductos.setListData(productos);
+		
 	}
 
 	public ProductoDTO getProductoSelec() {
@@ -171,5 +158,25 @@ public class VistaAgregarPedidoComanda extends JFrame implements MouseListener {
 	@Override
 	public void mouseExited(MouseEvent e) {
 
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if(this.textFieldCantProd.getText().length()!=0) {
+			btnAgregar.setEnabled(true);
+		}
+		
 	}
 }
