@@ -73,11 +73,21 @@ public class GestionDeUsuarios {
         return MozoDTO.of(nuevoMozo);
     }
 
+    /**
+     * Elimina un mozo de la empresa y lo persiste
+     * @param mozo
+     */
     public void deleteMozo(MozoDTO mozo) {
         this.empresa.getMozos().getMozos().removeIf(m -> m.getId().equals(mozo.getId()));
         persistirMozo();
     }
 
+    /**
+     * Calcula el sueldo total de los mozos teniendo en cuenta la cantidad de hijos
+     * @param mozo mozo seleccionado
+     * @return sueldo final
+     * @throws EntidadNoEncontradaException si el mozo no existe
+     */
     public Float calcularSueldoMozo(MozoDTO mozo) throws EntidadNoEncontradaException {
         float base = this.empresa.getSueldoBase();
 
@@ -91,6 +101,10 @@ public class GestionDeUsuarios {
         }
     }
 
+    /**
+     * Elmina un mozo por el nombre
+     * @param nombre nombre del mozo a eliminar
+     */
     public void deleteMozoPorNombre(String nombre) {
         this.empresa.getMozos().getMozos().removeIf(m -> m.getNombreCompleto().contains(nombre));
         persistirMozo();
@@ -144,6 +158,12 @@ public class GestionDeUsuarios {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Cambia el estado de asistencia de un mozo
+     * @param id id del mozo a modificar
+     * @param estado estado al que se quiere cambiar
+     * @throws EntidadNoEncontradaException si no se encuentra el mozo
+     */
     public void tomarAsistencia(String id, EstadoMozo estado) throws EntidadNoEncontradaException {
         Optional<Mozo> mozo = this.empresa.getMozos().getMozos().stream().filter(m -> m.getId().equals(id)).findFirst();
 
@@ -154,6 +174,11 @@ public class GestionDeUsuarios {
         }
     }
 
+
+    /**
+     * Elmina un operario
+     * @param operarioDTO operario a elminar
+     */
     public void deleteOperario(OperarioDTO operarioDTO) {
         this.empresa.getOperarios().getOperarios().removeIf(o -> o.getUsername().equals(operarioDTO.getUsername()));
         persistirOperarios();

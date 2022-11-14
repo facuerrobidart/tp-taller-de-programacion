@@ -271,6 +271,12 @@ public class GestionDePromos {
         }
     }
 
+    /**
+     * Cambia el estado de una promocion fija
+     * @param id id de la promo fija a cambiar
+     * @return estado final de la promocion
+     * @throws EntidadNoEncontradaException si no existe la promocion
+     */
     private boolean activarDesactivarPromoFija(String id) throws EntidadNoEncontradaException {
         Optional<PromocionFija> promo = this.empresa.getPromocionesFijas().getPromocionesFijas().stream()
                 .filter(p -> p.getIdPromocion().equals(id))
@@ -284,8 +290,14 @@ public class GestionDePromos {
         }
     }
 
+    /**
+     * Activa o desactiva una promocion temporal
+     * @param id id de la promo a cambiar
+     * @return el estado final de la promocion
+     * @throws EntidadNoEncontradaException si no existe la promocion
+     */
     private boolean activarDesactivarPromoTemporal(String id) throws EntidadNoEncontradaException {
-Optional<PromocionTemporal> promo = this.empresa.getPromocionesTemporales().getPromocionesTemporales().stream()
+        Optional<PromocionTemporal> promo = this.empresa.getPromocionesTemporales().getPromocionesTemporales().stream()
                 .filter(p -> p.getIdPromocion().equals(id))
                 .findFirst();
         if (promo.isPresent()) {
@@ -297,6 +309,12 @@ Optional<PromocionTemporal> promo = this.empresa.getPromocionesTemporales().getP
         }
     }
 
+    /**
+     * activa o desactiva una promocion cualquiera
+     * @param id id de la promo a cambiar
+     * @return el estado final de la promocion
+     * @throws EntidadNoEncontradaException si no existe la promocion
+     */
     public boolean activarDesactivarPromo(String id) throws EntidadNoEncontradaException {
         try {
             return activarDesactivarPromoFija(id);

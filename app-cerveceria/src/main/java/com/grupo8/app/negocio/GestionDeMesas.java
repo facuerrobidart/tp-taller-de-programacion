@@ -394,7 +394,12 @@ public class GestionDeMesas {
         }
     }
 
-
+    /**
+     * Devuelve una mesa por su numero
+     * @param nroMesa numero de mesa
+     * @return DTO de la mesa
+     * @throws EntidadNoEncontradaException si no se encuentra la mesa
+     */
     public MesaDTO obtenerPorNro(Integer nroMesa) throws EntidadNoEncontradaException{
         Optional <MesaDTO> mesa= this.obtenerMesas().stream().filter(m->m.getNroMesa().equals(nroMesa)).findFirst();
         if(mesa.isPresent())
