@@ -7,7 +7,9 @@ import com.grupo8.app.dto.OperarioDTO;
 import com.grupo8.app.excepciones.CredencialesInvalidasException;
 import com.grupo8.app.excepciones.EntidadNoEncontradaException;
 import com.grupo8.app.excepciones.PermisoDenegadoException;
-import com.grupo8.app.modelo.*;
+import com.grupo8.app.modelo.Empresa;
+import com.grupo8.app.modelo.Mozo;
+import com.grupo8.app.modelo.Operario;
 import com.grupo8.app.persistencia.Ipersistencia;
 import com.grupo8.app.persistencia.PersistenciaXML;
 import com.grupo8.app.tipos.EstadoMozo;
@@ -16,7 +18,6 @@ import com.grupo8.app.wrappers.OperariosWrapper;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class GestionDeUsuarios {
@@ -56,6 +57,19 @@ public class GestionDeUsuarios {
     public void deleteMozo(MozoDTO mozo) {
         this.empresa.getMozos().getMozos().removeIf(m -> m.getId().equals(mozo.getId()));
         persistirMozo();
+    }
+
+    public Float calcularSueldoMozo(MozoDTO mozo) throws EntidadNoEncontradaException {
+        float base = this.empresa.getSueldoBase();
+
+        Optional<Mozo> mozoEncontrado = this.empresa.getMozos().getMozos().stream()
+                .filter(m -> m.getId().equals(mozo.getId()))
+                .findFirst();
+        if (mozoEncontrado.isPresent()) {
+            return base + (mozoEncontrado.get().getCantidadHijos() * 0.05f * base);
+        } else {
+            throw new EntidadNoEncontradaException("No se encontro el mozo");
+        }
     }
 
     public void deleteMozoPorNombre(String nombre) {

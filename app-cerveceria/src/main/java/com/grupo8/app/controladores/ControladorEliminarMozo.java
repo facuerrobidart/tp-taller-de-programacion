@@ -1,13 +1,12 @@
 package com.grupo8.app.controladores;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import com.grupo8.app.dto.MesaDTO;
 import com.grupo8.app.dto.MozoDTO;
 import com.grupo8.app.modelo.Empresa;
 import com.grupo8.app.negocio.GestionDeUsuarios;
 import com.grupo8.app.vistas.VistaEliminarMozo;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ControladorEliminarMozo implements ActionListener {
 
@@ -43,6 +42,14 @@ public class ControladorEliminarMozo implements ActionListener {
 			this.gestionUsuarios.deleteMozo(this.vista.getMozo());
 			this.vista.setListaMozos(gestionUsuarios.obtenerMozos().toArray(new MozoDTO[0]));
 			this.vista.mensajeExito("mozo eliminado correctamente");
+			break;
+		case "VER_SUELDO":
+			try {
+				Float resultado = this.gestionUsuarios.calcularSueldoMozo(this.vista.getMozo());
+				this.vista.mensajeExito("El sueldo de " + this.vista.getMozo().getNombreCompleto() + " es de: " + resultado);
+			} catch (Exception e1) {
+				this.vista.mensajeError(e1.getMessage());
+			}
 			break;
 		case "Atras":
 			this.vista.esconder();
