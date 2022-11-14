@@ -7,11 +7,11 @@ import com.grupo8.app.modelo.Empresa;
 import com.grupo8.app.modelo.Producto;
 import com.grupo8.app.persistencia.Ipersistencia;
 import com.grupo8.app.persistencia.PersistenciaXML;
+import com.grupo8.app.wrappers.ProductoWrapper;
 import lombok.NonNull;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class GestionDeProductos {
@@ -36,7 +36,7 @@ public class GestionDeProductos {
         }
 
         Producto producto = new Producto(request.getNombre(), request.getPrecio(), request.getCosto(), request.getStock());
-        this.empresa.getProductos().add(producto);
+        this.empresa.getProductos().getProductos().add(producto);
         persistir();
 
         return ProductoDTO.of(producto);
@@ -49,11 +49,11 @@ public class GestionDeProductos {
      */
     public void deleteProducto(@NonNull String id) {
 
-        if (this.empresa.getComandas().stream().anyMatch(c -> c.getPedidos().stream().anyMatch(p -> p.getProducto().getId().equals(id)))) {
+        if (this.empresa.getComandas().getComandas().stream().anyMatch(c -> c.getPedidos().stream().anyMatch(p -> p.getProducto().getId().equals(id)))) {
             throw new IllegalArgumentException("No se puede eliminar un producto que existe en una comanda");
         }
 
-        this.empresa.getProductos().removeIf(producto -> id.equals(producto.getId()));
+        this.empresa.getProductos().getProductos().removeIf(producto -> id.equals(producto.getId()));
 
         persistir();
     }
@@ -65,7 +65,7 @@ public class GestionDeProductos {
      * @throws EntidadNoEncontradaException
      */
     public void editProducto(String id, AddProductoRequest informacion) throws EntidadNoEncontradaException {
-        Optional<Producto> producto = this.empresa.getProductos().stream()
+        Optional<Producto> producto = this.empresa.getProductos().getProductos().stream()
                 .filter(p -> id.equals(p.getId()))
                 .findFirst();
 
@@ -80,8 +80,8 @@ public class GestionDeProductos {
     /**
      * Persiste los productos de la empresa en el archivo productos.xml
      */
-    private void persistir() {
-        Ipersistencia<Set<Producto>> persistencia = new PersistenciaXML();
+    public void persistir() {
+        Ipersistencia<ProductoWrapper> persistencia = new PersistenciaXML();
         try {
             persistencia.abrirOutput("productos.xml");
             persistencia.escribir(this.empresa.getProductos());
@@ -96,6 +96,7 @@ public class GestionDeProductos {
      */
     public List<ProductoDTO> obtenerProductos() {
         return empresa.getProductos()
+                .getProductos()
                 .stream()
                 .map(ProductoDTO::of)
                 .collect(Collectors.toList());
@@ -108,7 +109,9 @@ public class GestionDeProductos {
      * @throws EntidadNoEncontradaException si no se encuentra el producto
      */
     public ProductoDTO obtenerPorId(String id) throws EntidadNoEncontradaException {
-        Optional<Producto> producto = this.empresa.getProductos().stream()
+        Optional<Producto> producto = this.empresa.getProductos()
+                .getProductos()
+                .stream()
                 .filter(p -> id.equals(p.getId()))
                 .findFirst();
 

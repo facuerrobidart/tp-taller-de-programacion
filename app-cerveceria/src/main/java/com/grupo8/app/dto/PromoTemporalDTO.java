@@ -27,4 +27,13 @@ public class PromoTemporalDTO extends PromocionDTO {
         promoDTO.setAcumulable(promo.isAcumulable());
         return promoDTO;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+"{" +
+                "formaPago='" + formaPago + '\'' +
+                ", porcentajeDescuento=" + porcentajeDescuento +
+                ", acumulable=" + acumulable +
+                '}';
+    }
 }

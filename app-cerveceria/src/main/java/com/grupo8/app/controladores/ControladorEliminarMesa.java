@@ -30,6 +30,7 @@ public class ControladorEliminarMesa implements ActionListener {
 		if (mostrar) {
 			instancia.vista.mostrar();
 		}
+		instancia.vista.setListaMesasElim(instancia.gestionMesas.obtenerMesas().toArray(new MesaDTO[0]));
 		return instancia;
 	}
 
@@ -38,7 +39,7 @@ public class ControladorEliminarMesa implements ActionListener {
 		String comando = e.getActionCommand();
 		switch (comando) {
 		case "ELIMINAR":
-			this.gestionMesas.deleteMesa(vista.obtenerIdSeleccionado());
+			this.gestionMesas.deleteMesa(this.vista.obtenerNroMesa());
 			this.vista.setListaMesasElim(gestionMesas.obtenerMesas().toArray(new MesaDTO[0])); //actualiza la lista sin el eliminado
 			this.vista.mostrarMensaje("Mesa eliminada correctamente");
 			break;

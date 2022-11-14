@@ -13,4 +13,15 @@ public class ReporteMesaDto {
   private float ventasTotales;
   private int cantidadVentas;
 
+
+  @Override
+  public String toString() {
+    return "{" +
+      " numeroMesa='" + getNumeroMesa() + "'" +
+      ", ventaPromedio='" + getVentaPromedio() + "'" +
+      ", ventasTotales='" + getVentasTotales() + "'" +
+      ", cantidadVentas='" + getCantidadVentas() + "'" +
+      "}";
+  }
+
 }

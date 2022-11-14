@@ -5,13 +5,19 @@ import com.grupo8.app.dto.AddOperarioRequest;
 import com.grupo8.app.dto.MozoDTO;
 import com.grupo8.app.dto.OperarioDTO;
 import com.grupo8.app.excepciones.CredencialesInvalidasException;
+import com.grupo8.app.excepciones.EntidadNoEncontradaException;
 import com.grupo8.app.excepciones.PermisoDenegadoException;
-import com.grupo8.app.modelo.*;
+import com.grupo8.app.modelo.Empresa;
+import com.grupo8.app.modelo.Mozo;
+import com.grupo8.app.modelo.Operario;
 import com.grupo8.app.persistencia.Ipersistencia;
 import com.grupo8.app.persistencia.PersistenciaXML;
+import com.grupo8.app.tipos.EstadoMozo;
+import com.grupo8.app.wrappers.MozoWrapper;
+import com.grupo8.app.wrappers.OperariosWrapper;
 
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class GestionDeUsuarios {
@@ -47,7 +53,7 @@ public class GestionDeUsuarios {
      */
     public void addOperario(AddOperarioRequest request) throws PermisoDenegadoException {
         if (this.empresa.getUsuarioLogueado().getUsername().equals("admin")) {
-            this.empresa.getOperarios().add(
+            this.empresa.getOperarios().getOperarios().add(
                     new Operario(request.getNombreCompleto(), request.getUsername(), request.getPassword()));
             persistirOperarios();
         } else {
@@ -61,17 +67,40 @@ public class GestionDeUsuarios {
      */
     public MozoDTO addMozo(AddMozoRequest request) {
         Mozo nuevoMozo = new Mozo(request.getNombreCompleto(), request.getFechaNacimiento(), request.getCantidadHijos());
-        this.empresa.getMozos().add(nuevoMozo);
+        this.empresa.getMozos().getMozos().add(nuevoMozo);
 
         persistirMozo();
         return MozoDTO.of(nuevoMozo);
+    }
+
+    public void deleteMozo(MozoDTO mozo) {
+        this.empresa.getMozos().getMozos().removeIf(m -> m.getId().equals(mozo.getId()));
+        persistirMozo();
+    }
+
+    public Float calcularSueldoMozo(MozoDTO mozo) throws EntidadNoEncontradaException {
+        float base = this.empresa.getSueldoBase();
+
+        Optional<Mozo> mozoEncontrado = this.empresa.getMozos().getMozos().stream()
+                .filter(m -> m.getId().equals(mozo.getId()))
+                .findFirst();
+        if (mozoEncontrado.isPresent()) {
+            return base + (mozoEncontrado.get().getCantidadHijos() * 0.05f * base);
+        } else {
+            throw new EntidadNoEncontradaException("No se encontro el mozo");
+        }
+    }
+
+    public void deleteMozoPorNombre(String nombre) {
+        this.empresa.getMozos().getMozos().removeIf(m -> m.getNombreCompleto().contains(nombre));
+        persistirMozo();
     }
 
     /**
      * Persiste los mozos de la empresa en el archivo mozos.xml
      */
     private void persistirMozo() {
-        Ipersistencia<Set<Mozo>> persistencia = new PersistenciaXML();
+        Ipersistencia<MozoWrapper> persistencia = new PersistenciaXML();
         try {
             persistencia.abrirOutput("mozos.xml");
             persistencia.escribir(this.empresa.getMozos());
@@ -84,7 +113,7 @@ public class GestionDeUsuarios {
      * Persiste los operarios de la empresa en el archivo operarios.xml
      */
     private void persistirOperarios() {
-        Ipersistencia<Set<Operario>> persistencia = new PersistenciaXML();
+        Ipersistencia<OperariosWrapper> persistencia = new PersistenciaXML();
         try {
             persistencia.abrirOutput("operarios.xml");
             persistencia.escribir(this.empresa.getOperarios());
@@ -99,6 +128,7 @@ public class GestionDeUsuarios {
      */
     public List<MozoDTO> obtenerMozos() {
         return this.empresa.getMozos()
+                .getMozos()
                 .stream().map(MozoDTO::of)
                 .collect(Collectors.toList());
     }
@@ -109,7 +139,23 @@ public class GestionDeUsuarios {
      */
     public List<OperarioDTO> obtenerOperarios() {
         return this.empresa.getOperarios()
+                .getOperarios()
                 .stream().map(OperarioDTO::of)
                 .collect(Collectors.toList());
+    }
+
+    public void tomarAsistencia(String id, EstadoMozo estado) throws EntidadNoEncontradaException {
+        Optional<Mozo> mozo = this.empresa.getMozos().getMozos().stream().filter(m -> m.getId().equals(id)).findFirst();
+
+        if (mozo.isPresent()) {
+            mozo.get().setEstadoMozo(estado);
+        } else {
+            throw new EntidadNoEncontradaException("No se encontro el mozo con id " + id);
+        }
+    }
+
+    public void deleteOperario(OperarioDTO operarioDTO) {
+        this.empresa.getOperarios().getOperarios().removeIf(o -> o.getUsername().equals(operarioDTO.getUsername()));
+        persistirOperarios();
     }
 }

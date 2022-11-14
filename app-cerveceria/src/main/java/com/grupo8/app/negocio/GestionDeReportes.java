@@ -25,7 +25,7 @@ public class GestionDeReportes {
    * @return listado de reportes para cada mesa
    */
   public List<ReporteMesaDto> generarPromedioDeVentaPorMesa() {
-    List<CierreComanda> cierres = empresa.getCierreComandas();
+    List<CierreComanda> cierres = empresa.getCierreComandas().getCierreComandas();
     List<ReporteMesaDto> resultado = new ArrayList<>();
 
     for (CierreComanda cierre : cierres) {
@@ -54,7 +54,7 @@ public class GestionDeReportes {
    * @return listado de reportes para cada mozo
    */
   private List<ReporteVentaDto> generarReporteDeVentas() {
-    List<CierreComanda> cierres = empresa.getCierreComandas();
+    List<CierreComanda> cierres = empresa.getCierreComandas().getCierreComandas();
     List<ReporteVentaDto> resultado = new ArrayList<>();
 
     for (CierreComanda cierre : cierres) {
@@ -64,10 +64,13 @@ public class GestionDeReportes {
       if (yaExiste.isPresent()) { //si existe el mozo en el reporte lo actualizo
         ReporteVentaDto reporte = yaExiste.get();
         reporte.setTotal(reporte.getTotal() + cierre.getTotal());
+        reporte.setCantVentas(reporte.getCantVentas() + 1);
+        reporte.setPromedio(reporte.getTotal() / reporte.getCantVentas());
       } else { //sino lo agrego
         ReporteVentaDto reporte = new ReporteVentaDto();
         reporte.setMozo(mozo);
         reporte.setTotal(cierre.getTotal());
+        reporte.setCantVentas(1);
         resultado.add(reporte);
       }
     }
@@ -116,7 +119,7 @@ public class GestionDeReportes {
     if (reporte.isPresent()) {
       return reporte.get();
     } else {
-      throw new EntidadNoEncontradaException("No se encontró el reporte del mozo");
+      throw new EntidadNoEncontradaException("No hay ventas para el mozo seleccionado");
     }
   }
 

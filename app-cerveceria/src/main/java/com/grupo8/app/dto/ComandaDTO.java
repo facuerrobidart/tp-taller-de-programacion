@@ -6,8 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -18,8 +18,8 @@ public class ComandaDTO {
     private MesaDTO mesa;
     private String id;
     private EstadoComanda estadoPedido;
-    private Instant apertura;
-    private Instant cierre;
+    private Date apertura;
+    private Date cierre;
 
 
     public static ComandaDTO of(Comanda comanda) {
@@ -35,5 +35,24 @@ public class ComandaDTO {
         comandaDTO.setCierre(comanda.getCierre());
 
         return comandaDTO;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "pedidos=" + pedidos +
+                ", mesa=" + mesa +
+                ", estadoPedido=" + estadoPedido +
+                (apertura != null ? ", apertura=" + apertura : "") +
+                (cierre != null ? ", cierre=" + cierre : "") +
+                '}';
+    }
+
+    public float getSubtotal() {
+        float subtotal = 0;
+        for (PedidoDTO pedido : pedidos) {
+            subtotal += pedido.getSubtotal();
+        }
+        return subtotal;
     }
 }

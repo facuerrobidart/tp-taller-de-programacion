@@ -16,14 +16,15 @@ import java.awt.event.MouseListener;
 import java.awt.Font;
 import java.awt.FlowLayout;
 
-public class VistaEliminarMesa extends JFrame implements MouseListener{
+public class VistaEliminarMesa extends JFrame implements MouseListener {
 
 	private JPanel General;
 	private ActionListener actionListener;
 	private int idMesa;
-	private JList<MesaDTO> listaMesasElim;
 	private JButton btnVolver;
 	private JButton btnEliminar;
+	private JScrollPane scrollPane;
+	private JList<MesaDTO> listaMesasElim;
 	
 	public VistaEliminarMesa() {
 		setTitle("Eliminar Mesa");
@@ -50,20 +51,25 @@ public class VistaEliminarMesa extends JFrame implements MouseListener{
 		panel_15.add(btnEliminar);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 384, 581);
+		panel.setBounds(0, 0, 625, 581);
 		General.add(panel);
 		panel.setLayout(null);
 		
-		listaMesasElim = new JList<MesaDTO>();
-		listaMesasElim.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listaMesasElim.setBounds(10, 128, 364, 442);
-		panel.add(listaMesasElim);
-		
 		JLabel lblNewLabel = new JLabel("Seleccione la mesa a eliminar");
-		lblNewLabel.setBounds(46, 48, 265, 25);
+		lblNewLabel.setBounds(41, 27, 265, 25);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel.add(lblNewLabel);
 		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 128, 605, 442);
+		panel.add(scrollPane);
+		
+		listaMesasElim = new JList<MesaDTO>();
+		scrollPane.setViewportView(listaMesasElim);
+		listaMesasElim.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		 listaMesasElim.addMouseListener(this);
+	     btnEliminar.setEnabled(false);
 	}
 
 	public void mostrar() {
@@ -81,9 +87,10 @@ public class VistaEliminarMesa extends JFrame implements MouseListener{
 		// TODO Auto-generated method stub
         this.btnVolver.addActionListener(actionListener);
         this.actionListener = actionListener;
+        this.btnEliminar.addActionListener(actionListener);
 	}
 
-	public int obtenerIdSeleccionado() {
+	public int obtenerNroMesa() {
 		return this.listaMesasElim.getSelectedValue().getNroMesa();
 	}
 
@@ -96,73 +103,40 @@ public class VistaEliminarMesa extends JFrame implements MouseListener{
 	}
 
 	
+
+
+	public void success(String titulo, String mensaje) {
+		JOptionPane.showMessageDialog(this, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
+	}
+
+	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	
+	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-		/*if(this.GrupoEstudios.getSelection()!=null)
-			this.Estudios = this.GrupoEstudios.getSelection().getActionCommand();
-		if(this.GrupoRemuneracion.getSelection()!=null)
-			this.Remuneracion = this.GrupoRemuneracion.getSelection().getActionCommand();
-		if(this.GrupoHorario.getSelection()!=null)
-			this.Horario = this.GrupoHorario.getSelection().getActionCommand();
-		if(this.GrupoPuesto.getSelection()!=null)
-			this.Puesto = this.GrupoPuesto.getSelection().getActionCommand();
-		if(this.GrupoREtario.getSelection()!=null)
-			this.REtario = this.GrupoREtario.getSelection().getActionCommand();
-		if(this.GrupoExperiencia.getSelection()!=null)
-			this.Experiencia = this.GrupoExperiencia.getSelection().getActionCommand();
-		if(this.GrupoLocacion.getSelection()!=null)
-			this.Locacion = this.GrupoLocacion.getSelection().getActionCommand();
-		if(this.GrupoEstudios.getSelection()!=null && this.GrupoRemuneracion.getSelection()!=null && this.GrupoHorario.getSelection()!=null
-				&& this.GrupoPuesto.getSelection()!=null && this.GrupoREtario.getSelection()!=null  && this.GrupoExperiencia.getSelection()!=null
-				&& this.GrupoLocacion.getSelection()!=null)
-			this.btnFinalizar.setEnabled(true);*/
-	}
+        if(this.listaMesasElim.getSelectedValue() != null)
+             this.btnEliminar.setEnabled(true);
+    }
 
-	
+	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	
-	/*public void limpiaCampos() {
-		this.GrupoEstudios.clearSelection();
-		this.GrupoExperiencia.clearSelection();
-		this.GrupoHorario.clearSelection();
-		this.GrupoLocacion.clearSelection();
-		this.GrupoPuesto.clearSelection();
-		this.GrupoRemuneracion.clearSelection();
-		this.GrupoREtario.clearSelection();
-		
-		this.pesocargaHoraria.setText("");
-		this.pesoEstudios.setText("");
-		this.pesoExperiencia.setText("");
-		this.pesoLocacion.setText("");
-		this.pesoRangoEtario.setText("");
-		this.pesoRemuneracion.setText("");
-		this.pesoTipoDePuesto.setText("");
-	}*/
-
-
-	public void success(String titulo, String mensaje) {
-		JOptionPane.showMessageDialog(this, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	

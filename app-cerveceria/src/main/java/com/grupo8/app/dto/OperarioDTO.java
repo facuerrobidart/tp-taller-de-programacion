@@ -22,4 +22,13 @@ public class OperarioDTO {
         operarioDTO.setActivo(operario.getActivo());
         return operarioDTO;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "nombreCompleto='" + nombreCompleto + '\'' +
+                ", username='" + username + '\'' +
+                ", activo=" + activo
+                + '}';
+    }
 }

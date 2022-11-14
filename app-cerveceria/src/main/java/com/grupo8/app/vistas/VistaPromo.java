@@ -62,7 +62,7 @@ public class VistaPromo extends JFrame {
 		JPanel panel_6 = new JPanel();
 		panel.add(panel_6);
 		
-		btnEditarPromocion = new JButton("Editar promocion");
+		btnEditarPromocion = new JButton("Activar/Desactivar promocion");
 		btnEditarPromocion.setActionCommand("EditarPromocion");
 		btnEditarPromocion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

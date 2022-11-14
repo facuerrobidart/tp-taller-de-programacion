@@ -23,7 +23,7 @@ import java.awt.event.MouseListener;
 import java.awt.Font;
 import java.awt.FlowLayout;
 
-public class VistaNuevaMesa extends JFrame implements KeyListener, MouseListener {
+public class VistaNuevaMesa extends JFrame implements KeyListener,MouseListener {
 
 	private JPanel General;
 	private ActionListener actionListener;
@@ -32,27 +32,11 @@ public class VistaNuevaMesa extends JFrame implements KeyListener, MouseListener
 	private JButton btnVolver;
 	private JButton btnAceptar;
 	private JList<MozoDTO> listaMozos;
+	private MesaDTO mesaEditable=null;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaNuevaMesa frame = new VistaNuevaMesa();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JLabel lblNewLabel_5;
 
-	/**
-	 * Create the frame.
-	 */
-	public VistaNuevaMesa() {
+	public VistaNuevaMesa(MesaDTO mesaEditable) {
 		setTitle("Nueva Mesa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 646, 665);
@@ -62,12 +46,12 @@ public class VistaNuevaMesa extends JFrame implements KeyListener, MouseListener
 		General.setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(5, 5, 428, 587);
+		panel.setBounds(5, 5, 620, 587);
 		General.add(panel);
 		panel.setLayout(null);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(28, 46, 349, 64);
+		panel_1.setBounds(10, 11, 349, 64);
 		panel.add(panel_1);
 
 		JLabel lblNewLabel = new JLabel("Ingrese cantidad de sillas");
@@ -80,34 +64,35 @@ public class VistaNuevaMesa extends JFrame implements KeyListener, MouseListener
 		textFieldCantSillas.addKeyListener(this);
 
 		JPanel panel_11 = new JPanel();
-		panel_11.setBounds(0, 196, 377, 64);
+		panel_11.setBounds(10, 122, 367, 64);
 		panel.add(panel_11);
 		panel_11.setLayout(null);
 
-		JLabel lblNewLabel_5 = new JLabel("Ingrese numero de mesa ");
-		lblNewLabel_5.setBounds(74, 5, 229, 25);
+		lblNewLabel_5 = new JLabel("Ingrese numero de mesa ");
+		lblNewLabel_5.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_5.setBounds(31, 1, 229, 25);
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_11.add(lblNewLabel_5);
 
 		textFieldNumeroMesas = new JTextField();
-		textFieldNumeroMesas.setBounds(308, 7, 46, 20);
+		textFieldNumeroMesas.setBounds(270, 7, 46, 20);
 		textFieldNumeroMesas.setColumns(5);
 		panel_11.add(textFieldNumeroMesas);
 		textFieldNumeroMesas.addKeyListener(this);
 
 		JPanel panel_13 = new JPanel();
-		panel_13.setBounds(0, 354, 377, 232);
+		panel_13.setBounds(20, 238, 600, 299);
 		panel.add(panel_13);
 		panel_13.setLayout(null);
 
-		listaMozos = new JList();
+		listaMozos = new JList<>();
 		listaMozos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listaMozos.setBounds(10, 11, 360, 210);
+		listaMozos.setBounds(10, 11, 580, 277);
 		panel_13.add(listaMozos);
-		listaMozos.addKeyListener(this);
+		listaMozos.addMouseListener(this);
 
 		JLabel lblNewLabel_5_1 = new JLabel("Asigne Mozo: ");
-		lblNewLabel_5_1.setBounds(0, 298, 302, 30);
+		lblNewLabel_5_1.setBounds(10, 197, 182, 30);
 		panel.add(lblNewLabel_5_1);
 		lblNewLabel_5_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -124,22 +109,24 @@ public class VistaNuevaMesa extends JFrame implements KeyListener, MouseListener
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnAceptar);
 		btnAceptar.setEnabled(false);
+		this.limpiaCampos();
 
 	}
 
 	public void setActionListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
+		
 		this.actionListener = actionListener;
 		this.btnVolver.addActionListener(actionListener);
 		this.btnAceptar.addActionListener(actionListener);
-		/* this.listaMozos.addActionListener(actionListener); */
+		
 
 	}
 
 	public void limpiaCampos() {
 		this.listaMozos.clearSelection();
-		this.textFieldCantSillas.setText("");
-		this.textFieldNumeroMesas.setText("");
+		this.textFieldCantSillas.setText("0");
+		this.textFieldNumeroMesas.setText("0");
+		this.btnAceptar.setEnabled(false);
 
 	}
 
@@ -147,6 +134,7 @@ public class VistaNuevaMesa extends JFrame implements KeyListener, MouseListener
 		AddMesaRequest request = new AddMesaRequest();
 		request.setCantSillas(Integer.parseInt(this.textFieldCantSillas.getText()));
 		request.setNroMesa(Integer.parseInt(this.textFieldNumeroMesas.getText()));
+		request.setMozoAsignado(listaMozos.getSelectedValue());
 		return request;
 	}
 
@@ -161,30 +149,67 @@ public class VistaNuevaMesa extends JFrame implements KeyListener, MouseListener
 
 	public void mostrar() {
 		this.setVisible(true);
+		btnAceptar.setEnabled(false);
+
+	}
+	
+	public Integer getNroMesaEditable() {
+		if (this.mesaEditable != null) {
+			return this.mesaEditable.getNroMesa();
+		} else {
+			return null;
+		}
+	}
+
+	public void setMesaEditable(MesaDTO mesa){
+		this.mesaEditable=mesa;
+		this.textFieldNumeroMesas.setText((mesa.getNroMesa().toString()));
+		this.textFieldCantSillas.setText(mesa.getCantSillas().toString());
+		
+		if(mesa!=null) {
+			this.textFieldNumeroMesas.setEnabled(false);
+			this.lblNewLabel_5.setEnabled(false);
+		}
+		
+		
+	}
+
+	public void resetearEditable() {
+		this.mesaEditable = null;
+		this.textFieldCantSillas.setText("");
+		this.textFieldNumeroMesas.setText("");
+		this.btnAceptar.setEnabled(false);
 
 	}
 
+
 	public void esconder() {
 		this.setVisible(false);
+
 
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+		
+
 
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
+	}
+	@Override
+	public void keyReleased(KeyEvent e) {
+		this.btnAceptar.setEnabled(textFieldCantSillas.getText().length() > 0
+				&& textFieldNumeroMesas.getText().length() > 0 && this.listaMozos.getSelectedValue() != null);
+
+
 
 	}
 
-	@Override
-	public void keyReleased(KeyEvent e) {
-		this.btnAceptar.setEnabled( textFieldCantSillas.getText().length() > 0
-				&& textFieldNumeroMesas.getText().length() > 0 && this.listaMozos != null);
+	public void setListaMozos(MozoDTO[] mozos) {
+		listaMozos.setListData(mozos);
 	}
 
 	@Override
@@ -201,7 +226,8 @@ public class VistaNuevaMesa extends JFrame implements KeyListener, MouseListener
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+		this.btnAceptar.setEnabled(textFieldCantSillas.getText().length() > 0
+				&& textFieldNumeroMesas.getText().length() > 0 && this.listaMozos.getSelectedValue() != null);
 		
 	}
 

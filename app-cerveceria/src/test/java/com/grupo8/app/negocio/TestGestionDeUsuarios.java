@@ -2,6 +2,7 @@ package com.grupo8.app.negocio;
 
 import com.grupo8.app.dto.AddMozoRequest;
 import com.grupo8.app.dto.AddOperarioRequest;
+import com.grupo8.app.dto.MozoDTO;
 import com.grupo8.app.excepciones.CredencialesInvalidasException;
 import com.grupo8.app.excepciones.PermisoDenegadoException;
 import com.grupo8.app.modelo.Empresa;
@@ -47,29 +48,25 @@ public class TestGestionDeUsuarios {
     public void addOperarioExito() throws PermisoDenegadoException, CredencialesInvalidasException {
         this.gestionDeUsuarios.login("admin", "admin1234");
 
-        this.gestionDeUsuarios.addOperario(new AddOperarioRequest("Juan Perez", "jperez", "jperez1234"));
+        this.gestionDeUsuarios.addOperario(new AddOperarioRequest("[TEST] Juan Perez", "jperez", "jperez1234"));
     }
 
     @Test
     public void addOperarioFallo() throws PermisoDenegadoException {
         //No hay usuario logueado
-        this.gestionDeUsuarios.addOperario(new AddOperarioRequest("Juan Perez", "jperez", "jperez1234"));
+        this.gestionDeUsuarios.addOperario(new AddOperarioRequest("[TEST] Juan Perez", "jperez", "jperez1234"));
     }
 
     @Test
     public void addMozoExito() {
-        this.gestionDeUsuarios.addMozo(new AddMozoRequest("Juan Perez", Date.valueOf(LocalDate.of(1989,10,17)), 2));
-        Assert.assertNotNull(
-                Empresa.getEmpresa().getMozos()
-                        .stream()
-                        .filter(mozo -> mozo.getNombreCompleto().equals("Juan Perez"))
-                        .findFirst().orElseGet(null)
-        );
+        MozoDTO resultado = this.gestionDeUsuarios.addMozo(new AddMozoRequest("[TEST] Juan Perez", Date.valueOf(LocalDate.of(1989,10,17)), 2));
+        Assert.assertNotNull(resultado);
+        this.gestionDeUsuarios.deleteMozoPorNombre("[TEST]");
     }
 
     @Test
     public void addMozoFallo() {
-        this.gestionDeUsuarios.addMozo(new AddMozoRequest("Juan Perez", null, 2));
+        this.gestionDeUsuarios.addMozo(new AddMozoRequest("[TEST] Juan Perez", null, 2));
     }
 
     @Test

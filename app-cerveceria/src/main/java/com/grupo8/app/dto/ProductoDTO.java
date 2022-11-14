@@ -28,4 +28,14 @@ public class ProductoDTO {
 
         return productoDTO;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "nombre='" + nombre + '\'' +
+                ", precio=" + precio +
+                ", costo=" + costo +
+                ", stock=" + stock +
+                '}';
+    }
 }

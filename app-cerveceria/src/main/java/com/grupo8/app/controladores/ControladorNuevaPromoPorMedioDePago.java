@@ -11,10 +11,12 @@ import java.awt.event.ActionListener;
 public class ControladorNuevaPromoPorMedioDePago implements ActionListener {
 	private static ControladorNuevaPromoPorMedioDePago instancia = null;
 	private VistaNuevaPromoPorMedioDePago vista;
+	private GestionDePromos gestionDePromos;
 
 	private ControladorNuevaPromoPorMedioDePago() {
 		this.vista = new VistaNuevaPromoPorMedioDePago();
 		this.vista.setActionListener(this);
+		this.gestionDePromos = new GestionDePromos();
 	}
 
 	public static ControladorNuevaPromoPorMedioDePago getControlador(boolean mostrar) {
@@ -34,18 +36,18 @@ public class ControladorNuevaPromoPorMedioDePago implements ActionListener {
 		String comando = e.getActionCommand();
 		switch (comando) {
 		case "Volver":
-			ControladorNuevaPromo.getControlador(true); // TODO
+			ControladorNuevaPromo.getControlador(true);
 			this.vista.esconder();
 			break;
 		case "Aceptar":
-			GestionDePromos g = new GestionDePromos();
 			try {
-				g.agregarPromoTemporal(this.vista.getFormulario());
-				this.vista.mensajeExito("la nueva promo se agrego con exito");
+				gestionDePromos.agregarPromoTemporal(this.vista.getFormulario());
+				this.vista.mensajeExito("La nueva promo se agrego con exito");
 			} catch (MalaSolicitudException e1) {
 				this.vista.mensajeError("Solicitud incorrecta");
 			}
 
+			ControladorNuevaPromo.getControlador(true);
 			this.vista.esconder();
 			break;
 

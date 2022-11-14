@@ -1,33 +1,20 @@
 package com.grupo8.app.vistas;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import java.awt.GridLayout;
-import java.awt.event.ActionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
-import javax.swing.BoxLayout;
-import java.awt.CardLayout;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Dimension;
+import java.awt.event.ActionListener;
 
 public class VistaIniciarTurno extends JFrame {
 
 	private JPanel contentPane;
-	private JButton btnAgregarPedido;
+	private JButton btnCrearComanda;
 	private JButton btnAsistenciaMozos;
 	private JButton btnVolver;
 	private JButton btnGestionarMesas;
+	private JButton btnGestionarComandas;
+	private ActionListener actionListener;
 
 	public VistaIniciarTurno() {
 		setTitle("Iniciar Turno");
@@ -35,21 +22,20 @@ public class VistaIniciarTurno extends JFrame {
 		setBounds(100, 100, 532, 464);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 
 		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.CENTER);
+		panel.setBounds(5, 5, 506, 370);
+		contentPane.add(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JPanel panel_4 = new JPanel();
 		panel.add(panel_4);
-
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		panel_4.add(lblNewLabel_1);
+		panel_4.setLayout(null);
 
 		btnAsistenciaMozos = new JButton("Asistencia Mozos");
+		btnAsistenciaMozos.setBounds(132, 18, 250, 45);
 		btnAsistenciaMozos.setActionCommand("AsistenciaMozos");
 		btnAsistenciaMozos.setPreferredSize(new Dimension(250, 45));
 		btnAsistenciaMozos.addActionListener(new ActionListener() {
@@ -64,35 +50,51 @@ public class VistaIniciarTurno extends JFrame {
 		panel.add(panel_6);
 
 		btnGestionarMesas = new JButton("Gestionar mesas");
+		btnGestionarMesas.setBounds(133, 11, 243, 45);
 		btnGestionarMesas.setActionCommand("GestionarMesas");
 		btnGestionarMesas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		panel_6.setLayout(null);
 		btnGestionarMesas.setPreferredSize(new Dimension(250, 45));
 		panel_6.add(btnGestionarMesas);
 		btnGestionarMesas.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
-
-		btnAgregarPedido = new JButton("Agregar pedido a la mesa");
-		btnAgregarPedido.setActionCommand("AgregarPedido");
-		btnAgregarPedido.setPreferredSize(new Dimension(250, 45));
-		panel_1.add(btnAgregarPedido);
-		btnAgregarPedido.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		panel_1.setLayout(null);
+		
+		btnGestionarComandas = new JButton("Gestionar comandas");
+		btnGestionarComandas.setBounds(130, 11, 250, 45);
+		panel_1.add(btnGestionarComandas);
+		btnGestionarComandas.setPreferredSize(new Dimension(250, 45));
+		btnGestionarComandas.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnGestionarComandas.setActionCommand("GestionarComandas");
 
 		JPanel panel_1_2_1 = new JPanel();
 		panel.add(panel_1_2_1);
-
-		JButton btnCerrarTurno = new JButton("Cerrar turno");
-		btnCerrarTurno.setPreferredSize(new Dimension(250, 45));
-		btnCerrarTurno.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnCerrarTurno.setActionCommand("CerrarTurno");
-		panel_1_2_1.add(btnCerrarTurno);
+		panel_1_2_1.setLayout(null);
+		
+				btnCrearComanda = new JButton("Crear comanda");
+				btnCrearComanda.setBounds(129, 11, 250, 45);
+				panel_1_2_1.add(btnCrearComanda);
+				btnCrearComanda.setActionCommand("CrearComanda");
+				btnCrearComanda.setPreferredSize(new Dimension(250, 45));
+				btnCrearComanda.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		JPanel panel_2 = new JPanel();
+		panel.add(panel_2);
+		
+				JButton btnCerrarTurno = new JButton("Cerrar turno");
+				panel_2.add(btnCerrarTurno);
+				btnCerrarTurno.setPreferredSize(new Dimension(250, 45));
+				btnCerrarTurno.setFont(new Font("Tahoma", Font.PLAIN, 16));
+				btnCerrarTurno.setActionCommand("CerrarTurno");
 
 		JPanel panel_3 = new JPanel();
-		contentPane.add(panel_3, BorderLayout.SOUTH);
+		panel_3.setBounds(5, 375, 506, 45);
+		contentPane.add(panel_3);
 		panel_3.setLayout(new BorderLayout(0, 0));
 
 		btnVolver = new JButton("Volver");
@@ -103,11 +105,13 @@ public class VistaIniciarTurno extends JFrame {
 
 	public void setActionListener(ActionListener actionListener) {
 		this.btnVolver.addActionListener(actionListener);
-		this.btnAgregarPedido.addActionListener(actionListener);
 
 		this.btnAsistenciaMozos.addActionListener(actionListener);
 		this.btnGestionarMesas.addActionListener(actionListener);
+		this.btnCrearComanda.addActionListener(actionListener);
 
+		this.btnGestionarComandas.addActionListener(actionListener);
+		this.actionListener=actionListener;
 	}
 
 	public void mostrar() {

@@ -3,13 +3,16 @@ package com.grupo8.app.vistas;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import com.grupo8.app.dto.ProductoDTO;
-import com.grupo8.app.dto.PromoFijaDTO;
+import com.grupo8.app.dto.PromoFijaRequest;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.time.DayOfWeek;
+import java.util.ArrayList;
+import java.util.List;
 
-public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
+public class VistaNuevaPromoProducto extends JFrame implements MouseListener {
 
 	private JPanel General;
 	private ActionListener actionListener;
@@ -30,7 +33,7 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 	private JLabel lblPrecioUnitario;
 	private JLabel lblCantMinima;
 	private JButton btnAceptar;
-	
+	private ButtonGroup radioGroup;
 	
 	public VistaNuevaPromoProducto() {
 		setTitle("Nuevo Promocion por Producto");
@@ -61,7 +64,7 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		
 		
 		JPanel panel_11 = new JPanel();
-		panel_11.setBounds(0, 57, 428, 236);
+		panel_11.setBounds(0, 57, 630, 236);
 		panel.add(panel_11);
 		panel_11.setLayout(null);
 		
@@ -70,10 +73,14 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_11.add(lblNewLabel_5);
 		
-	    listaProductos = new JList<ProductoDTO>();
-	    listaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listaProductos.setBounds(0, 52, 428, 171);
-		panel_11.add(listaProductos);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(0, 47, 429, 189);
+		panel_11.add(scrollPane);
+		
+		listaProductos = new JList<ProductoDTO>();
+		scrollPane.setViewportView(listaProductos);
+		listaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		listaProductos.addMouseListener(this);
 		
 	
 		
@@ -87,7 +94,7 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		lblrDelProducto.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_1_1.add(lblrDelProducto);
 		
-		 chckbxMartes = new JCheckBox("MARTES");
+	 	chckbxMartes = new JCheckBox("MARTES");
 		chckbxMartes.setBounds(182, 56, 97, 23);
 		panel_1_1.add(chckbxMartes);
 		
@@ -95,11 +102,11 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		chckbxViernes.setBounds(293, 37, 97, 23);
 		panel_1_1.add(chckbxViernes);
 		
-		 chckbxSabado = new JCheckBox("SABADO");
+	 	chckbxSabado = new JCheckBox("SABADO");
 		chckbxSabado.setBounds(293, 63, 97, 23);
 		panel_1_1.add(chckbxSabado);
 		
-		 chckbxLunes = new JCheckBox("LUNES");
+	 	chckbxLunes = new JCheckBox("LUNES");
 		chckbxLunes.setBounds(182, 30, 97, 23);
 		panel_1_1.add(chckbxLunes);
 		
@@ -125,7 +132,7 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		rdbtnDescuentoPorCant.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_1_2.add(rdbtnDescuentoPorCant);
 		
-	    rdbtnDosPorUno = new JRadioButton("2x1");
+		rdbtnDosPorUno = new JRadioButton("2x1");
 		rdbtnDosPorUno.setBounds(6, 58, 428, 48);
 		rdbtnDosPorUno.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_1_2.add(rdbtnDosPorUno);
@@ -141,6 +148,7 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		panel_15.add(btnVolver);
 		
 		btnAceptar = new JButton("Aceptar");
+		btnAceptar.setEnabled(false);
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnAceptar);
 		
@@ -149,12 +157,12 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		textFieldCantidadMinima.setBounds(443, 469, 86, 20);
 		General.add(textFieldCantidadMinima);
 		
-	    lblCantMinima = new JLabel("Cantidad minima");
+		lblCantMinima = new JLabel("Cantidad minima");
 		lblCantMinima.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblCantMinima.setBounds(443, 439, 156, 25);
 		General.add(lblCantMinima);
 		
-	    lblPrecioUnitario = new JLabel("Precio unitario");
+		lblPrecioUnitario = new JLabel("Precio unitario");
 		lblPrecioUnitario.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblPrecioUnitario.setBounds(443, 506, 128, 25);
 		General.add(lblPrecioUnitario);
@@ -168,48 +176,21 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		this.textFieldCantidadMinima.setVisible(false);
 		this.lblCantMinima.setVisible(false);
 		this.lblPrecioUnitario.setVisible(false);
-		
+
+		radioGroup = new ButtonGroup();
+		radioGroup.add(rdbtnDescuentoPorCant);
+		radioGroup.add(rdbtnDosPorUno);
+		rdbtnDescuentoPorCant.addMouseListener(this);
+		rdbtnDosPorUno.addMouseListener(this);
 	}
 
 	public void setActionListener(ActionListener actionListener) {
 		// TODO Auto-generated method stub
         this.btnVolver.addActionListener(actionListener);
+        this.btnAceptar.addActionListener(actionListener);
         this.actionListener = actionListener;
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		if(this.rdbtnDescuentoPorCant.isSelected()) {
-			this.textFieldPrecioUnitario.setVisible(true);
-			this.textFieldCantidadMinima.setVisible(true);
-			this.lblCantMinima.setVisible(true);
-			this.lblPrecioUnitario.setVisible(true);
-		}
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void mouseReleased(MouseEvent e) {
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
 	public void limpiaCampos() {
 		this.textFieldNombrePromocion.setText("");
 		this.rdbtnDosPorUno.setSelected(false);
@@ -224,6 +205,9 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 			
 	}
 
+	public void mostrarMensaje(String mensaje) {
+		JOptionPane.showMessageDialog(this, mensaje);
+	}
 	
 	public void mostrar() {
 		this.setVisible(true);
@@ -235,16 +219,92 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener{
 		
 	}
 	
-	public PromoFijaDTO getFormulario() {
-		PromoFijaDTO request = new PromoFijaDTO();
-		request.setProducto(this.listaProductos.getSelectedValue());
+	public PromoFijaRequest getFormulario() {
+		PromoFijaRequest request = new PromoFijaRequest();
+		request.setIdProducto(this.listaProductos.getSelectedValue().getId());
 		request.setDosPorUno(this.rdbtnDosPorUno.isSelected());
-		request.setDtoPorCant(this.rdbtnDescuentoPorCant.isSelected());
+		request.setDtoPorCantidad(this.rdbtnDescuentoPorCant.isSelected());
+
 		if(this.rdbtnDescuentoPorCant.isSelected()) {
 			request.setDtoPorCantPrecioU(Double.parseDouble(this.textFieldPrecioUnitario.getText()));
 			request.setDtoPorCantMin(Integer.parseInt(this.textFieldCantidadMinima.getText()));
 		}
-		
+
+		request.setActiva(true);
+		request.setDiasPromo(getDiasSelecccionados());
+
 		return request;
+	}
+
+	public List<DayOfWeek> getDiasSelecccionados() {
+		List<DayOfWeek> dias = new ArrayList<DayOfWeek>();
+		if(this.chckbxLunes.isSelected()) {
+			dias.add(DayOfWeek.MONDAY);
+		}
+		if(this.chckbxMartes.isSelected()) {
+			dias.add(DayOfWeek.TUESDAY);
+		}
+		if(this.chckbxMiercoles.isSelected()) {
+			dias.add(DayOfWeek.WEDNESDAY);
+		}
+		if(this.chckbxJueves.isSelected()) {
+			dias.add(DayOfWeek.THURSDAY);
+		}
+		if(this.chckbxViernes.isSelected()) {
+			dias.add(DayOfWeek.FRIDAY);
+		}
+		if(this.chckbxSabado.isSelected()) {
+			dias.add(DayOfWeek.SATURDAY);
+		}
+		if(this.chckbxDomingo.isSelected()) {
+			dias.add(DayOfWeek.SUNDAY);
+		}
+
+		return dias;
+	}
+
+	public void setListaProductos(ProductoDTO[] productos) {
+		listaProductos.setListData(productos);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		if (rdbtnDescuentoPorCant.isSelected()) {
+			this.textFieldPrecioUnitario.setVisible(true);
+			this.textFieldCantidadMinima.setVisible(true);
+			this.lblCantMinima.setVisible(true);
+			this.lblPrecioUnitario.setVisible(true);
+		}
+		else {
+			this.textFieldPrecioUnitario.setVisible(false);
+			this.textFieldCantidadMinima.setVisible(false);
+			this.lblCantMinima.setVisible(false);
+			this.lblPrecioUnitario.setVisible(false);
+		}
+		if (listaProductos.getSelectedValue() != null) {
+			this.btnAceptar.setEnabled(true);
+		} else {
+			this.btnAceptar.setEnabled(false);
+		}
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+
 	}
 }

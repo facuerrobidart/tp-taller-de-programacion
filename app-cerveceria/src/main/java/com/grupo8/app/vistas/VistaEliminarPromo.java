@@ -1,5 +1,6 @@
 package com.grupo8.app.vistas;
 
+import com.grupo8.app.dto.MozoDTO;
 import com.grupo8.app.dto.PromocionDTO;
 
 import javax.swing.*;
@@ -16,8 +17,8 @@ public class VistaEliminarPromo extends JFrame implements MouseListener{
 	private JPanel General;
 	private ActionListener actionListener;
 	private JButton btnVolver;
-	private JList<PromocionDTO> listPromo;
 	private JButton btnEliminar;
+	private JList<PromocionDTO> listPromo;
 	
 
 	public VistaEliminarPromo() {
@@ -30,7 +31,7 @@ public class VistaEliminarPromo extends JFrame implements MouseListener{
 		General.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(5, 5, 428, 587);
+		panel.setBounds(5, 5, 620, 587);
 		General.add(panel);
 		panel.setLayout(null);
 		
@@ -44,17 +45,20 @@ public class VistaEliminarPromo extends JFrame implements MouseListener{
 		lblNewLabel_5_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_13.add(lblNewLabel_5_1);
-
-		listPromo = new JList();
-		listPromo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listPromo.setBounds(46, 57, 347, 488);
-		panel.add(listPromo);
 		
 		JLabel lblNewLabel_5_1_1 = new JLabel("Clickee sobre la promocion a eliminar: ");
 		lblNewLabel_5_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_5_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_5_1_1.setBounds(46, 5, 347, 25);
 		panel.add(lblNewLabel_5_1_1);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(20, 66, 590, 488);
+		panel.add(scrollPane);
+		
+		listPromo = new JList<>();
+		scrollPane.setViewportView(listPromo);
+		listPromo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		
 		
@@ -70,14 +74,20 @@ public class VistaEliminarPromo extends JFrame implements MouseListener{
 		btnEliminar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnEliminar);
 		
+		btnEliminar.setEnabled(false);
+		listPromo.addMouseListener(this);
 	}
 
 	public void setActionListener(ActionListener actionListener) {
 		// TODO Auto-generated method stub
         this.btnVolver.addActionListener(actionListener);
+        this.btnEliminar.addActionListener(actionListener);
         this.actionListener = actionListener;
 	}
 
+	public  PromocionDTO getPromo() {
+		return this.listPromo.getSelectedValue();
+	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -106,12 +116,14 @@ public class VistaEliminarPromo extends JFrame implements MouseListener{
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		if(this.listPromo.getSelectedIndex() !=-1){
+            this.btnEliminar.setEnabled(true);
+		}
 	}
 	
 	public void mostrar() {
 		this.setVisible(true);
+		this.btnEliminar.setEnabled(false);
 		
 	}
 
@@ -122,6 +134,8 @@ public class VistaEliminarPromo extends JFrame implements MouseListener{
 
 	public void setListaPromociones(PromocionDTO[] promociones) {
 		this.listPromo.setListData(promociones);
+		this.btnEliminar.setEnabled(false);
+		
 	}
 
 	public String getIdPromocionSeleccionada() {

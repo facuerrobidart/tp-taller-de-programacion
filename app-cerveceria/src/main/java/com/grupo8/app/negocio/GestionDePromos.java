@@ -9,6 +9,8 @@ import com.grupo8.app.modelo.Promociones.PromocionFija;
 import com.grupo8.app.modelo.Promociones.PromocionTemporal;
 import com.grupo8.app.persistencia.Ipersistencia;
 import com.grupo8.app.persistencia.PersistenciaXML;
+import com.grupo8.app.wrappers.PromocionesFijasWrapper;
+import com.grupo8.app.wrappers.PromocionesTemporalesWrapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +46,7 @@ public class GestionDePromos {
                 request.getPorcentajeDescuento(),
                 request.isAcumulable()
         );
-        this.empresa.getPromocionesTemporales().add(nuevo);
+        this.empresa.getPromocionesTemporales().getPromocionesTemporales().add(nuevo);
         persistirPromosTemporales();
 
         return PromoTemporalDTO.of(nuevo);
@@ -59,7 +61,7 @@ public class GestionDePromos {
      * @throws MalaSolicitudException si no hay dias seleccionados, o el descuento se encuentra fuera del rango 0-100
      */
     public PromoTemporalDTO editarPromoTemporal(PromoTemporalRequest request, String id) throws EntidadNoEncontradaException, MalaSolicitudException {
-        Optional<PromocionTemporal> promo = this.empresa.getPromocionesTemporales().stream().filter(p -> p.getIdPromocion().equals(id)).findFirst();
+        Optional<PromocionTemporal> promo = this.empresa.getPromocionesTemporales().getPromocionesTemporales().stream().filter(p -> p.getIdPromocion().equals(id)).findFirst();
         if (promo.isPresent()) {
             if (request.getDiasPromo().size() < 1) {
                 throw new MalaSolicitudException("Debe seleccionar al menos un dia");
@@ -108,7 +110,7 @@ public class GestionDePromos {
      * @throws MalaSolicitudException si no existe el producto, o si se propagan excepciones de validacion de validarUpdatePromoFija
      */
     public PromoFijaDTO agregarPromoFija(PromoFijaRequest request) throws MalaSolicitudException {
-        Optional<Producto> producto = this.empresa.getProductos().stream()
+        Optional<Producto> producto = this.empresa.getProductos().getProductos().stream()
                 .filter(p -> p.getId().equals(request.getIdProducto()))
                 .findFirst();
 
@@ -128,7 +130,7 @@ public class GestionDePromos {
                 request.getDtoPorCantPrecioU()
         );
 
-        this.empresa.getPromocionesFijas().add(promo);
+        this.empresa.getPromocionesFijas().getPromocionesFijas().add(promo);
         persistirPromosFijas();
 
         return PromoFijaDTO.of(promo);
@@ -143,7 +145,7 @@ public class GestionDePromos {
      * @throws MalaSolicitudException si no existe el producto, o si se propagan excepciones de validacion de validarUpdatePromoFija
      */
     public PromoFijaDTO editarPromoFija(PromoFijaRequest request, String id) throws EntidadNoEncontradaException, MalaSolicitudException {
-        Optional<PromocionFija> promo = this.empresa.getPromocionesFijas().stream().filter(p -> p.getIdPromocion().equals(id)).findFirst();
+        Optional<PromocionFija> promo = this.empresa.getPromocionesFijas().getPromocionesFijas().stream().filter(p -> p.getIdPromocion().equals(id)).findFirst();
         if (promo.isPresent()) {
             validarUpdatePromoFija(request);
             PromocionFija promoFija = (PromocionFija) promo.get();
@@ -167,11 +169,11 @@ public class GestionDePromos {
      * @throws EntidadNoEncontradaException
      */
     public boolean eliminarPromoFija(String id) throws EntidadNoEncontradaException {
-        Optional<PromocionFija> promo = this.empresa.getPromocionesFijas().stream()
+        Optional<PromocionFija> promo = this.empresa.getPromocionesFijas().getPromocionesFijas().stream()
                 .filter(p -> p.getIdPromocion().equals(id))
                 .findFirst();
         if (promo.isPresent()) {
-            this.empresa.getPromocionesFijas().remove(promo.get());
+            this.empresa.getPromocionesFijas().getPromocionesFijas().remove(promo.get());
             persistirPromosFijas();
             return true;
         } else {
@@ -186,11 +188,11 @@ public class GestionDePromos {
      * @throws MalaSolicitudException si no existe el producto
      */
     public boolean eliminarPromoTemporal(String id) throws MalaSolicitudException {
-        Optional<PromocionTemporal> promo = this.empresa.getPromocionesTemporales().stream()
+        Optional<PromocionTemporal> promo = this.empresa.getPromocionesTemporales().getPromocionesTemporales().stream()
                 .filter(p -> p.getIdPromocion().equals(id))
                 .findFirst();
         if (promo.isPresent()) {
-            this.empresa.getPromocionesTemporales().remove(promo.get());
+            this.empresa.getPromocionesTemporales().getPromocionesTemporales().remove(promo.get());
             persistirPromosTemporales();
             return true;
         } else {
@@ -202,7 +204,7 @@ public class GestionDePromos {
      * Persiste las promociones fijas de la empresa en un archivo XML
      */
     private void persistirPromosFijas() {
-        Ipersistencia<Set<PromocionFija>> persistencia = new PersistenciaXML();
+        Ipersistencia<PromocionesFijasWrapper> persistencia = new PersistenciaXML();
         try {
             persistencia.abrirOutput("promocionesFijas.xml");
             persistencia.escribir(this.empresa.getPromocionesFijas());
@@ -216,7 +218,7 @@ public class GestionDePromos {
      * Persiste las promociones temporales de la empresa en un archivo XML
      */
     private void persistirPromosTemporales() {
-        Ipersistencia<Set<PromocionTemporal>> persistencia = new PersistenciaXML();
+        Ipersistencia<PromocionesTemporalesWrapper> persistencia = new PersistenciaXML();
         try {
             persistencia.abrirOutput("promocionesTemporales.xml");
             persistencia.escribir(this.empresa.getPromocionesTemporales());
@@ -230,7 +232,7 @@ public class GestionDePromos {
      * @return lista de promociones fijas
      */
     public List<PromoFijaDTO> obtenerPromosFijas() {
-        return this.empresa.getPromocionesFijas().stream()
+        return this.empresa.getPromocionesFijas().getPromocionesFijas().stream()
                 .map(PromoFijaDTO::of)
                 .collect(Collectors.toList());
     }
@@ -240,7 +242,7 @@ public class GestionDePromos {
      * @return lista de promociones temporales
      */
     public List<PromoTemporalDTO> obtenerPromosTemporales() {
-        return this.empresa.getPromocionesTemporales().stream()
+        return this.empresa.getPromocionesTemporales().getPromocionesTemporales().stream()
                 .map(PromoTemporalDTO::of)
                 .collect(Collectors.toList());
     }
@@ -266,6 +268,40 @@ public class GestionDePromos {
             eliminarPromoFija(id);
         } catch (EntidadNoEncontradaException e) {
             eliminarPromoTemporal(id);
+        }
+    }
+
+    private boolean activarDesactivarPromoFija(String id) throws EntidadNoEncontradaException {
+        Optional<PromocionFija> promo = this.empresa.getPromocionesFijas().getPromocionesFijas().stream()
+                .filter(p -> p.getIdPromocion().equals(id))
+                .findFirst();
+        if (promo.isPresent()) {
+            promo.get().setActivo(!promo.get().isActivo());
+            persistirPromosFijas();
+            return promo.get().isActivo();
+        } else {
+            throw new EntidadNoEncontradaException("La promocion no existe");
+        }
+    }
+
+    private boolean activarDesactivarPromoTemporal(String id) throws EntidadNoEncontradaException {
+Optional<PromocionTemporal> promo = this.empresa.getPromocionesTemporales().getPromocionesTemporales().stream()
+                .filter(p -> p.getIdPromocion().equals(id))
+                .findFirst();
+        if (promo.isPresent()) {
+            promo.get().setActivo(!promo.get().isActivo());
+            persistirPromosTemporales();
+            return promo.get().isActivo();
+        } else {
+            throw new EntidadNoEncontradaException("La promocion no existe");
+        }
+    }
+
+    public boolean activarDesactivarPromo(String id) throws EntidadNoEncontradaException {
+        try {
+            return activarDesactivarPromoFija(id);
+        } catch (EntidadNoEncontradaException e) {
+            return activarDesactivarPromoTemporal(id);
         }
     }
 }

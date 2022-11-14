@@ -49,11 +49,11 @@ public class ControladorLogin implements ActionListener {
 			}
 			if (this.logueado != null) {
 				if (logueado.getUsername().equals("admin")) {
-					ControladorSesionAdmin CAdmin = ControladorSesionAdmin.getControladorSesionAdmin(true);
+					ControladorSesionAdmin.getControladorSesionAdmin(true);
 					this.vista.esconder();
 				} else {
 					this.vista.esconder();
-					ControladorIniciarTurno.getControladorIniciarTurno(true);
+					ControladorSesionOperario.getControladorSesionOperario(true);
 				}
 			}
 			break;

@@ -33,6 +33,8 @@ public class VistaSesionOperario extends JFrame {
 	private ActionListener actionListener;
 	private JButton btnAgregarMozo;
 
+	private JButton btnEliminarMozo;
+
 	public VistaSesionOperario() {
 		setTitle("Sesion Operario");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,6 +74,13 @@ public class VistaSesionOperario extends JFrame {
 		panel_6.add(btnAgregarMozo);
 		btnAgregarMozo.setPreferredSize(new Dimension(200, 35));
 		btnAgregarMozo.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		btnEliminarMozo = new JButton("Eliminar mozo");
+		btnEliminarMozo.setVerticalAlignment(SwingConstants.BOTTOM);
+		btnEliminarMozo.setPreferredSize(new Dimension(200, 35));
+		btnEliminarMozo.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnEliminarMozo.setActionCommand("EliminarMozo");
+		panel_6.add(btnEliminarMozo);
 		
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
@@ -142,6 +151,7 @@ public class VistaSesionOperario extends JFrame {
 		this.btnAbmMesas.addActionListener(actionListener);
 		this.btnEstadisticas.addActionListener(actionListener);
 		this.btnAgregarMozo.addActionListener(actionListener);
+		this.btnEliminarMozo.addActionListener(actionListener);
 	}
 
 	

@@ -10,36 +10,21 @@ import com.grupo8.app.dto.MesaDTO;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class VistaAgregarComanda extends JFrame {
+public class VistaSeleccionarMesaComanda extends JFrame implements MouseListener{
 
 	private JPanel contentPane;
-	private JList<MesaDTO> listaMesas;
 	
 	private JButton btnConfirmar;
 	private JButton btnAtras;
 	private ActionListener actionListener;
+	private JScrollPane scrollPane;
+	private JList<MesaDTO> listaMesas;
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaAgregarComanda frame = new VistaAgregarComanda();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
-	public VistaAgregarComanda() {
+	public VistaSeleccionarMesaComanda() {
 		setTitle("Agregar Comanda");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 604, 604);
@@ -52,11 +37,6 @@ public class VistaAgregarComanda extends JFrame {
 		panel.setLayout(null);
 		contentPane.add(panel, BorderLayout.CENTER);
 		
-		listaMesas = new JList<MesaDTO>();
-		listaMesas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listaMesas.setBounds(10, 66, 364, 442);
-		panel.add(listaMesas);
-		
 		JLabel lblSeleccioneLaMesa = new JLabel("Seleccione la mesa donde agregar la comanda");
 		lblSeleccioneLaMesa.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblSeleccioneLaMesa.setBounds(10, 11, 426, 25);
@@ -64,18 +44,32 @@ public class VistaAgregarComanda extends JFrame {
 		
 		
 		btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnConfirmar.setActionCommand("CONFIRMAR");
-		btnConfirmar.setBounds(202, 521, 172, 23);
+		btnConfirmar.setBounds(292, 521, 276, 34);
 		panel.add(btnConfirmar);
 		
 		btnAtras = new JButton("Atras");
+		btnAtras.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnAtras.setActionCommand("ATRAS");
-		btnAtras.setBounds(10, 521, 172, 23);
+		btnAtras.setBounds(10, 521, 282, 34);
 		panel.add(btnAtras);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 66, 504, 442);
+		panel.add(scrollPane);
+		
+		listaMesas = new JList<MesaDTO>();
+		scrollPane.setViewportView(listaMesas);
+		listaMesas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		this.listaMesas.addMouseListener(this);
+		this.btnConfirmar.setEnabled(false);
 	}
 
 	public void mostrar() {
         this.setVisible(true);
+		this.btnConfirmar.setEnabled(false);
 
     }
 	
@@ -100,5 +94,36 @@ public class VistaAgregarComanda extends JFrame {
 
 	public void mostrarMensaje(String mensaje) {
 		JOptionPane.showMessageDialog(this, mensaje);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		if(this.listaMesas.getSelectedValue() != null)
+			this.btnConfirmar.setEnabled(true);
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

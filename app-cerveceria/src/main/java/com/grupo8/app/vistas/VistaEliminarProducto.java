@@ -18,6 +18,7 @@ public class VistaEliminarProducto extends JFrame implements MouseListener {
 	private ActionListener actionListener;
 	private JButton btnVolver;
 	private JList<ProductoDTO> listProductosElim;
+	private JButton btnAceptar;
 
 	
 	public VistaEliminarProducto() {
@@ -30,19 +31,22 @@ public class VistaEliminarProducto extends JFrame implements MouseListener {
 		General.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(5, 5, 428, 587);
+		panel.setBounds(5, 5, 620, 587);
 		General.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Seleccione el producto a eliminar");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(55, 26, 307, 77);
+		lblNewLabel.setBounds(37, 11, 307, 77);
 		panel.add(lblNewLabel);
 		
-		listProductosElim = new JList<>();
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 142, 600, 434);
+		panel.add(scrollPane);
+		
+		listProductosElim = new JList<ProductoDTO>();
+		scrollPane.setViewportView(listProductosElim);
 		listProductosElim.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listProductosElim.setBounds(10, 142, 408, 434);
-		panel.add(listProductosElim);
 		
 		
 		JPanel panel_15 = new JPanel();
@@ -53,15 +57,21 @@ public class VistaEliminarProducto extends JFrame implements MouseListener {
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnVolver);
 		
-		JButton btnAceptar = new JButton("Eliminar");
+		btnAceptar = new JButton("Eliminar");
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_15.add(btnAceptar);
+		btnAceptar.setEnabled(false);
+
+		listProductosElim.addMouseListener(this);
+		
 		
 	}
 
 	
 	public void mostrar() {
 		this.setVisible(true);
+		btnAceptar.setEnabled(false);
+		
 		
 	}
 
@@ -84,62 +94,54 @@ public class VistaEliminarProducto extends JFrame implements MouseListener {
 
 	
 	public void setActionListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
+		
         this.btnVolver.addActionListener(actionListener);
-        
+        this.btnAceptar.addActionListener(actionListener);
         this.actionListener = actionListener;
 	}
 
 	
+	
+
+	
+	public void success(String titulo, String mensaje) {
+		JOptionPane.showMessageDialog(this, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
+	}
+
+
+	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	
+
+	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
+
+	@Override
 	public void mouseReleased(MouseEvent e) {
-	
+		this.btnAceptar.setEnabled( this.listProductosElim.getSelectedValue() != null);
+		
+		
 	}
 
-	
+
+	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 
+	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
-	}
-
-	
-	public void limpiaCampos() {/*
-		this.GrupoEstudios.clearSelection();
-		this.GrupoExperiencia.clearSelection();
-		this.GrupoHorario.clearSelection();
-		this.GrupoLocacion.clearSelection();
-		this.GrupoPuesto.clearSelection();
-		this.GrupoRemuneracion.clearSelection();
-		this.GrupoREtario.clearSelection();
 		
-		this.pesocargaHoraria.setText("");
-		this.pesoEstudios.setText("");
-		this.pesoExperiencia.setText("");
-		this.pesoLocacion.setText("");
-		this.pesoRangoEtario.setText("");
-		this.pesoRemuneracion.setText("");
-		this.pesoTipoDePuesto.setText("");*/
-	}
-
-	
-	public void success(String titulo, String mensaje) {
-		JOptionPane.showMessageDialog(this, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	

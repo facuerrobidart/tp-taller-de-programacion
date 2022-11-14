@@ -22,4 +22,13 @@ public class PromocionDTO {
         this.activo = activo;
         this.diasPromo = diasPromo;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "nombre='" + nombre + '\'' +
+                ", activo=" + activo +
+                ", diasPromo=" + diasPromo +
+                '}';
+    }
 }

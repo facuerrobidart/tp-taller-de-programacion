@@ -38,11 +38,11 @@ public class ControladorMesa implements ActionListener {
 		switch (comando) {
 		case "NuevaMesa":
 			this.vista.esconder();
-			ControladorNuevaMesa.getControladorNuevaMesa(true);
+			ControladorNuevaMesa.getControladorNuevaMesa(true,null);
 			break;
 		case "EditarMesa":
 			this.vista.esconder();
-			ControladorNuevaMesa.getControladorNuevaMesa(true);
+			ControladorEditarMesa.get(true);
 			break;
 		case "EliminarMesa":
 			this.vista.esconder();
