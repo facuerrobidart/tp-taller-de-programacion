@@ -36,7 +36,7 @@ public class ControladorEliminarPromo implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
         switch (comando) {
-            case "EliminarPromo":
+            case "Eliminar":
                 try {
                     gestionDePromos.eliminarPromo(vista.getIdPromocionSeleccionada());
                     vista.mostrarMensaje("Promoción eliminada correctamente");
