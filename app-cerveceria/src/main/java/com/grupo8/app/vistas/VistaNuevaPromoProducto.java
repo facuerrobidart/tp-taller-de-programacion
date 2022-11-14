@@ -64,7 +64,7 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener {
 		
 		
 		JPanel panel_11 = new JPanel();
-		panel_11.setBounds(0, 57, 428, 236);
+		panel_11.setBounds(0, 57, 630, 236);
 		panel.add(panel_11);
 		panel_11.setLayout(null);
 		
@@ -73,10 +73,14 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener {
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_11.add(lblNewLabel_5);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(0, 47, 429, 189);
+		panel_11.add(scrollPane);
+		
 		listaProductos = new JList<ProductoDTO>();
+		scrollPane.setViewportView(listaProductos);
 		listaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listaProductos.setBounds(0, 52, 428, 171);
-		panel_11.add(listaProductos);
+		listaProductos.addMouseListener(this);
 		
 	
 		
@@ -178,7 +182,6 @@ public class VistaNuevaPromoProducto extends JFrame implements MouseListener {
 		radioGroup.add(rdbtnDosPorUno);
 		rdbtnDescuentoPorCant.addMouseListener(this);
 		rdbtnDosPorUno.addMouseListener(this);
-		listaProductos.addMouseListener(this);
 	}
 
 	public void setActionListener(ActionListener actionListener) {
