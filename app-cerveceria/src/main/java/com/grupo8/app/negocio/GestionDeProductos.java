@@ -21,6 +21,11 @@ public class GestionDeProductos {
         this.empresa = Empresa.getEmpresa();
     }
 
+    /**
+     * Agrega un producto a la lista de productos de la empresa
+     * @param request DTO con los datos del producto a agregar
+     * @return DTO del producto agregado
+     */
     public ProductoDTO addProducto(AddProductoRequest request) {
         if (request.getCosto() <= 0 || request.getPrecio() <= 0) {
             throw new IllegalArgumentException("El costo y el precio deben ser mayores a 0");
@@ -37,6 +42,11 @@ public class GestionDeProductos {
         return ProductoDTO.of(producto);
     }
 
+    /**
+     * Elimina un producto de la lista de productos de la empresa
+     * @param id ID del producto a eliminar
+     * @throws IllegalArgumentException si el ID pertenece a un producto en una comanda
+     */
     public void deleteProducto(@NonNull String id) {
 
         if (this.empresa.getComandas().stream().anyMatch(c -> c.getPedidos().stream().anyMatch(p -> p.getProducto().getId().equals(id)))) {
@@ -48,6 +58,12 @@ public class GestionDeProductos {
         persistir();
     }
 
+    /**
+     * Modifica un producto de la lista de productos de la empresa
+     * @param id id del producto a modificar
+     * @param informacion DTO con los datos a modificar
+     * @throws EntidadNoEncontradaException
+     */
     public void editProducto(String id, AddProductoRequest informacion) throws EntidadNoEncontradaException {
         Optional<Producto> producto = this.empresa.getProductos().stream()
                 .filter(p -> id.equals(p.getId()))
@@ -61,6 +77,9 @@ public class GestionDeProductos {
         }
     }
 
+    /**
+     * Persiste los productos de la empresa en el archivo productos.xml
+     */
     private void persistir() {
         Ipersistencia<Set<Producto>> persistencia = new PersistenciaXML();
         try {
@@ -71,6 +90,10 @@ public class GestionDeProductos {
         }
     }
 
+    /**
+     * Obtiene todos los productos de la empresa
+     * @return Lista de DTOs de los productos
+     */
     public List<ProductoDTO> obtenerProductos() {
         return empresa.getProductos()
                 .stream()
@@ -78,6 +101,12 @@ public class GestionDeProductos {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Obtiene un producto de la empresa
+     * @param id id del producto a obtener
+     * @return
+     * @throws EntidadNoEncontradaException si no se encuentra el producto
+     */
     public ProductoDTO obtenerPorId(String id) throws EntidadNoEncontradaException {
         Optional<Producto> producto = this.empresa.getProductos().stream()
                 .filter(p -> id.equals(p.getId()))

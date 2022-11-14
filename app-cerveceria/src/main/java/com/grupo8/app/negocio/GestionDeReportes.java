@@ -20,6 +20,10 @@ public class GestionDeReportes {
     this.empresa = Empresa.getEmpresa();
   }
 
+  /**
+   * Genera una lista de reportes para cada mesa de la empresa ventas totales, cantidad de ventas y venta promedio
+   * @return listado de reportes para cada mesa
+   */
   public List<ReporteMesaDto> generarPromedioDeVentaPorMesa() {
     List<CierreComanda> cierres = empresa.getCierreComandas();
     List<ReporteMesaDto> resultado = new ArrayList<>();
@@ -45,6 +49,10 @@ public class GestionDeReportes {
     return resultado;
   }
 
+  /**
+   * Genera una lista de reportes para cada mozo de la empresa ventas totales, cantidad de ventas y venta promedio
+   * @return listado de reportes para cada mozo
+   */
   private List<ReporteVentaDto> generarReporteDeVentas() {
     List<CierreComanda> cierres = empresa.getCierreComandas();
     List<ReporteVentaDto> resultado = new ArrayList<>();
@@ -67,6 +75,11 @@ public class GestionDeReportes {
     return resultado;
   }
 
+  /**
+   * Obtiene el item de reporte de ventas con mayor venta total
+   * @return
+   * @throws MalaSolicitudException
+   */
   public ReporteVentaDto maximo() throws MalaSolicitudException {
     Optional<ReporteVentaDto> maximo = generarReporteDeVentas().stream().max(Comparator.comparing(ReporteVentaDto::getTotal));
 
@@ -77,6 +90,11 @@ public class GestionDeReportes {
     }
   }
 
+  /**
+   * Obtiene el item de reporte de ventas con menor venta total
+   * @return
+   * @throws MalaSolicitudException
+   */
   public ReporteVentaDto minimo() throws MalaSolicitudException {
     Optional<ReporteVentaDto> minimo = generarReporteDeVentas().stream().min(Comparator.comparing(ReporteVentaDto::getTotal));
 
@@ -87,6 +105,11 @@ public class GestionDeReportes {
     }
   }
 
+  /**
+   * Obtiene el item de reporte de ventas de un mozo en particular
+   * @return reporte de ventas del mozo
+   * @throws EntidadNoEncontradaException si no existe el mozo
+   */
   public ReporteVentaDto reporteDeEmpleado(MozoDTO mozo) throws EntidadNoEncontradaException {
     Optional<ReporteVentaDto> reporte = generarReporteDeVentas().stream().filter(r -> r.getMozo().getId().equals(mozo.getId())).findFirst();
 
