@@ -29,6 +29,11 @@ public class GestionDeMesas {
         this.empresa = Empresa.getEmpresa();
     }
 
+    /**
+     * @param request, contiene numero de mesa y sillas
+     * @return MesaDTO, DTO con información de la mesa
+     * @throws NumeroMesaInvalidoException si el numero de mesa ya existe
+     */
     public MesaDTO addMesa(AddMesaRequest request) throws NumeroMesaInvalidoException, MalaSolicitudException {
         Optional<Mesa> potencialDuplicado =
                 this.empresa.getMesas()
@@ -55,6 +60,11 @@ public class GestionDeMesas {
         }
     }
 
+
+    /**
+     * @param request tiene el numero de mesa a editar y la cantidad de sillas
+     * @throws EntidadNoEncontradaException si no existe la mesa
+     */
     public void editMesa(AddMesaRequest request) throws EntidadNoEncontradaException {
         Optional<Mesa> mesaAEditar = this.empresa.getMesas().getMesas().stream()
                 .filter(mesa -> Objects.equals(mesa.getNroMesa(), request.getNroMesa())).findFirst();
@@ -73,12 +83,18 @@ public class GestionDeMesas {
 
     }
 
+    /**
+     * @param nroMesa, numero de mesa a eliminar
+     */
     public boolean deleteMesa(Integer nroMesa) {
         this.empresa.getMesas().getMesas().removeIf(mesa -> nroMesa.equals(mesa.getNroMesa()));
         persistir();
         return true;
     }
 
+    /**
+     * Persiste las mesas en el archivo mesas.xml
+     */
     private void persistir() {
         Ipersistencia<MesasWrapper> persistencia = new PersistenciaXML();
         try {
@@ -99,6 +115,9 @@ public class GestionDeMesas {
         }
     }
 
+    /**
+     * Persiste los cierres de comandas en el archivo cierres.xml
+     */
     private void persistirCierreComandas() {
         Ipersistencia<CierreComandaWrapper> persistencia = new PersistenciaXML();
         try {
@@ -109,6 +128,13 @@ public class GestionDeMesas {
         }
     }
 
+
+    /**
+     * Valida que esten las condiciones dadas para iniciar el dia de trabajo
+     * Marca todas las mesas como libres
+     * Chequea que haya al menos dos promoociones vigentes
+     * @throws EstadoInvalidoException Si no se cumplen las condiciones
+     */
     public void iniciarTurno() throws EstadoInvalidoException {
         for (Mesa mesa : this.empresa.getMesas().getMesas()) {
             mesa.setEstadoMesa(EstadoMesa.LIBRE);
@@ -125,7 +151,13 @@ public class GestionDeMesas {
         }
     }
 
-
+    /**
+     * Crea una comanda para una mesa a la cual se le agregaran pedidos
+     * @param nroMesa numero de mesa
+     * @return
+     * @throws EntidadNoEncontradaException si la mesa no existe
+     * @throws EstadoInvalidoException si la mesa no esta libre o no tiene mozo asignado
+     */
     public ComandaDTO crearComanda(Integer nroMesa) throws EntidadNoEncontradaException, EstadoInvalidoException {
         Optional<Mesa> mesa = this.empresa.getMesas().getMesas().stream()
                 .filter(me -> Objects.equals(me.getNroMesa(), nroMesa)).findFirst();
@@ -152,6 +184,11 @@ public class GestionDeMesas {
         }
     }
 
+    /**
+     * Agrega un pedido a una comanda
+     * @param pedido pedido a agregar
+     * @throws EntidadNoEncontradaException si no existe la comanda
+     */
     public void agregarPedidoAComanda(PedidoRequest pedido) throws EntidadNoEncontradaException, EstadoInvalidoException {
         Optional<Comanda> comanda = this.empresa.getComandas().getComandas().stream()
                 .filter(c -> Objects.equals(c.getId(), pedido.getIdComanda())).findFirst();
@@ -185,6 +222,11 @@ public class GestionDeMesas {
         }
     }
 
+    /**
+     * Aplica las promociones fijas vigentes a una comanda
+     * @param cierreComanda la comanda a la cual se le aplicaran las promociones
+     * @return booleano que indica si se aplico alguna promocion
+     */
     private boolean aplicarPromocionesFijas(CierreComanda cierreComanda) {
         boolean aplicoPromo = false;
         List<Promocion> promos = new ArrayList<>();
@@ -225,6 +267,10 @@ public class GestionDeMesas {
         return aplicoPromo; //Avisa si realmente logro aplicar alguna promo
     }
 
+    /**
+     * Aplica las promociones temporales vigentes a una comanda a la hora de cerrarla
+     * @param cierreComanda la comanda a la cual se le aplicaran las promociones
+     */
     private void sumarTotal(CierreComanda cierreComanda, String medioDePago) {
         List<PromocionTemporal> promosTemporales =
                 this.empresa.getPromocionesTemporales()
@@ -248,6 +294,11 @@ public class GestionDeMesas {
                 }, Float::sum));
     }
 
+    /**
+     * Aplica las promociones temporales vigentes a una comanda a la hora de cerrarla
+     * @param idComanda ID de la comanda a la cual se le aplicaran las promociones
+     * @param medioDePago el medio de pago con el cual se cerrara la comanda
+     */
     public void cerrarComanda(String idComanda, String medioDePago) throws EntidadNoEncontradaException {
         Optional<Comanda> comanda = this.empresa.getComandas().getComandas().stream()
                 .filter(c -> Objects.equals(c.getId(), idComanda)).findFirst();
@@ -270,6 +321,10 @@ public class GestionDeMesas {
         }
     }
 
+    /**
+     * Devuelve el listado de todas las mesas
+     * @return List<MesaDTO> listado de mesas
+     */
     public List<MesaDTO> obtenerMesas() {
         return this.empresa.getMesas()
                 .getMesas()
@@ -279,6 +334,10 @@ public class GestionDeMesas {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Devuelve el listado las mesas libres
+     * @return List<MesaDTO> listado de mesas
+     */
     public List<MesaDTO> obtenerMesasLibres() {
         return this.empresa.getMesas()
                 .getMesas()
@@ -289,6 +348,10 @@ public class GestionDeMesas {
                 .collect(Collectors.toList());
     }
 
+    /*
+     * Devuelve el listado de las comandas
+     * @return List<ComandaDTO> listado de comandas
+     */
     public List<ComandaDTO> obtenerComandas() {
         return this.empresa.getComandas()
                 .getComandas()
@@ -297,7 +360,10 @@ public class GestionDeMesas {
                 .collect(Collectors.toList());
     }
 
-
+    /**
+     * Valida si estan dadas las condiciones para cerrar el turno
+     * @throws EstadoInvalidoException Si hay comandas abiertas
+     */
     public void cerrarTurno() throws EstadoInvalidoException {
         if (empresa.getComandas().getComandas().size() > 0) {
             throw new EstadoInvalidoException("No se puede cerrar el turno, hay comandas abiertas");
@@ -305,6 +371,12 @@ public class GestionDeMesas {
         persistirCierreComandas();
     }
 
+    /**
+     * Asigna un mozo a la mesa que va a atender
+     * @param nroMesa mesa seleccionada
+     * @param mozoDTO mozo seleccionado
+     * @throws EntidadNoEncontradaException
+     */
     public void asignarMozo(Integer nroMesa, MozoDTO mozoDTO) throws EntidadNoEncontradaException {
         Optional<Mozo> mozo = this.empresa.getMozos().getMozos().stream()
                 .filter(m -> Objects.equals(m.getId(), mozoDTO.getId())).findFirst();
@@ -322,7 +394,12 @@ public class GestionDeMesas {
         }
     }
 
-
+    /**
+     * Devuelve una mesa por su numero
+     * @param nroMesa numero de mesa
+     * @return DTO de la mesa
+     * @throws EntidadNoEncontradaException si no se encuentra la mesa
+     */
     public MesaDTO obtenerPorNro(Integer nroMesa) throws EntidadNoEncontradaException{
         Optional <MesaDTO> mesa= this.obtenerMesas().stream().filter(m->m.getNroMesa().equals(nroMesa)).findFirst();
         if(mesa.isPresent())

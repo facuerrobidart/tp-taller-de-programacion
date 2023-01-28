@@ -25,6 +25,12 @@ public class GestionDePromos {
         this.empresa = Empresa.getEmpresa();
     }
 
+    /**
+     * Agrega una promocion temporal (por medio de pago) a la lista de promociones de la empresa
+     * @param request request con los datos de la promocion a agregar
+     * @return DTO de la promocion agregada
+     * @throws MalaSolicitudException si no hay dias seleccionados, o el descuento se encuentra fuera del rango 0-100
+     */
     public PromoTemporalDTO agregarPromoTemporal(PromoTemporalRequest request) throws MalaSolicitudException {
         if (request.getDiasPromo().size() < 1) {
             throw new MalaSolicitudException("Debe seleccionar al menos un dia");
@@ -46,6 +52,14 @@ public class GestionDePromos {
         return PromoTemporalDTO.of(nuevo);
     }
 
+    /**
+     * Edita una promocion temporal ya creada en la Empresa
+     * @param request request con los datos de la promocion a editar
+     * @param id ID de la promocion a editar
+     * @return DTO de la promocion editada
+     * @throws EntidadNoEncontradaException si la promo temporal no existe
+     * @throws MalaSolicitudException si no hay dias seleccionados, o el descuento se encuentra fuera del rango 0-100
+     */
     public PromoTemporalDTO editarPromoTemporal(PromoTemporalRequest request, String id) throws EntidadNoEncontradaException, MalaSolicitudException {
         Optional<PromocionTemporal> promo = this.empresa.getPromocionesTemporales().getPromocionesTemporales().stream().filter(p -> p.getIdPromocion().equals(id)).findFirst();
         if (promo.isPresent()) {
@@ -70,7 +84,12 @@ public class GestionDePromos {
         }
     }
 
-
+    /**
+     * Reealiza las validaciones antes de acutalizar o agregar una prmocion fija
+     * @param request request para agregar o editar una promocion fija
+     * @throws MalaSolicitudException si no hay al menos un dia seleccionado, si no se selecciona
+     * ningun tipo de promocion, o si seleccionan ambos tipos de promocion
+     */
     public void validarUpdatePromoFija(PromoFijaRequest request) throws MalaSolicitudException {
 
         if (request.getDiasPromo().size() < 1) {
@@ -84,6 +103,12 @@ public class GestionDePromos {
         }
     }
 
+    /**
+     * Agrega una promocion fija a la lista de promociones de la empresa
+     * @param request request con los datos de la promocion a agregar
+     * @return DTO de la promocion agregada
+     * @throws MalaSolicitudException si no existe el producto, o si se propagan excepciones de validacion de validarUpdatePromoFija
+     */
     public PromoFijaDTO agregarPromoFija(PromoFijaRequest request) throws MalaSolicitudException {
         Optional<Producto> producto = this.empresa.getProductos().getProductos().stream()
                 .filter(p -> p.getId().equals(request.getIdProducto()))
@@ -111,6 +136,14 @@ public class GestionDePromos {
         return PromoFijaDTO.of(promo);
     }
 
+    /**
+     * Edita una promocion fija ya creada en la Empresa
+     * @param request request con los datos de la promocion a editar
+     * @param id ID de la promocion a editar
+     * @return DTO de la promocion editada
+     * @throws EntidadNoEncontradaException si la promo fija no existe
+     * @throws MalaSolicitudException si no existe el producto, o si se propagan excepciones de validacion de validarUpdatePromoFija
+     */
     public PromoFijaDTO editarPromoFija(PromoFijaRequest request, String id) throws EntidadNoEncontradaException, MalaSolicitudException {
         Optional<PromocionFija> promo = this.empresa.getPromocionesFijas().getPromocionesFijas().stream().filter(p -> p.getIdPromocion().equals(id)).findFirst();
         if (promo.isPresent()) {
@@ -129,6 +162,12 @@ public class GestionDePromos {
         }
     }
 
+    /**
+     * Elimina una promocion fija de la lista de promociones de la empresa
+     * @param id id de la promo fija a eliminar
+     * @return booleano confirmando si se realizo la eliminacion
+     * @throws EntidadNoEncontradaException
+     */
     public boolean eliminarPromoFija(String id) throws EntidadNoEncontradaException {
         Optional<PromocionFija> promo = this.empresa.getPromocionesFijas().getPromocionesFijas().stream()
                 .filter(p -> p.getIdPromocion().equals(id))
@@ -142,18 +181,28 @@ public class GestionDePromos {
         }
     }
 
-    public void eliminarPromoTemporal(String id) throws MalaSolicitudException {
+    /**
+     * Elimina una promocion temporal de la lista de promociones de la empresa
+     * @param id request con los datos de la promocion a agregar
+     * @return booleano confirmando si se realizo la eliminacion
+     * @throws MalaSolicitudException si no existe el producto
+     */
+    public boolean eliminarPromoTemporal(String id) throws MalaSolicitudException {
         Optional<PromocionTemporal> promo = this.empresa.getPromocionesTemporales().getPromocionesTemporales().stream()
                 .filter(p -> p.getIdPromocion().equals(id))
                 .findFirst();
         if (promo.isPresent()) {
             this.empresa.getPromocionesTemporales().getPromocionesTemporales().remove(promo.get());
             persistirPromosTemporales();
+            return true;
         } else {
             throw new MalaSolicitudException("La promocion no existe");
         }
     }
 
+    /**
+     * Persiste las promociones fijas de la empresa en un archivo XML
+     */
     private void persistirPromosFijas() {
         Ipersistencia<PromocionesFijasWrapper> persistencia = new PersistenciaXML();
         try {
@@ -164,6 +213,10 @@ public class GestionDePromos {
         }
     }
 
+
+    /**
+     * Persiste las promociones temporales de la empresa en un archivo XML
+     */
     private void persistirPromosTemporales() {
         Ipersistencia<PromocionesTemporalesWrapper> persistencia = new PersistenciaXML();
         try {
@@ -174,24 +227,42 @@ public class GestionDePromos {
         }
     }
 
+    /**
+     * Devuelve una lista de promociones fijas de la empresa
+     * @return lista de promociones fijas
+     */
     public List<PromoFijaDTO> obtenerPromosFijas() {
         return this.empresa.getPromocionesFijas().getPromocionesFijas().stream()
                 .map(PromoFijaDTO::of)
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Devuelve una lista de promociones temporales de la empresa
+     * @return lista de promociones temporales
+     */
     public List<PromoTemporalDTO> obtenerPromosTemporales() {
         return this.empresa.getPromocionesTemporales().getPromocionesTemporales().stream()
                 .map(PromoTemporalDTO::of)
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Devuelve una lista de TODAS las promociones de la empresa
+     * @return lista de promociones de ambos tipos
+     */
     public List<PromocionDTO> obtenerPromos() {
         List<PromocionDTO> promos = new ArrayList<>();
         promos.addAll(obtenerPromosFijas());
         promos.addAll(obtenerPromosTemporales());
         return promos;
     }
+
+    /**
+     * elimina una promocion de cualquier tipo
+     * @param id id de la promocion a eliminar
+     * @throws MalaSolicitudException si no existe la promocion
+     */
     public void eliminarPromo(String id) throws MalaSolicitudException {
         try {
             eliminarPromoFija(id);
@@ -200,6 +271,12 @@ public class GestionDePromos {
         }
     }
 
+    /**
+     * Cambia el estado de una promocion fija
+     * @param id id de la promo fija a cambiar
+     * @return estado final de la promocion
+     * @throws EntidadNoEncontradaException si no existe la promocion
+     */
     private boolean activarDesactivarPromoFija(String id) throws EntidadNoEncontradaException {
         Optional<PromocionFija> promo = this.empresa.getPromocionesFijas().getPromocionesFijas().stream()
                 .filter(p -> p.getIdPromocion().equals(id))
@@ -213,8 +290,14 @@ public class GestionDePromos {
         }
     }
 
+    /**
+     * Activa o desactiva una promocion temporal
+     * @param id id de la promo a cambiar
+     * @return el estado final de la promocion
+     * @throws EntidadNoEncontradaException si no existe la promocion
+     */
     private boolean activarDesactivarPromoTemporal(String id) throws EntidadNoEncontradaException {
-Optional<PromocionTemporal> promo = this.empresa.getPromocionesTemporales().getPromocionesTemporales().stream()
+        Optional<PromocionTemporal> promo = this.empresa.getPromocionesTemporales().getPromocionesTemporales().stream()
                 .filter(p -> p.getIdPromocion().equals(id))
                 .findFirst();
         if (promo.isPresent()) {
@@ -226,6 +309,12 @@ Optional<PromocionTemporal> promo = this.empresa.getPromocionesTemporales().getP
         }
     }
 
+    /**
+     * activa o desactiva una promocion cualquiera
+     * @param id id de la promo a cambiar
+     * @return el estado final de la promocion
+     * @throws EntidadNoEncontradaException si no existe la promocion
+     */
     public boolean activarDesactivarPromo(String id) throws EntidadNoEncontradaException {
         try {
             return activarDesactivarPromoFija(id);

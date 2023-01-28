@@ -28,14 +28,29 @@ public class GestionDeUsuarios {
         this.empresa = Empresa.getEmpresa();
     }
 
+    /**
+     * loguea un usuario
+     * @param username nombre de usuario
+     * @param password contraseña
+     * @return Operario logueado
+     * @throws CredencialesInvalidasException si las credenciales son incorrectas
+     */
     public Operario login(String username, String password) throws CredencialesInvalidasException {
         return this.empresa.login(username, password);
     }
 
+    /**
+     * Desloguea un usuario
+     */
     public void logout() {
         this.empresa.logout();
     }
 
+    /**
+     * Agrega un operario a la empresa y lo persiste
+     * @param request DTO con los datos del operario a agregar
+     * @throws PermisoDenegadoException si el usuario logueado no es administrador
+     */
     public void addOperario(AddOperarioRequest request) throws PermisoDenegadoException {
         if (this.empresa.getUsuarioLogueado().getUsername().equals("admin")) {
             this.empresa.getOperarios().getOperarios().add(
@@ -46,6 +61,10 @@ public class GestionDeUsuarios {
         }
     }
 
+    /**
+     * Agrega un mozo a la empresa y lo persiste
+     * @param request DTO con los datos del mozo a agregar
+     */
     public MozoDTO addMozo(AddMozoRequest request) {
         Mozo nuevoMozo = new Mozo(request.getNombreCompleto(), request.getFechaNacimiento(), request.getCantidadHijos());
         this.empresa.getMozos().getMozos().add(nuevoMozo);
@@ -54,11 +73,21 @@ public class GestionDeUsuarios {
         return MozoDTO.of(nuevoMozo);
     }
 
+    /**
+     * Elimina un mozo de la empresa y lo persiste
+     * @param mozo
+     */
     public void deleteMozo(MozoDTO mozo) {
         this.empresa.getMozos().getMozos().removeIf(m -> m.getId().equals(mozo.getId()));
         persistirMozo();
     }
 
+    /**
+     * Calcula el sueldo total de los mozos teniendo en cuenta la cantidad de hijos
+     * @param mozo mozo seleccionado
+     * @return sueldo final
+     * @throws EntidadNoEncontradaException si el mozo no existe
+     */
     public Float calcularSueldoMozo(MozoDTO mozo) throws EntidadNoEncontradaException {
         float base = this.empresa.getSueldoBase();
 
@@ -72,11 +101,18 @@ public class GestionDeUsuarios {
         }
     }
 
+    /**
+     * Elmina un mozo por el nombre
+     * @param nombre nombre del mozo a eliminar
+     */
     public void deleteMozoPorNombre(String nombre) {
         this.empresa.getMozos().getMozos().removeIf(m -> m.getNombreCompleto().contains(nombre));
         persistirMozo();
     }
 
+    /**
+     * Persiste los mozos de la empresa en el archivo mozos.xml
+     */
     private void persistirMozo() {
         Ipersistencia<MozoWrapper> persistencia = new PersistenciaXML();
         try {
@@ -87,6 +123,9 @@ public class GestionDeUsuarios {
         }
     }
 
+    /**
+     * Persiste los operarios de la empresa en el archivo operarios.xml
+     */
     private void persistirOperarios() {
         Ipersistencia<OperariosWrapper> persistencia = new PersistenciaXML();
         try {
@@ -97,6 +136,10 @@ public class GestionDeUsuarios {
         }
     }
 
+    /**
+     * Obtiene los mozos de la empresa
+     * @return lista de DTOs de mozos
+     */
     public List<MozoDTO> obtenerMozos() {
         return this.empresa.getMozos()
                 .getMozos()
@@ -104,6 +147,10 @@ public class GestionDeUsuarios {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Obtiene los operarios de la empresa
+     * @return lista de DTOs de operarios
+     */
     public List<OperarioDTO> obtenerOperarios() {
         return this.empresa.getOperarios()
                 .getOperarios()
@@ -111,6 +158,12 @@ public class GestionDeUsuarios {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Cambia el estado de asistencia de un mozo
+     * @param id id del mozo a modificar
+     * @param estado estado al que se quiere cambiar
+     * @throws EntidadNoEncontradaException si no se encuentra el mozo
+     */
     public void tomarAsistencia(String id, EstadoMozo estado) throws EntidadNoEncontradaException {
         Optional<Mozo> mozo = this.empresa.getMozos().getMozos().stream().filter(m -> m.getId().equals(id)).findFirst();
 
@@ -121,6 +174,11 @@ public class GestionDeUsuarios {
         }
     }
 
+
+    /**
+     * Elmina un operario
+     * @param operarioDTO operario a elminar
+     */
     public void deleteOperario(OperarioDTO operarioDTO) {
         this.empresa.getOperarios().getOperarios().removeIf(o -> o.getUsername().equals(operarioDTO.getUsername()));
         persistirOperarios();
